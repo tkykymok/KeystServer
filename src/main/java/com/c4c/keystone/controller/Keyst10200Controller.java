@@ -2,6 +2,7 @@ package com.c4c.keystone.controller;
 
 import com.c4c.keystone.entity.Keyst0200;
 import com.c4c.keystone.entity.Keyst0200Example;
+import com.c4c.keystone.entity.Keyst0200ExtraS01;
 import com.c4c.keystone.entity.Keyst0200Key;
 import com.c4c.keystone.service.impl.Keyst0200Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,7 @@ public class Keyst10200Controller {
 
     /**
      * 任意の値を設定して検索のサンプル
+     *
      * @return
      */
     @GetMapping("/select")
@@ -54,5 +56,19 @@ public class Keyst10200Controller {
         return ResponseEntity.ok().body(keyst0200List);
     }
 
+    /**
+     * 任意のSQL(ExtraSQL)を発行して検索のサンプル
+     *
+     * @return
+     */
+    @GetMapping("/selectWithExtra")
+    public ResponseEntity<List<Keyst0200ExtraS01>> sample3() {
+        // スキルシートServiceのPKによる検索メソッドを呼び出す。
+        List<Keyst0200ExtraS01> keyst0200ExtraS01List = keyst0200Service.select("tanaka");
+
+        // サンプルのため、Entityをそのまま返却。
+        // 実際にはRequest用のFormClassに移送して返却する。
+        return ResponseEntity.ok().body(keyst0200ExtraS01List);
+    }
 
 }

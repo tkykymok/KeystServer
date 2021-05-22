@@ -2,6 +2,7 @@ package com.c4c.keystone.service.impl;
 
 import com.c4c.keystone.entity.Keyst0200;
 import com.c4c.keystone.entity.Keyst0200Example;
+import com.c4c.keystone.entity.Keyst0200ExtraS01;
 import com.c4c.keystone.entity.Keyst0200Key;
 import com.c4c.keystone.mapper.Keyst0200Mapper;
 import com.c4c.keystone.service.IKeyst0200Service;
@@ -24,5 +25,10 @@ public class Keyst0200Service implements IKeyst0200Service {
     @Override
     public List<Keyst0200> select(Keyst0200Example keyst0200Example) {
         return keyst0200Mapper.selectByExample(keyst0200Example);
+    }
+
+    @Override
+    public List<Keyst0200ExtraS01> select(String userId) {
+        return keyst0200Mapper.selectWithS01(userId);
     }
 }

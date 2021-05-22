@@ -2,6 +2,7 @@ package com.c4c.keystone.mapper;
 
 import com.c4c.keystone.entity.Keyst0200;
 import com.c4c.keystone.entity.Keyst0200Example;
+import com.c4c.keystone.entity.Keyst0200ExtraS01;
 import com.c4c.keystone.entity.Keyst0200Key;
 import java.util.List;
 
@@ -11,7 +12,24 @@ import org.apache.ibatis.type.JdbcType;
 @Mapper
 public interface Keyst0200Mapper {
 
-    final String EXTRA_S01 = "";
+    String EXTRA_S01
+            = "SELECT\n" +
+            "    KEYST0200.SKILL_SHEET_ID\n" +
+            "    ,KEYST0200.USER_ID\n" +
+            "    ,KEYST0210.COMMENT\n" +
+            "FROM KEYST0200\n" +
+            "INNER JOIN KEYST0210 ON\n" +
+            "    KEYST0200.SKILL_SHEET_ID = KEYST0210.SKILL_SHEET_ID\n" +
+            "WHERE\n" +
+            "    USER_ID = #{userId}";
+
+    @Select(EXTRA_S01)
+    @Results(value = {
+            @Result(property = "skillSheetId", column = "SKILL_SHEET_ID"),
+            @Result(property = "userId", column = "USER_ID"),
+            @Result(property = "comment", column = "COMMENT"),
+    })
+    List<Keyst0200ExtraS01> selectWithS01(String userId);
 
     /**
      * @mbg.generated generated automatically, do not modify!
