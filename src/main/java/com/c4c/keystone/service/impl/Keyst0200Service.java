@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class Keyst0200ServiceImpl implements IKeyst0200Service {
+public class Keyst0200Service implements IKeyst0200Service {
 
     @Autowired
     private Keyst0200Mapper keyst0200Mapper;

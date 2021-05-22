@@ -3,7 +3,7 @@ package com.c4c.keystone.controller;
 import com.c4c.keystone.entity.Keyst0200;
 import com.c4c.keystone.entity.Keyst0200Example;
 import com.c4c.keystone.entity.Keyst0200Key;
-import com.c4c.keystone.service.impl.Keyst0200ServiceImpl;
+import com.c4c.keystone.service.impl.Keyst0200Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ import java.util.List;
 public class Keyst10200Controller {
 
     @Autowired
-    Keyst0200ServiceImpl keyst0200Service;
+    Keyst0200Service keyst0200Service;
 
     /**
      * PKによる検索のサンプル
