@@ -34,7 +34,7 @@ public class Keyst10200Controller {
         Keyst0200 keyst0200 = keyst0200Service.selectByPk(keyst0200Key);
 
         // サンプルのため、Entityをそのまま返却。
-        // 実際にはRequest用のFormClassに移送して返却する。
+        // 実際にはResponse用のFormClassに移送して返却する。
         return ResponseEntity.ok().body(keyst0200);
     }
 
@@ -48,11 +48,11 @@ public class Keyst10200Controller {
         // スキルシートEntityExampleに以下の値を設定する。
         Keyst0200Example keyst0200Example = new Keyst0200Example();
         keyst0200Example.createCriteria().andUserIdEqualTo("yamaoka");
-        // スキルシートServiceのPKによる検索メソッドを呼び出す。
+        // スキルシートServiceの検索メソッドを呼び出す。
         List<Keyst0200> keyst0200List = keyst0200Service.select(keyst0200Example);
 
         // サンプルのため、Entityをそのまま返却。
-        // 実際にはRequest用のFormClassに移送して返却する。
+        // 実際にはResponse用のFormClassに移送して返却する。
         return ResponseEntity.ok().body(keyst0200List);
     }
 
@@ -67,7 +67,7 @@ public class Keyst10200Controller {
         List<Keyst0200ExtraS01> keyst0200ExtraS01List = keyst0200Service.select("tanaka");
 
         // サンプルのため、Entityをそのまま返却。
-        // 実際にはRequest用のFormClassに移送して返却する。
+        // 実際にはResponse用のFormClassに移送して返却する。
         return ResponseEntity.ok().body(keyst0200ExtraS01List);
     }
 
