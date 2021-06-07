@@ -47,7 +47,7 @@ public class Keyst10200Controller {
     public ResponseEntity<List<Keyst0200>> sample2() {
         // スキルシートEntityExampleに以下の値を設定する。
         Keyst0200Example keyst0200Example = new Keyst0200Example();
-        keyst0200Example.createCriteria().andUserIdEqualTo("yamaoka");
+        keyst0200Example.createCriteria().andUserIdEqualTo(1);
         // スキルシートServiceの検索メソッドを呼び出す。
         List<Keyst0200> keyst0200List = keyst0200Service.select(keyst0200Example);
 
