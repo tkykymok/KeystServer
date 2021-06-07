@@ -9,11 +9,13 @@ import lombok.Data;
 public class Keyst0210Key {
     /**
      * Column: SKILL_SHEET_ID
+     * Remark: スキルシートID
      */
     private Integer skillSheetId;
 
     /**
      * Column: REF_NO
+     * Remark: 明細番号
      */
     private Integer refNo;
 }

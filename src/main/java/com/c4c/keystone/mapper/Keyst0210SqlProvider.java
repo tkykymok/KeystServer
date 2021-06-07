@@ -93,7 +93,7 @@ public class Keyst0210SqlProvider {
         }
         
         if (record.getCreatedUser() != null) {
-            sql.VALUES("CREATED_USER", "#{createdUser,jdbcType=VARCHAR}");
+            sql.VALUES("CREATED_USER", "#{createdUser,jdbcType=INTEGER}");
         }
         
         if (record.getLastModifiedDatetime() != null) {
@@ -101,7 +101,7 @@ public class Keyst0210SqlProvider {
         }
         
         if (record.getLastModifiedUser() != null) {
-            sql.VALUES("LAST_MODIFIED_USER", "#{lastModifiedUser,jdbcType=VARCHAR}");
+            sql.VALUES("LAST_MODIFIED_USER", "#{lastModifiedUser,jdbcType=INTEGER}");
         }
         
         if (record.getVersionExKey() != null) {
@@ -215,7 +215,7 @@ public class Keyst0210SqlProvider {
         }
         
         if (record.getCreatedUser() != null) {
-            sql.SET("CREATED_USER = #{record.createdUser,jdbcType=VARCHAR}");
+            sql.SET("CREATED_USER = #{record.createdUser,jdbcType=INTEGER}");
         }
         
         if (record.getLastModifiedDatetime() != null) {
@@ -223,7 +223,7 @@ public class Keyst0210SqlProvider {
         }
         
         if (record.getLastModifiedUser() != null) {
-            sql.SET("LAST_MODIFIED_USER = #{record.lastModifiedUser,jdbcType=VARCHAR}");
+            sql.SET("LAST_MODIFIED_USER = #{record.lastModifiedUser,jdbcType=INTEGER}");
         }
         
         if (record.getVersionExKey() != null) {
@@ -255,9 +255,9 @@ public class Keyst0210SqlProvider {
         sql.SET("PG_LANG = #{record.pgLang,jdbcType=VARCHAR}");
         sql.SET("SCOPE_OF_WORK = #{record.scopeOfWork,jdbcType=VARCHAR}");
         sql.SET("CREATED_DATETIME = #{record.createdDatetime,jdbcType=TIMESTAMP}");
-        sql.SET("CREATED_USER = #{record.createdUser,jdbcType=VARCHAR}");
+        sql.SET("CREATED_USER = #{record.createdUser,jdbcType=INTEGER}");
         sql.SET("LAST_MODIFIED_DATETIME = #{record.lastModifiedDatetime,jdbcType=TIMESTAMP}");
-        sql.SET("LAST_MODIFIED_USER = #{record.lastModifiedUser,jdbcType=VARCHAR}");
+        sql.SET("LAST_MODIFIED_USER = #{record.lastModifiedUser,jdbcType=INTEGER}");
         sql.SET("VERSION_EX_KEY = #{record.versionExKey,jdbcType=INTEGER}");
         
         Keyst0210Example example = (Keyst0210Example) parameter.get("example");
@@ -321,7 +321,7 @@ public class Keyst0210SqlProvider {
         }
         
         if (record.getCreatedUser() != null) {
-            sql.SET("CREATED_USER = #{createdUser,jdbcType=VARCHAR}");
+            sql.SET("CREATED_USER = #{createdUser,jdbcType=INTEGER}");
         }
         
         if (record.getLastModifiedDatetime() != null) {
@@ -329,7 +329,7 @@ public class Keyst0210SqlProvider {
         }
         
         if (record.getLastModifiedUser() != null) {
-            sql.SET("LAST_MODIFIED_USER = #{lastModifiedUser,jdbcType=VARCHAR}");
+            sql.SET("LAST_MODIFIED_USER = #{lastModifiedUser,jdbcType=INTEGER}");
         }
         
         if (record.getVersionExKey() != null) {

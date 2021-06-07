@@ -3,12 +3,11 @@ package com.c4c.keystone.mapper;
 import com.c4c.keystone.entity.Keyst0210;
 import com.c4c.keystone.entity.Keyst0210Example;
 import com.c4c.keystone.entity.Keyst0210Key;
-import java.util.List;
-
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
-@Mapper
+import java.util.List;
+
 public interface Keyst0210Mapper {
     /**
      * @mbg.generated generated automatically, do not modify!
@@ -51,8 +50,8 @@ public interface Keyst0210Mapper {
         "#{comment,jdbcType=VARCHAR}, #{devScale,jdbcType=VARCHAR}, ",
         "#{os,jdbcType=VARCHAR}, #{db,jdbcType=VARCHAR}, #{fwMwTool,jdbcType=VARCHAR}, ",
         "#{pgLang,jdbcType=VARCHAR}, #{scopeOfWork,jdbcType=VARCHAR}, ",
-        "#{createdDatetime,jdbcType=TIMESTAMP}, #{createdUser,jdbcType=VARCHAR}, ",
-        "#{lastModifiedDatetime,jdbcType=TIMESTAMP}, #{lastModifiedUser,jdbcType=VARCHAR}, ",
+        "#{createdDatetime,jdbcType=TIMESTAMP}, #{createdUser,jdbcType=INTEGER}, ",
+        "#{lastModifiedDatetime,jdbcType=TIMESTAMP}, #{lastModifiedUser,jdbcType=INTEGER}, ",
         "#{versionExKey,jdbcType=INTEGER})"
     })
     int insert(Keyst0210 record);
@@ -82,9 +81,9 @@ public interface Keyst0210Mapper {
         @Result(column="PG_LANG", property="pgLang", jdbcType=JdbcType.VARCHAR),
         @Result(column="SCOPE_OF_WORK", property="scopeOfWork", jdbcType=JdbcType.VARCHAR),
         @Result(column="CREATED_DATETIME", property="createdDatetime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.VARCHAR),
+        @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.INTEGER),
         @Result(column="LAST_MODIFIED_DATETIME", property="lastModifiedDatetime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="LAST_MODIFIED_USER", property="lastModifiedUser", jdbcType=JdbcType.VARCHAR),
+        @Result(column="LAST_MODIFIED_USER", property="lastModifiedUser", jdbcType=JdbcType.INTEGER),
         @Result(column="VERSION_EX_KEY", property="versionExKey", jdbcType=JdbcType.INTEGER)
     })
     List<Keyst0210> selectByExample(Keyst0210Example example);
@@ -116,9 +115,9 @@ public interface Keyst0210Mapper {
         @Result(column="PG_LANG", property="pgLang", jdbcType=JdbcType.VARCHAR),
         @Result(column="SCOPE_OF_WORK", property="scopeOfWork", jdbcType=JdbcType.VARCHAR),
         @Result(column="CREATED_DATETIME", property="createdDatetime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.VARCHAR),
+        @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.INTEGER),
         @Result(column="LAST_MODIFIED_DATETIME", property="lastModifiedDatetime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="LAST_MODIFIED_USER", property="lastModifiedUser", jdbcType=JdbcType.VARCHAR),
+        @Result(column="LAST_MODIFIED_USER", property="lastModifiedUser", jdbcType=JdbcType.INTEGER),
         @Result(column="VERSION_EX_KEY", property="versionExKey", jdbcType=JdbcType.INTEGER)
     })
     Keyst0210 selectByPrimaryKey(Keyst0210Key key);
@@ -140,6 +139,33 @@ public interface Keyst0210Mapper {
      */
     @UpdateProvider(type=Keyst0210SqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(Keyst0210 record);
+
+    /**
+     * @mbg.generated generated automatically, do not modify!
+     */
+    @Update({
+        "update KEYST0210",
+        "set PRJ_CODE = #{prjCode,jdbcType=VARCHAR},",
+          "PRJ_START_DATE = #{prjStartDate,jdbcType=DATE},",
+          "PRJ_END_DATE = #{prjEndDate,jdbcType=DATE},",
+          "BIZ_IN_CHARGE = #{bizInCharge,jdbcType=VARCHAR},",
+          "`COMMENT` = #{comment,jdbcType=VARCHAR},",
+          "DEV_SCALE = #{devScale,jdbcType=VARCHAR},",
+          "OS = #{os,jdbcType=VARCHAR},",
+          "DB = #{db,jdbcType=VARCHAR},",
+          "FW_MW_TOOL = #{fwMwTool,jdbcType=VARCHAR},",
+          "PG_LANG = #{pgLang,jdbcType=VARCHAR},",
+          "SCOPE_OF_WORK = #{scopeOfWork,jdbcType=VARCHAR},",
+          "CREATED_DATETIME = #{createdDatetime,jdbcType=TIMESTAMP},",
+          "CREATED_USER = #{createdUser,jdbcType=INTEGER},",
+          "LAST_MODIFIED_DATETIME = #{lastModifiedDatetime,jdbcType=TIMESTAMP},",
+          "LAST_MODIFIED_USER = #{lastModifiedUser,jdbcType=INTEGER},",
+          "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}",
+        "where SKILL_SHEET_ID = #{skillSheetId,jdbcType=INTEGER}",
+          "and REF_NO = #{refNo,jdbcType=INTEGER}"
+    })
+    int updateByPrimaryKey(Keyst0210 record);
+
 
     /**
      * @mbg.generated generated automatically, do not modify!

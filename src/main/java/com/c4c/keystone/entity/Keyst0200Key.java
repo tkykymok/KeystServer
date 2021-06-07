@@ -9,6 +9,7 @@ import lombok.Data;
 public class Keyst0200Key {
     /**
      * Column: SKILL_SHEET_ID
+     * Remark: スキルシートID
      */
     private Integer skillSheetId;
 }

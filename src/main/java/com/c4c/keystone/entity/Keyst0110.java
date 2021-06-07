@@ -2,43 +2,23 @@ package com.c4c.keystone.entity;
 
 import java.util.Date;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 /**
- * Table: KEYST0200
+ * Table: KEYST0110
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class Keyst0200 extends Keyst0200Key {
+public class Keyst0110 extends Keyst0110Key {
     /**
-     * Column: USER_ID
-     * Remark: ユーザーID
+     * Column: QUALIFIED_DATE
+     * Remark: 資格取得年月日
      */
-    private Integer userId;
+    private Date qualifiedDate;
 
     /**
-     * Column: STRONG_AREA
-     * Remark: 得意分野
+     * Column: QUALIFICATION_CONTENT
+     * Remark: 資格内容
      */
-    private String strongArea;
-
-    /**
-     * Column: PR
-     * Remark: PR
-     */
-    private String pr;
-
-    /**
-     * Column: EVALUATION_OF_SALES
-     * Remark: 営業評価
-     */
-    private String evaluationOfSales;
-
-    /**
-     * Column: DELETE_FLG
-     * Remark: 削除フラグ
-     */
-    private String deleteFlg;
+    private String qualificationContent;
 
     /**
      * Column: CREATED_DATETIME
@@ -54,7 +34,7 @@ public class Keyst0200 extends Keyst0200Key {
 
     /**
      * Column: LAST_MODIFIED_DATETIME
-     * Remark: 最終変日時
+     * Remark: 最終変更日時
      */
     private Date lastModifiedDatetime;
 

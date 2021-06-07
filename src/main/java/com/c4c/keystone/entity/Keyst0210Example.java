@@ -1114,62 +1114,52 @@ public class Keyst0210Example {
             return (Criteria) this;
         }
 
-        public Criteria andCreatedUserEqualTo(String value) {
+        public Criteria andCreatedUserEqualTo(Integer value) {
             addCriterion("CREATED_USER =", value, "createdUser");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedUserNotEqualTo(String value) {
+        public Criteria andCreatedUserNotEqualTo(Integer value) {
             addCriterion("CREATED_USER <>", value, "createdUser");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedUserGreaterThan(String value) {
+        public Criteria andCreatedUserGreaterThan(Integer value) {
             addCriterion("CREATED_USER >", value, "createdUser");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedUserGreaterThanOrEqualTo(String value) {
+        public Criteria andCreatedUserGreaterThanOrEqualTo(Integer value) {
             addCriterion("CREATED_USER >=", value, "createdUser");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedUserLessThan(String value) {
+        public Criteria andCreatedUserLessThan(Integer value) {
             addCriterion("CREATED_USER <", value, "createdUser");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedUserLessThanOrEqualTo(String value) {
+        public Criteria andCreatedUserLessThanOrEqualTo(Integer value) {
             addCriterion("CREATED_USER <=", value, "createdUser");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedUserLike(String value) {
-            addCriterion("CREATED_USER like", value, "createdUser");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedUserNotLike(String value) {
-            addCriterion("CREATED_USER not like", value, "createdUser");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedUserIn(List<String> values) {
+        public Criteria andCreatedUserIn(List<Integer> values) {
             addCriterion("CREATED_USER in", values, "createdUser");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedUserNotIn(List<String> values) {
+        public Criteria andCreatedUserNotIn(List<Integer> values) {
             addCriterion("CREATED_USER not in", values, "createdUser");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedUserBetween(String value1, String value2) {
+        public Criteria andCreatedUserBetween(Integer value1, Integer value2) {
             addCriterion("CREATED_USER between", value1, value2, "createdUser");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedUserNotBetween(String value1, String value2) {
+        public Criteria andCreatedUserNotBetween(Integer value1, Integer value2) {
             addCriterion("CREATED_USER not between", value1, value2, "createdUser");
             return (Criteria) this;
         }
@@ -1244,62 +1234,52 @@ public class Keyst0210Example {
             return (Criteria) this;
         }
 
-        public Criteria andLastModifiedUserEqualTo(String value) {
+        public Criteria andLastModifiedUserEqualTo(Integer value) {
             addCriterion("LAST_MODIFIED_USER =", value, "lastModifiedUser");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifiedUserNotEqualTo(String value) {
+        public Criteria andLastModifiedUserNotEqualTo(Integer value) {
             addCriterion("LAST_MODIFIED_USER <>", value, "lastModifiedUser");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifiedUserGreaterThan(String value) {
+        public Criteria andLastModifiedUserGreaterThan(Integer value) {
             addCriterion("LAST_MODIFIED_USER >", value, "lastModifiedUser");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifiedUserGreaterThanOrEqualTo(String value) {
+        public Criteria andLastModifiedUserGreaterThanOrEqualTo(Integer value) {
             addCriterion("LAST_MODIFIED_USER >=", value, "lastModifiedUser");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifiedUserLessThan(String value) {
+        public Criteria andLastModifiedUserLessThan(Integer value) {
             addCriterion("LAST_MODIFIED_USER <", value, "lastModifiedUser");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifiedUserLessThanOrEqualTo(String value) {
+        public Criteria andLastModifiedUserLessThanOrEqualTo(Integer value) {
             addCriterion("LAST_MODIFIED_USER <=", value, "lastModifiedUser");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifiedUserLike(String value) {
-            addCriterion("LAST_MODIFIED_USER like", value, "lastModifiedUser");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifiedUserNotLike(String value) {
-            addCriterion("LAST_MODIFIED_USER not like", value, "lastModifiedUser");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastModifiedUserIn(List<String> values) {
+        public Criteria andLastModifiedUserIn(List<Integer> values) {
             addCriterion("LAST_MODIFIED_USER in", values, "lastModifiedUser");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifiedUserNotIn(List<String> values) {
+        public Criteria andLastModifiedUserNotIn(List<Integer> values) {
             addCriterion("LAST_MODIFIED_USER not in", values, "lastModifiedUser");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifiedUserBetween(String value1, String value2) {
+        public Criteria andLastModifiedUserBetween(Integer value1, Integer value2) {
             addCriterion("LAST_MODIFIED_USER between", value1, value2, "lastModifiedUser");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifiedUserNotBetween(String value1, String value2) {
+        public Criteria andLastModifiedUserNotBetween(Integer value1, Integer value2) {
             addCriterion("LAST_MODIFIED_USER not between", value1, value2, "lastModifiedUser");
             return (Criteria) this;
         }

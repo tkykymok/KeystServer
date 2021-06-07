@@ -1,20 +1,20 @@
 package com.c4c.keystone.mapper;
 
-import com.c4c.keystone.entity.Keyst0200;
-import com.c4c.keystone.entity.Keyst0200Example.Criteria;
-import com.c4c.keystone.entity.Keyst0200Example.Criterion;
-import com.c4c.keystone.entity.Keyst0200Example;
+import com.c4c.keystone.entity.Keyst0110;
+import com.c4c.keystone.entity.Keyst0110Example.Criteria;
+import com.c4c.keystone.entity.Keyst0110Example.Criterion;
+import com.c4c.keystone.entity.Keyst0110Example;
 import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.jdbc.SQL;
 
-public class Keyst0200SqlProvider {
+public class Keyst0110SqlProvider {
     /**
      * @mbg.generated generated automatically, do not modify!
      */
-    public String countByExample(Keyst0200Example example) {
+    public String countByExample(Keyst0110Example example) {
         SQL sql = new SQL();
-        sql.SELECT("count(*)").FROM("KEYST0200");
+        sql.SELECT("count(*)").FROM("KEYST0110");
         applyWhere(sql, example, false);
         return sql.toString();
     }
@@ -22,9 +22,9 @@ public class Keyst0200SqlProvider {
     /**
      * @mbg.generated generated automatically, do not modify!
      */
-    public String deleteByExample(Keyst0200Example example) {
+    public String deleteByExample(Keyst0110Example example) {
         SQL sql = new SQL();
-        sql.DELETE_FROM("KEYST0200");
+        sql.DELETE_FROM("KEYST0110");
         applyWhere(sql, example, false);
         return sql.toString();
     }
@@ -32,32 +32,20 @@ public class Keyst0200SqlProvider {
     /**
      * @mbg.generated generated automatically, do not modify!
      */
-    public String insertSelective(Keyst0200 record) {
+    public String insertSelective(Keyst0110 record) {
         SQL sql = new SQL();
-        sql.INSERT_INTO("KEYST0200");
-        
-        if (record.getSkillSheetId() != null) {
-            sql.VALUES("SKILL_SHEET_ID", "#{skillSheetId,jdbcType=INTEGER}");
-        }
+        sql.INSERT_INTO("KEYST0110");
         
         if (record.getUserId() != null) {
             sql.VALUES("USER_ID", "#{userId,jdbcType=INTEGER}");
         }
         
-        if (record.getStrongArea() != null) {
-            sql.VALUES("STRONG_AREA", "#{strongArea,jdbcType=VARCHAR}");
+        if (record.getQualifiedDate() != null) {
+            sql.VALUES("QUALIFIED_DATE", "#{qualifiedDate,jdbcType=DATE}");
         }
         
-        if (record.getPr() != null) {
-            sql.VALUES("PR", "#{pr,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getEvaluationOfSales() != null) {
-            sql.VALUES("EVALUATION_OF_SALES", "#{evaluationOfSales,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getDeleteFlg() != null) {
-            sql.VALUES("DELETE_FLG", "#{deleteFlg,jdbcType=VARCHAR}");
+        if (record.getQualificationContent() != null) {
+            sql.VALUES("QUALIFICATION_CONTENT", "#{qualificationContent,jdbcType=VARCHAR}");
         }
         
         if (record.getCreatedDatetime() != null) {
@@ -86,24 +74,21 @@ public class Keyst0200SqlProvider {
     /**
      * @mbg.generated generated automatically, do not modify!
      */
-    public String selectByExample(Keyst0200Example example) {
+    public String selectByExample(Keyst0110Example example) {
         SQL sql = new SQL();
         if (example != null && example.isDistinct()) {
-            sql.SELECT_DISTINCT("SKILL_SHEET_ID");
+            sql.SELECT_DISTINCT("USER_ID");
         } else {
-            sql.SELECT("SKILL_SHEET_ID");
+            sql.SELECT("USER_ID");
         }
-        sql.SELECT("USER_ID");
-        sql.SELECT("STRONG_AREA");
-        sql.SELECT("PR");
-        sql.SELECT("EVALUATION_OF_SALES");
-        sql.SELECT("DELETE_FLG");
+        sql.SELECT("QUALIFIED_DATE");
+        sql.SELECT("QUALIFICATION_CONTENT");
         sql.SELECT("CREATED_DATETIME");
         sql.SELECT("CREATED_USER");
         sql.SELECT("LAST_MODIFIED_DATETIME");
         sql.SELECT("LAST_MODIFIED_USER");
         sql.SELECT("VERSION_EX_KEY");
-        sql.FROM("KEYST0200");
+        sql.FROM("KEYST0110");
         applyWhere(sql, example, false);
         
         if (example != null && example.getOrderByClause() != null) {
@@ -117,34 +102,22 @@ public class Keyst0200SqlProvider {
      * @mbg.generated generated automatically, do not modify!
      */
     public String updateByExampleSelective(Map<String, Object> parameter) {
-        Keyst0200 record = (Keyst0200) parameter.get("record");
-        Keyst0200Example example = (Keyst0200Example) parameter.get("example");
+        Keyst0110 record = (Keyst0110) parameter.get("record");
+        Keyst0110Example example = (Keyst0110Example) parameter.get("example");
         
         SQL sql = new SQL();
-        sql.UPDATE("KEYST0200");
-        
-        if (record.getSkillSheetId() != null) {
-            sql.SET("SKILL_SHEET_ID = #{record.skillSheetId,jdbcType=INTEGER}");
-        }
+        sql.UPDATE("KEYST0110");
         
         if (record.getUserId() != null) {
             sql.SET("USER_ID = #{record.userId,jdbcType=INTEGER}");
         }
         
-        if (record.getStrongArea() != null) {
-            sql.SET("STRONG_AREA = #{record.strongArea,jdbcType=VARCHAR}");
+        if (record.getQualifiedDate() != null) {
+            sql.SET("QUALIFIED_DATE = #{record.qualifiedDate,jdbcType=DATE}");
         }
         
-        if (record.getPr() != null) {
-            sql.SET("PR = #{record.pr,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getEvaluationOfSales() != null) {
-            sql.SET("EVALUATION_OF_SALES = #{record.evaluationOfSales,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getDeleteFlg() != null) {
-            sql.SET("DELETE_FLG = #{record.deleteFlg,jdbcType=VARCHAR}");
+        if (record.getQualificationContent() != null) {
+            sql.SET("QUALIFICATION_CONTENT = #{record.qualificationContent,jdbcType=VARCHAR}");
         }
         
         if (record.getCreatedDatetime() != null) {
@@ -176,21 +149,18 @@ public class Keyst0200SqlProvider {
      */
     public String updateByExample(Map<String, Object> parameter) {
         SQL sql = new SQL();
-        sql.UPDATE("KEYST0200");
+        sql.UPDATE("KEYST0110");
         
-        sql.SET("SKILL_SHEET_ID = #{record.skillSheetId,jdbcType=INTEGER}");
         sql.SET("USER_ID = #{record.userId,jdbcType=INTEGER}");
-        sql.SET("STRONG_AREA = #{record.strongArea,jdbcType=VARCHAR}");
-        sql.SET("PR = #{record.pr,jdbcType=VARCHAR}");
-        sql.SET("EVALUATION_OF_SALES = #{record.evaluationOfSales,jdbcType=VARCHAR}");
-        sql.SET("DELETE_FLG = #{record.deleteFlg,jdbcType=VARCHAR}");
+        sql.SET("QUALIFIED_DATE = #{record.qualifiedDate,jdbcType=DATE}");
+        sql.SET("QUALIFICATION_CONTENT = #{record.qualificationContent,jdbcType=VARCHAR}");
         sql.SET("CREATED_DATETIME = #{record.createdDatetime,jdbcType=TIMESTAMP}");
         sql.SET("CREATED_USER = #{record.createdUser,jdbcType=INTEGER}");
         sql.SET("LAST_MODIFIED_DATETIME = #{record.lastModifiedDatetime,jdbcType=TIMESTAMP}");
         sql.SET("LAST_MODIFIED_USER = #{record.lastModifiedUser,jdbcType=INTEGER}");
         sql.SET("VERSION_EX_KEY = #{record.versionExKey,jdbcType=INTEGER}");
         
-        Keyst0200Example example = (Keyst0200Example) parameter.get("example");
+        Keyst0110Example example = (Keyst0110Example) parameter.get("example");
         applyWhere(sql, example, true);
         return sql.toString();
     }
@@ -198,28 +168,16 @@ public class Keyst0200SqlProvider {
     /**
      * @mbg.generated generated automatically, do not modify!
      */
-    public String updateByPrimaryKeySelective(Keyst0200 record) {
+    public String updateByPrimaryKeySelective(Keyst0110 record) {
         SQL sql = new SQL();
-        sql.UPDATE("KEYST0200");
+        sql.UPDATE("KEYST0110");
         
-        if (record.getUserId() != null) {
-            sql.SET("USER_ID = #{userId,jdbcType=INTEGER}");
+        if (record.getQualifiedDate() != null) {
+            sql.SET("QUALIFIED_DATE = #{qualifiedDate,jdbcType=DATE}");
         }
         
-        if (record.getStrongArea() != null) {
-            sql.SET("STRONG_AREA = #{strongArea,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getPr() != null) {
-            sql.SET("PR = #{pr,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getEvaluationOfSales() != null) {
-            sql.SET("EVALUATION_OF_SALES = #{evaluationOfSales,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getDeleteFlg() != null) {
-            sql.SET("DELETE_FLG = #{deleteFlg,jdbcType=VARCHAR}");
+        if (record.getQualificationContent() != null) {
+            sql.SET("QUALIFICATION_CONTENT = #{qualificationContent,jdbcType=VARCHAR}");
         }
         
         if (record.getCreatedDatetime() != null) {
@@ -242,7 +200,7 @@ public class Keyst0200SqlProvider {
             sql.SET("VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}");
         }
         
-        sql.WHERE("SKILL_SHEET_ID = #{skillSheetId,jdbcType=INTEGER}");
+        sql.WHERE("USER_ID = #{userId,jdbcType=INTEGER}");
         
         return sql.toString();
     }
@@ -250,7 +208,7 @@ public class Keyst0200SqlProvider {
     /**
      * @mbg.generated generated automatically, do not modify!
      */
-    protected void applyWhere(SQL sql, Keyst0200Example example, boolean includeExamplePhrase) {
+    protected void applyWhere(SQL sql, Keyst0110Example example, boolean includeExamplePhrase) {
         if (example == null) {
             return;
         }
