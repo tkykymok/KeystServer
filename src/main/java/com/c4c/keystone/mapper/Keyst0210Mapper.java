@@ -8,6 +8,7 @@ import org.apache.ibatis.type.JdbcType;
 
 import java.util.List;
 
+@Mapper
 public interface Keyst0210Mapper {
     /**
      * @mbg.generated generated automatically, do not modify!
@@ -160,33 +161,6 @@ public interface Keyst0210Mapper {
           "CREATED_USER = #{createdUser,jdbcType=INTEGER},",
           "LAST_MODIFIED_DATETIME = #{lastModifiedDatetime,jdbcType=TIMESTAMP},",
           "LAST_MODIFIED_USER = #{lastModifiedUser,jdbcType=INTEGER},",
-          "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}",
-        "where SKILL_SHEET_ID = #{skillSheetId,jdbcType=INTEGER}",
-          "and REF_NO = #{refNo,jdbcType=INTEGER}"
-    })
-    int updateByPrimaryKey(Keyst0210 record);
-
-
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
-    @Update({
-        "update KEYST0210",
-        "set PRJ_CODE = #{prjCode,jdbcType=VARCHAR},",
-          "PRJ_START_DATE = #{prjStartDate,jdbcType=DATE},",
-          "PRJ_END_DATE = #{prjEndDate,jdbcType=DATE},",
-          "BIZ_IN_CHARGE = #{bizInCharge,jdbcType=VARCHAR},",
-          "`COMMENT` = #{comment,jdbcType=VARCHAR},",
-          "DEV_SCALE = #{devScale,jdbcType=VARCHAR},",
-          "OS = #{os,jdbcType=VARCHAR},",
-          "DB = #{db,jdbcType=VARCHAR},",
-          "FW_MW_TOOL = #{fwMwTool,jdbcType=VARCHAR},",
-          "PG_LANG = #{pgLang,jdbcType=VARCHAR},",
-          "SCOPE_OF_WORK = #{scopeOfWork,jdbcType=VARCHAR},",
-          "CREATED_DATETIME = #{createdDatetime,jdbcType=TIMESTAMP},",
-          "CREATED_USER = #{createdUser,jdbcType=VARCHAR},",
-          "LAST_MODIFIED_DATETIME = #{lastModifiedDatetime,jdbcType=TIMESTAMP},",
-          "LAST_MODIFIED_USER = #{lastModifiedUser,jdbcType=VARCHAR},",
           "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}",
         "where SKILL_SHEET_ID = #{skillSheetId,jdbcType=INTEGER}",
           "and REF_NO = #{refNo,jdbcType=INTEGER}"

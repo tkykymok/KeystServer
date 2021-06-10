@@ -35,6 +35,12 @@ public class Keyst0200 extends Keyst0200Key {
     private String evaluationOfSales;
 
     /**
+     * Column: SKILL_SHEET_REG_DATETIME
+     * Remark: スキルシート登録日時
+     */
+    private Date skillSheetRegDatetime;
+
+    /**
      * Column: DELETE_FLG
      * Remark: 削除フラグ
      */

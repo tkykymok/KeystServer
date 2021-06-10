@@ -56,6 +56,10 @@ public class Keyst0200SqlProvider {
             sql.VALUES("EVALUATION_OF_SALES", "#{evaluationOfSales,jdbcType=VARCHAR}");
         }
         
+        if (record.getSkillSheetRegDatetime() != null) {
+            sql.VALUES("SKILL_SHEET_REG_DATETIME", "#{skillSheetRegDatetime,jdbcType=TIMESTAMP}");
+        }
+        
         if (record.getDeleteFlg() != null) {
             sql.VALUES("DELETE_FLG", "#{deleteFlg,jdbcType=VARCHAR}");
         }
@@ -97,6 +101,7 @@ public class Keyst0200SqlProvider {
         sql.SELECT("STRONG_AREA");
         sql.SELECT("PR");
         sql.SELECT("EVALUATION_OF_SALES");
+        sql.SELECT("SKILL_SHEET_REG_DATETIME");
         sql.SELECT("DELETE_FLG");
         sql.SELECT("CREATED_DATETIME");
         sql.SELECT("CREATED_USER");
@@ -143,6 +148,10 @@ public class Keyst0200SqlProvider {
             sql.SET("EVALUATION_OF_SALES = #{record.evaluationOfSales,jdbcType=VARCHAR}");
         }
         
+        if (record.getSkillSheetRegDatetime() != null) {
+            sql.SET("SKILL_SHEET_REG_DATETIME = #{record.skillSheetRegDatetime,jdbcType=TIMESTAMP}");
+        }
+        
         if (record.getDeleteFlg() != null) {
             sql.SET("DELETE_FLG = #{record.deleteFlg,jdbcType=VARCHAR}");
         }
@@ -183,6 +192,7 @@ public class Keyst0200SqlProvider {
         sql.SET("STRONG_AREA = #{record.strongArea,jdbcType=VARCHAR}");
         sql.SET("PR = #{record.pr,jdbcType=VARCHAR}");
         sql.SET("EVALUATION_OF_SALES = #{record.evaluationOfSales,jdbcType=VARCHAR}");
+        sql.SET("SKILL_SHEET_REG_DATETIME = #{record.skillSheetRegDatetime,jdbcType=TIMESTAMP}");
         sql.SET("DELETE_FLG = #{record.deleteFlg,jdbcType=VARCHAR}");
         sql.SET("CREATED_DATETIME = #{record.createdDatetime,jdbcType=TIMESTAMP}");
         sql.SET("CREATED_USER = #{record.createdUser,jdbcType=INTEGER}");
@@ -216,6 +226,10 @@ public class Keyst0200SqlProvider {
         
         if (record.getEvaluationOfSales() != null) {
             sql.SET("EVALUATION_OF_SALES = #{evaluationOfSales,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getSkillSheetRegDatetime() != null) {
+            sql.SET("SKILL_SHEET_REG_DATETIME = #{skillSheetRegDatetime,jdbcType=TIMESTAMP}");
         }
         
         if (record.getDeleteFlg() != null) {

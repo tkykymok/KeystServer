@@ -477,6 +477,66 @@ public class Keyst0200Example {
             return (Criteria) this;
         }
 
+        public Criteria andSkillSheetRegDatetimeIsNull() {
+            addCriterion("SKILL_SHEET_REG_DATETIME is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkillSheetRegDatetimeIsNotNull() {
+            addCriterion("SKILL_SHEET_REG_DATETIME is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkillSheetRegDatetimeEqualTo(Date value) {
+            addCriterion("SKILL_SHEET_REG_DATETIME =", value, "skillSheetRegDatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkillSheetRegDatetimeNotEqualTo(Date value) {
+            addCriterion("SKILL_SHEET_REG_DATETIME <>", value, "skillSheetRegDatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkillSheetRegDatetimeGreaterThan(Date value) {
+            addCriterion("SKILL_SHEET_REG_DATETIME >", value, "skillSheetRegDatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkillSheetRegDatetimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("SKILL_SHEET_REG_DATETIME >=", value, "skillSheetRegDatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkillSheetRegDatetimeLessThan(Date value) {
+            addCriterion("SKILL_SHEET_REG_DATETIME <", value, "skillSheetRegDatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkillSheetRegDatetimeLessThanOrEqualTo(Date value) {
+            addCriterion("SKILL_SHEET_REG_DATETIME <=", value, "skillSheetRegDatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkillSheetRegDatetimeIn(List<Date> values) {
+            addCriterion("SKILL_SHEET_REG_DATETIME in", values, "skillSheetRegDatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkillSheetRegDatetimeNotIn(List<Date> values) {
+            addCriterion("SKILL_SHEET_REG_DATETIME not in", values, "skillSheetRegDatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkillSheetRegDatetimeBetween(Date value1, Date value2) {
+            addCriterion("SKILL_SHEET_REG_DATETIME between", value1, value2, "skillSheetRegDatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkillSheetRegDatetimeNotBetween(Date value1, Date value2) {
+            addCriterion("SKILL_SHEET_REG_DATETIME not between", value1, value2, "skillSheetRegDatetime");
+            return (Criteria) this;
+        }
+
         public Criteria andDeleteFlgIsNull() {
             addCriterion("DELETE_FLG is null");
             return (Criteria) this;

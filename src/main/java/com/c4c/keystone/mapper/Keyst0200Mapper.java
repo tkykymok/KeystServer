@@ -38,16 +38,16 @@ public interface Keyst0200Mapper {
     @Insert({
         "insert into KEYST0200 (SKILL_SHEET_ID, USER_ID, ",
         "STRONG_AREA, PR, ",
-        "EVALUATION_OF_SALES, DELETE_FLG, ",
-        "CREATED_DATETIME, CREATED_USER, ",
-        "LAST_MODIFIED_DATETIME, LAST_MODIFIED_USER, ",
-        "VERSION_EX_KEY)",
+        "EVALUATION_OF_SALES, SKILL_SHEET_REG_DATETIME, ",
+        "DELETE_FLG, CREATED_DATETIME, ",
+        "CREATED_USER, LAST_MODIFIED_DATETIME, ",
+        "LAST_MODIFIED_USER, VERSION_EX_KEY)",
         "values (#{skillSheetId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, ",
         "#{strongArea,jdbcType=VARCHAR}, #{pr,jdbcType=VARCHAR}, ",
-        "#{evaluationOfSales,jdbcType=VARCHAR}, #{deleteFlg,jdbcType=VARCHAR}, ",
-        "#{createdDatetime,jdbcType=TIMESTAMP}, #{createdUser,jdbcType=INTEGER}, ",
-        "#{lastModifiedDatetime,jdbcType=TIMESTAMP}, #{lastModifiedUser,jdbcType=INTEGER}, ",
-        "#{versionExKey,jdbcType=INTEGER})"
+        "#{evaluationOfSales,jdbcType=VARCHAR}, #{skillSheetRegDatetime,jdbcType=TIMESTAMP}, ",
+        "#{deleteFlg,jdbcType=VARCHAR}, #{createdDatetime,jdbcType=TIMESTAMP}, ",
+        "#{createdUser,jdbcType=INTEGER}, #{lastModifiedDatetime,jdbcType=TIMESTAMP}, ",
+        "#{lastModifiedUser,jdbcType=INTEGER}, #{versionExKey,jdbcType=INTEGER})"
     })
     int insert(Keyst0200 record);
 
@@ -67,6 +67,7 @@ public interface Keyst0200Mapper {
         @Result(column="STRONG_AREA", property="strongArea", jdbcType=JdbcType.VARCHAR),
         @Result(column="PR", property="pr", jdbcType=JdbcType.VARCHAR),
         @Result(column="EVALUATION_OF_SALES", property="evaluationOfSales", jdbcType=JdbcType.VARCHAR),
+        @Result(column="SKILL_SHEET_REG_DATETIME", property="skillSheetRegDatetime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="DELETE_FLG", property="deleteFlg", jdbcType=JdbcType.VARCHAR),
         @Result(column="CREATED_DATETIME", property="createdDatetime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.INTEGER),
@@ -81,8 +82,9 @@ public interface Keyst0200Mapper {
      */
     @Select({
         "select",
-        "SKILL_SHEET_ID, USER_ID, STRONG_AREA, PR, EVALUATION_OF_SALES, DELETE_FLG, CREATED_DATETIME, ",
-        "CREATED_USER, LAST_MODIFIED_DATETIME, LAST_MODIFIED_USER, VERSION_EX_KEY",
+        "SKILL_SHEET_ID, USER_ID, STRONG_AREA, PR, EVALUATION_OF_SALES, SKILL_SHEET_REG_DATETIME, ",
+        "DELETE_FLG, CREATED_DATETIME, CREATED_USER, LAST_MODIFIED_DATETIME, LAST_MODIFIED_USER, ",
+        "VERSION_EX_KEY",
         "from KEYST0200",
         "where SKILL_SHEET_ID = #{skillSheetId,jdbcType=INTEGER}"
     })
@@ -92,6 +94,7 @@ public interface Keyst0200Mapper {
         @Result(column="STRONG_AREA", property="strongArea", jdbcType=JdbcType.VARCHAR),
         @Result(column="PR", property="pr", jdbcType=JdbcType.VARCHAR),
         @Result(column="EVALUATION_OF_SALES", property="evaluationOfSales", jdbcType=JdbcType.VARCHAR),
+        @Result(column="SKILL_SHEET_REG_DATETIME", property="skillSheetRegDatetime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="DELETE_FLG", property="deleteFlg", jdbcType=JdbcType.VARCHAR),
         @Result(column="CREATED_DATETIME", property="createdDatetime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.INTEGER),
@@ -128,6 +131,7 @@ public interface Keyst0200Mapper {
           "STRONG_AREA = #{strongArea,jdbcType=VARCHAR},",
           "PR = #{pr,jdbcType=VARCHAR},",
           "EVALUATION_OF_SALES = #{evaluationOfSales,jdbcType=VARCHAR},",
+          "SKILL_SHEET_REG_DATETIME = #{skillSheetRegDatetime,jdbcType=TIMESTAMP},",
           "DELETE_FLG = #{deleteFlg,jdbcType=VARCHAR},",
           "CREATED_DATETIME = #{createdDatetime,jdbcType=TIMESTAMP},",
           "CREATED_USER = #{createdUser,jdbcType=INTEGER},",
