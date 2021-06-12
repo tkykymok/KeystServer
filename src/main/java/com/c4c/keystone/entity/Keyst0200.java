@@ -1,14 +1,12 @@
 package com.c4c.keystone.entity;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 /**
  * Table: KEYST0200
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 public class Keyst0200 extends Keyst0200Key {
     /**
      * Column: USER_ID
@@ -38,7 +36,7 @@ public class Keyst0200 extends Keyst0200Key {
      * Column: SKILL_SHEET_REG_DATETIME
      * Remark: スキルシート登録日時
      */
-    private Date skillSheetRegDatetime;
+    private LocalDateTime skillSheetRegDatetime;
 
     /**
      * Column: DELETE_FLG
@@ -50,7 +48,7 @@ public class Keyst0200 extends Keyst0200Key {
      * Column: CREATED_DATETIME
      * Remark: 作成日時
      */
-    private Date createdDatetime;
+    private LocalDateTime createdDatetime;
 
     /**
      * Column: CREATED_USER
@@ -62,7 +60,7 @@ public class Keyst0200 extends Keyst0200Key {
      * Column: LAST_MODIFIED_DATETIME
      * Remark: 最終変日時
      */
-    private Date lastModifiedDatetime;
+    private LocalDateTime lastModifiedDatetime;
 
     /**
      * Column: LAST_MODIFIED_USER

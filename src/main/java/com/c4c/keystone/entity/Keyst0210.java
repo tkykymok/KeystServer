@@ -1,6 +1,7 @@
 package com.c4c.keystone.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -20,13 +21,13 @@ public class Keyst0210 extends Keyst0210Key {
      * Column: PRJ_START_DATE
      * Remark: 稼働開始年月日
      */
-    private Date prjStartDate;
+    private LocalDate prjStartDate;
 
     /**
      * Column: PRJ_END_DATE
      * Remark: 稼働終了年月日
      */
-    private Date prjEndDate;
+    private LocalDate prjEndDate;
 
     /**
      * Column: BIZ_IN_CHARGE
@@ -80,7 +81,7 @@ public class Keyst0210 extends Keyst0210Key {
      * Column: CREATED_DATETIME
      * Remark: 作成日時
      */
-    private Date createdDatetime;
+    private LocalDateTime createdDatetime;
 
     /**
      * Column: CREATED_USER
@@ -92,7 +93,7 @@ public class Keyst0210 extends Keyst0210Key {
      * Column: LAST_MODIFIED_DATETIME
      * Remark: 最終変更日時
      */
-    private Date lastModifiedDatetime;
+    private LocalDateTime lastModifiedDatetime;
 
     /**
      * Column: LAST_MODIFIED_USER

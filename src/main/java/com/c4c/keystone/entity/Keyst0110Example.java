@@ -1,8 +1,8 @@
 package com.c4c.keystone.entity;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 public class Keyst0110Example {
@@ -148,32 +148,6 @@ public class Keyst0110Example {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        protected void addCriterionForJDBCDate(String condition, Date value, String property) {
-            if (value == null) {
-                throw new RuntimeException("Value for " + property + " cannot be null");
-            }
-            addCriterion(condition, new java.sql.Date(value.getTime()), property);
-        }
-
-        protected void addCriterionForJDBCDate(String condition, List<Date> values, String property) {
-            if (values == null || values.size() == 0) {
-                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
-            }
-            List<java.sql.Date> dateList = new ArrayList<>();
-            Iterator<Date> iter = values.iterator();
-            while (iter.hasNext()) {
-                dateList.add(new java.sql.Date(iter.next().getTime()));
-            }
-            addCriterion(condition, dateList, property);
-        }
-
-        protected void addCriterionForJDBCDate(String condition, Date value1, Date value2, String property) {
-            if (value1 == null || value2 == null) {
-                throw new RuntimeException("Between values for " + property + " cannot be null");
-            }
-            addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
-        }
-
         public Criteria andUserIdIsNull() {
             addCriterion("USER_ID is null");
             return (Criteria) this;
@@ -244,53 +218,53 @@ public class Keyst0110Example {
             return (Criteria) this;
         }
 
-        public Criteria andQualifiedDateEqualTo(Date value) {
-            addCriterionForJDBCDate("QUALIFIED_DATE =", value, "qualifiedDate");
+        public Criteria andQualifiedDateEqualTo(LocalDate value) {
+            addCriterion("QUALIFIED_DATE =", value, "qualifiedDate");
             return (Criteria) this;
         }
 
-        public Criteria andQualifiedDateNotEqualTo(Date value) {
-            addCriterionForJDBCDate("QUALIFIED_DATE <>", value, "qualifiedDate");
+        public Criteria andQualifiedDateNotEqualTo(LocalDate value) {
+            addCriterion("QUALIFIED_DATE <>", value, "qualifiedDate");
             return (Criteria) this;
         }
 
-        public Criteria andQualifiedDateGreaterThan(Date value) {
-            addCriterionForJDBCDate("QUALIFIED_DATE >", value, "qualifiedDate");
+        public Criteria andQualifiedDateGreaterThan(LocalDate value) {
+            addCriterion("QUALIFIED_DATE >", value, "qualifiedDate");
             return (Criteria) this;
         }
 
-        public Criteria andQualifiedDateGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("QUALIFIED_DATE >=", value, "qualifiedDate");
+        public Criteria andQualifiedDateGreaterThanOrEqualTo(LocalDate value) {
+            addCriterion("QUALIFIED_DATE >=", value, "qualifiedDate");
             return (Criteria) this;
         }
 
-        public Criteria andQualifiedDateLessThan(Date value) {
-            addCriterionForJDBCDate("QUALIFIED_DATE <", value, "qualifiedDate");
+        public Criteria andQualifiedDateLessThan(LocalDate value) {
+            addCriterion("QUALIFIED_DATE <", value, "qualifiedDate");
             return (Criteria) this;
         }
 
-        public Criteria andQualifiedDateLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("QUALIFIED_DATE <=", value, "qualifiedDate");
+        public Criteria andQualifiedDateLessThanOrEqualTo(LocalDate value) {
+            addCriterion("QUALIFIED_DATE <=", value, "qualifiedDate");
             return (Criteria) this;
         }
 
-        public Criteria andQualifiedDateIn(List<Date> values) {
-            addCriterionForJDBCDate("QUALIFIED_DATE in", values, "qualifiedDate");
+        public Criteria andQualifiedDateIn(List<LocalDate> values) {
+            addCriterion("QUALIFIED_DATE in", values, "qualifiedDate");
             return (Criteria) this;
         }
 
-        public Criteria andQualifiedDateNotIn(List<Date> values) {
-            addCriterionForJDBCDate("QUALIFIED_DATE not in", values, "qualifiedDate");
+        public Criteria andQualifiedDateNotIn(List<LocalDate> values) {
+            addCriterion("QUALIFIED_DATE not in", values, "qualifiedDate");
             return (Criteria) this;
         }
 
-        public Criteria andQualifiedDateBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("QUALIFIED_DATE between", value1, value2, "qualifiedDate");
+        public Criteria andQualifiedDateBetween(LocalDate value1, LocalDate value2) {
+            addCriterion("QUALIFIED_DATE between", value1, value2, "qualifiedDate");
             return (Criteria) this;
         }
 
-        public Criteria andQualifiedDateNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("QUALIFIED_DATE not between", value1, value2, "qualifiedDate");
+        public Criteria andQualifiedDateNotBetween(LocalDate value1, LocalDate value2) {
+            addCriterion("QUALIFIED_DATE not between", value1, value2, "qualifiedDate");
             return (Criteria) this;
         }
 
@@ -374,52 +348,52 @@ public class Keyst0110Example {
             return (Criteria) this;
         }
 
-        public Criteria andCreatedDatetimeEqualTo(Date value) {
+        public Criteria andCreatedDatetimeEqualTo(LocalDateTime value) {
             addCriterion("CREATED_DATETIME =", value, "createdDatetime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedDatetimeNotEqualTo(Date value) {
+        public Criteria andCreatedDatetimeNotEqualTo(LocalDateTime value) {
             addCriterion("CREATED_DATETIME <>", value, "createdDatetime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedDatetimeGreaterThan(Date value) {
+        public Criteria andCreatedDatetimeGreaterThan(LocalDateTime value) {
             addCriterion("CREATED_DATETIME >", value, "createdDatetime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedDatetimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andCreatedDatetimeGreaterThanOrEqualTo(LocalDateTime value) {
             addCriterion("CREATED_DATETIME >=", value, "createdDatetime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedDatetimeLessThan(Date value) {
+        public Criteria andCreatedDatetimeLessThan(LocalDateTime value) {
             addCriterion("CREATED_DATETIME <", value, "createdDatetime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedDatetimeLessThanOrEqualTo(Date value) {
+        public Criteria andCreatedDatetimeLessThanOrEqualTo(LocalDateTime value) {
             addCriterion("CREATED_DATETIME <=", value, "createdDatetime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedDatetimeIn(List<Date> values) {
+        public Criteria andCreatedDatetimeIn(List<LocalDateTime> values) {
             addCriterion("CREATED_DATETIME in", values, "createdDatetime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedDatetimeNotIn(List<Date> values) {
+        public Criteria andCreatedDatetimeNotIn(List<LocalDateTime> values) {
             addCriterion("CREATED_DATETIME not in", values, "createdDatetime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedDatetimeBetween(Date value1, Date value2) {
+        public Criteria andCreatedDatetimeBetween(LocalDateTime value1, LocalDateTime value2) {
             addCriterion("CREATED_DATETIME between", value1, value2, "createdDatetime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedDatetimeNotBetween(Date value1, Date value2) {
+        public Criteria andCreatedDatetimeNotBetween(LocalDateTime value1, LocalDateTime value2) {
             addCriterion("CREATED_DATETIME not between", value1, value2, "createdDatetime");
             return (Criteria) this;
         }
@@ -494,52 +468,52 @@ public class Keyst0110Example {
             return (Criteria) this;
         }
 
-        public Criteria andLastModifiedDatetimeEqualTo(Date value) {
+        public Criteria andLastModifiedDatetimeEqualTo(LocalDateTime value) {
             addCriterion("LAST_MODIFIED_DATETIME =", value, "lastModifiedDatetime");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifiedDatetimeNotEqualTo(Date value) {
+        public Criteria andLastModifiedDatetimeNotEqualTo(LocalDateTime value) {
             addCriterion("LAST_MODIFIED_DATETIME <>", value, "lastModifiedDatetime");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifiedDatetimeGreaterThan(Date value) {
+        public Criteria andLastModifiedDatetimeGreaterThan(LocalDateTime value) {
             addCriterion("LAST_MODIFIED_DATETIME >", value, "lastModifiedDatetime");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifiedDatetimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andLastModifiedDatetimeGreaterThanOrEqualTo(LocalDateTime value) {
             addCriterion("LAST_MODIFIED_DATETIME >=", value, "lastModifiedDatetime");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifiedDatetimeLessThan(Date value) {
+        public Criteria andLastModifiedDatetimeLessThan(LocalDateTime value) {
             addCriterion("LAST_MODIFIED_DATETIME <", value, "lastModifiedDatetime");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifiedDatetimeLessThanOrEqualTo(Date value) {
+        public Criteria andLastModifiedDatetimeLessThanOrEqualTo(LocalDateTime value) {
             addCriterion("LAST_MODIFIED_DATETIME <=", value, "lastModifiedDatetime");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifiedDatetimeIn(List<Date> values) {
+        public Criteria andLastModifiedDatetimeIn(List<LocalDateTime> values) {
             addCriterion("LAST_MODIFIED_DATETIME in", values, "lastModifiedDatetime");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifiedDatetimeNotIn(List<Date> values) {
+        public Criteria andLastModifiedDatetimeNotIn(List<LocalDateTime> values) {
             addCriterion("LAST_MODIFIED_DATETIME not in", values, "lastModifiedDatetime");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifiedDatetimeBetween(Date value1, Date value2) {
+        public Criteria andLastModifiedDatetimeBetween(LocalDateTime value1, LocalDateTime value2) {
             addCriterion("LAST_MODIFIED_DATETIME between", value1, value2, "lastModifiedDatetime");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifiedDatetimeNotBetween(Date value1, Date value2) {
+        public Criteria andLastModifiedDatetimeNotBetween(LocalDateTime value1, LocalDateTime value2) {
             addCriterion("LAST_MODIFIED_DATETIME not between", value1, value2, "lastModifiedDatetime");
             return (Criteria) this;
         }

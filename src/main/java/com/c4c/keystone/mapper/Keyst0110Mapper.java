@@ -5,7 +5,6 @@ import com.c4c.keystone.entity.Keyst0110Example;
 import com.c4c.keystone.entity.Keyst0110Key;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.c4c.keystone.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
 import lombok.Data;
 
 /**
@@ -18,7 +18,7 @@ public class Keyst0110Key {
      * Column: QUALIFIED_DATE
      * Remark: 資格取得年月日
      */
-    private Date qualifiedDate;
+    private LocalDate qualifiedDate;
 
     /**
      * Column: QUALIFICATION_CONTENT

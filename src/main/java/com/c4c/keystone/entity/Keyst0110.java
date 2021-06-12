@@ -1,6 +1,6 @@
 package com.c4c.keystone.entity;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -14,7 +14,7 @@ public class Keyst0110 extends Keyst0110Key {
      * Column: CREATED_DATETIME
      * Remark: 作成日時
      */
-    private Date createdDatetime;
+    private LocalDateTime createdDatetime;
 
     /**
      * Column: CREATED_USER
@@ -26,7 +26,7 @@ public class Keyst0110 extends Keyst0110Key {
      * Column: LAST_MODIFIED_DATETIME
      * Remark: 最終変更日時
      */
-    private Date lastModifiedDatetime;
+    private LocalDateTime lastModifiedDatetime;
 
     /**
      * Column: LAST_MODIFIED_USER
