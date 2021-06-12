@@ -2,7 +2,7 @@ package com.c4c.keystone.form;
 
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 public class Keyst10200InitS02 {
@@ -10,7 +10,7 @@ public class Keyst10200InitS02 {
      * Column: QUALIFIED_DATE
      * Remark: 資格取得年月日
      */
-    private Date qualifiedDate;
+    private LocalDate qualifiedDate;
 
     /**
      * Column: QUALIFICATION_CONTENT

@@ -2,7 +2,7 @@ package com.c4c.keystone.form;
 
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -27,7 +27,7 @@ public class Keyst10200InitS01 {
 
     /**
      * Column: GENDER
-     * Remark: 性別
+     * Remark: 性別Ø
      */
     private String gender;
 
@@ -41,7 +41,7 @@ public class Keyst10200InitS01 {
      * Column: BIRTHDAY
      * Remark: 生年月日
      */
-    private Date birthday;
+    private LocalDate birthday;
 
     /**
      * Column: NATIONALITY
@@ -65,7 +65,7 @@ public class Keyst10200InitS01 {
      * Column: FINAL_EDUCATION_DATE
      * Remark: 最終学駅年月日
      */
-    private Date finalEducationDate;
+    private LocalDate finalEducationDate;
 
     /**
      * Column: FINAL_EDUCATION_CONTENT

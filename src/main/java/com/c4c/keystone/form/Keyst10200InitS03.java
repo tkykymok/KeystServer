@@ -2,7 +2,7 @@ package com.c4c.keystone.form;
 
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 public class Keyst10200InitS03 {
@@ -16,5 +16,5 @@ public class Keyst10200InitS03 {
      * Column: SKILL_SHEET_REG_DATETIME
      * Remark: スキルシート登録日時
      */
-    private Date skillSheetRegDatetime;
+    private LocalDateTime skillSheetRegDatetime;
 }
