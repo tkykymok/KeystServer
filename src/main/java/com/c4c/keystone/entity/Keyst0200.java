@@ -2,11 +2,13 @@ package com.c4c.keystone.entity;
 
 import java.time.LocalDateTime;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * Table: KEYST0200
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class Keyst0200 extends Keyst0200Key {
     /**
      * Column: USER_ID
