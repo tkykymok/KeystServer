@@ -11,18 +11,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class Keyst0110 extends Keyst0110Key {
     /**
-     * Column: QUALIFIED_DATE
-     * Remark: 資格取得年月日
-     */
-    private Date qualifiedDate;
-
-    /**
-     * Column: QUALIFICATION_CONTENT
-     * Remark: 資格内容
-     */
-    private String qualificationContent;
-
-    /**
      * Column: CREATED_DATETIME
      * Remark: 作成日時
      */

@@ -7,7 +7,7 @@ import com.c4c.keystone.entity.Keyst0200Key;
 
 import java.util.List;
 
-public interface IKeyst0200Service extends BaseService<Keyst0200, Keyst0200Key, Keyst0200Example> {
+public interface IKeyst0200ServiceSample extends BaseService<Keyst0200, Keyst0200Key, Keyst0200Example> {
     /**
      * ExtraSQLS01による検索を行います。
      *

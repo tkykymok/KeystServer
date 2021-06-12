@@ -172,14 +172,6 @@ public class Keyst0110SqlProvider {
         SQL sql = new SQL();
         sql.UPDATE("KEYST0110");
         
-        if (record.getQualifiedDate() != null) {
-            sql.SET("QUALIFIED_DATE = #{qualifiedDate,jdbcType=DATE}");
-        }
-        
-        if (record.getQualificationContent() != null) {
-            sql.SET("QUALIFICATION_CONTENT = #{qualificationContent,jdbcType=VARCHAR}");
-        }
-        
         if (record.getCreatedDatetime() != null) {
             sql.SET("CREATED_DATETIME = #{createdDatetime,jdbcType=TIMESTAMP}");
         }
@@ -201,6 +193,8 @@ public class Keyst0110SqlProvider {
         }
         
         sql.WHERE("USER_ID = #{userId,jdbcType=INTEGER}");
+        sql.WHERE("QUALIFIED_DATE = #{qualifiedDate,jdbcType=DATE}");
+        sql.WHERE("QUALIFICATION_CONTENT = #{qualificationContent,jdbcType=VARCHAR}");
         
         return sql.toString();
     }

@@ -1,19 +1,8 @@
-package com.c4c.keystone.entity;
+package com.c4c.keystone.form;
 
 import java.util.Date;
-import lombok.Data;
 
-/**
- * Table: KEYST0110
- */
-@Data
-public class Keyst0110Key {
-    /**
-     * Column: USER_ID
-     * Remark: ユーザーID
-     */
-    private Integer userId;
-
+public class Keyst10200DispS2 {
     /**
      * Column: QUALIFIED_DATE
      * Remark: 資格取得年月日

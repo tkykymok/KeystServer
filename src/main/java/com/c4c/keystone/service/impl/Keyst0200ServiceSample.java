@@ -5,14 +5,14 @@ import com.c4c.keystone.entity.Keyst0200Example;
 import com.c4c.keystone.entity.Keyst0200ExtraS01;
 import com.c4c.keystone.entity.Keyst0200Key;
 import com.c4c.keystone.mapper.Keyst0200Mapper;
-import com.c4c.keystone.service.IKeyst0200Service;
+import com.c4c.keystone.service.IKeyst0200ServiceSample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class Keyst0200Service implements IKeyst0200Service {
+public class Keyst0200ServiceSample implements IKeyst0200ServiceSample {
 
     @Autowired
     private Keyst0200Mapper keyst0200Mapper;

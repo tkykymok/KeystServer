@@ -3,10 +3,11 @@ package com.c4c.keystone.mapper;
 import com.c4c.keystone.entity.Keyst0110;
 import com.c4c.keystone.entity.Keyst0110Example;
 import com.c4c.keystone.entity.Keyst0110Key;
-import java.util.List;
-
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Mapper
 public interface Keyst0110Mapper {
@@ -27,7 +28,9 @@ public interface Keyst0110Mapper {
      */
     @Delete({
         "delete from KEYST0110",
-        "where USER_ID = #{userId,jdbcType=INTEGER}"
+        "where USER_ID = #{userId,jdbcType=INTEGER}",
+          "and QUALIFIED_DATE = #{qualifiedDate,jdbcType=DATE}",
+          "and QUALIFICATION_CONTENT = #{qualificationContent,jdbcType=VARCHAR}"
     })
     int deleteByPrimaryKey(Keyst0110Key key);
 
@@ -58,8 +61,8 @@ public interface Keyst0110Mapper {
     @SelectProvider(type=Keyst0110SqlProvider.class, method="selectByExample")
     @Results({
         @Result(column="USER_ID", property="userId", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="QUALIFIED_DATE", property="qualifiedDate", jdbcType=JdbcType.DATE),
-        @Result(column="QUALIFICATION_CONTENT", property="qualificationContent", jdbcType=JdbcType.VARCHAR),
+        @Result(column="QUALIFIED_DATE", property="qualifiedDate", jdbcType=JdbcType.DATE, id=true),
+        @Result(column="QUALIFICATION_CONTENT", property="qualificationContent", jdbcType=JdbcType.VARCHAR, id=true),
         @Result(column="CREATED_DATETIME", property="createdDatetime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.INTEGER),
         @Result(column="LAST_MODIFIED_DATETIME", property="lastModifiedDatetime", jdbcType=JdbcType.TIMESTAMP),
@@ -76,12 +79,14 @@ public interface Keyst0110Mapper {
         "USER_ID, QUALIFIED_DATE, QUALIFICATION_CONTENT, CREATED_DATETIME, CREATED_USER, ",
         "LAST_MODIFIED_DATETIME, LAST_MODIFIED_USER, VERSION_EX_KEY",
         "from KEYST0110",
-        "where USER_ID = #{userId,jdbcType=INTEGER}"
+        "where USER_ID = #{userId,jdbcType=INTEGER}",
+          "and QUALIFIED_DATE = #{qualifiedDate,jdbcType=DATE}",
+          "and QUALIFICATION_CONTENT = #{qualificationContent,jdbcType=VARCHAR}"
     })
     @Results({
         @Result(column="USER_ID", property="userId", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="QUALIFIED_DATE", property="qualifiedDate", jdbcType=JdbcType.DATE),
-        @Result(column="QUALIFICATION_CONTENT", property="qualificationContent", jdbcType=JdbcType.VARCHAR),
+        @Result(column="QUALIFIED_DATE", property="qualifiedDate", jdbcType=JdbcType.DATE, id=true),
+        @Result(column="QUALIFICATION_CONTENT", property="qualificationContent", jdbcType=JdbcType.VARCHAR, id=true),
         @Result(column="CREATED_DATETIME", property="createdDatetime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.INTEGER),
         @Result(column="LAST_MODIFIED_DATETIME", property="lastModifiedDatetime", jdbcType=JdbcType.TIMESTAMP),
