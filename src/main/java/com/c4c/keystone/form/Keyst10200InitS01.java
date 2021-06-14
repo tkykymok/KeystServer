@@ -77,10 +77,10 @@ public class Keyst10200InitS01 {
      * Column: SKILLS
      * Remark: 保有スキル
      */
-    private List<String> skillList;
+    private List<Keyst10200InitS02> skillList;
 
     /**
      * 資格一覧
      */
-    List<Keyst10200InitS02> qualificationList;
+    private List<Keyst10200InitS03> qualificationList;
 }

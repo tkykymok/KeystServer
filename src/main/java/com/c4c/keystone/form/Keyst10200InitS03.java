@@ -2,19 +2,19 @@ package com.c4c.keystone.form;
 
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Data
 public class Keyst10200InitS03 {
     /**
-     * Column: SKILL_SHEET_ID
-     * Remark: スキルシートID
+     * Column: QUALIFIED_DATE
+     * Remark: 資格取得年月日
      */
-    private Integer skillSheetId;
+    private LocalDate qualifiedDate;
 
     /**
-     * Column: SKILL_SHEET_REG_DATETIME
-     * Remark: スキルシート登録日時
+     * Column: QUALIFICATION_CONTENT
+     * Remark: 資格内容
      */
-    private LocalDateTime skillSheetRegDatetime;
+    private String qualificationContent;
 }

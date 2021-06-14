@@ -14,5 +14,5 @@ public class Keyst10200InitS {
     /**
      * スキルシート情報
      */
-    List<Keyst10200InitS03> skillSheetInfoList;
+    List<Keyst10200InitS04> skillSheetInfoList;
 }
