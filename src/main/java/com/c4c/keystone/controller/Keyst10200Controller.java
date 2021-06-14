@@ -1,13 +1,11 @@
 package com.c4c.keystone.controller;
 
 import com.c4c.keystone.entity.*;
-import com.c4c.keystone.form.Keyst10200InitS;
-import com.c4c.keystone.form.Keyst10200InitS01;
-import com.c4c.keystone.form.Keyst10200InitS03;
-import com.c4c.keystone.form.Keyst10200InitS04;
+import com.c4c.keystone.form.*;
 import com.c4c.keystone.mapper.Keyst0100Mapper;
 import com.c4c.keystone.mapper.Keyst0110Mapper;
 import com.c4c.keystone.mapper.Keyst0200Mapper;
+import com.c4c.keystone.mapper.Keyst5300Mapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -30,6 +29,8 @@ public class Keyst10200Controller {
     Keyst0110Mapper keyst0110Mapper;
     @Autowired
     Keyst0200Mapper keyst0200Mapper;
+    @Autowired
+    Keyst5300Mapper keyst5300Mapper;
 
 
 
@@ -70,6 +71,22 @@ public class Keyst10200Controller {
         // 検索結果をinitS01に移送する。
         Keyst10200InitS01 initS01 = new Keyst10200InitS01();
         BeanUtils.copyProperties(keyst0100, initS01);
+
+        // 保有スキル検索
+        Keyst5300Example keyst5300Example = new Keyst5300Example();
+        keyst5300Example.createCriteria().andSkillCodeIn(Arrays.asList(keyst0100.getSkills().split(",")));
+        // スキルマスタMapperの検索メソッドを呼び出す。
+        List<Keyst5300> keyst5300List = keyst5300Mapper.selectByExample(keyst5300Example);
+        // 検索結果全件に対して以下の処理をする。
+        List<Keyst10200InitS02> initS02List = new ArrayList<>();
+        for (Keyst5300 keyst5300 : keyst5300List) {
+            Keyst10200InitS02 tempInitS02 = new Keyst10200InitS02();
+            BeanUtils.copyProperties(keyst5300, tempInitS02);
+            initS02List.add(tempInitS02);
+        }
+        // initS02ListをinitS01に設定する。
+        initS01.setSkillList(initS02List);
+
         // initS01をinitSに設定する。
         resForm.setUserBasicInfo(initS01);
 
