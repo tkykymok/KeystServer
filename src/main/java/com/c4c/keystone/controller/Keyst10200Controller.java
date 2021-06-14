@@ -3,8 +3,8 @@ package com.c4c.keystone.controller;
 import com.c4c.keystone.entity.*;
 import com.c4c.keystone.form.Keyst10200InitS;
 import com.c4c.keystone.form.Keyst10200InitS01;
-import com.c4c.keystone.form.Keyst10200InitS02;
 import com.c4c.keystone.form.Keyst10200InitS03;
+import com.c4c.keystone.form.Keyst10200InitS04;
 import com.c4c.keystone.mapper.Keyst0100Mapper;
 import com.c4c.keystone.mapper.Keyst0110Mapper;
 import com.c4c.keystone.mapper.Keyst0200Mapper;
@@ -50,15 +50,15 @@ public class Keyst10200Controller {
         List<Keyst0200> keyst0200List = keyst0200Mapper.selectByExample(keyst0200Example);
 
         // 検索結果全件に対して以下の処理をする。
-        List<Keyst10200InitS03> initS03List = new ArrayList<>(); // スキルシート情報一覧
+        List<Keyst10200InitS04> initS04List = new ArrayList<>(); // スキルシート情報一覧
         for (Keyst0200 keyst0200 : keyst0200List) {
-            Keyst10200InitS03 tempInitS03 = new Keyst10200InitS03();
-            tempInitS03.setSkillSheetId(keyst0200.getSkillSheetId()); // スキルシートID
-            tempInitS03.setSkillSheetRegDatetime(keyst0200.getSkillSheetRegDatetime()); // スキルシート登録日時
-            initS03List.add(tempInitS03);
+            Keyst10200InitS04 tempInitS04 = new Keyst10200InitS04();
+            tempInitS04.setSkillSheetId(keyst0200.getSkillSheetId()); // スキルシートID
+            tempInitS04.setSkillSheetRegDatetime(keyst0200.getSkillSheetRegDatetime()); // スキルシート登録日時
+            initS04List.add(tempInitS04);
         }
         // レスポンスFormにスキルシート情報一覧を設定する。
-        resForm.setSkillSheetInfoList(initS03List);
+        resForm.setSkillSheetInfoList(initS04List);
 
         // 【ユーザー基本情報取得】
         // ユーザー基本情報EntityKeyに以下の値を設定する。
@@ -80,14 +80,14 @@ public class Keyst10200Controller {
         // 資格明細Mapperの検索メソッドを呼び出す。
         List<Keyst0110> keyst0110List = keyst0110Mapper.selectByExample(keyst0110Example);
         // 検索結果全件に対して以下の処理をする。
-        List<Keyst10200InitS02> initS02List = new ArrayList<>(); // 資格一覧
+        List<Keyst10200InitS03> initS03List = new ArrayList<>(); // 資格一覧
         // initS02をinitS01に設定する。
-        initS01.setQualificationList(initS02List);
+        initS01.setQualificationList(initS03List);
         for (Keyst0110 keyst0110 : keyst0110List) {
-            Keyst10200InitS02 tempInitS02 = new Keyst10200InitS02();
-            tempInitS02.setQualifiedDate(keyst0110.getQualifiedDate()); // 資格取得日
-            tempInitS02.setQualificationContent(keyst0110.getQualificationContent()); // 資格内容
-            initS02List.add(tempInitS02);
+            Keyst10200InitS03 tempInitS03 = new Keyst10200InitS03();
+            tempInitS03.setQualifiedDate(keyst0110.getQualifiedDate()); // 資格取得日
+            tempInitS03.setQualificationContent(keyst0110.getQualificationContent()); // 資格内容
+            initS03List.add(tempInitS03);
         }
 
         return ResponseEntity.ok(resForm);
