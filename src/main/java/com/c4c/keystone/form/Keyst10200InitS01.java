@@ -1,5 +1,6 @@
 package com.c4c.keystone.form;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -27,7 +28,7 @@ public class Keyst10200InitS01 {
 
     /**
      * Column: GENDER
-     * Remark: 性別Ø
+     * Remark: 性別
      */
     private String gender;
 
@@ -53,6 +54,7 @@ public class Keyst10200InitS01 {
      * Column: PARTNER_FLG
      * Remark: 配偶者フラグ
      */
+    @JsonSerialize(using = JsonUtils.FlagSerializer.class)
     private String partnerFlg;
 
     /**
@@ -84,3 +86,4 @@ public class Keyst10200InitS01 {
      */
     private List<Keyst10200InitS03> qualificationList;
 }
+
