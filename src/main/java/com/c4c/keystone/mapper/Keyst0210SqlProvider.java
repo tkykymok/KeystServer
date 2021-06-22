@@ -84,8 +84,32 @@ public class Keyst0210SqlProvider {
             sql.VALUES("PG_LANG", "#{pgLang,jdbcType=VARCHAR}");
         }
         
-        if (record.getScopeOfWork() != null) {
-            sql.VALUES("SCOPE_OF_WORK", "#{scopeOfWork,jdbcType=VARCHAR}");
+        if (record.getSowManagement() != null) {
+            sql.VALUES("SOW_MANAGEMENT", "#{sowManagement,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getSowReqDefinition() != null) {
+            sql.VALUES("SOW_REQ_DEFINITION", "#{sowReqDefinition,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getSowBasicDesign() != null) {
+            sql.VALUES("SOW_BASIC_DESIGN", "#{sowBasicDesign,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getSowDetailDesign() != null) {
+            sql.VALUES("SOW_DETAIL_DESIGN", "#{sowDetailDesign,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getSowImplementation() != null) {
+            sql.VALUES("SOW_IMPLEMENTATION", "#{sowImplementation,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getSowTest() != null) {
+            sql.VALUES("SOW_TEST", "#{sowTest,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getSowMaintenanceOperation() != null) {
+            sql.VALUES("SOW_MAINTENANCE_OPERATION", "#{sowMaintenanceOperation,jdbcType=VARCHAR}");
         }
         
         if (record.getCreatedDatetime() != null) {
@@ -132,7 +156,13 @@ public class Keyst0210SqlProvider {
         sql.SELECT("DB");
         sql.SELECT("FW_MW_TOOL");
         sql.SELECT("PG_LANG");
-        sql.SELECT("SCOPE_OF_WORK");
+        sql.SELECT("SOW_MANAGEMENT");
+        sql.SELECT("SOW_REQ_DEFINITION");
+        sql.SELECT("SOW_BASIC_DESIGN");
+        sql.SELECT("SOW_DETAIL_DESIGN");
+        sql.SELECT("SOW_IMPLEMENTATION");
+        sql.SELECT("SOW_TEST");
+        sql.SELECT("SOW_MAINTENANCE_OPERATION");
         sql.SELECT("CREATED_DATETIME");
         sql.SELECT("CREATED_USER");
         sql.SELECT("LAST_MODIFIED_DATETIME");
@@ -206,8 +236,32 @@ public class Keyst0210SqlProvider {
             sql.SET("PG_LANG = #{record.pgLang,jdbcType=VARCHAR}");
         }
         
-        if (record.getScopeOfWork() != null) {
-            sql.SET("SCOPE_OF_WORK = #{record.scopeOfWork,jdbcType=VARCHAR}");
+        if (record.getSowManagement() != null) {
+            sql.SET("SOW_MANAGEMENT = #{record.sowManagement,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getSowReqDefinition() != null) {
+            sql.SET("SOW_REQ_DEFINITION = #{record.sowReqDefinition,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getSowBasicDesign() != null) {
+            sql.SET("SOW_BASIC_DESIGN = #{record.sowBasicDesign,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getSowDetailDesign() != null) {
+            sql.SET("SOW_DETAIL_DESIGN = #{record.sowDetailDesign,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getSowImplementation() != null) {
+            sql.SET("SOW_IMPLEMENTATION = #{record.sowImplementation,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getSowTest() != null) {
+            sql.SET("SOW_TEST = #{record.sowTest,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getSowMaintenanceOperation() != null) {
+            sql.SET("SOW_MAINTENANCE_OPERATION = #{record.sowMaintenanceOperation,jdbcType=VARCHAR}");
         }
         
         if (record.getCreatedDatetime() != null) {
@@ -253,7 +307,13 @@ public class Keyst0210SqlProvider {
         sql.SET("DB = #{record.db,jdbcType=VARCHAR}");
         sql.SET("FW_MW_TOOL = #{record.fwMwTool,jdbcType=VARCHAR}");
         sql.SET("PG_LANG = #{record.pgLang,jdbcType=VARCHAR}");
-        sql.SET("SCOPE_OF_WORK = #{record.scopeOfWork,jdbcType=VARCHAR}");
+        sql.SET("SOW_MANAGEMENT = #{record.sowManagement,jdbcType=VARCHAR}");
+        sql.SET("SOW_REQ_DEFINITION = #{record.sowReqDefinition,jdbcType=VARCHAR}");
+        sql.SET("SOW_BASIC_DESIGN = #{record.sowBasicDesign,jdbcType=VARCHAR}");
+        sql.SET("SOW_DETAIL_DESIGN = #{record.sowDetailDesign,jdbcType=VARCHAR}");
+        sql.SET("SOW_IMPLEMENTATION = #{record.sowImplementation,jdbcType=VARCHAR}");
+        sql.SET("SOW_TEST = #{record.sowTest,jdbcType=VARCHAR}");
+        sql.SET("SOW_MAINTENANCE_OPERATION = #{record.sowMaintenanceOperation,jdbcType=VARCHAR}");
         sql.SET("CREATED_DATETIME = #{record.createdDatetime,jdbcType=TIMESTAMP}");
         sql.SET("CREATED_USER = #{record.createdUser,jdbcType=INTEGER}");
         sql.SET("LAST_MODIFIED_DATETIME = #{record.lastModifiedDatetime,jdbcType=TIMESTAMP}");
@@ -312,8 +372,32 @@ public class Keyst0210SqlProvider {
             sql.SET("PG_LANG = #{pgLang,jdbcType=VARCHAR}");
         }
         
-        if (record.getScopeOfWork() != null) {
-            sql.SET("SCOPE_OF_WORK = #{scopeOfWork,jdbcType=VARCHAR}");
+        if (record.getSowManagement() != null) {
+            sql.SET("SOW_MANAGEMENT = #{sowManagement,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getSowReqDefinition() != null) {
+            sql.SET("SOW_REQ_DEFINITION = #{sowReqDefinition,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getSowBasicDesign() != null) {
+            sql.SET("SOW_BASIC_DESIGN = #{sowBasicDesign,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getSowDetailDesign() != null) {
+            sql.SET("SOW_DETAIL_DESIGN = #{sowDetailDesign,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getSowImplementation() != null) {
+            sql.SET("SOW_IMPLEMENTATION = #{sowImplementation,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getSowTest() != null) {
+            sql.SET("SOW_TEST = #{sowTest,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getSowMaintenanceOperation() != null) {
+            sql.SET("SOW_MAINTENANCE_OPERATION = #{sowMaintenanceOperation,jdbcType=VARCHAR}");
         }
         
         if (record.getCreatedDatetime() != null) {

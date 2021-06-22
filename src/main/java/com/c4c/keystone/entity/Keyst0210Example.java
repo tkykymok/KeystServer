@@ -948,73 +948,493 @@ public class Keyst0210Example {
             return (Criteria) this;
         }
 
-        public Criteria andScopeOfWorkIsNull() {
-            addCriterion("SCOPE_OF_WORK is null");
+        public Criteria andSowManagementIsNull() {
+            addCriterion("SOW_MANAGEMENT is null");
             return (Criteria) this;
         }
 
-        public Criteria andScopeOfWorkIsNotNull() {
-            addCriterion("SCOPE_OF_WORK is not null");
+        public Criteria andSowManagementIsNotNull() {
+            addCriterion("SOW_MANAGEMENT is not null");
             return (Criteria) this;
         }
 
-        public Criteria andScopeOfWorkEqualTo(String value) {
-            addCriterion("SCOPE_OF_WORK =", value, "scopeOfWork");
+        public Criteria andSowManagementEqualTo(String value) {
+            addCriterion("SOW_MANAGEMENT =", value, "sowManagement");
             return (Criteria) this;
         }
 
-        public Criteria andScopeOfWorkNotEqualTo(String value) {
-            addCriterion("SCOPE_OF_WORK <>", value, "scopeOfWork");
+        public Criteria andSowManagementNotEqualTo(String value) {
+            addCriterion("SOW_MANAGEMENT <>", value, "sowManagement");
             return (Criteria) this;
         }
 
-        public Criteria andScopeOfWorkGreaterThan(String value) {
-            addCriterion("SCOPE_OF_WORK >", value, "scopeOfWork");
+        public Criteria andSowManagementGreaterThan(String value) {
+            addCriterion("SOW_MANAGEMENT >", value, "sowManagement");
             return (Criteria) this;
         }
 
-        public Criteria andScopeOfWorkGreaterThanOrEqualTo(String value) {
-            addCriterion("SCOPE_OF_WORK >=", value, "scopeOfWork");
+        public Criteria andSowManagementGreaterThanOrEqualTo(String value) {
+            addCriterion("SOW_MANAGEMENT >=", value, "sowManagement");
             return (Criteria) this;
         }
 
-        public Criteria andScopeOfWorkLessThan(String value) {
-            addCriterion("SCOPE_OF_WORK <", value, "scopeOfWork");
+        public Criteria andSowManagementLessThan(String value) {
+            addCriterion("SOW_MANAGEMENT <", value, "sowManagement");
             return (Criteria) this;
         }
 
-        public Criteria andScopeOfWorkLessThanOrEqualTo(String value) {
-            addCriterion("SCOPE_OF_WORK <=", value, "scopeOfWork");
+        public Criteria andSowManagementLessThanOrEqualTo(String value) {
+            addCriterion("SOW_MANAGEMENT <=", value, "sowManagement");
             return (Criteria) this;
         }
 
-        public Criteria andScopeOfWorkLike(String value) {
-            addCriterion("SCOPE_OF_WORK like", value, "scopeOfWork");
+        public Criteria andSowManagementLike(String value) {
+            addCriterion("SOW_MANAGEMENT like", value, "sowManagement");
             return (Criteria) this;
         }
 
-        public Criteria andScopeOfWorkNotLike(String value) {
-            addCriterion("SCOPE_OF_WORK not like", value, "scopeOfWork");
+        public Criteria andSowManagementNotLike(String value) {
+            addCriterion("SOW_MANAGEMENT not like", value, "sowManagement");
             return (Criteria) this;
         }
 
-        public Criteria andScopeOfWorkIn(List<String> values) {
-            addCriterion("SCOPE_OF_WORK in", values, "scopeOfWork");
+        public Criteria andSowManagementIn(List<String> values) {
+            addCriterion("SOW_MANAGEMENT in", values, "sowManagement");
             return (Criteria) this;
         }
 
-        public Criteria andScopeOfWorkNotIn(List<String> values) {
-            addCriterion("SCOPE_OF_WORK not in", values, "scopeOfWork");
+        public Criteria andSowManagementNotIn(List<String> values) {
+            addCriterion("SOW_MANAGEMENT not in", values, "sowManagement");
             return (Criteria) this;
         }
 
-        public Criteria andScopeOfWorkBetween(String value1, String value2) {
-            addCriterion("SCOPE_OF_WORK between", value1, value2, "scopeOfWork");
+        public Criteria andSowManagementBetween(String value1, String value2) {
+            addCriterion("SOW_MANAGEMENT between", value1, value2, "sowManagement");
             return (Criteria) this;
         }
 
-        public Criteria andScopeOfWorkNotBetween(String value1, String value2) {
-            addCriterion("SCOPE_OF_WORK not between", value1, value2, "scopeOfWork");
+        public Criteria andSowManagementNotBetween(String value1, String value2) {
+            addCriterion("SOW_MANAGEMENT not between", value1, value2, "sowManagement");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowReqDefinitionIsNull() {
+            addCriterion("SOW_REQ_DEFINITION is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowReqDefinitionIsNotNull() {
+            addCriterion("SOW_REQ_DEFINITION is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowReqDefinitionEqualTo(String value) {
+            addCriterion("SOW_REQ_DEFINITION =", value, "sowReqDefinition");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowReqDefinitionNotEqualTo(String value) {
+            addCriterion("SOW_REQ_DEFINITION <>", value, "sowReqDefinition");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowReqDefinitionGreaterThan(String value) {
+            addCriterion("SOW_REQ_DEFINITION >", value, "sowReqDefinition");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowReqDefinitionGreaterThanOrEqualTo(String value) {
+            addCriterion("SOW_REQ_DEFINITION >=", value, "sowReqDefinition");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowReqDefinitionLessThan(String value) {
+            addCriterion("SOW_REQ_DEFINITION <", value, "sowReqDefinition");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowReqDefinitionLessThanOrEqualTo(String value) {
+            addCriterion("SOW_REQ_DEFINITION <=", value, "sowReqDefinition");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowReqDefinitionLike(String value) {
+            addCriterion("SOW_REQ_DEFINITION like", value, "sowReqDefinition");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowReqDefinitionNotLike(String value) {
+            addCriterion("SOW_REQ_DEFINITION not like", value, "sowReqDefinition");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowReqDefinitionIn(List<String> values) {
+            addCriterion("SOW_REQ_DEFINITION in", values, "sowReqDefinition");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowReqDefinitionNotIn(List<String> values) {
+            addCriterion("SOW_REQ_DEFINITION not in", values, "sowReqDefinition");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowReqDefinitionBetween(String value1, String value2) {
+            addCriterion("SOW_REQ_DEFINITION between", value1, value2, "sowReqDefinition");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowReqDefinitionNotBetween(String value1, String value2) {
+            addCriterion("SOW_REQ_DEFINITION not between", value1, value2, "sowReqDefinition");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowBasicDesignIsNull() {
+            addCriterion("SOW_BASIC_DESIGN is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowBasicDesignIsNotNull() {
+            addCriterion("SOW_BASIC_DESIGN is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowBasicDesignEqualTo(String value) {
+            addCriterion("SOW_BASIC_DESIGN =", value, "sowBasicDesign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowBasicDesignNotEqualTo(String value) {
+            addCriterion("SOW_BASIC_DESIGN <>", value, "sowBasicDesign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowBasicDesignGreaterThan(String value) {
+            addCriterion("SOW_BASIC_DESIGN >", value, "sowBasicDesign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowBasicDesignGreaterThanOrEqualTo(String value) {
+            addCriterion("SOW_BASIC_DESIGN >=", value, "sowBasicDesign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowBasicDesignLessThan(String value) {
+            addCriterion("SOW_BASIC_DESIGN <", value, "sowBasicDesign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowBasicDesignLessThanOrEqualTo(String value) {
+            addCriterion("SOW_BASIC_DESIGN <=", value, "sowBasicDesign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowBasicDesignLike(String value) {
+            addCriterion("SOW_BASIC_DESIGN like", value, "sowBasicDesign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowBasicDesignNotLike(String value) {
+            addCriterion("SOW_BASIC_DESIGN not like", value, "sowBasicDesign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowBasicDesignIn(List<String> values) {
+            addCriterion("SOW_BASIC_DESIGN in", values, "sowBasicDesign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowBasicDesignNotIn(List<String> values) {
+            addCriterion("SOW_BASIC_DESIGN not in", values, "sowBasicDesign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowBasicDesignBetween(String value1, String value2) {
+            addCriterion("SOW_BASIC_DESIGN between", value1, value2, "sowBasicDesign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowBasicDesignNotBetween(String value1, String value2) {
+            addCriterion("SOW_BASIC_DESIGN not between", value1, value2, "sowBasicDesign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowDetailDesignIsNull() {
+            addCriterion("SOW_DETAIL_DESIGN is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowDetailDesignIsNotNull() {
+            addCriterion("SOW_DETAIL_DESIGN is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowDetailDesignEqualTo(String value) {
+            addCriterion("SOW_DETAIL_DESIGN =", value, "sowDetailDesign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowDetailDesignNotEqualTo(String value) {
+            addCriterion("SOW_DETAIL_DESIGN <>", value, "sowDetailDesign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowDetailDesignGreaterThan(String value) {
+            addCriterion("SOW_DETAIL_DESIGN >", value, "sowDetailDesign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowDetailDesignGreaterThanOrEqualTo(String value) {
+            addCriterion("SOW_DETAIL_DESIGN >=", value, "sowDetailDesign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowDetailDesignLessThan(String value) {
+            addCriterion("SOW_DETAIL_DESIGN <", value, "sowDetailDesign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowDetailDesignLessThanOrEqualTo(String value) {
+            addCriterion("SOW_DETAIL_DESIGN <=", value, "sowDetailDesign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowDetailDesignLike(String value) {
+            addCriterion("SOW_DETAIL_DESIGN like", value, "sowDetailDesign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowDetailDesignNotLike(String value) {
+            addCriterion("SOW_DETAIL_DESIGN not like", value, "sowDetailDesign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowDetailDesignIn(List<String> values) {
+            addCriterion("SOW_DETAIL_DESIGN in", values, "sowDetailDesign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowDetailDesignNotIn(List<String> values) {
+            addCriterion("SOW_DETAIL_DESIGN not in", values, "sowDetailDesign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowDetailDesignBetween(String value1, String value2) {
+            addCriterion("SOW_DETAIL_DESIGN between", value1, value2, "sowDetailDesign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowDetailDesignNotBetween(String value1, String value2) {
+            addCriterion("SOW_DETAIL_DESIGN not between", value1, value2, "sowDetailDesign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowImplementationIsNull() {
+            addCriterion("SOW_IMPLEMENTATION is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowImplementationIsNotNull() {
+            addCriterion("SOW_IMPLEMENTATION is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowImplementationEqualTo(String value) {
+            addCriterion("SOW_IMPLEMENTATION =", value, "sowImplementation");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowImplementationNotEqualTo(String value) {
+            addCriterion("SOW_IMPLEMENTATION <>", value, "sowImplementation");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowImplementationGreaterThan(String value) {
+            addCriterion("SOW_IMPLEMENTATION >", value, "sowImplementation");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowImplementationGreaterThanOrEqualTo(String value) {
+            addCriterion("SOW_IMPLEMENTATION >=", value, "sowImplementation");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowImplementationLessThan(String value) {
+            addCriterion("SOW_IMPLEMENTATION <", value, "sowImplementation");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowImplementationLessThanOrEqualTo(String value) {
+            addCriterion("SOW_IMPLEMENTATION <=", value, "sowImplementation");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowImplementationLike(String value) {
+            addCriterion("SOW_IMPLEMENTATION like", value, "sowImplementation");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowImplementationNotLike(String value) {
+            addCriterion("SOW_IMPLEMENTATION not like", value, "sowImplementation");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowImplementationIn(List<String> values) {
+            addCriterion("SOW_IMPLEMENTATION in", values, "sowImplementation");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowImplementationNotIn(List<String> values) {
+            addCriterion("SOW_IMPLEMENTATION not in", values, "sowImplementation");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowImplementationBetween(String value1, String value2) {
+            addCriterion("SOW_IMPLEMENTATION between", value1, value2, "sowImplementation");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowImplementationNotBetween(String value1, String value2) {
+            addCriterion("SOW_IMPLEMENTATION not between", value1, value2, "sowImplementation");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowTestIsNull() {
+            addCriterion("SOW_TEST is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowTestIsNotNull() {
+            addCriterion("SOW_TEST is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowTestEqualTo(String value) {
+            addCriterion("SOW_TEST =", value, "sowTest");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowTestNotEqualTo(String value) {
+            addCriterion("SOW_TEST <>", value, "sowTest");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowTestGreaterThan(String value) {
+            addCriterion("SOW_TEST >", value, "sowTest");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowTestGreaterThanOrEqualTo(String value) {
+            addCriterion("SOW_TEST >=", value, "sowTest");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowTestLessThan(String value) {
+            addCriterion("SOW_TEST <", value, "sowTest");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowTestLessThanOrEqualTo(String value) {
+            addCriterion("SOW_TEST <=", value, "sowTest");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowTestLike(String value) {
+            addCriterion("SOW_TEST like", value, "sowTest");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowTestNotLike(String value) {
+            addCriterion("SOW_TEST not like", value, "sowTest");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowTestIn(List<String> values) {
+            addCriterion("SOW_TEST in", values, "sowTest");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowTestNotIn(List<String> values) {
+            addCriterion("SOW_TEST not in", values, "sowTest");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowTestBetween(String value1, String value2) {
+            addCriterion("SOW_TEST between", value1, value2, "sowTest");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowTestNotBetween(String value1, String value2) {
+            addCriterion("SOW_TEST not between", value1, value2, "sowTest");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowMaintenanceOperationIsNull() {
+            addCriterion("SOW_MAINTENANCE_OPERATION is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowMaintenanceOperationIsNotNull() {
+            addCriterion("SOW_MAINTENANCE_OPERATION is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowMaintenanceOperationEqualTo(String value) {
+            addCriterion("SOW_MAINTENANCE_OPERATION =", value, "sowMaintenanceOperation");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowMaintenanceOperationNotEqualTo(String value) {
+            addCriterion("SOW_MAINTENANCE_OPERATION <>", value, "sowMaintenanceOperation");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowMaintenanceOperationGreaterThan(String value) {
+            addCriterion("SOW_MAINTENANCE_OPERATION >", value, "sowMaintenanceOperation");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowMaintenanceOperationGreaterThanOrEqualTo(String value) {
+            addCriterion("SOW_MAINTENANCE_OPERATION >=", value, "sowMaintenanceOperation");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowMaintenanceOperationLessThan(String value) {
+            addCriterion("SOW_MAINTENANCE_OPERATION <", value, "sowMaintenanceOperation");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowMaintenanceOperationLessThanOrEqualTo(String value) {
+            addCriterion("SOW_MAINTENANCE_OPERATION <=", value, "sowMaintenanceOperation");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowMaintenanceOperationLike(String value) {
+            addCriterion("SOW_MAINTENANCE_OPERATION like", value, "sowMaintenanceOperation");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowMaintenanceOperationNotLike(String value) {
+            addCriterion("SOW_MAINTENANCE_OPERATION not like", value, "sowMaintenanceOperation");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowMaintenanceOperationIn(List<String> values) {
+            addCriterion("SOW_MAINTENANCE_OPERATION in", values, "sowMaintenanceOperation");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowMaintenanceOperationNotIn(List<String> values) {
+            addCriterion("SOW_MAINTENANCE_OPERATION not in", values, "sowMaintenanceOperation");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowMaintenanceOperationBetween(String value1, String value2) {
+            addCriterion("SOW_MAINTENANCE_OPERATION between", value1, value2, "sowMaintenanceOperation");
+            return (Criteria) this;
+        }
+
+        public Criteria andSowMaintenanceOperationNotBetween(String value1, String value2) {
+            addCriterion("SOW_MAINTENANCE_OPERATION not between", value1, value2, "sowMaintenanceOperation");
             return (Criteria) this;
         }
 

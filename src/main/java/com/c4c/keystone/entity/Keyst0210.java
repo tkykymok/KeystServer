@@ -72,10 +72,46 @@ public class Keyst0210 extends Keyst0210Key {
     private String pgLang;
 
     /**
-     * Column: SCOPE_OF_WORK
-     * Remark: 業務範囲
+     * Column: SOW_MANAGEMENT
+     * Remark: 業務範囲_マネジメント
      */
-    private String scopeOfWork;
+    private String sowManagement;
+
+    /**
+     * Column: SOW_REQ_DEFINITION
+     * Remark: 業務範囲_要件定義
+     */
+    private String sowReqDefinition;
+
+    /**
+     * Column: SOW_BASIC_DESIGN
+     * Remark: 業務範囲_基本設計
+     */
+    private String sowBasicDesign;
+
+    /**
+     * Column: SOW_DETAIL_DESIGN
+     * Remark: 業務範囲_詳細設計
+     */
+    private String sowDetailDesign;
+
+    /**
+     * Column: SOW_IMPLEMENTATION
+     * Remark: 業務範囲_実装
+     */
+    private String sowImplementation;
+
+    /**
+     * Column: SOW_TEST
+     * Remark: 業務範囲_テスト
+     */
+    private String sowTest;
+
+    /**
+     * Column: SOW_MAINTENANCE_OPERATION
+     * Remark: 業務範囲_保守運用
+     */
+    private String sowMaintenanceOperation;
 
     /**
      * Column: CREATED_DATETIME
