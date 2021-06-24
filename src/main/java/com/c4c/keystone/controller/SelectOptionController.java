@@ -3,6 +3,8 @@ package com.c4c.keystone.controller;
 import com.c4c.keystone.constants.Flag;
 import com.c4c.keystone.entity.Keyst5300;
 import com.c4c.keystone.entity.Keyst5300Example;
+import com.c4c.keystone.enums.Db;
+import com.c4c.keystone.enums.Os;
 import com.c4c.keystone.form.SelectOption;
 import com.c4c.keystone.mapper.Keyst5300Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,7 @@ public class SelectOptionController {
 
     @GetMapping("/pgLang")
     @CrossOrigin(origins = {"http://localhost:3000"})
-    public ResponseEntity<List<SelectOption>> pgLang() {
+    public ResponseEntity<List<SelectOption>> getPgLangOptions() {
 
         // スキルマスタEntityExampleに以下の値を設定する。
         Keyst5300Example keyst5300Example = new Keyst5300Example();
@@ -42,8 +44,54 @@ public class SelectOptionController {
             // selectOptionListに追加する。
             selectOptionList.add(tempSelectOption);
         }
-
-
         return ResponseEntity.ok(selectOptionList);
     }
+
+    @GetMapping("/os")
+    @CrossOrigin(origins = {"http://localhost:3000"})
+    public ResponseEntity<List<SelectOption>> getOsOptions() {
+        // OSEnum一覧を取得する。
+        Os[] enumArray = Os.values();
+
+        List<SelectOption> selectOptionList = new ArrayList<>();
+        // 空の選択肢を追加する。
+        SelectOption selectOption = new SelectOption();
+        selectOption.setCode(null);
+        selectOption.setName("");
+        selectOptionList.add(selectOption);
+
+        // OSEnum一覧全件に対して以下の処理をする。
+        for (Os e : enumArray) {
+            SelectOption tmpSelectOption = new SelectOption();
+            tmpSelectOption.setCode(e.getCode()); // コード
+            tmpSelectOption.setName(e.getName()); // 名称
+            selectOptionList.add(tmpSelectOption);
+        }
+        return ResponseEntity.ok(selectOptionList);
+    }
+
+    @GetMapping("/db")
+    @CrossOrigin(origins = {"http://localhost:3000"})
+    public ResponseEntity<List<SelectOption>> getDbOptions() {
+        // OSEnum一覧を取得する。
+        Db[] enumArray = Db.values();
+
+        List<SelectOption> selectOptionList = new ArrayList<>();
+        // 空の選択肢を追加する。
+        SelectOption selectOption = new SelectOption();
+        selectOption.setCode(null);
+        selectOption.setName("");
+        selectOptionList.add(selectOption);
+
+        // OSEnum一覧全件に対して以下の処理をする。
+        for (Db e : enumArray) {
+            SelectOption tmpSelectOption = new SelectOption();
+            tmpSelectOption.setCode(e.getCode()); // コード
+            tmpSelectOption.setName(e.getName()); // 名称
+            selectOptionList.add(tmpSelectOption);
+        }
+        return ResponseEntity.ok(selectOptionList);
+    }
+
+
 }
