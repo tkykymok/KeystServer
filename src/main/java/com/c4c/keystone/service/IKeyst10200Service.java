@@ -1,5 +1,7 @@
 package com.c4c.keystone.service;
 
-public interface IKeyst10200Service {
+import com.c4c.keystone.form.Keyst10200InitS;
 
+public interface IKeyst10200Service {
+    Keyst10200InitS initialize();
 }
