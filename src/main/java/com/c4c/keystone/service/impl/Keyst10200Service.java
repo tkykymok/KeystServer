@@ -11,7 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class Keyst10200Service implements IKeyst10200Service {
@@ -43,6 +45,10 @@ public class Keyst10200Service implements IKeyst10200Service {
 
         // スキルシートヘッダーMapperの検索メソッドを呼び出す。
         List<Keyst0200> keyst0200List = keyst0200Mapper.selectByExample(keyst0200Example);
+        // スキルシート登録日時の降順で並び替える。
+        keyst0200List = keyst0200List.stream()
+                .sorted(Comparator.comparing(Keyst0200::getSkillSheetRegDatetime, Comparator.reverseOrder()))
+                .collect(Collectors.toList());
 
         // 検索結果全件に対して以下の処理をする。
         List<Keyst10200InitS04> initS04List = new ArrayList<>(); // スキルシート情報一覧
