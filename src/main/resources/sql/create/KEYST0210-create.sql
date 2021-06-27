@@ -2,7 +2,7 @@ CREATE TABLE `KEYST0210`
 (
     `SKILL_SHEET_ID`            INT        NOT NULL AUTO_INCREMENT COMMENT 'スキルシートID',
     `REF_NO`                    INT        NOT NULL COMMENT '明細番号',
-    `PRJ_CODE`                  VARCHAR(4) NULL COMMENT '案件コード',
+    `PRJ_CODE`                  VARCHAR(5) NULL COMMENT '案件コード',
     `PRJ_START_DATE`            DATE NULL COMMENT '稼働開始年月日',
     `PRJ_END_DATE`              DATE NULL COMMENT '稼働終了年月日',
     `BIZ_IN_CHARGE`             VARCHAR(1000) NULL COMMENT '担当業務',
