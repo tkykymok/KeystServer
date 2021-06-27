@@ -25,4 +25,4 @@ CREATE TABLE `KEYST0210`
     `LAST_MODIFIED_USER`        INT NULL COMMENT '最終変更者ID',
     `VERSION_EX_KEY`            INT NULL DEFAULT 0 COMMENT '排他制御カラム',
     PRIMARY KEY (`SKILL_SHEET_ID`, `REF_NO`)
-);
+) comment ='スキルシート明細';

@@ -9,4 +9,4 @@ CREATE TABLE `KEYST0110`
     `LAST_MODIFIED_USER`     INT          NULL COMMENT '最終変更者ID',
     `VERSION_EX_KEY`         INT          NULL DEFAULT 0 COMMENT '排他制御カラム',
     PRIMARY KEY (`USER_ID`, `QUALIFIED_DATE`, `QUALIFICATION_CONTENT`)
-);
+) comment ='資格明細';

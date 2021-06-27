@@ -14,4 +14,4 @@ CREATE TABLE `KEYST0200`
     `VERSION_EX_KEY`           INT          NULL     DEFAULT 0 COMMENT '排他制御カラム',
     PRIMARY KEY (`SKILL_SHEET_ID`),
     UNIQUE INDEX `SKILL_SHEET_ID_UNIQUE` (`SKILL_SHEET_ID` ASC) VISIBLE
-);
+) comment ='スキルシートヘッダー';
