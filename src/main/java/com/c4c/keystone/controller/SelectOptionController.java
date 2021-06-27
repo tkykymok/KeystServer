@@ -1,11 +1,14 @@
 package com.c4c.keystone.controller;
 
 import com.c4c.keystone.constants.Flag;
+import com.c4c.keystone.entity.Keyst5100;
+import com.c4c.keystone.entity.Keyst5100Example;
 import com.c4c.keystone.entity.Keyst5300;
 import com.c4c.keystone.entity.Keyst5300Example;
 import com.c4c.keystone.enums.Db;
 import com.c4c.keystone.enums.Os;
 import com.c4c.keystone.form.SelectOption;
+import com.c4c.keystone.mapper.Keyst5100Mapper;
 import com.c4c.keystone.mapper.Keyst5300Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,11 +26,12 @@ public class SelectOptionController {
 
     @Autowired
     Keyst5300Mapper keyst5300Mapper;
+    @Autowired
+    Keyst5100Mapper keyst5100Mapper;
 
     @GetMapping("/pgLang")
     @CrossOrigin(origins = {"http://localhost:3000"})
     public ResponseEntity<List<SelectOption>> getPgLangOptions() {
-
         // スキルマスタEntityExampleに以下の値を設定する。
         Keyst5300Example keyst5300Example = new Keyst5300Example();
         keyst5300Example.createCriteria().andLangFlgEqualTo(Flag.ON); // 言語フラグ
@@ -89,6 +93,37 @@ public class SelectOptionController {
             tmpSelectOption.setCode(e.getCode()); // コード
             tmpSelectOption.setName(e.getName()); // 名称
             selectOptionList.add(tmpSelectOption);
+        }
+        return ResponseEntity.ok(selectOptionList);
+    }
+
+    @GetMapping("/prjName")
+    @CrossOrigin(origins = {"http://localhost:3000"})
+    public ResponseEntity<List<SelectOption>> getPrjName() {
+        // 案件マスタEntityExampleに以下の値を設定する。
+        Keyst5100Example keyst5100Example = new Keyst5100Example();
+        keyst5100Example.createCriteria().andDeleteFlgEqualTo(Flag.OFF);
+
+        // 案件マスタMapperの検索メソッドを呼び出す。
+        List<Keyst5100> Keyst5100List = keyst5100Mapper.selectByExample(keyst5100Example);
+
+        List<SelectOption> selectOptionList = new ArrayList<>();
+        // 初期値の選択肢を追加する。
+        SelectOption selectOption = new SelectOption();
+        selectOption.setCode(null);
+        selectOption.setName("案件名を選択してください");
+        selectOption.setDisableFlg(Flag.ON);
+        selectOptionList.add(selectOption);
+
+        // 検索結果全件に対して以下の処理をする。
+        for (Keyst5100 keyst5100 : Keyst5100List) {
+            SelectOption tempSelectOption = new SelectOption();
+            // selectOptionFormに以下の値を設定する。
+            tempSelectOption.setCode(keyst5100.getPrjCode()); // コード
+            tempSelectOption.setName(keyst5100.getPrjName()); // 名称
+            tempSelectOption.setDisableFlg(Flag.OFF); // 無効フラグ
+            // selectOptionListに追加する。
+            selectOptionList.add(tempSelectOption);
         }
         return ResponseEntity.ok(selectOptionList);
     }
