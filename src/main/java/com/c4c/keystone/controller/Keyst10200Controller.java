@@ -1,14 +1,11 @@
 package com.c4c.keystone.controller;
 
-import com.c4c.keystone.enums.Os;
+import com.c4c.keystone.form.Keyst10200DispSklShtS;
 import com.c4c.keystone.form.Keyst10200InitS;
 import com.c4c.keystone.service.impl.Keyst10200Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -26,5 +23,18 @@ public class Keyst10200Controller {
 
         return ResponseEntity.ok(resForm);
     }
+
+    @GetMapping(value = "displaySkillSheet")
+    @CrossOrigin(origins = {"http://localhost:3000"})
+    public ResponseEntity<Keyst10200DispSklShtS> displaySkillSheet(@RequestParam("skillSheetId") Integer skillSheetId) {
+        // レスポンスForm
+        Keyst10200DispSklShtS resForm = keyst10200Service.displaySkillSheet(skillSheetId);
+
+        return ResponseEntity.ok(resForm);
+    }
+
+
+
+
 
 }
