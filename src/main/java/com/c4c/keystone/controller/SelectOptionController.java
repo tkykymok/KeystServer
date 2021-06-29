@@ -99,7 +99,7 @@ public class SelectOptionController {
 
     @GetMapping("/prjName")
     @CrossOrigin(origins = {"http://localhost:3000"})
-    public ResponseEntity<List<SelectOption>> getPrjName() {
+    public ResponseEntity<List<SelectOption>> getPrjNameOptions() {
         // 案件マスタEntityExampleに以下の値を設定する。
         Keyst5100Example keyst5100Example = new Keyst5100Example();
         keyst5100Example.createCriteria().andDeleteFlgEqualTo(Flag.OFF);
@@ -110,7 +110,7 @@ public class SelectOptionController {
         List<SelectOption> selectOptionList = new ArrayList<>();
         // 初期値の選択肢を追加する。
         SelectOption selectOption = new SelectOption();
-        selectOption.setCode(null);
+        selectOption.setCode("");
         selectOption.setName("案件名を選択してください");
         selectOption.setDisableFlg(Flag.ON);
         selectOptionList.add(selectOption);
