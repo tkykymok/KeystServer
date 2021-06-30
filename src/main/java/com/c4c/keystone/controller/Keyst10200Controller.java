@@ -15,7 +15,7 @@ public class Keyst10200Controller {
     @Autowired
     Keyst10200Service keyst10200Service;
 
-    @GetMapping("")
+    @GetMapping("initialize")
     @CrossOrigin(origins = {"http://localhost:3000"})
     public ResponseEntity<Keyst10200InitS> initialize() {
         // レスポンスForm
