@@ -10,6 +10,8 @@ import com.c4c.keystone.enums.Os;
 import com.c4c.keystone.form.SelectOption;
 import com.c4c.keystone.mapper.Keyst5100Mapper;
 import com.c4c.keystone.mapper.Keyst5300Mapper;
+import com.c4c.keystone.service.impl.Keyst5100Service;
+import com.c4c.keystone.service.impl.Keyst5300Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,6 +27,12 @@ import java.util.List;
 public class SelectOptionController {
 
     @Autowired
+    Keyst5100Service keyst5100Service;
+    @Autowired
+    Keyst5300Service keyst5300Service;
+
+
+    @Autowired
     Keyst5300Mapper keyst5300Mapper;
     @Autowired
     Keyst5100Mapper keyst5100Mapper;
@@ -36,17 +44,20 @@ public class SelectOptionController {
         Keyst5300Example keyst5300Example = new Keyst5300Example();
         keyst5300Example.createCriteria().andLangFlgEqualTo(Flag.ON); // 言語フラグ
 
-        // スキルマスタMapperの検索メソッドを呼び出す。
-        List<Keyst5300> Keyst5300List = keyst5300Mapper.selectByExample(keyst5300Example);
+        // スキルマスタ取得
+        List<Keyst5300> Keyst5300List = keyst5300Service.getAllSkills();
         // 検索結果全件に対して以下の処理をする。
         List<SelectOption> selectOptionList = new ArrayList<>();
         for (Keyst5300 keyst5300 : Keyst5300List) {
-            SelectOption tempSelectOption = new SelectOption();
-            // selectOptionFormに以下の値を設定する。
-            tempSelectOption.setCode(keyst5300.getSkillCode()); // コード
-            tempSelectOption.setName(keyst5300.getSkillName()); // 名称
-            // selectOptionListに追加する。
-            selectOptionList.add(tempSelectOption);
+            // 言語フラグがONの場合、以下の処理をする。
+            if (keyst5300.getLangFlg().equals(Flag.ON)) {
+                SelectOption tempSelectOption = new SelectOption();
+                // selectOptionFormに以下の値を設定する。
+                tempSelectOption.setCode(keyst5300.getSkillCode()); // コード
+                tempSelectOption.setName(keyst5300.getSkillName()); // 名称
+                // selectOptionListに追加する。
+                selectOptionList.add(tempSelectOption);
+            }
         }
         return ResponseEntity.ok(selectOptionList);
     }
@@ -100,12 +111,8 @@ public class SelectOptionController {
     @GetMapping("/prjName")
     @CrossOrigin(origins = {"http://localhost:3000"})
     public ResponseEntity<List<SelectOption>> getPrjNameOptions() {
-        // 案件マスタEntityExampleに以下の値を設定する。
-        Keyst5100Example keyst5100Example = new Keyst5100Example();
-        keyst5100Example.createCriteria().andDeleteFlgEqualTo(Flag.OFF);
-
-        // 案件マスタMapperの検索メソッドを呼び出す。
-        List<Keyst5100> Keyst5100List = keyst5100Mapper.selectByExample(keyst5100Example);
+        // 案件マスタ取得
+        List<Keyst5100> Keyst5100List = keyst5100Service.getAllProjects();
 
         List<SelectOption> selectOptionList = new ArrayList<>();
         // 初期値の選択肢を追加する。
@@ -127,6 +134,5 @@ public class SelectOptionController {
         }
         return ResponseEntity.ok(selectOptionList);
     }
-
 
 }
