@@ -9,14 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class Keyst10200Service implements IKeyst10200Service {
+
+    @Autowired
+    Keyst5300Service keyst5300Service;
 
     @Autowired
     Keyst0100Mapper keyst0100Mapper;
@@ -74,18 +74,19 @@ public class Keyst10200Service implements IKeyst10200Service {
         Keyst10200InitS01 initS01 = new Keyst10200InitS01();
         BeanUtils.copyProperties(keyst0100, initS01);
 
-        // 保有スキル検索
-        // スキルマスタExampleに以下の値を設定する。
-        Keyst5300Example keyst5300Example = new Keyst5300Example();
-        keyst5300Example.createCriteria().andSkillCodeIn(
-                Arrays.asList(keyst0100.getSkills().split(","))); // ユーザー基本情報の保有スキル
-        // スキルマスタMapperの検索メソッドを呼び出す。
-        List<Keyst5300> keyst5300List = keyst5300Mapper.selectByExample(keyst5300Example);
-        // 検索結果全件に対して以下の処理をする。
+        // スキルマスタ取得
+        List<Keyst5300> keyst5300List = keyst5300Service.getAllSkills();
+
+        // ユーザー基本情報の保有スキル(コード値)全件に対して以下の処理をする。
         List<Keyst10200InitS02> initS02List = new ArrayList<>();
-        for (Keyst5300 keyst5300 : keyst5300List) {
+        String[] skillCodeList = keyst0100.getSkills().split(",");
+        for (String skillCode : skillCodeList) {
             Keyst10200InitS02 tempInitS02 = new Keyst10200InitS02();
-            BeanUtils.copyProperties(keyst5300, tempInitS02);
+            Keyst5300 tempKeyst5300 = keyst5300List.stream()
+                    .filter(obj -> skillCode.equals(obj.getSkillCode()))
+                    .findFirst()
+                    .get();
+            BeanUtils.copyProperties(tempKeyst5300, tempInitS02);
             initS02List.add(tempInitS02);
         }
         // initS02ListをinitS01に設定する。
