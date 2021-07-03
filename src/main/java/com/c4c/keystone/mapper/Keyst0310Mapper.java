@@ -3,10 +3,10 @@ package com.c4c.keystone.mapper;
 import com.c4c.keystone.entity.Keyst0310;
 import com.c4c.keystone.entity.Keyst0310Example;
 import com.c4c.keystone.entity.Keyst0310Key;
-import java.util.List;
-
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
+
+import java.util.List;
 
 @Mapper
 public interface Keyst0310Mapper {
@@ -29,7 +29,7 @@ public interface Keyst0310Mapper {
         "delete from KEYST0310",
         "where RESERVE_ID = #{reserveId,jdbcType=INTEGER}",
           "and RESERVE_DATE = #{reserveDate,jdbcType=DATE}",
-          "and START_TIME = #{startTime,jdbcType=TIME}"
+          "and RESERVE_TIME = #{reserveTime,jdbcType=TIME}"
     })
     int deleteByPrimaryKey(Keyst0310Key key);
 
@@ -38,14 +38,14 @@ public interface Keyst0310Mapper {
      */
     @Insert({
         "insert into KEYST0310 (RESERVE_ID, RESERVE_DATE, ",
-        "START_TIME, USER_ID, ",
+        "RESERVE_TIME, USER_ID, ",
         "FEELING, USER_COMMENT, ",
         "MANAGER_COMMENT, REMARK, ",
         "CREATED_DATETIME, CREATED_USER, ",
         "LAST_MODIFIED_DATETIME, LAST_MODIFIED_USER, ",
         "VERSION_EX_KEY)",
         "values (#{reserveId,jdbcType=INTEGER}, #{reserveDate,jdbcType=DATE}, ",
-        "#{startTime,jdbcType=TIME}, #{userId,jdbcType=INTEGER}, ",
+        "#{reserveTime,jdbcType=TIME}, #{userId,jdbcType=INTEGER}, ",
         "#{feeling,jdbcType=VARCHAR}, #{userComment,jdbcType=VARCHAR}, ",
         "#{managerComment,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, ",
         "#{createdDatetime,jdbcType=TIMESTAMP}, #{createdUser,jdbcType=INTEGER}, ",
@@ -67,7 +67,7 @@ public interface Keyst0310Mapper {
     @Results({
         @Result(column="RESERVE_ID", property="reserveId", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="RESERVE_DATE", property="reserveDate", jdbcType=JdbcType.DATE, id=true),
-        @Result(column="START_TIME", property="startTime", jdbcType=JdbcType.TIME, id=true),
+        @Result(column="RESERVE_TIME", property="reserveTime", jdbcType=JdbcType.TIME, id=true),
         @Result(column="USER_ID", property="userId", jdbcType=JdbcType.INTEGER),
         @Result(column="FEELING", property="feeling", jdbcType=JdbcType.VARCHAR),
         @Result(column="USER_COMMENT", property="userComment", jdbcType=JdbcType.VARCHAR),
@@ -86,18 +86,18 @@ public interface Keyst0310Mapper {
      */
     @Select({
         "select",
-        "RESERVE_ID, RESERVE_DATE, START_TIME, USER_ID, FEELING, USER_COMMENT, MANAGER_COMMENT, ",
+        "RESERVE_ID, RESERVE_DATE, RESERVE_TIME, USER_ID, FEELING, USER_COMMENT, MANAGER_COMMENT, ",
         "REMARK, CREATED_DATETIME, CREATED_USER, LAST_MODIFIED_DATETIME, LAST_MODIFIED_USER, ",
         "VERSION_EX_KEY",
         "from KEYST0310",
         "where RESERVE_ID = #{reserveId,jdbcType=INTEGER}",
           "and RESERVE_DATE = #{reserveDate,jdbcType=DATE}",
-          "and START_TIME = #{startTime,jdbcType=TIME}"
+          "and RESERVE_TIME = #{reserveTime,jdbcType=TIME}"
     })
     @Results({
         @Result(column="RESERVE_ID", property="reserveId", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="RESERVE_DATE", property="reserveDate", jdbcType=JdbcType.DATE, id=true),
-        @Result(column="START_TIME", property="startTime", jdbcType=JdbcType.TIME, id=true),
+        @Result(column="RESERVE_TIME", property="reserveTime", jdbcType=JdbcType.TIME, id=true),
         @Result(column="USER_ID", property="userId", jdbcType=JdbcType.INTEGER),
         @Result(column="FEELING", property="feeling", jdbcType=JdbcType.VARCHAR),
         @Result(column="USER_COMMENT", property="userComment", jdbcType=JdbcType.VARCHAR),
@@ -146,7 +146,7 @@ public interface Keyst0310Mapper {
           "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}",
         "where RESERVE_ID = #{reserveId,jdbcType=INTEGER}",
           "and RESERVE_DATE = #{reserveDate,jdbcType=DATE}",
-          "and START_TIME = #{startTime,jdbcType=TIME}"
+          "and RESERVE_TIME = #{reserveTime,jdbcType=TIME}"
     })
     int updateByPrimaryKey(Keyst0310 record);
 }

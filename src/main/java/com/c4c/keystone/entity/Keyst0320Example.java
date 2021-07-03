@@ -1,6 +1,8 @@
 package com.c4c.keystone.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -207,63 +209,123 @@ public class Keyst0320Example {
             return (Criteria) this;
         }
 
-        public Criteria andReserveDatetimeIsNull() {
-            addCriterion("RESERVE_DATETIME is null");
+        public Criteria andReserveDateIsNull() {
+            addCriterion("RESERVE_DATE is null");
             return (Criteria) this;
         }
 
-        public Criteria andReserveDatetimeIsNotNull() {
-            addCriterion("RESERVE_DATETIME is not null");
+        public Criteria andReserveDateIsNotNull() {
+            addCriterion("RESERVE_DATE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andReserveDatetimeEqualTo(LocalDateTime value) {
-            addCriterion("RESERVE_DATETIME =", value, "reserveDatetime");
+        public Criteria andReserveDateEqualTo(LocalDate value) {
+            addCriterion("RESERVE_DATE =", value, "reserveDate");
             return (Criteria) this;
         }
 
-        public Criteria andReserveDatetimeNotEqualTo(LocalDateTime value) {
-            addCriterion("RESERVE_DATETIME <>", value, "reserveDatetime");
+        public Criteria andReserveDateNotEqualTo(LocalDate value) {
+            addCriterion("RESERVE_DATE <>", value, "reserveDate");
             return (Criteria) this;
         }
 
-        public Criteria andReserveDatetimeGreaterThan(LocalDateTime value) {
-            addCriterion("RESERVE_DATETIME >", value, "reserveDatetime");
+        public Criteria andReserveDateGreaterThan(LocalDate value) {
+            addCriterion("RESERVE_DATE >", value, "reserveDate");
             return (Criteria) this;
         }
 
-        public Criteria andReserveDatetimeGreaterThanOrEqualTo(LocalDateTime value) {
-            addCriterion("RESERVE_DATETIME >=", value, "reserveDatetime");
+        public Criteria andReserveDateGreaterThanOrEqualTo(LocalDate value) {
+            addCriterion("RESERVE_DATE >=", value, "reserveDate");
             return (Criteria) this;
         }
 
-        public Criteria andReserveDatetimeLessThan(LocalDateTime value) {
-            addCriterion("RESERVE_DATETIME <", value, "reserveDatetime");
+        public Criteria andReserveDateLessThan(LocalDate value) {
+            addCriterion("RESERVE_DATE <", value, "reserveDate");
             return (Criteria) this;
         }
 
-        public Criteria andReserveDatetimeLessThanOrEqualTo(LocalDateTime value) {
-            addCriterion("RESERVE_DATETIME <=", value, "reserveDatetime");
+        public Criteria andReserveDateLessThanOrEqualTo(LocalDate value) {
+            addCriterion("RESERVE_DATE <=", value, "reserveDate");
             return (Criteria) this;
         }
 
-        public Criteria andReserveDatetimeIn(List<LocalDateTime> values) {
-            addCriterion("RESERVE_DATETIME in", values, "reserveDatetime");
+        public Criteria andReserveDateIn(List<LocalDate> values) {
+            addCriterion("RESERVE_DATE in", values, "reserveDate");
             return (Criteria) this;
         }
 
-        public Criteria andReserveDatetimeNotIn(List<LocalDateTime> values) {
-            addCriterion("RESERVE_DATETIME not in", values, "reserveDatetime");
+        public Criteria andReserveDateNotIn(List<LocalDate> values) {
+            addCriterion("RESERVE_DATE not in", values, "reserveDate");
             return (Criteria) this;
         }
 
-        public Criteria andReserveDatetimeBetween(LocalDateTime value1, LocalDateTime value2) {
-            addCriterion("RESERVE_DATETIME between", value1, value2, "reserveDatetime");
+        public Criteria andReserveDateBetween(LocalDate value1, LocalDate value2) {
+            addCriterion("RESERVE_DATE between", value1, value2, "reserveDate");
             return (Criteria) this;
         }
 
-        public Criteria andReserveDatetimeNotBetween(LocalDateTime value1, LocalDateTime value2) {
-            addCriterion("RESERVE_DATETIME not between", value1, value2, "reserveDatetime");
+        public Criteria andReserveDateNotBetween(LocalDate value1, LocalDate value2) {
+            addCriterion("RESERVE_DATE not between", value1, value2, "reserveDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andReserveTimeIsNull() {
+            addCriterion("RESERVE_TIME is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReserveTimeIsNotNull() {
+            addCriterion("RESERVE_TIME is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReserveTimeEqualTo(LocalTime value) {
+            addCriterion("RESERVE_TIME =", value, "reserveTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReserveTimeNotEqualTo(LocalTime value) {
+            addCriterion("RESERVE_TIME <>", value, "reserveTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReserveTimeGreaterThan(LocalTime value) {
+            addCriterion("RESERVE_TIME >", value, "reserveTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReserveTimeGreaterThanOrEqualTo(LocalTime value) {
+            addCriterion("RESERVE_TIME >=", value, "reserveTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReserveTimeLessThan(LocalTime value) {
+            addCriterion("RESERVE_TIME <", value, "reserveTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReserveTimeLessThanOrEqualTo(LocalTime value) {
+            addCriterion("RESERVE_TIME <=", value, "reserveTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReserveTimeIn(List<LocalTime> values) {
+            addCriterion("RESERVE_TIME in", values, "reserveTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReserveTimeNotIn(List<LocalTime> values) {
+            addCriterion("RESERVE_TIME not in", values, "reserveTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReserveTimeBetween(LocalTime value1, LocalTime value2) {
+            addCriterion("RESERVE_TIME between", value1, value2, "reserveTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReserveTimeNotBetween(LocalTime value1, LocalTime value2) {
+            addCriterion("RESERVE_TIME not between", value1, value2, "reserveTime");
             return (Criteria) this;
         }
 

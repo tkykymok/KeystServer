@@ -269,63 +269,63 @@ public class Keyst0310Example {
             return (Criteria) this;
         }
 
-        public Criteria andStartTimeIsNull() {
-            addCriterion("START_TIME is null");
+        public Criteria andReserveTimeIsNull() {
+            addCriterion("RESERVE_TIME is null");
             return (Criteria) this;
         }
 
-        public Criteria andStartTimeIsNotNull() {
-            addCriterion("START_TIME is not null");
+        public Criteria andReserveTimeIsNotNull() {
+            addCriterion("RESERVE_TIME is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStartTimeEqualTo(LocalTime value) {
-            addCriterion("START_TIME =", value, "startTime");
+        public Criteria andReserveTimeEqualTo(LocalTime value) {
+            addCriterion("RESERVE_TIME =", value, "reserveTime");
             return (Criteria) this;
         }
 
-        public Criteria andStartTimeNotEqualTo(LocalTime value) {
-            addCriterion("START_TIME <>", value, "startTime");
+        public Criteria andReserveTimeNotEqualTo(LocalTime value) {
+            addCriterion("RESERVE_TIME <>", value, "reserveTime");
             return (Criteria) this;
         }
 
-        public Criteria andStartTimeGreaterThan(LocalTime value) {
-            addCriterion("START_TIME >", value, "startTime");
+        public Criteria andReserveTimeGreaterThan(LocalTime value) {
+            addCriterion("RESERVE_TIME >", value, "reserveTime");
             return (Criteria) this;
         }
 
-        public Criteria andStartTimeGreaterThanOrEqualTo(LocalTime value) {
-            addCriterion("START_TIME >=", value, "startTime");
+        public Criteria andReserveTimeGreaterThanOrEqualTo(LocalTime value) {
+            addCriterion("RESERVE_TIME >=", value, "reserveTime");
             return (Criteria) this;
         }
 
-        public Criteria andStartTimeLessThan(LocalTime value) {
-            addCriterion("START_TIME <", value, "startTime");
+        public Criteria andReserveTimeLessThan(LocalTime value) {
+            addCriterion("RESERVE_TIME <", value, "reserveTime");
             return (Criteria) this;
         }
 
-        public Criteria andStartTimeLessThanOrEqualTo(LocalTime value) {
-            addCriterion("START_TIME <=", value, "startTime");
+        public Criteria andReserveTimeLessThanOrEqualTo(LocalTime value) {
+            addCriterion("RESERVE_TIME <=", value, "reserveTime");
             return (Criteria) this;
         }
 
-        public Criteria andStartTimeIn(List<LocalTime> values) {
-            addCriterion("START_TIME in", values, "startTime");
+        public Criteria andReserveTimeIn(List<LocalTime> values) {
+            addCriterion("RESERVE_TIME in", values, "reserveTime");
             return (Criteria) this;
         }
 
-        public Criteria andStartTimeNotIn(List<LocalTime> values) {
-            addCriterion("START_TIME not in", values, "startTime");
+        public Criteria andReserveTimeNotIn(List<LocalTime> values) {
+            addCriterion("RESERVE_TIME not in", values, "reserveTime");
             return (Criteria) this;
         }
 
-        public Criteria andStartTimeBetween(LocalTime value1, LocalTime value2) {
-            addCriterion("START_TIME between", value1, value2, "startTime");
+        public Criteria andReserveTimeBetween(LocalTime value1, LocalTime value2) {
+            addCriterion("RESERVE_TIME between", value1, value2, "reserveTime");
             return (Criteria) this;
         }
 
-        public Criteria andStartTimeNotBetween(LocalTime value1, LocalTime value2) {
-            addCriterion("START_TIME not between", value1, value2, "startTime");
+        public Criteria andReserveTimeNotBetween(LocalTime value1, LocalTime value2) {
+            addCriterion("RESERVE_TIME not between", value1, value2, "reserveTime");
             return (Criteria) this;
         }
 

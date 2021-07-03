@@ -22,8 +22,8 @@ public class Keyst0310Key {
     private LocalDate reserveDate;
 
     /**
-     * Column: START_TIME
-     * Remark: 開始時間
+     * Column: RESERVE_TIME
+     * Remark: 予約時間
      */
-    private LocalTime startTime;
+    private LocalTime reserveTime;
 }

@@ -44,8 +44,8 @@ public class Keyst0310SqlProvider {
             sql.VALUES("RESERVE_DATE", "#{reserveDate,jdbcType=DATE}");
         }
         
-        if (record.getStartTime() != null) {
-            sql.VALUES("START_TIME", "#{startTime,jdbcType=TIME}");
+        if (record.getReserveTime() != null) {
+            sql.VALUES("RESERVE_TIME", "#{reserveTime,jdbcType=TIME}");
         }
         
         if (record.getUserId() != null) {
@@ -102,7 +102,7 @@ public class Keyst0310SqlProvider {
             sql.SELECT("RESERVE_ID");
         }
         sql.SELECT("RESERVE_DATE");
-        sql.SELECT("START_TIME");
+        sql.SELECT("RESERVE_TIME");
         sql.SELECT("USER_ID");
         sql.SELECT("FEELING");
         sql.SELECT("USER_COMMENT");
@@ -141,8 +141,8 @@ public class Keyst0310SqlProvider {
             sql.SET("RESERVE_DATE = #{record.reserveDate,jdbcType=DATE}");
         }
         
-        if (record.getStartTime() != null) {
-            sql.SET("START_TIME = #{record.startTime,jdbcType=TIME}");
+        if (record.getReserveTime() != null) {
+            sql.SET("RESERVE_TIME = #{record.reserveTime,jdbcType=TIME}");
         }
         
         if (record.getUserId() != null) {
@@ -198,7 +198,7 @@ public class Keyst0310SqlProvider {
         
         sql.SET("RESERVE_ID = #{record.reserveId,jdbcType=INTEGER}");
         sql.SET("RESERVE_DATE = #{record.reserveDate,jdbcType=DATE}");
-        sql.SET("START_TIME = #{record.startTime,jdbcType=TIME}");
+        sql.SET("RESERVE_TIME = #{record.reserveTime,jdbcType=TIME}");
         sql.SET("USER_ID = #{record.userId,jdbcType=INTEGER}");
         sql.SET("FEELING = #{record.feeling,jdbcType=VARCHAR}");
         sql.SET("USER_COMMENT = #{record.userComment,jdbcType=VARCHAR}");
@@ -264,7 +264,7 @@ public class Keyst0310SqlProvider {
         
         sql.WHERE("RESERVE_ID = #{reserveId,jdbcType=INTEGER}");
         sql.WHERE("RESERVE_DATE = #{reserveDate,jdbcType=DATE}");
-        sql.WHERE("START_TIME = #{startTime,jdbcType=TIME}");
+        sql.WHERE("RESERVE_TIME = #{reserveTime,jdbcType=TIME}");
         
         return sql.toString();
     }

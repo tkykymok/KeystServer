@@ -40,8 +40,12 @@ public class Keyst0320SqlProvider {
             sql.VALUES("RESERVE_ID", "#{reserveId,jdbcType=INTEGER}");
         }
         
-        if (record.getReserveDatetime() != null) {
-            sql.VALUES("RESERVE_DATETIME", "#{reserveDatetime,jdbcType=TIMESTAMP}");
+        if (record.getReserveDate() != null) {
+            sql.VALUES("RESERVE_DATE", "#{reserveDate,jdbcType=DATE}");
+        }
+        
+        if (record.getReserveTime() != null) {
+            sql.VALUES("RESERVE_TIME", "#{reserveTime,jdbcType=TIME}");
         }
         
         if (record.getCreatedDatetime() != null) {
@@ -73,7 +77,8 @@ public class Keyst0320SqlProvider {
         } else {
             sql.SELECT("RESERVE_ID");
         }
-        sql.SELECT("RESERVE_DATETIME");
+        sql.SELECT("RESERVE_DATE");
+        sql.SELECT("RESERVE_TIME");
         sql.SELECT("CREATED_DATETIME");
         sql.SELECT("CREATED_USER");
         sql.SELECT("LAST_MODIFIED_DATETIME");
@@ -102,8 +107,12 @@ public class Keyst0320SqlProvider {
             sql.SET("RESERVE_ID = #{record.reserveId,jdbcType=INTEGER}");
         }
         
-        if (record.getReserveDatetime() != null) {
-            sql.SET("RESERVE_DATETIME = #{record.reserveDatetime,jdbcType=TIMESTAMP}");
+        if (record.getReserveDate() != null) {
+            sql.SET("RESERVE_DATE = #{record.reserveDate,jdbcType=DATE}");
+        }
+        
+        if (record.getReserveTime() != null) {
+            sql.SET("RESERVE_TIME = #{record.reserveTime,jdbcType=TIME}");
         }
         
         if (record.getCreatedDatetime() != null) {
@@ -134,7 +143,8 @@ public class Keyst0320SqlProvider {
         sql.UPDATE("KEYST0320");
         
         sql.SET("RESERVE_ID = #{record.reserveId,jdbcType=INTEGER}");
-        sql.SET("RESERVE_DATETIME = #{record.reserveDatetime,jdbcType=TIMESTAMP}");
+        sql.SET("RESERVE_DATE = #{record.reserveDate,jdbcType=DATE}");
+        sql.SET("RESERVE_TIME = #{record.reserveTime,jdbcType=TIME}");
         sql.SET("CREATED_DATETIME = #{record.createdDatetime,jdbcType=TIMESTAMP}");
         sql.SET("CREATED_USER = #{record.createdUser,jdbcType=INTEGER}");
         sql.SET("LAST_MODIFIED_DATETIME = #{record.lastModifiedDatetime,jdbcType=TIMESTAMP}");
@@ -169,7 +179,8 @@ public class Keyst0320SqlProvider {
         }
         
         sql.WHERE("RESERVE_ID = #{reserveId,jdbcType=INTEGER}");
-        sql.WHERE("RESERVE_DATETIME = #{reserveDatetime,jdbcType=TIMESTAMP}");
+        sql.WHERE("RESERVE_DATE = #{reserveDate,jdbcType=DATE}");
+        sql.WHERE("RESERVE_TIME = #{reserveTime,jdbcType=TIME}");
         
         return sql.toString();
     }

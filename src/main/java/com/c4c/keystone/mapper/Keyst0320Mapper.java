@@ -3,10 +3,10 @@ package com.c4c.keystone.mapper;
 import com.c4c.keystone.entity.Keyst0320;
 import com.c4c.keystone.entity.Keyst0320Example;
 import com.c4c.keystone.entity.Keyst0320Key;
-import java.util.List;
-
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
+
+import java.util.List;
 
 @Mapper
 public interface Keyst0320Mapper {
@@ -28,7 +28,8 @@ public interface Keyst0320Mapper {
     @Delete({
         "delete from KEYST0320",
         "where RESERVE_ID = #{reserveId,jdbcType=INTEGER}",
-          "and RESERVE_DATETIME = #{reserveDatetime,jdbcType=TIMESTAMP}"
+          "and RESERVE_DATE = #{reserveDate,jdbcType=DATE}",
+          "and RESERVE_TIME = #{reserveTime,jdbcType=TIME}"
     })
     int deleteByPrimaryKey(Keyst0320Key key);
 
@@ -36,12 +37,14 @@ public interface Keyst0320Mapper {
      * @mbg.generated generated automatically, do not modify!
      */
     @Insert({
-        "insert into KEYST0320 (RESERVE_ID, RESERVE_DATETIME, ",
-        "CREATED_DATETIME, CREATED_USER, ",
-        "LAST_MODIFIED_DATETIME, LAST_MODIFIED_USER)",
-        "values (#{reserveId,jdbcType=INTEGER}, #{reserveDatetime,jdbcType=TIMESTAMP}, ",
-        "#{createdDatetime,jdbcType=TIMESTAMP}, #{createdUser,jdbcType=INTEGER}, ",
-        "#{lastModifiedDatetime,jdbcType=TIMESTAMP}, #{lastModifiedUser,jdbcType=INTEGER})"
+        "insert into KEYST0320 (RESERVE_ID, RESERVE_DATE, ",
+        "RESERVE_TIME, CREATED_DATETIME, ",
+        "CREATED_USER, LAST_MODIFIED_DATETIME, ",
+        "LAST_MODIFIED_USER)",
+        "values (#{reserveId,jdbcType=INTEGER}, #{reserveDate,jdbcType=DATE}, ",
+        "#{reserveTime,jdbcType=TIME}, #{createdDatetime,jdbcType=TIMESTAMP}, ",
+        "#{createdUser,jdbcType=INTEGER}, #{lastModifiedDatetime,jdbcType=TIMESTAMP}, ",
+        "#{lastModifiedUser,jdbcType=INTEGER})"
     })
     int insert(Keyst0320 record);
 
@@ -57,7 +60,8 @@ public interface Keyst0320Mapper {
     @SelectProvider(type=Keyst0320SqlProvider.class, method="selectByExample")
     @Results({
         @Result(column="RESERVE_ID", property="reserveId", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="RESERVE_DATETIME", property="reserveDatetime", jdbcType=JdbcType.TIMESTAMP, id=true),
+        @Result(column="RESERVE_DATE", property="reserveDate", jdbcType=JdbcType.DATE, id=true),
+        @Result(column="RESERVE_TIME", property="reserveTime", jdbcType=JdbcType.TIME, id=true),
         @Result(column="CREATED_DATETIME", property="createdDatetime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.INTEGER),
         @Result(column="LAST_MODIFIED_DATETIME", property="lastModifiedDatetime", jdbcType=JdbcType.TIMESTAMP),
@@ -70,15 +74,17 @@ public interface Keyst0320Mapper {
      */
     @Select({
         "select",
-        "RESERVE_ID, RESERVE_DATETIME, CREATED_DATETIME, CREATED_USER, LAST_MODIFIED_DATETIME, ",
+        "RESERVE_ID, RESERVE_DATE, RESERVE_TIME, CREATED_DATETIME, CREATED_USER, LAST_MODIFIED_DATETIME, ",
         "LAST_MODIFIED_USER",
         "from KEYST0320",
         "where RESERVE_ID = #{reserveId,jdbcType=INTEGER}",
-          "and RESERVE_DATETIME = #{reserveDatetime,jdbcType=TIMESTAMP}"
+          "and RESERVE_DATE = #{reserveDate,jdbcType=DATE}",
+          "and RESERVE_TIME = #{reserveTime,jdbcType=TIME}"
     })
     @Results({
         @Result(column="RESERVE_ID", property="reserveId", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="RESERVE_DATETIME", property="reserveDatetime", jdbcType=JdbcType.TIMESTAMP, id=true),
+        @Result(column="RESERVE_DATE", property="reserveDate", jdbcType=JdbcType.DATE, id=true),
+        @Result(column="RESERVE_TIME", property="reserveTime", jdbcType=JdbcType.TIME, id=true),
         @Result(column="CREATED_DATETIME", property="createdDatetime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.INTEGER),
         @Result(column="LAST_MODIFIED_DATETIME", property="lastModifiedDatetime", jdbcType=JdbcType.TIMESTAMP),
@@ -114,7 +120,8 @@ public interface Keyst0320Mapper {
           "LAST_MODIFIED_DATETIME = #{lastModifiedDatetime,jdbcType=TIMESTAMP},",
           "LAST_MODIFIED_USER = #{lastModifiedUser,jdbcType=INTEGER}",
         "where RESERVE_ID = #{reserveId,jdbcType=INTEGER}",
-          "and RESERVE_DATETIME = #{reserveDatetime,jdbcType=TIMESTAMP}"
+          "and RESERVE_DATE = #{reserveDate,jdbcType=DATE}",
+          "and RESERVE_TIME = #{reserveTime,jdbcType=TIME}"
     })
     int updateByPrimaryKey(Keyst0320 record);
 }
