@@ -1,6 +1,8 @@
 package com.c4c.keystone.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -207,63 +209,123 @@ public class Keyst0310Example {
             return (Criteria) this;
         }
 
-        public Criteria andStartDatetimeIsNull() {
-            addCriterion("START_DATETIME is null");
+        public Criteria andReserveDateIsNull() {
+            addCriterion("RESERVE_DATE is null");
             return (Criteria) this;
         }
 
-        public Criteria andStartDatetimeIsNotNull() {
-            addCriterion("START_DATETIME is not null");
+        public Criteria andReserveDateIsNotNull() {
+            addCriterion("RESERVE_DATE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStartDatetimeEqualTo(LocalDateTime value) {
-            addCriterion("START_DATETIME =", value, "startDatetime");
+        public Criteria andReserveDateEqualTo(LocalDate value) {
+            addCriterion("RESERVE_DATE =", value, "reserveDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDatetimeNotEqualTo(LocalDateTime value) {
-            addCriterion("START_DATETIME <>", value, "startDatetime");
+        public Criteria andReserveDateNotEqualTo(LocalDate value) {
+            addCriterion("RESERVE_DATE <>", value, "reserveDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDatetimeGreaterThan(LocalDateTime value) {
-            addCriterion("START_DATETIME >", value, "startDatetime");
+        public Criteria andReserveDateGreaterThan(LocalDate value) {
+            addCriterion("RESERVE_DATE >", value, "reserveDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDatetimeGreaterThanOrEqualTo(LocalDateTime value) {
-            addCriterion("START_DATETIME >=", value, "startDatetime");
+        public Criteria andReserveDateGreaterThanOrEqualTo(LocalDate value) {
+            addCriterion("RESERVE_DATE >=", value, "reserveDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDatetimeLessThan(LocalDateTime value) {
-            addCriterion("START_DATETIME <", value, "startDatetime");
+        public Criteria andReserveDateLessThan(LocalDate value) {
+            addCriterion("RESERVE_DATE <", value, "reserveDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDatetimeLessThanOrEqualTo(LocalDateTime value) {
-            addCriterion("START_DATETIME <=", value, "startDatetime");
+        public Criteria andReserveDateLessThanOrEqualTo(LocalDate value) {
+            addCriterion("RESERVE_DATE <=", value, "reserveDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDatetimeIn(List<LocalDateTime> values) {
-            addCriterion("START_DATETIME in", values, "startDatetime");
+        public Criteria andReserveDateIn(List<LocalDate> values) {
+            addCriterion("RESERVE_DATE in", values, "reserveDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDatetimeNotIn(List<LocalDateTime> values) {
-            addCriterion("START_DATETIME not in", values, "startDatetime");
+        public Criteria andReserveDateNotIn(List<LocalDate> values) {
+            addCriterion("RESERVE_DATE not in", values, "reserveDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDatetimeBetween(LocalDateTime value1, LocalDateTime value2) {
-            addCriterion("START_DATETIME between", value1, value2, "startDatetime");
+        public Criteria andReserveDateBetween(LocalDate value1, LocalDate value2) {
+            addCriterion("RESERVE_DATE between", value1, value2, "reserveDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDatetimeNotBetween(LocalDateTime value1, LocalDateTime value2) {
-            addCriterion("START_DATETIME not between", value1, value2, "startDatetime");
+        public Criteria andReserveDateNotBetween(LocalDate value1, LocalDate value2) {
+            addCriterion("RESERVE_DATE not between", value1, value2, "reserveDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeIsNull() {
+            addCriterion("START_TIME is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeIsNotNull() {
+            addCriterion("START_TIME is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeEqualTo(LocalTime value) {
+            addCriterion("START_TIME =", value, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeNotEqualTo(LocalTime value) {
+            addCriterion("START_TIME <>", value, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeGreaterThan(LocalTime value) {
+            addCriterion("START_TIME >", value, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeGreaterThanOrEqualTo(LocalTime value) {
+            addCriterion("START_TIME >=", value, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeLessThan(LocalTime value) {
+            addCriterion("START_TIME <", value, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeLessThanOrEqualTo(LocalTime value) {
+            addCriterion("START_TIME <=", value, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeIn(List<LocalTime> values) {
+            addCriterion("START_TIME in", values, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeNotIn(List<LocalTime> values) {
+            addCriterion("START_TIME not in", values, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeBetween(LocalTime value1, LocalTime value2) {
+            addCriterion("START_TIME between", value1, value2, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeNotBetween(LocalTime value1, LocalTime value2) {
+            addCriterion("START_TIME not between", value1, value2, "startTime");
             return (Criteria) this;
         }
 

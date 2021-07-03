@@ -28,7 +28,8 @@ public interface Keyst0310Mapper {
     @Delete({
         "delete from KEYST0310",
         "where RESERVE_ID = #{reserveId,jdbcType=INTEGER}",
-          "and START_DATETIME = #{startDatetime,jdbcType=TIMESTAMP}"
+          "and RESERVE_DATE = #{reserveDate,jdbcType=DATE}",
+          "and START_TIME = #{startTime,jdbcType=TIME}"
     })
     int deleteByPrimaryKey(Keyst0310Key key);
 
@@ -36,18 +37,20 @@ public interface Keyst0310Mapper {
      * @mbg.generated generated automatically, do not modify!
      */
     @Insert({
-        "insert into KEYST0310 (RESERVE_ID, START_DATETIME, ",
-        "USER_ID, FEELING, ",
-        "USER_COMMENT, MANAGER_COMMENT, ",
-        "REMARK, CREATED_DATETIME, ",
-        "CREATED_USER, LAST_MODIFIED_DATETIME, ",
-        "LAST_MODIFIED_USER, VERSION_EX_KEY)",
-        "values (#{reserveId,jdbcType=INTEGER}, #{startDatetime,jdbcType=TIMESTAMP}, ",
-        "#{userId,jdbcType=INTEGER}, #{feeling,jdbcType=VARCHAR}, ",
-        "#{userComment,jdbcType=VARCHAR}, #{managerComment,jdbcType=VARCHAR}, ",
-        "#{remark,jdbcType=VARCHAR}, #{createdDatetime,jdbcType=TIMESTAMP}, ",
-        "#{createdUser,jdbcType=INTEGER}, #{lastModifiedDatetime,jdbcType=TIMESTAMP}, ",
-        "#{lastModifiedUser,jdbcType=INTEGER}, #{versionExKey,jdbcType=INTEGER})"
+        "insert into KEYST0310 (RESERVE_ID, RESERVE_DATE, ",
+        "START_TIME, USER_ID, ",
+        "FEELING, USER_COMMENT, ",
+        "MANAGER_COMMENT, REMARK, ",
+        "CREATED_DATETIME, CREATED_USER, ",
+        "LAST_MODIFIED_DATETIME, LAST_MODIFIED_USER, ",
+        "VERSION_EX_KEY)",
+        "values (#{reserveId,jdbcType=INTEGER}, #{reserveDate,jdbcType=DATE}, ",
+        "#{startTime,jdbcType=TIME}, #{userId,jdbcType=INTEGER}, ",
+        "#{feeling,jdbcType=VARCHAR}, #{userComment,jdbcType=VARCHAR}, ",
+        "#{managerComment,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, ",
+        "#{createdDatetime,jdbcType=TIMESTAMP}, #{createdUser,jdbcType=INTEGER}, ",
+        "#{lastModifiedDatetime,jdbcType=TIMESTAMP}, #{lastModifiedUser,jdbcType=INTEGER}, ",
+        "#{versionExKey,jdbcType=INTEGER})"
     })
     int insert(Keyst0310 record);
 
@@ -63,7 +66,8 @@ public interface Keyst0310Mapper {
     @SelectProvider(type=Keyst0310SqlProvider.class, method="selectByExample")
     @Results({
         @Result(column="RESERVE_ID", property="reserveId", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="START_DATETIME", property="startDatetime", jdbcType=JdbcType.TIMESTAMP, id=true),
+        @Result(column="RESERVE_DATE", property="reserveDate", jdbcType=JdbcType.DATE, id=true),
+        @Result(column="START_TIME", property="startTime", jdbcType=JdbcType.TIME, id=true),
         @Result(column="USER_ID", property="userId", jdbcType=JdbcType.INTEGER),
         @Result(column="FEELING", property="feeling", jdbcType=JdbcType.VARCHAR),
         @Result(column="USER_COMMENT", property="userComment", jdbcType=JdbcType.VARCHAR),
@@ -82,16 +86,18 @@ public interface Keyst0310Mapper {
      */
     @Select({
         "select",
-        "RESERVE_ID, START_DATETIME, USER_ID, FEELING, USER_COMMENT, MANAGER_COMMENT, ",
+        "RESERVE_ID, RESERVE_DATE, START_TIME, USER_ID, FEELING, USER_COMMENT, MANAGER_COMMENT, ",
         "REMARK, CREATED_DATETIME, CREATED_USER, LAST_MODIFIED_DATETIME, LAST_MODIFIED_USER, ",
         "VERSION_EX_KEY",
         "from KEYST0310",
         "where RESERVE_ID = #{reserveId,jdbcType=INTEGER}",
-          "and START_DATETIME = #{startDatetime,jdbcType=TIMESTAMP}"
+          "and RESERVE_DATE = #{reserveDate,jdbcType=DATE}",
+          "and START_TIME = #{startTime,jdbcType=TIME}"
     })
     @Results({
         @Result(column="RESERVE_ID", property="reserveId", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="START_DATETIME", property="startDatetime", jdbcType=JdbcType.TIMESTAMP, id=true),
+        @Result(column="RESERVE_DATE", property="reserveDate", jdbcType=JdbcType.DATE, id=true),
+        @Result(column="START_TIME", property="startTime", jdbcType=JdbcType.TIME, id=true),
         @Result(column="USER_ID", property="userId", jdbcType=JdbcType.INTEGER),
         @Result(column="FEELING", property="feeling", jdbcType=JdbcType.VARCHAR),
         @Result(column="USER_COMMENT", property="userComment", jdbcType=JdbcType.VARCHAR),
@@ -139,7 +145,8 @@ public interface Keyst0310Mapper {
           "LAST_MODIFIED_USER = #{lastModifiedUser,jdbcType=INTEGER},",
           "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}",
         "where RESERVE_ID = #{reserveId,jdbcType=INTEGER}",
-          "and START_DATETIME = #{startDatetime,jdbcType=TIMESTAMP}"
+          "and RESERVE_DATE = #{reserveDate,jdbcType=DATE}",
+          "and START_TIME = #{startTime,jdbcType=TIME}"
     })
     int updateByPrimaryKey(Keyst0310 record);
 }

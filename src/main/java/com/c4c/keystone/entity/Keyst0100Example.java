@@ -348,6 +348,76 @@ public class Keyst0100Example {
             return (Criteria) this;
         }
 
+        public Criteria andTeamIsNull() {
+            addCriterion("TEAM is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamIsNotNull() {
+            addCriterion("TEAM is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamEqualTo(String value) {
+            addCriterion("TEAM =", value, "team");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamNotEqualTo(String value) {
+            addCriterion("TEAM <>", value, "team");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamGreaterThan(String value) {
+            addCriterion("TEAM >", value, "team");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamGreaterThanOrEqualTo(String value) {
+            addCriterion("TEAM >=", value, "team");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamLessThan(String value) {
+            addCriterion("TEAM <", value, "team");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamLessThanOrEqualTo(String value) {
+            addCriterion("TEAM <=", value, "team");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamLike(String value) {
+            addCriterion("TEAM like", value, "team");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamNotLike(String value) {
+            addCriterion("TEAM not like", value, "team");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamIn(List<String> values) {
+            addCriterion("TEAM in", values, "team");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamNotIn(List<String> values) {
+            addCriterion("TEAM not in", values, "team");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamBetween(String value1, String value2) {
+            addCriterion("TEAM between", value1, value2, "team");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamNotBetween(String value1, String value2) {
+            addCriterion("TEAM not between", value1, value2, "team");
+            return (Criteria) this;
+        }
+
         public Criteria andGenderIsNull() {
             addCriterion("GENDER is null");
             return (Criteria) this;

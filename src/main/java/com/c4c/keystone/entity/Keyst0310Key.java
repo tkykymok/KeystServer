@@ -1,6 +1,7 @@
 package com.c4c.keystone.entity;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import lombok.Data;
 
 /**
@@ -15,8 +16,14 @@ public class Keyst0310Key {
     private Integer reserveId;
 
     /**
-     * Column: START_DATETIME
-     * Remark: 開始日時
+     * Column: RESERVE_DATE
+     * Remark: 予約日
      */
-    private LocalDateTime startDatetime;
+    private LocalDate reserveDate;
+
+    /**
+     * Column: START_TIME
+     * Remark: 開始時間
+     */
+    private LocalTime startTime;
 }

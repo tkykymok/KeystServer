@@ -24,6 +24,12 @@ public class Keyst0100 extends Keyst0100Key {
     private String userNameKana;
 
     /**
+     * Column: TEAM
+     * Remark: チーム
+     */
+    private String team;
+
+    /**
      * Column: GENDER
      * Remark: 性別
      */

@@ -40,8 +40,12 @@ public class Keyst0310SqlProvider {
             sql.VALUES("RESERVE_ID", "#{reserveId,jdbcType=INTEGER}");
         }
         
-        if (record.getStartDatetime() != null) {
-            sql.VALUES("START_DATETIME", "#{startDatetime,jdbcType=TIMESTAMP}");
+        if (record.getReserveDate() != null) {
+            sql.VALUES("RESERVE_DATE", "#{reserveDate,jdbcType=DATE}");
+        }
+        
+        if (record.getStartTime() != null) {
+            sql.VALUES("START_TIME", "#{startTime,jdbcType=TIME}");
         }
         
         if (record.getUserId() != null) {
@@ -97,7 +101,8 @@ public class Keyst0310SqlProvider {
         } else {
             sql.SELECT("RESERVE_ID");
         }
-        sql.SELECT("START_DATETIME");
+        sql.SELECT("RESERVE_DATE");
+        sql.SELECT("START_TIME");
         sql.SELECT("USER_ID");
         sql.SELECT("FEELING");
         sql.SELECT("USER_COMMENT");
@@ -132,8 +137,12 @@ public class Keyst0310SqlProvider {
             sql.SET("RESERVE_ID = #{record.reserveId,jdbcType=INTEGER}");
         }
         
-        if (record.getStartDatetime() != null) {
-            sql.SET("START_DATETIME = #{record.startDatetime,jdbcType=TIMESTAMP}");
+        if (record.getReserveDate() != null) {
+            sql.SET("RESERVE_DATE = #{record.reserveDate,jdbcType=DATE}");
+        }
+        
+        if (record.getStartTime() != null) {
+            sql.SET("START_TIME = #{record.startTime,jdbcType=TIME}");
         }
         
         if (record.getUserId() != null) {
@@ -188,7 +197,8 @@ public class Keyst0310SqlProvider {
         sql.UPDATE("KEYST0310");
         
         sql.SET("RESERVE_ID = #{record.reserveId,jdbcType=INTEGER}");
-        sql.SET("START_DATETIME = #{record.startDatetime,jdbcType=TIMESTAMP}");
+        sql.SET("RESERVE_DATE = #{record.reserveDate,jdbcType=DATE}");
+        sql.SET("START_TIME = #{record.startTime,jdbcType=TIME}");
         sql.SET("USER_ID = #{record.userId,jdbcType=INTEGER}");
         sql.SET("FEELING = #{record.feeling,jdbcType=VARCHAR}");
         sql.SET("USER_COMMENT = #{record.userComment,jdbcType=VARCHAR}");
@@ -253,7 +263,8 @@ public class Keyst0310SqlProvider {
         }
         
         sql.WHERE("RESERVE_ID = #{reserveId,jdbcType=INTEGER}");
-        sql.WHERE("START_DATETIME = #{startDatetime,jdbcType=TIMESTAMP}");
+        sql.WHERE("RESERVE_DATE = #{reserveDate,jdbcType=DATE}");
+        sql.WHERE("START_TIME = #{startTime,jdbcType=TIME}");
         
         return sql.toString();
     }

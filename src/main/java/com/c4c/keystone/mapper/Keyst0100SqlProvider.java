@@ -48,6 +48,10 @@ public class Keyst0100SqlProvider {
             sql.VALUES("USER_NAME_KANA", "#{userNameKana,jdbcType=VARCHAR}");
         }
         
+        if (record.getTeam() != null) {
+            sql.VALUES("TEAM", "#{team,jdbcType=VARCHAR}");
+        }
+        
         if (record.getGender() != null) {
             sql.VALUES("GENDER", "#{gender,jdbcType=VARCHAR}");
         }
@@ -179,6 +183,7 @@ public class Keyst0100SqlProvider {
         }
         sql.SELECT("USER_NAME");
         sql.SELECT("USER_NAME_KANA");
+        sql.SELECT("TEAM");
         sql.SELECT("GENDER");
         sql.SELECT("AGE");
         sql.SELECT("BIRTHDAY");
@@ -238,6 +243,10 @@ public class Keyst0100SqlProvider {
         
         if (record.getUserNameKana() != null) {
             sql.SET("USER_NAME_KANA = #{record.userNameKana,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getTeam() != null) {
+            sql.SET("TEAM = #{record.team,jdbcType=VARCHAR}");
         }
         
         if (record.getGender() != null) {
@@ -370,6 +379,7 @@ public class Keyst0100SqlProvider {
         sql.SET("USER_ID = #{record.userId,jdbcType=INTEGER}");
         sql.SET("USER_NAME = #{record.userName,jdbcType=VARCHAR}");
         sql.SET("USER_NAME_KANA = #{record.userNameKana,jdbcType=VARCHAR}");
+        sql.SET("TEAM = #{record.team,jdbcType=VARCHAR}");
         sql.SET("GENDER = #{record.gender,jdbcType=VARCHAR}");
         sql.SET("AGE = #{record.age,jdbcType=INTEGER}");
         sql.SET("BIRTHDAY = #{record.birthday,jdbcType=DATE}");
@@ -418,6 +428,10 @@ public class Keyst0100SqlProvider {
         
         if (record.getUserNameKana() != null) {
             sql.SET("USER_NAME_KANA = #{userNameKana,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getTeam() != null) {
+            sql.SET("TEAM = #{team,jdbcType=VARCHAR}");
         }
         
         if (record.getGender() != null) {

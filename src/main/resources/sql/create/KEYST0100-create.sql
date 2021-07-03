@@ -3,6 +3,7 @@ CREATE TABLE `KEYST0100`
     `USER_ID`                 INT          NOT NULL AUTO_INCREMENT COMMENT 'ユーザーID',
     `USER_NAME`               VARCHAR(30)  NOT NULL COMMENT 'ユーザー名',
     `USER_NAME_KANA`          VARCHAR(30)  NOT NULL COMMENT 'ユーザー名かな',
+    `TEAM`                    VARCHAR(1)   NULL COMMENT 'チーム',
     `GENDER`                  VARCHAR(1)   NULL COMMENT '性別',
     `AGE`                     INT          NULL COMMENT '年齢',
     `BIRTHDAY`                DATE         NULL COMMENT '生年月日',
