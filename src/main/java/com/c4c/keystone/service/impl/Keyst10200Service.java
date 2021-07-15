@@ -31,14 +31,12 @@ public class Keyst10200Service implements IKeyst10200Service {
 
     @Override
     @Transactional
-    public Keyst10200InitS initialize() {
+    public Keyst10200InitS initialize(Integer userId) {
         // レスポンスForm
         Keyst10200InitS resForm = new Keyst10200InitS();
         //////////////////////////////////////////////////////////////
         // スキルシート一覧情報取得
         //////////////////////////////////////////////////////////////
-        // ログインユーザーIDをセッションから取得する。
-        Integer userId = 1; // TODO 暫定
         // スキルシートヘッダーEntityExampleに以下の値を設定する。
         Keyst0200Example keyst0200Example = new Keyst0200Example();
         keyst0200Example.createCriteria().andUserIdEqualTo(userId);
