@@ -1,13 +1,15 @@
 package com.c4c.keystone.form;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class AuthenticationQ {
+public class SignUpQ {
+    /**
+     * Column: USER_NAME
+     * Remark: ユーザー名
+     */
+    private String userName;
+
     /**
      * Column: LOGIN_ID
      * Remark: ログインID
@@ -19,4 +21,6 @@ public class AuthenticationQ {
      * Remark: ログインパスワード
      */
     private String loginPw;
+
+
 }
