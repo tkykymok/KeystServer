@@ -71,4 +71,14 @@ public class Keyst10200ControllerSample {
         return ResponseEntity.ok().body(keyst0200ExtraS01List);
     }
 
+    /**
+     * テスト用
+     *
+     * @return
+     */
+    @GetMapping("/selectWithExtra")
+    public ResponseEntity<List<?>> test() {
+        return null;
+    }
+
 }
