@@ -2,7 +2,7 @@ package com.c4c.keystone.mapper;
 
 import com.c4c.keystone.entity.Keyst0100;
 import com.c4c.keystone.entity.Keyst0100Example;
-import com.c4c.keystone.entity.Keyst0100ExtraS01;
+import com.c4c.keystone.entity.Keyst0100ExtraS;
 import com.c4c.keystone.entity.Keyst0100Key;
 import java.util.List;
 
@@ -235,8 +235,9 @@ public interface Keyst0100Mapper {
             "    ,KEYST0100.TEAM\n" +
             "    ,KEYST0100.PRF_IMG_STRG_DRCTRY\n" +
             "    ,KEYST0100.SKILLS\n" +
+            "    ,KEYST5110.PRJ_CODE\n" +
             "    ,KEYST5100.PRJ_NAME\n" +
-            "    ,KEYST5110.CONTRACT_PRIC\n" +
+            "    ,KEYST5110.CONTRACT_PRICE\n" +
             "    ,KEYST5110.PRJ_START_DATE\n" +
             "FROM\n" +
             "   KEYST0100\n" +
@@ -254,10 +255,10 @@ public interface Keyst0100Mapper {
             @Result(property = "team", column = "TEAM"),
             @Result(property = "prfImgStrgDrctry", column = "PRF_IMG_STRG_DRCTRY"),
             @Result(property = "skills", column = "SKILLS"),
+            @Result(property = "prjCode", column = "PRJ_CODE"),
             @Result(property = "prjName", column = "PRJ_NAME"),
-            @Result(property = "contractPrice", column = "CONTRACT_PRIC"),
+            @Result(property = "contractPrice", column = "CONTRACT_PRICE"),
             @Result(property = "prjStartDate", column = "PRJ_START_DATE"),
     })
-    List<Keyst0100ExtraS01> selectWithS01(String userId);
-
+    List<Keyst0100ExtraS> selectWithS();
 }
