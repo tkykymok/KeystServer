@@ -1,12 +1,24 @@
 package com.c4c.keystone.mapper;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.DeleteProvider;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.InsertProvider;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.UpdateProvider;
+import org.apache.ibatis.type.JdbcType;
+
 import com.c4c.keystone.entity.Keyst0300;
 import com.c4c.keystone.entity.Keyst0300Example;
 import com.c4c.keystone.entity.Keyst0300Key;
-import java.util.List;
-
-import org.apache.ibatis.annotations.*;
-import org.apache.ibatis.type.JdbcType;
 
 @Mapper
 public interface Keyst0300Mapper {
