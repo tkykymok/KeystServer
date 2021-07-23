@@ -31,14 +31,12 @@ public class Keyst10200Service implements IKeyst10200Service {
 
     @Override
     @Transactional
-    public Keyst10200InitS initialize() {
+    public Keyst10200InitS initialize(Integer userId) {
         // レスポンスForm
         Keyst10200InitS resForm = new Keyst10200InitS();
         //////////////////////////////////////////////////////////////
         // スキルシート一覧情報取得
         //////////////////////////////////////////////////////////////
-        // ログインユーザーIDをセッションから取得する。
-        Integer userId = 1; // TODO 暫定
         // スキルシートヘッダーEntityExampleに以下の値を設定する。
         Keyst0200Example keyst0200Example = new Keyst0200Example();
         keyst0200Example.createCriteria().andUserIdEqualTo(userId);
@@ -77,20 +75,22 @@ public class Keyst10200Service implements IKeyst10200Service {
         // スキルマスタ取得
         List<Keyst5300> keyst5300List = keyst5300Service.getAllSkills();
 
-        // ユーザー基本情報の保有スキル(コード値)全件に対して以下の処理をする。
-        List<Keyst10200InitS02> initS02List = new ArrayList<>();
-        String[] skillCodeList = keyst0100.getSkills().split(",");
-        for (String skillCode : skillCodeList) {
-            Keyst10200InitS02 tempInitS02 = new Keyst10200InitS02();
-            Keyst5300 tempKeyst5300 = keyst5300List.stream()
-                    .filter(obj -> skillCode.equals(obj.getSkillCode()))
-                    .findFirst()
-                    .get();
-            BeanUtils.copyProperties(tempKeyst5300, tempInitS02);
-            initS02List.add(tempInitS02);
+        // 保有スキルが存在する場合、ユーザー基本情報の保有スキル(コード値)全件に対して以下の処理をする。
+        if (keyst0100.getSkills() != null) {
+            String[] skillCodeList = keyst0100.getSkills().split(",");
+            List<Keyst10200InitS02> initS02List = new ArrayList<>();
+            for (String skillCode : skillCodeList) {
+                Keyst10200InitS02 tempInitS02 = new Keyst10200InitS02();
+                Keyst5300 tempKeyst5300 = keyst5300List.stream()
+                        .filter(obj -> skillCode.equals(obj.getSkillCode()))
+                        .findFirst()
+                        .get();
+                BeanUtils.copyProperties(tempKeyst5300, tempInitS02);
+                initS02List.add(tempInitS02);
+            }
+            // initS02ListをinitS01に設定する。
+            initS01.setSkillList(initS02List);
         }
-        // initS02ListをinitS01に設定する。
-        initS01.setSkillList(initS02List);
 
         // initS01をinitSに設定する。
         resForm.setUserBasicInfo(initS01);
