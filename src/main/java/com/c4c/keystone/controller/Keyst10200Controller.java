@@ -2,6 +2,7 @@ package com.c4c.keystone.controller;
 
 import com.c4c.keystone.form.Keyst10200DispSklShtS;
 import com.c4c.keystone.form.Keyst10200InitS;
+import com.c4c.keystone.form.Keyst10200SaveQ;
 import com.c4c.keystone.service.impl.Keyst10200Service;
 import com.c4c.keystone.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,6 @@ public class Keyst10200Controller {
     JwtUtil jwtUtil;
 
     @GetMapping("initialize")
-    @CrossOrigin(origins = {"http://localhost:3000"})
     public ResponseEntity<Keyst10200InitS> initialize(@RequestHeader("Authorization") String jwt) {
         Map<String, Object> loginUserInfo = jwtUtil.parseToken(jwt.substring(7));
         // ログインユーザー情報の取得サンプル
@@ -40,12 +40,17 @@ public class Keyst10200Controller {
     }
 
     @GetMapping(value = "displaySkillSheet")
-    @CrossOrigin(origins = {"http://localhost:3000"})
     public ResponseEntity<Keyst10200DispSklShtS> displaySkillSheet(@RequestParam("skillSheetId") Integer skillSheetId) {
         // レスポンスForm
         Keyst10200DispSklShtS resForm = keyst10200Service.displaySkillSheet(skillSheetId);
 
         return ResponseEntity.ok(resForm);
+    }
+
+    @PostMapping(value = "save")
+    public ResponseEntity<?> save(@RequestBody Keyst10200SaveQ reqForm) {
+        System.out.println(reqForm);
+        return null;
     }
 
 
