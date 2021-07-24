@@ -128,10 +128,4 @@ public class Keyst10200DispSklShtS2 {
      */
     @JsonSerialize(using = JsonUtils.FlagSerializer.class)
     private String sowMaintenanceOperation;
-
-    /**
-     * Column: VERSION_EX_KEY
-     * Remark: 排他制御カラム
-     */
-    private Integer versionExKey;
 }
