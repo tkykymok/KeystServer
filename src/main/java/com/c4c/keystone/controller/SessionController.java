@@ -5,22 +5,25 @@ import com.c4c.keystone.entity.Keyst0100;
 import com.c4c.keystone.entity.LoginUserDetails;
 import com.c4c.keystone.exception.AuthenticationFailedException;
 import com.c4c.keystone.exception.UserRegisterFailedException;
-import com.c4c.keystone.form.*;
+import com.c4c.keystone.form.AuthenticationQ;
+import com.c4c.keystone.form.AuthenticationS;
+import com.c4c.keystone.form.AuthenticationS1;
+import com.c4c.keystone.form.SignUpQ;
 import com.c4c.keystone.mapper.Keyst0100Mapper;
 import com.c4c.keystone.service.impl.UserDetailService;
 import com.c4c.keystone.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/session")
@@ -73,7 +76,7 @@ public class SessionController {
      * @return
      */
     @PostMapping("signUp")
-    public ResponseEntity<Object> signUp(@RequestBody SignUpQ signUpQ) throws UserRegisterFailedException {
+    public ResponseEntity<Object> signUp(@Valid @RequestBody SignUpQ signUpQ) throws UserRegisterFailedException {
         Keyst0100 keyst0100 = new Keyst0100();
         keyst0100.setUserName(signUpQ.getUserName());
         keyst0100.setLoginId(signUpQ.getLoginId());
