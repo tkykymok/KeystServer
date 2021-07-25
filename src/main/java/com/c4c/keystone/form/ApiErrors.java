@@ -12,6 +12,5 @@ import java.util.List;
 @AllArgsConstructor
 public class ApiErrors {
     LocalDateTime timeStamp;
-    String message;
-    List<String> details;
+    List<String> messageList;
 }
