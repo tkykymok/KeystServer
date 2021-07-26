@@ -48,6 +48,9 @@ public class Keyst10400Controller {
         // ユーザー一覧画面に必要な情報をデータベースから全件取得する。
         List<Keyst0100ExtraS> keyst0100ExtraSList  = keyst0100Mapper.selectWithS();
 
+        // スキルマスタ取得
+        List<Keyst5300> keyst5300List = keyst5300Service.getAllSkills();
+
         // ユーザーごとに処理を行う。
         for (Keyst0100ExtraS keyst0100ExtraS : keyst0100ExtraSList) {
 
@@ -61,8 +64,6 @@ public class Keyst10400Controller {
             Keyst10400InitS01 initS01 = new Keyst10400InitS01();
             BeanUtils.copyProperties(keyst0100ExtraS, initS01);
 
-            // スキルマスタ取得
-            List<Keyst5300> keyst5300List = keyst5300Service.getAllSkills();
             // ユーザー基本情報の保有スキル(コード値)全件に対して以下の処理をする。
             List<Keyst10400InitS02> initS02List = new ArrayList<>();
             String[] skillCodeList = keyst0100ExtraS.getSkills().split(",");
@@ -80,7 +81,6 @@ public class Keyst10400Controller {
             initS01.setSkillList(initS02List);
             // レスポンスFormにユーザー基本情報Form(initS01)を設定する。
             resForm.setUserBasicInfo(initS01);
-
 
             //////////////////////////////////////////////////////////////
             // 案件情報
@@ -101,7 +101,6 @@ public class Keyst10400Controller {
             // レスポンスFormリストにレスポンスFormを設定する。
             resFormList.add(resForm);
         }
-
         return ResponseEntity.ok(resFormList);
     }
 }
