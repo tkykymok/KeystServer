@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.c4c.keystone.entity.Keyst0100ExtraS;
+import com.c4c.keystone.entity.Keyst0100ExtraS01;
 import com.c4c.keystone.entity.Keyst5300;
 import com.c4c.keystone.form.Keyst10400InitS;
 import com.c4c.keystone.form.Keyst10400InitS01;
@@ -46,13 +46,13 @@ public class Keyst10400Controller {
         List<Keyst10400InitS> resFormList = new ArrayList<>();
 
         // ユーザー一覧画面に必要な情報をデータベースから全件取得する。
-        List<Keyst0100ExtraS> keyst0100ExtraSList  = keyst0100Mapper.selectWithS();
+        List<Keyst0100ExtraS01> keyst0100ExtraSList  = keyst0100Mapper.selectWithS();
 
         // スキルマスタ取得
         List<Keyst5300> keyst5300List = keyst5300Service.getAllSkills();
 
         // ユーザーごとに処理を行う。
-        for (Keyst0100ExtraS keyst0100ExtraS : keyst0100ExtraSList) {
+        for (Keyst0100ExtraS01 keyst0100ExtraS01 : keyst0100ExtraSList) {
 
             // レスポンスFormを定義する。
             Keyst10400InitS resForm = new Keyst10400InitS();
@@ -62,11 +62,11 @@ public class Keyst10400Controller {
             //////////////////////////////////////////////////////////////
             // 取得した情報をユーザー基本情報Form(iniiS01)にコピーする。(リストはコピーできないためスキルリストは別で取得する。)
             Keyst10400InitS01 initS01 = new Keyst10400InitS01();
-            BeanUtils.copyProperties(keyst0100ExtraS, initS01);
+            BeanUtils.copyProperties(keyst0100ExtraS01, initS01);
 
             // ユーザー基本情報の保有スキル(コード値)全件に対して以下の処理をする。
             List<Keyst10400InitS02> initS02List = new ArrayList<>();
-            String[] skillCodeList = keyst0100ExtraS.getSkills().split(",");
+            String[] skillCodeList = keyst0100ExtraS01.getSkills().split(",");
             for (String skillCode : skillCodeList) {
                 Keyst10400InitS02 initS02 = new Keyst10400InitS02();
                 Keyst5300 Keyst5300 = keyst5300List.stream()
@@ -90,10 +90,10 @@ public class Keyst10400Controller {
             // 案件情報Form(initS03)を定義する。
             Keyst10400InitS03 initS03 = new Keyst10400InitS03();
             // 案件情報ごとに処理を行う。
-            initS03.setPrjCode(keyst0100ExtraS.getPrjCode());
-            initS03.setPrjName(keyst0100ExtraS.getPrjName());
-            initS03.setContractPrice(keyst0100ExtraS.getContractPrice());
-            initS03.setPrjStartDate(keyst0100ExtraS.getPrjStartDate());
+            initS03.setPrjCode(keyst0100ExtraS01.getPrjCode());
+            initS03.setPrjName(keyst0100ExtraS01.getPrjName());
+            initS03.setContractPrice(keyst0100ExtraS01.getContractPrice());
+            initS03.setPrjStartDate(keyst0100ExtraS01.getPrjStartDate());
             // 案件情報Form(initS03)を案件情報リストForm(initS03List)に設定する。
             initS03List.add(initS03);
             // レスポンスFormに案件情報リストForm(initS03List)を設定する。

@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode
-public class Keyst0100ExtraS {
+public class Keyst0100ExtraS01 {
 
     /**
      * Column: USER_ID
