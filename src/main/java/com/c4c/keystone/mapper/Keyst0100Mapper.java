@@ -260,5 +260,5 @@ public interface Keyst0100Mapper {
             @Result(property = "contractPrice", column = "CONTRACT_PRICE"),
             @Result(property = "prjStartDate", column = "PRJ_START_DATE"),
     })
-    List<Keyst0100ExtraS01> selectWithS();
+    List<Keyst0100ExtraS01> selectWithS01();
 }

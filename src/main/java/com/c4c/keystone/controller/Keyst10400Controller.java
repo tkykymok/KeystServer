@@ -46,13 +46,13 @@ public class Keyst10400Controller {
         List<Keyst10400InitS> resFormList = new ArrayList<>();
 
         // ユーザー一覧画面に必要な情報をデータベースから全件取得する。
-        List<Keyst0100ExtraS01> keyst0100ExtraSList  = keyst0100Mapper.selectWithS();
+        List<Keyst0100ExtraS01> keyst0100ExtraS01List  = keyst0100Mapper.selectWithS01();
 
         // スキルマスタ取得
         List<Keyst5300> keyst5300List = keyst5300Service.getAllSkills();
 
         // ユーザーごとに処理を行う。
-        for (Keyst0100ExtraS01 keyst0100ExtraS01 : keyst0100ExtraSList) {
+        for (Keyst0100ExtraS01 keyst0100ExtraS01 : keyst0100ExtraS01List) {
 
             // レスポンスFormを定義する。
             Keyst10400InitS resForm = new Keyst10400InitS();
