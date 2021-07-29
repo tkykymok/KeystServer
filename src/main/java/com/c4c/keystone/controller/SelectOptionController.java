@@ -38,7 +38,6 @@ public class SelectOptionController {
     Keyst5100Mapper keyst5100Mapper;
 
     @GetMapping("/pgLang")
-    @CrossOrigin(origins = {"http://localhost:3000"})
     public ResponseEntity<List<SelectOption>> getPgLangOptions() {
         // スキルマスタEntityExampleに以下の値を設定する。
         Keyst5300Example keyst5300Example = new Keyst5300Example();
@@ -63,7 +62,6 @@ public class SelectOptionController {
     }
 
     @GetMapping("/os")
-    @CrossOrigin(origins = {"http://localhost:3000"})
     public ResponseEntity<List<SelectOption>> getOsOptions() {
         // OSEnum一覧を取得する。
         Os[] enumArray = Os.values();
@@ -86,7 +84,6 @@ public class SelectOptionController {
     }
 
     @GetMapping("/db")
-    @CrossOrigin(origins = {"http://localhost:3000"})
     public ResponseEntity<List<SelectOption>> getDbOptions() {
         // OSEnum一覧を取得する。
         Db[] enumArray = Db.values();
@@ -109,7 +106,6 @@ public class SelectOptionController {
     }
 
     @GetMapping("/prjName")
-    @CrossOrigin(origins = {"http://localhost:3000"})
     public ResponseEntity<List<SelectOption>> getPrjNameOptions() {
         // 案件マスタ取得
         List<Keyst5100> Keyst5100List = keyst5100Service.getAllProjects();
