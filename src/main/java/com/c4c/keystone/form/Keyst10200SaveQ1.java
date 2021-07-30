@@ -1,13 +1,13 @@
 package com.c4c.keystone.form;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Data
-public class Keyst10200DispSklShtS2 {
+public class Keyst10200SaveQ1 {
     /**
      * Column: SKILL_SHEET_ID
      * Remark: スキルシートID
@@ -84,48 +84,50 @@ public class Keyst10200DispSklShtS2 {
      * Column: SOW_MANAGEMENT
      * Remark: 業務範囲_マネジメント
      */
-    @JsonSerialize(using = JsonUtils.FlagSerializer.class)
+    @JsonDeserialize(using = JsonUtils.FlagDeserializer.class)
     private String sowManagement;
 
     /**
      * Column: SOW_REQ_DEFINITION
      * Remark: 業務範囲_要件定義
      */
-    @JsonSerialize(using = JsonUtils.FlagSerializer.class)
+    @JsonDeserialize(using = JsonUtils.FlagDeserializer.class)
     private String sowReqDefinition;
 
     /**
      * Column: SOW_BASIC_DESIGN
      * Remark: 業務範囲_基本設計
      */
-    @JsonSerialize(using = JsonUtils.FlagSerializer.class)
+    @JsonDeserialize(using = JsonUtils.FlagDeserializer.class)
     private String sowBasicDesign;
 
     /**
      * Column: SOW_DETAIL_DESIGN
      * Remark: 業務範囲_詳細設計
      */
-    @JsonSerialize(using = JsonUtils.FlagSerializer.class)
+    @JsonDeserialize(using = JsonUtils.FlagDeserializer.class)
     private String sowDetailDesign;
 
     /**
      * Column: SOW_IMPLEMENTATION
      * Remark: 業務範囲_実装
      */
-    @JsonSerialize(using = JsonUtils.FlagSerializer.class)
+    @JsonDeserialize(using = JsonUtils.FlagDeserializer.class)
     private String sowImplementation;
 
     /**
      * Column: SOW_TEST
      * Remark: 業務範囲_テスト
      */
-    @JsonSerialize(using = JsonUtils.FlagSerializer.class)
+    @JsonDeserialize(using = JsonUtils.FlagDeserializer.class)
     private String sowTest;
 
     /**
      * Column: SOW_MAINTENANCE_OPERATION
      * Remark: 業務範囲_保守運用
      */
-    @JsonSerialize(using = JsonUtils.FlagSerializer.class)
+    @JsonDeserialize(using = JsonUtils.FlagDeserializer.class)
     private String sowMaintenanceOperation;
+
 }
+
