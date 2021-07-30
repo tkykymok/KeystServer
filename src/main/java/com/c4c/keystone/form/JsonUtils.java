@@ -10,10 +10,10 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import java.io.IOException;
 
 public class JsonUtils {
-    public static class  FlagDeserializer extends JsonDeserializer<Boolean> {
+    public static class FlagDeserializer extends JsonDeserializer<String> {
         @Override
-        public Boolean deserialize(JsonParser parser, DeserializationContext context) throws IOException {
-            return !"0".equals(parser.getText());
+        public String deserialize(JsonParser parser, DeserializationContext context) throws IOException {
+            return parser.getBooleanValue() ? "1" : "0";
         }
     }
 
