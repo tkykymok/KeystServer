@@ -39,6 +39,8 @@ public class Keyst10300Service implements IKeyst10300Service {
     public Keyst10300InitS initialize() {
         // レスポンスForm
         Keyst10300InitS resForm = new Keyst10300InitS();
+        resForm.
+        keyst0300Mapper.selectWithS();
 
         return resForm;
     }

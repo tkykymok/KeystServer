@@ -1,8 +1,17 @@
 package com.c4c.keystone.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.c4c.keystone.constants.Flag;
 import com.c4c.keystone.entity.Keyst5100;
-import com.c4c.keystone.entity.Keyst5100Example;
 import com.c4c.keystone.entity.Keyst5300;
 import com.c4c.keystone.entity.Keyst5300Example;
 import com.c4c.keystone.enums.Db;
@@ -12,15 +21,6 @@ import com.c4c.keystone.mapper.Keyst5100Mapper;
 import com.c4c.keystone.mapper.Keyst5300Mapper;
 import com.c4c.keystone.service.impl.Keyst5100Service;
 import com.c4c.keystone.service.impl.Keyst5300Service;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/selectOption")
