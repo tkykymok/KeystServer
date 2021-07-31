@@ -1,10 +1,10 @@
 package com.c4c.keystone.form;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import lombok.Data;
-
 import java.time.LocalDate;
-import java.util.List;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import lombok.Data;
 
 @Data
 public class Keyst10100InitS01 {
@@ -106,10 +106,10 @@ public class Keyst10100InitS01 {
     private String postalCode;
 
     /**
-     * Column: ADRESS
+     * Column: ADDRESS
      * Remark: 住所
      */
-    private String adress;
+    private String address;
 
     /**
      * Column: PHONE_NUMBER
