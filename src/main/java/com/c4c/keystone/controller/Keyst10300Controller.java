@@ -1,16 +1,14 @@
 package com.c4c.keystone.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.c4c.keystone.entity.Keyst0300;
-import com.c4c.keystone.entity.Keyst0310;
-import com.c4c.keystone.entity.Keyst0320;
+import com.c4c.keystone.form.Keyst10300InitS;
 import com.c4c.keystone.service.impl.Keyst10300Service;
 
 
@@ -23,38 +21,13 @@ public class Keyst10300Controller {
 
     @GetMapping("initialize")
     @CrossOrigin(origins = {"http://localhost:3000"})
-    public List<Keyst0300> initialize() {
+    public ResponseEntity<Keyst10300InitS> initialize(@RequestHeader("Authorization") String jwt) {
         // レスポンスForm
-//        Keyst10300InitS resForm = keyst10300Service.initialize();
+        Keyst10300InitS resForm = keyst10300Service.initialize();
 
-        List<Keyst0300> keyst0300List = keyst10300Service.getAllReserveHeader();
+//        List<Keyst0300> keyst0300List = keyst10300Service.getAllReserveHeader();
 
-        return keyst0300List;
+        return ResponseEntity.ok(resForm);
     }
-
-    @GetMapping("310")
-    @CrossOrigin(origins = {"http://localhost:3000"})
-    public List<Keyst0310> initialize310() {
-    	// レスポンスForm
-//        Keyst10300InitS resForm = keyst10300Service.initialize();
-
-    	List<Keyst0310> keyst0310List = keyst10300Service.getAllReserve310();
-
-    	return keyst0310List;
-    }
-    @GetMapping("320")
-    @CrossOrigin(origins = {"http://localhost:3000"})
-    public List<Keyst0320> initialize320() {
-    	// レスポンスForm
-//        Keyst10300InitS resForm = keyst10300Service.initialize();
-
-    	List<Keyst0320> keyst0320List = keyst10300Service.getAllReserve320();
-
-    	return keyst0320List;
-    }
-
-
-
-
 
 }
