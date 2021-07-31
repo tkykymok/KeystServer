@@ -18,6 +18,7 @@ import org.apache.ibatis.type.JdbcType;
 
 import com.c4c.keystone.entity.Keyst0300;
 import com.c4c.keystone.entity.Keyst0300Example;
+import com.c4c.keystone.entity.Keyst0300ExtraS01;
 import com.c4c.keystone.entity.Keyst0300Key;
 
 @Mapper
@@ -143,36 +144,38 @@ public interface Keyst0300Mapper {
 
     String EXTRA_S01 =
             "SELECT\n" +
-            "    KEYST0100.USER_ID\n" +
+            "    KEYST0300.RESERVE_ID\n" +
+            "    ,KEYST0300.IMPL_YEAR_MONTH\n" +
+            "    ,KEYST0300.MANAGER_ID\n" +
+            "    ,KEYST0300.TEAM\n" +
+            "    ,KEYST0320.RESERVE_DATE\n" +
+            "    ,KEYST0320.RESERVE_TIME\n" +
+            "    ,KEYST0310.USER_ID\n" +
             "    ,KEYST0100.USER_NAME\n" +
-            "    ,KEYST0100.TEAM\n" +
-            "    ,KEYST0100.PRF_IMG_STRG_DRCTRY\n" +
-            "    ,KEYST0100.SKILLS\n" +
-            "    ,KEYST5110.PRJ_CODE\n" +
-            "    ,KEYST5100.PRJ_NAME\n" +
-            "    ,KEYST5110.CONTRACT_PRICE\n" +
-            "    ,KEYST5110.PRJ_START_DATE\n" +
             "FROM\n" +
-            "   KEYST0100\n" +
-            "LEFT OUTER JOIN KEYST5110 ON\n" +
-            "    KEYST0100.USER_ID = KEYST5110.USER_ID\n" +
-            "INNER JOIN KEYST5100 ON\n" +
-            "    KEYST5110.PRJ_CODE = KEYST5100.PRJ_CODE\n" +
-            "WHERE KEYST5110.PRJ_END_DATE IS NULL\n" +
-            "   AND KEYST0100.DELETE_FLG = '0'";
+            "   KEYST0300\n" +
+            "LEFT OUTER JOIN KEYST0320 ON\n" +
+            "    KEYST0300.RESERVE_ID = KEYST0320.RESERVE_ID\n" +
+            "LEFT OUTER JOIN KEYST0310 ON\n" +
+            "    KEYST0320.RESERVE_DATE = KEYST0310.RESERVE_DATE\n" +
+            "AND KEYST0320.RESERVE_TIME = KEYST0310.RESERVE_TIME\n" +
+            "LEFT OUTER JOIN KEYST0100 ON\n" +
+            "    KEYST0310.USER_ID = KEYST0100.USER_ID\n" +
+
+            "WHERE KEYST0300.MANAGER_ID = '17'\n" +
+            "   AND KEYST0300.IMPL_YEAR_MONTH = '202107'";
 
     @Select(EXTRA_S01)
     @Results(value = {
+            @Result(property = "reserveId", column = "RESERVE_ID"),
+            @Result(property = "implYearMonth", column = "IMPL_YEAR_MONTH"),
+            @Result(property = "managerId", column = "MANAGER_ID"),
+            @Result(property = "team", column = "TEAM"),
+            @Result(property = "reserveDate", column = "RESERVE_DATE"),
+            @Result(property = "reserveTime", column = "RESERVE_TIME"),
             @Result(property = "userId", column = "USER_ID"),
             @Result(property = "userName", column = "USER_NAME"),
-            @Result(property = "team", column = "TEAM"),
-            @Result(property = "prfImgStrgDrctry", column = "PRF_IMG_STRG_DRCTRY"),
-            @Result(property = "skills", column = "SKILLS"),
-            @Result(property = "prjCode", column = "PRJ_CODE"),
-            @Result(property = "prjName", column = "PRJ_NAME"),
-            @Result(property = "contractPrice", column = "CONTRACT_PRICE"),
-            @Result(property = "prjStartDate", column = "PRJ_START_DATE"),
     })
-    List<Keyst0300ExtraS> selectWithS();
+    List<Keyst0300ExtraS01> selectWithS();
 
 }
