@@ -140,4 +140,39 @@ public interface Keyst0300Mapper {
         "where RESERVE_ID = #{reserveId,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Keyst0300 record);
+
+    String EXTRA_S01 =
+            "SELECT\n" +
+            "    KEYST0100.USER_ID\n" +
+            "    ,KEYST0100.USER_NAME\n" +
+            "    ,KEYST0100.TEAM\n" +
+            "    ,KEYST0100.PRF_IMG_STRG_DRCTRY\n" +
+            "    ,KEYST0100.SKILLS\n" +
+            "    ,KEYST5110.PRJ_CODE\n" +
+            "    ,KEYST5100.PRJ_NAME\n" +
+            "    ,KEYST5110.CONTRACT_PRICE\n" +
+            "    ,KEYST5110.PRJ_START_DATE\n" +
+            "FROM\n" +
+            "   KEYST0100\n" +
+            "LEFT OUTER JOIN KEYST5110 ON\n" +
+            "    KEYST0100.USER_ID = KEYST5110.USER_ID\n" +
+            "INNER JOIN KEYST5100 ON\n" +
+            "    KEYST5110.PRJ_CODE = KEYST5100.PRJ_CODE\n" +
+            "WHERE KEYST5110.PRJ_END_DATE IS NULL\n" +
+            "   AND KEYST0100.DELETE_FLG = '0'";
+
+    @Select(EXTRA_S01)
+    @Results(value = {
+            @Result(property = "userId", column = "USER_ID"),
+            @Result(property = "userName", column = "USER_NAME"),
+            @Result(property = "team", column = "TEAM"),
+            @Result(property = "prfImgStrgDrctry", column = "PRF_IMG_STRG_DRCTRY"),
+            @Result(property = "skills", column = "SKILLS"),
+            @Result(property = "prjCode", column = "PRJ_CODE"),
+            @Result(property = "prjName", column = "PRJ_NAME"),
+            @Result(property = "contractPrice", column = "CONTRACT_PRICE"),
+            @Result(property = "prjStartDate", column = "PRJ_START_DATE"),
+    })
+    List<Keyst0300ExtraS> selectWithS();
+
 }
