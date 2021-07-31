@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,7 +38,6 @@ public class Keyst10400Controller {
     Keyst5110Mapper keyst5110Mapper;
 
     @GetMapping("initialize")
-    @CrossOrigin(origins = {"http://localhost:3000"})
     public ResponseEntity<List<Keyst10400InitS>> initialze() {
 
         // レスポンスFormリストを定義する。
@@ -69,12 +67,12 @@ public class Keyst10400Controller {
             String[] skillCodeList = keyst0100ExtraS01.getSkills().split(",");
             for (String skillCode : skillCodeList) {
                 Keyst10400InitS02 initS02 = new Keyst10400InitS02();
-                Keyst5300 Keyst5300 = keyst5300List.stream()
+                Keyst5300 keyst5300 = keyst5300List.stream()
                         .filter(obj -> skillCode.equals(obj.getSkillCode()))
                         .findFirst()
                         .get();
                 // コード値からスキル名に変更した値をスキルForm(initS02)にコピーし、スキルリストForm(initS02List)に設定する。
-                BeanUtils.copyProperties(Keyst5300, initS02);
+                BeanUtils.copyProperties(keyst5300, initS02);
                 initS02List.add(initS02);
             }
             // スキルリストForm(initS02List)をユーザー基本情報Form(initS01)に設定する。
@@ -85,8 +83,6 @@ public class Keyst10400Controller {
             //////////////////////////////////////////////////////////////
             // 案件情報
             //////////////////////////////////////////////////////////////
-            // 案件情報リストForm(initS03List)を定義する。
-            List<Keyst10400InitS03> initS03List = new ArrayList<>();
             // 案件情報Form(initS03)を定義する。
             Keyst10400InitS03 initS03 = new Keyst10400InitS03();
             // 案件情報ごとに処理を行う。
@@ -94,10 +90,8 @@ public class Keyst10400Controller {
             initS03.setPrjName(keyst0100ExtraS01.getPrjName());
             initS03.setContractPrice(keyst0100ExtraS01.getContractPrice());
             initS03.setPrjStartDate(keyst0100ExtraS01.getPrjStartDate());
-            // 案件情報Form(initS03)を案件情報リストForm(initS03List)に設定する。
-            initS03List.add(initS03);
-            // レスポンスFormに案件情報リストForm(initS03List)を設定する。
-            resForm.setPrjInfo(initS03List);
+            // レスポンスFormに案件情報Form(initS03)を設定する。
+            resForm.setPrjInfo(initS03);
             // レスポンスFormリストにレスポンスFormを設定する。
             resFormList.add(resForm);
         }
