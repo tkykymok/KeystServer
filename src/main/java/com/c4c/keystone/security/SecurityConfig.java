@@ -1,7 +1,5 @@
 package com.c4c.keystone.security;
 
-import com.c4c.keystone.filters.JwtRequestFilter;
-import com.c4c.keystone.service.impl.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,9 +11,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import com.c4c.keystone.filters.JwtRequestFilter;
+import com.c4c.keystone.service.impl.UserDetailService;
 
 @Configuration
 @EnableWebSecurity
@@ -38,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/session/authenticate").permitAll()
                 .antMatchers("/session/signUp").permitAll()
+                .antMatchers("/**").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);

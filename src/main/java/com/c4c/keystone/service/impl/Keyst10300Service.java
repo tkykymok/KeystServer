@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.c4c.keystone.entity.Keyst0300;
+import com.c4c.keystone.entity.Keyst0300ExtraS01;
 import com.c4c.keystone.entity.Keyst0300Key;
 import com.c4c.keystone.entity.Keyst0310;
 import com.c4c.keystone.entity.Keyst0310Example;
@@ -39,9 +40,8 @@ public class Keyst10300Service implements IKeyst10300Service {
     public Keyst10300InitS initialize() {
         // レスポンスForm
         Keyst10300InitS resForm = new Keyst10300InitS();
-        resForm.
-        keyst0300Mapper.selectWithS();
-
+        List<Keyst0300ExtraS01> Keyst0300ExtraS01List = keyst0300Mapper.selectWithS();
+        resForm.setReserveInfoList(Keyst0300ExtraS01List);
         return resForm;
     }
 
