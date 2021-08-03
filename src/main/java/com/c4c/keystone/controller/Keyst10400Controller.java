@@ -55,16 +55,15 @@ public class Keyst10400Controller {
             // レスポンスFormを定義する。
             Keyst10400InitS resForm = new Keyst10400InitS();
 
-            //////////////////////////////////////////////////////////////
-            // ユーザー基本情報
-            //////////////////////////////////////////////////////////////
-            // 取得した情報をユーザー基本情報Form(iniiS01)にコピーする。(リストはコピーできないためスキルリストは別で取得する。)
+            // 取得した情報をユーザー情報Form(iniiS01)にコピーする。(リストはコピーできないためスキルリストは別で取得する。)
             Keyst10400InitS01 initS01 = new Keyst10400InitS01();
             BeanUtils.copyProperties(keyst0100ExtraS01, initS01);
 
-            // ユーザー基本情報の保有スキル(コード値)全件に対して以下の処理をする。
+            // スキルリストForm(initS02List)を定義する。
             List<Keyst10400InitS02> initS02List = new ArrayList<>();
+            // スキルコードを1つずつ配列に設定する。
             String[] skillCodeList = keyst0100ExtraS01.getSkills().split(",");
+            // スキルコードを1件ずつ取り出し、スキル名に変換する。
             for (String skillCode : skillCodeList) {
                 Keyst10400InitS02 initS02 = new Keyst10400InitS02();
                 Keyst5300 keyst5300 = keyst5300List.stream()
@@ -75,23 +74,21 @@ public class Keyst10400Controller {
                 BeanUtils.copyProperties(keyst5300, initS02);
                 initS02List.add(initS02);
             }
-            // スキルリストForm(initS02List)をユーザー基本情報Form(initS01)に設定する。
+            // スキルリストForm(initS02List)をユーザー情報Form(initS01)に設定する。
             initS01.setSkillList(initS02List);
-            // レスポンスFormにユーザー基本情報Form(initS01)を設定する。
-            resForm.setUserBasicInfo(initS01);
 
-            //////////////////////////////////////////////////////////////
-            // 案件情報
-            //////////////////////////////////////////////////////////////
             // 案件情報Form(initS03)を定義する。
             Keyst10400InitS03 initS03 = new Keyst10400InitS03();
-            // 案件情報ごとに処理を行う。
             initS03.setPrjCode(keyst0100ExtraS01.getPrjCode());
             initS03.setPrjName(keyst0100ExtraS01.getPrjName());
             initS03.setContractPrice(keyst0100ExtraS01.getContractPrice());
             initS03.setPrjStartDate(keyst0100ExtraS01.getPrjStartDate());
-            // レスポンスFormに案件情報Form(initS03)を設定する。
-            resForm.setPrjInfo(initS03);
+            // 案件情報Form(initS03)をユーザー情報Form(initS01)に設定する。
+            initS01.setPrjInfo(initS03);
+
+            // レスポンスFormにユーザー情報Form(initS01)を設定する。
+            resForm.setUserInfo(initS01);
+
             // レスポンスFormリストにレスポンスFormを設定する。
             resFormList.add(resForm);
         }

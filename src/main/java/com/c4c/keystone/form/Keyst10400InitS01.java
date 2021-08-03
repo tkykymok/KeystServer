@@ -35,4 +35,9 @@ public class Keyst10400InitS01 {
      * Remark: 保有スキル
      */
     private List<Keyst10400InitS02> skillList;
+
+    /**
+     * 案件情報
+     */
+    private Keyst10400InitS03 prjInfo;
 }
