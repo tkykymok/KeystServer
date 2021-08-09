@@ -243,7 +243,7 @@ public interface Keyst0100Mapper {
             "   KEYST0100\n" +
             "LEFT OUTER JOIN KEYST5110 ON\n" +
             "    KEYST0100.USER_ID = KEYST5110.USER_ID\n" +
-            "INNER JOIN KEYST5100 ON\n" +
+            "LEFT OUTER JOIN KEYST5100 ON\n" +
             "    KEYST5110.PRJ_CODE = KEYST5100.PRJ_CODE\n" +
             "WHERE KEYST5110.PRJ_END_DATE IS NULL\n" +
             "   AND KEYST0100.DELETE_FLG = '0'";
