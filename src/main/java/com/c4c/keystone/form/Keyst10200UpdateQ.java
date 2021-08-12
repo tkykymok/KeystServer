@@ -7,7 +7,13 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @Data
-public class Keyst10200SaveQ {
+public class Keyst10200UpdateQ {
+    /**
+     * Column: SKILL_SHEET_ID
+     * Remark: スキルシートID
+     */
+    private Integer skillSheetId;
+
     /**
      * Column: STRONG_AREA
      * Remark: 得意分野
@@ -28,6 +34,12 @@ public class Keyst10200SaveQ {
      */
     @Size(max = 500, message = "{evaluationOfSales}{Size.less_max}")
     private String evaluationOfSales;
+
+    /**
+     * Column: VERSION_EX_KEY
+     * Remark: 排他制御カラム
+     */
+    private Integer versionExKey;
 
     /**
      * スキルシート明細List

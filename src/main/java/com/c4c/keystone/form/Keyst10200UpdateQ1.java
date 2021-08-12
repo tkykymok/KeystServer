@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Data
-public class Keyst10200SaveQ1 {
+public class Keyst10200UpdateQ1 {
     /**
      * Column: REF_NO
      * Remark: 明細番号
