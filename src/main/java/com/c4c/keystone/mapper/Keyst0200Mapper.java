@@ -137,11 +137,35 @@ public interface Keyst0200Mapper {
           "CREATED_USER = #{createdUser,jdbcType=INTEGER},",
           "LAST_MODIFIED_DATETIME = #{lastModifiedDatetime,jdbcType=TIMESTAMP},",
           "LAST_MODIFIED_USER = #{lastModifiedUser,jdbcType=INTEGER},",
-          "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}",
+          "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER} + 1",
         "where SKILL_SHEET_ID = #{skillSheetId,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Keyst0200 record);
 
+    @Select({
+            "select",
+            "SKILL_SHEET_ID, USER_ID, STRONG_AREA, PR, EVALUATION_OF_SALES, SKILL_SHEET_REG_DATETIME, ",
+            "DELETE_FLG, CREATED_DATETIME, CREATED_USER, LAST_MODIFIED_DATETIME, LAST_MODIFIED_USER, ",
+            "VERSION_EX_KEY",
+            "from KEYST0200",
+            "where SKILL_SHEET_ID = #{skillSheetId,jdbcType=INTEGER}",
+            "AND VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}"
+    })
+    @Results({
+            @Result(column="SKILL_SHEET_ID", property="skillSheetId", jdbcType=JdbcType.INTEGER, id=true),
+            @Result(column="USER_ID", property="userId", jdbcType=JdbcType.INTEGER),
+            @Result(column="STRONG_AREA", property="strongArea", jdbcType=JdbcType.VARCHAR),
+            @Result(column="PR", property="pr", jdbcType=JdbcType.VARCHAR),
+            @Result(column="EVALUATION_OF_SALES", property="evaluationOfSales", jdbcType=JdbcType.VARCHAR),
+            @Result(column="SKILL_SHEET_REG_DATETIME", property="skillSheetRegDatetime", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="DELETE_FLG", property="deleteFlg", jdbcType=JdbcType.VARCHAR),
+            @Result(column="CREATED_DATETIME", property="createdDatetime", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.INTEGER),
+            @Result(column="LAST_MODIFIED_DATETIME", property="lastModifiedDatetime", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="LAST_MODIFIED_USER", property="lastModifiedUser", jdbcType=JdbcType.INTEGER),
+            @Result(column="VERSION_EX_KEY", property="versionExKey", jdbcType=JdbcType.INTEGER)
+    })
+    Keyst0200 checkVersion(Keyst0200 versionCheckKey);
 
     String EXTRA_S01
             = "SELECT\n" +
