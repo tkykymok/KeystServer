@@ -45,5 +45,5 @@ public class Keyst10200UpdateQ {
      * スキルシート明細List
      */
     @Valid
-    List<Keyst10200SaveQ1> skillSheetDetail;
+    List<Keyst10200UpdateQ1> skillSheetDetail;
 }
