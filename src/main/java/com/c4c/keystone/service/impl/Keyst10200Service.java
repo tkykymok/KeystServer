@@ -159,14 +159,22 @@ public class Keyst10200Service implements IKeyst10200Service {
             Keyst10200DispSklShtS2 tmpDispSklShtS2 = new Keyst10200DispSklShtS2();
             BeanUtils.copyProperties(keyst0210, tmpDispSklShtS2);
             // 開発規模
-            List<String> devScale = new ArrayList<>(Arrays.asList(keyst0210.getDevScale().split(",")));
-            tmpDispSklShtS2.setDevScale(devScale);
+            if (Objects.nonNull(keyst0210.getDevScale())) {
+                List<String> devScale = new ArrayList<>(Arrays.asList(keyst0210.getDevScale().split(",")));
+                tmpDispSklShtS2.setDevScale(devScale);
+            }
             // FW・MW・ツール等
-            List<String> fwMwTool = new ArrayList<>(Arrays.asList(keyst0210.getFwMwTool().split(",")));
-            tmpDispSklShtS2.setFwMwTool(fwMwTool);
+            if (Objects.nonNull(keyst0210.getFwMwTool())) {
+                List<String> fwMwTool = new ArrayList<>(Arrays.asList(keyst0210.getFwMwTool().split(",")));
+                tmpDispSklShtS2.setFwMwTool(fwMwTool);
+            }
             // 使用言語
-            List<String> pgLang = new ArrayList<>(Arrays.asList(keyst0210.getPgLang().split(",")));
-            tmpDispSklShtS2.setPgLang(pgLang);
+            if (Objects.nonNull(keyst0210.getPgLang())) {
+                List<Integer> pgLang = Arrays.stream(keyst0210.getPgLang().split(","))
+                        .map(Integer::parseInt)
+                        .collect(Collectors.toList());
+                tmpDispSklShtS2.setPgLang(pgLang);
+            }
             dispSklShtS2List.add(tmpDispSklShtS2);
         }
 

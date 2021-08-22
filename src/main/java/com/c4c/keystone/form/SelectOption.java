@@ -8,7 +8,7 @@ public class SelectOption {
     /**
      * コード
      */
-    String code;
+    String  code;
 
     /**
      * 名称
@@ -19,5 +19,5 @@ public class SelectOption {
      * 無効フラグ
      */
     @JsonSerialize(using = JsonUtils.FlagSerializer.class)
-    String disableFlg;
+    Integer disableFlg;
 }

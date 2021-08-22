@@ -103,7 +103,9 @@ public class Keyst10200Controller {
             String tempFwMwTool = String.join(",", keyst10200SaveQ1.getFwMwTool());
             keyst0210.setFwMwTool(tempFwMwTool);
             // pgLang
-            String tempPgLang = String.join(",", keyst10200SaveQ1.getPgLang());
+            String tempPgLang = keyst10200SaveQ1.getPgLang().stream()
+                    .map(Object::toString)
+                    .collect(Collectors.joining(","));
             keyst0210.setPgLang(tempPgLang);
 
             // WHOカラムの設定
@@ -159,7 +161,9 @@ public class Keyst10200Controller {
             String tempFwMwTool = String.join(",", keyst10200UpdateQ1.getFwMwTool());
             keyst0210.setFwMwTool(tempFwMwTool);
             // pgLang
-            String tempPgLang = String.join(",", keyst10200UpdateQ1.getPgLang());
+            String tempPgLang = keyst10200UpdateQ1.getPgLang().stream()
+                    .map(Object::toString)
+                    .collect(Collectors.joining(","));
             keyst0210.setPgLang(tempPgLang);
 
             // WHOカラムの設定
