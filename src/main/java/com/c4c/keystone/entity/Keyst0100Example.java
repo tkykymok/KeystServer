@@ -428,62 +428,52 @@ public class Keyst0100Example {
             return (Criteria) this;
         }
 
-        public Criteria andGenderEqualTo(String value) {
+        public Criteria andGenderEqualTo(Integer value) {
             addCriterion("GENDER =", value, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderNotEqualTo(String value) {
+        public Criteria andGenderNotEqualTo(Integer value) {
             addCriterion("GENDER <>", value, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderGreaterThan(String value) {
+        public Criteria andGenderGreaterThan(Integer value) {
             addCriterion("GENDER >", value, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderGreaterThanOrEqualTo(String value) {
+        public Criteria andGenderGreaterThanOrEqualTo(Integer value) {
             addCriterion("GENDER >=", value, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderLessThan(String value) {
+        public Criteria andGenderLessThan(Integer value) {
             addCriterion("GENDER <", value, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderLessThanOrEqualTo(String value) {
+        public Criteria andGenderLessThanOrEqualTo(Integer value) {
             addCriterion("GENDER <=", value, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderLike(String value) {
-            addCriterion("GENDER like", value, "gender");
-            return (Criteria) this;
-        }
-
-        public Criteria andGenderNotLike(String value) {
-            addCriterion("GENDER not like", value, "gender");
-            return (Criteria) this;
-        }
-
-        public Criteria andGenderIn(List<String> values) {
+        public Criteria andGenderIn(List<Integer> values) {
             addCriterion("GENDER in", values, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderNotIn(List<String> values) {
+        public Criteria andGenderNotIn(List<Integer> values) {
             addCriterion("GENDER not in", values, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderBetween(String value1, String value2) {
+        public Criteria andGenderBetween(Integer value1, Integer value2) {
             addCriterion("GENDER between", value1, value2, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderNotBetween(String value1, String value2) {
+        public Criteria andGenderNotBetween(Integer value1, Integer value2) {
             addCriterion("GENDER not between", value1, value2, "gender");
             return (Criteria) this;
         }
@@ -688,62 +678,52 @@ public class Keyst0100Example {
             return (Criteria) this;
         }
 
-        public Criteria andPartnerFlgEqualTo(String value) {
+        public Criteria andPartnerFlgEqualTo(Integer value) {
             addCriterion("PARTNER_FLG =", value, "partnerFlg");
             return (Criteria) this;
         }
 
-        public Criteria andPartnerFlgNotEqualTo(String value) {
+        public Criteria andPartnerFlgNotEqualTo(Integer value) {
             addCriterion("PARTNER_FLG <>", value, "partnerFlg");
             return (Criteria) this;
         }
 
-        public Criteria andPartnerFlgGreaterThan(String value) {
+        public Criteria andPartnerFlgGreaterThan(Integer value) {
             addCriterion("PARTNER_FLG >", value, "partnerFlg");
             return (Criteria) this;
         }
 
-        public Criteria andPartnerFlgGreaterThanOrEqualTo(String value) {
+        public Criteria andPartnerFlgGreaterThanOrEqualTo(Integer value) {
             addCriterion("PARTNER_FLG >=", value, "partnerFlg");
             return (Criteria) this;
         }
 
-        public Criteria andPartnerFlgLessThan(String value) {
+        public Criteria andPartnerFlgLessThan(Integer value) {
             addCriterion("PARTNER_FLG <", value, "partnerFlg");
             return (Criteria) this;
         }
 
-        public Criteria andPartnerFlgLessThanOrEqualTo(String value) {
+        public Criteria andPartnerFlgLessThanOrEqualTo(Integer value) {
             addCriterion("PARTNER_FLG <=", value, "partnerFlg");
             return (Criteria) this;
         }
 
-        public Criteria andPartnerFlgLike(String value) {
-            addCriterion("PARTNER_FLG like", value, "partnerFlg");
-            return (Criteria) this;
-        }
-
-        public Criteria andPartnerFlgNotLike(String value) {
-            addCriterion("PARTNER_FLG not like", value, "partnerFlg");
-            return (Criteria) this;
-        }
-
-        public Criteria andPartnerFlgIn(List<String> values) {
+        public Criteria andPartnerFlgIn(List<Integer> values) {
             addCriterion("PARTNER_FLG in", values, "partnerFlg");
             return (Criteria) this;
         }
 
-        public Criteria andPartnerFlgNotIn(List<String> values) {
+        public Criteria andPartnerFlgNotIn(List<Integer> values) {
             addCriterion("PARTNER_FLG not in", values, "partnerFlg");
             return (Criteria) this;
         }
 
-        public Criteria andPartnerFlgBetween(String value1, String value2) {
+        public Criteria andPartnerFlgBetween(Integer value1, Integer value2) {
             addCriterion("PARTNER_FLG between", value1, value2, "partnerFlg");
             return (Criteria) this;
         }
 
-        public Criteria andPartnerFlgNotBetween(String value1, String value2) {
+        public Criteria andPartnerFlgNotBetween(Integer value1, Integer value2) {
             addCriterion("PARTNER_FLG not between", value1, value2, "partnerFlg");
             return (Criteria) this;
         }
@@ -1238,62 +1218,52 @@ public class Keyst0100Example {
             return (Criteria) this;
         }
 
-        public Criteria andAdminFlgEqualTo(String value) {
+        public Criteria andAdminFlgEqualTo(Integer value) {
             addCriterion("ADMIN_FLG =", value, "adminFlg");
             return (Criteria) this;
         }
 
-        public Criteria andAdminFlgNotEqualTo(String value) {
+        public Criteria andAdminFlgNotEqualTo(Integer value) {
             addCriterion("ADMIN_FLG <>", value, "adminFlg");
             return (Criteria) this;
         }
 
-        public Criteria andAdminFlgGreaterThan(String value) {
+        public Criteria andAdminFlgGreaterThan(Integer value) {
             addCriterion("ADMIN_FLG >", value, "adminFlg");
             return (Criteria) this;
         }
 
-        public Criteria andAdminFlgGreaterThanOrEqualTo(String value) {
+        public Criteria andAdminFlgGreaterThanOrEqualTo(Integer value) {
             addCriterion("ADMIN_FLG >=", value, "adminFlg");
             return (Criteria) this;
         }
 
-        public Criteria andAdminFlgLessThan(String value) {
+        public Criteria andAdminFlgLessThan(Integer value) {
             addCriterion("ADMIN_FLG <", value, "adminFlg");
             return (Criteria) this;
         }
 
-        public Criteria andAdminFlgLessThanOrEqualTo(String value) {
+        public Criteria andAdminFlgLessThanOrEqualTo(Integer value) {
             addCriterion("ADMIN_FLG <=", value, "adminFlg");
             return (Criteria) this;
         }
 
-        public Criteria andAdminFlgLike(String value) {
-            addCriterion("ADMIN_FLG like", value, "adminFlg");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminFlgNotLike(String value) {
-            addCriterion("ADMIN_FLG not like", value, "adminFlg");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminFlgIn(List<String> values) {
+        public Criteria andAdminFlgIn(List<Integer> values) {
             addCriterion("ADMIN_FLG in", values, "adminFlg");
             return (Criteria) this;
         }
 
-        public Criteria andAdminFlgNotIn(List<String> values) {
+        public Criteria andAdminFlgNotIn(List<Integer> values) {
             addCriterion("ADMIN_FLG not in", values, "adminFlg");
             return (Criteria) this;
         }
 
-        public Criteria andAdminFlgBetween(String value1, String value2) {
+        public Criteria andAdminFlgBetween(Integer value1, Integer value2) {
             addCriterion("ADMIN_FLG between", value1, value2, "adminFlg");
             return (Criteria) this;
         }
 
-        public Criteria andAdminFlgNotBetween(String value1, String value2) {
+        public Criteria andAdminFlgNotBetween(Integer value1, Integer value2) {
             addCriterion("ADMIN_FLG not between", value1, value2, "adminFlg");
             return (Criteria) this;
         }
@@ -2008,62 +1978,52 @@ public class Keyst0100Example {
             return (Criteria) this;
         }
 
-        public Criteria andDeleteFlgEqualTo(String value) {
+        public Criteria andDeleteFlgEqualTo(Integer value) {
             addCriterion("DELETE_FLG =", value, "deleteFlg");
             return (Criteria) this;
         }
 
-        public Criteria andDeleteFlgNotEqualTo(String value) {
+        public Criteria andDeleteFlgNotEqualTo(Integer value) {
             addCriterion("DELETE_FLG <>", value, "deleteFlg");
             return (Criteria) this;
         }
 
-        public Criteria andDeleteFlgGreaterThan(String value) {
+        public Criteria andDeleteFlgGreaterThan(Integer value) {
             addCriterion("DELETE_FLG >", value, "deleteFlg");
             return (Criteria) this;
         }
 
-        public Criteria andDeleteFlgGreaterThanOrEqualTo(String value) {
+        public Criteria andDeleteFlgGreaterThanOrEqualTo(Integer value) {
             addCriterion("DELETE_FLG >=", value, "deleteFlg");
             return (Criteria) this;
         }
 
-        public Criteria andDeleteFlgLessThan(String value) {
+        public Criteria andDeleteFlgLessThan(Integer value) {
             addCriterion("DELETE_FLG <", value, "deleteFlg");
             return (Criteria) this;
         }
 
-        public Criteria andDeleteFlgLessThanOrEqualTo(String value) {
+        public Criteria andDeleteFlgLessThanOrEqualTo(Integer value) {
             addCriterion("DELETE_FLG <=", value, "deleteFlg");
             return (Criteria) this;
         }
 
-        public Criteria andDeleteFlgLike(String value) {
-            addCriterion("DELETE_FLG like", value, "deleteFlg");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeleteFlgNotLike(String value) {
-            addCriterion("DELETE_FLG not like", value, "deleteFlg");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeleteFlgIn(List<String> values) {
+        public Criteria andDeleteFlgIn(List<Integer> values) {
             addCriterion("DELETE_FLG in", values, "deleteFlg");
             return (Criteria) this;
         }
 
-        public Criteria andDeleteFlgNotIn(List<String> values) {
+        public Criteria andDeleteFlgNotIn(List<Integer> values) {
             addCriterion("DELETE_FLG not in", values, "deleteFlg");
             return (Criteria) this;
         }
 
-        public Criteria andDeleteFlgBetween(String value1, String value2) {
+        public Criteria andDeleteFlgBetween(Integer value1, Integer value2) {
             addCriterion("DELETE_FLG between", value1, value2, "deleteFlg");
             return (Criteria) this;
         }
 
-        public Criteria andDeleteFlgNotBetween(String value1, String value2) {
+        public Criteria andDeleteFlgNotBetween(Integer value1, Integer value2) {
             addCriterion("DELETE_FLG not between", value1, value2, "deleteFlg");
             return (Criteria) this;
         }

@@ -20,7 +20,7 @@ public class Keyst5300 extends Keyst5300Key {
      * Column: LANG_FLG
      * Remark: 言語フラグ
      */
-    private String langFlg;
+    private Integer langFlg;
 
     /**
      * Column: CREATED_DATETIME

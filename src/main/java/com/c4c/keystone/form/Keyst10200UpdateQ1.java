@@ -1,16 +1,22 @@
-package com.c4c.keystone.entity;
+package com.c4c.keystone.form;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
-/**
- * Table: KEYST0210
- */
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import java.time.LocalDate;
+import java.util.List;
+
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class Keyst0210 extends Keyst0210Key {
+public class Keyst10200UpdateQ1 {
+    /**
+     * Column: REF_NO
+     * Remark: 明細番号
+     */
+    private Integer refNo;
+
     /**
      * Column: PRJ_CODE
      * Remark: 案件コード
@@ -33,113 +39,95 @@ public class Keyst0210 extends Keyst0210Key {
      * Column: BIZ_IN_CHARGE
      * Remark: 担当業務
      */
+    @Size(max = 1000, message = "{bizInCharge}{Size.less_max}")
     private String bizInCharge;
 
     /**
      * Column: COMMENT
      * Remark: コメント
      */
+    @Size(max = 1000, message = "{comment}{Size.less_max}")
     private String comment;
 
     /**
      * Column: DEV_SCALE
      * Remark: 開発規模
      */
-    private String devScale;
+    @Valid
+    private List<@Pattern(regexp = "[0-9]{1,4}", message = "{V00001}") String> devScale;
 
     /**
      * Column: OS
      * Remark: OS
      */
-    private Integer os;
+    private String os;
 
     /**
      * Column: DB
      * Remark: DB
      */
-    private Integer db;
+    private String db;
 
     /**
      * Column: FW_MW_TOOL
      * Remark: FW・MW・ツール等
      */
-    private String fwMwTool;
+    private List<String> fwMwTool;
 
     /**
      * Column: PG_LANG
      * Remark: 使用言語
      */
-    private String pgLang;
+    private List<String> pgLang;
 
     /**
      * Column: SOW_MANAGEMENT
      * Remark: 業務範囲_マネジメント
      */
-    private Integer sowManagement;
+    @JsonDeserialize(using = JsonUtils.FlagDeserializer.class)
+    private String sowManagement;
 
     /**
      * Column: SOW_REQ_DEFINITION
      * Remark: 業務範囲_要件定義
      */
-    private Integer sowReqDefinition;
+    @JsonDeserialize(using = JsonUtils.FlagDeserializer.class)
+    private String sowReqDefinition;
 
     /**
      * Column: SOW_BASIC_DESIGN
      * Remark: 業務範囲_基本設計
      */
-    private Integer sowBasicDesign;
+    @JsonDeserialize(using = JsonUtils.FlagDeserializer.class)
+    private String sowBasicDesign;
 
     /**
      * Column: SOW_DETAIL_DESIGN
      * Remark: 業務範囲_詳細設計
      */
-    private Integer sowDetailDesign;
+    @JsonDeserialize(using = JsonUtils.FlagDeserializer.class)
+    private String sowDetailDesign;
 
     /**
      * Column: SOW_IMPLEMENTATION
      * Remark: 業務範囲_実装
      */
-    private Integer sowImplementation;
+    @JsonDeserialize(using = JsonUtils.FlagDeserializer.class)
+    private String sowImplementation;
 
     /**
      * Column: SOW_TEST
      * Remark: 業務範囲_テスト
      */
-    private Integer sowTest;
+    @JsonDeserialize(using = JsonUtils.FlagDeserializer.class)
+    private String sowTest;
 
     /**
      * Column: SOW_MAINTENANCE_OPERATION
      * Remark: 業務範囲_保守運用
      */
-    private Integer sowMaintenanceOperation;
+    @JsonDeserialize(using = JsonUtils.FlagDeserializer.class)
+    private String sowMaintenanceOperation;
 
-    /**
-     * Column: CREATED_DATETIME
-     * Remark: 作成日時
-     */
-    private LocalDateTime createdDatetime;
-
-    /**
-     * Column: CREATED_USER
-     * Remark: 作成者ID
-     */
-    private Integer createdUser;
-
-    /**
-     * Column: LAST_MODIFIED_DATETIME
-     * Remark: 最終変更日時
-     */
-    private LocalDateTime lastModifiedDatetime;
-
-    /**
-     * Column: LAST_MODIFIED_USER
-     * Remark: 最終変更者ID
-     */
-    private Integer lastModifiedUser;
-
-    /**
-     * Column: VERSION_EX_KEY
-     * Remark: 排他制御カラム
-     */
-    private Integer versionExKey;
 }
+

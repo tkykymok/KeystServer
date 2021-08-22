@@ -38,7 +38,7 @@ public class Keyst5100 extends Keyst5100Key {
      * Column: DELETE_FLG
      * Remark: 削除フラグ
      */
-    private String deleteFlg;
+    private Integer deleteFlg;
 
     /**
      * Column: CREATED_DATETIME

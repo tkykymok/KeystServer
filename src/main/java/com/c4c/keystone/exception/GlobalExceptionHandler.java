@@ -35,6 +35,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errors);
     }
 
+    @ExceptionHandler(ExclusiveException.class)
+    protected ResponseEntity<Object> handleExclusiveException(Exception ex) {
+        List<String> messageList = Collections.singletonList(ex.getMessage());
+        ApiErrors errors = new ApiErrors(LocalDateTime.now(), messageList);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errors);
+    }
+
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         List<String> messageList = ex.getBindingResult()

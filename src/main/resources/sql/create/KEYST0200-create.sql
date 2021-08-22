@@ -6,7 +6,7 @@ CREATE TABLE `KEYST0200`
     `PR`                       VARCHAR(500) NULL COMMENT 'PR',
     `EVALUATION_OF_SALES`      VARCHAR(500) NULL COMMENT '営業評価',
     `SKILL_SHEET_REG_DATETIME` DATETIME     NULL COMMENT 'スキルシート登録日時',
-    `DELETE_FLG`               VARCHAR(1)   NOT NULL DEFAULT 0 COMMENT '削除フラグ',
+    `DELETE_FLG`               INT          NOT NULL DEFAULT 0 COMMENT '削除フラグ',
     `CREATED_DATETIME`         TIMESTAMP    NULL COMMENT '作成日時',
     `CREATED_USER`             INT          NULL COMMENT '作成者ID',
     `LAST_MODIFIED_DATETIME`   TIMESTAMP    NULL COMMENT '最終変日時',

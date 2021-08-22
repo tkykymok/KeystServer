@@ -3,17 +3,14 @@ package com.c4c.keystone.form;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 
 @Data
 public class Keyst10200SaveQ1 {
-    /**
-     * Column: SKILL_SHEET_ID
-     * Remark: スキルシートID
-     */
-    private Integer skillSheetId;
-
     /**
      * Column: REF_NO
      * Remark: 明細番号
@@ -42,19 +39,22 @@ public class Keyst10200SaveQ1 {
      * Column: BIZ_IN_CHARGE
      * Remark: 担当業務
      */
+    @Size(max = 1000, message = "{bizInCharge}{Size.less_max}")
     private String bizInCharge;
 
     /**
      * Column: COMMENT
      * Remark: コメント
      */
+    @Size(max = 1000, message = "{comment}{Size.less_max}")
     private String comment;
 
     /**
      * Column: DEV_SCALE
      * Remark: 開発規模
      */
-    private List<String> devScale;
+    @Valid
+    private List<@Pattern(regexp = "[0-9]{1,4}", message = "{V00001}") String> devScale;
 
     /**
      * Column: OS
