@@ -1,6 +1,7 @@
 package com.c4c.keystone.service.impl;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.c4c.keystone.entity.Keyst0100Key;
 import com.c4c.keystone.entity.Keyst0300;
 import com.c4c.keystone.entity.Keyst0300ExtraS01;
 import com.c4c.keystone.entity.Keyst0300Key;
@@ -37,10 +39,26 @@ public class Keyst10300Service implements IKeyst10300Service {
 
     @Override
     @Transactional
-    public Keyst10300InitS initialize() {
+    public Keyst10300InitS initialize(Keyst0100Key userInfo) {
         // レスポンスForm
         Keyst10300InitS resForm = new Keyst10300InitS();
-        List<Keyst0300ExtraS01> Keyst0300ExtraS01List = keyst0300Mapper.selectWithS();
+
+        Keyst0300ExtraS01 Keyst0300ExtraS01 = new Keyst0300ExtraS01();
+
+        // 現在年月を取得
+        Calendar cal = Calendar.getInstance();
+        String calYearStr = Integer.toString(cal.get(Calendar.YEAR));
+        String calMonthStr = Integer.toString(cal.get(Calendar.MONTH)+1);
+        resForm.setThisMonth(calMonthStr);
+        // 月が1～9月の場合頭に0をつける(1→01)
+        if (calMonthStr != "10" || calMonthStr != "11" || calMonthStr != "12") {
+        	calMonthStr = "0" + calMonthStr;
+        }
+        String calStr = calYearStr + calMonthStr;
+        Keyst0300ExtraS01.setImplYearMonth(calStr);
+        Keyst0300ExtraS01.setManagerId(userInfo.getUserId());
+
+        List<Keyst0300ExtraS01> Keyst0300ExtraS01List = keyst0300Mapper.selectWithSMng(Keyst0300ExtraS01);
         resForm.setReserveInfoList(Keyst0300ExtraS01List);
         return resForm;
     }

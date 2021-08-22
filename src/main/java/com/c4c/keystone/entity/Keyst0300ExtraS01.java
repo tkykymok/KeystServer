@@ -10,8 +10,8 @@ import lombok.EqualsAndHashCode;
  * Table: KEYST0300
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class Keyst0300ExtraS01 extends Keyst0300Key {
+@EqualsAndHashCode
+public class Keyst0300ExtraS01 {
     /**
      * Column: RESERVE_ID
      * Remark: 予約ID

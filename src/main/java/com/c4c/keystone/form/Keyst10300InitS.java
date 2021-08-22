@@ -13,5 +13,10 @@ public class Keyst10300InitS {
      */
     private List<Keyst0300ExtraS01> reserveInfoList;
 
+    /**
+     * 現在月
+     */
+    private String thisMonth;
+
 
 }
