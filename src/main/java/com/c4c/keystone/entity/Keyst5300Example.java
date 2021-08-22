@@ -157,62 +157,52 @@ public class Keyst5300Example {
             return (Criteria) this;
         }
 
-        public Criteria andSkillCodeEqualTo(String value) {
+        public Criteria andSkillCodeEqualTo(Integer value) {
             addCriterion("SKILL_CODE =", value, "skillCode");
             return (Criteria) this;
         }
 
-        public Criteria andSkillCodeNotEqualTo(String value) {
+        public Criteria andSkillCodeNotEqualTo(Integer value) {
             addCriterion("SKILL_CODE <>", value, "skillCode");
             return (Criteria) this;
         }
 
-        public Criteria andSkillCodeGreaterThan(String value) {
+        public Criteria andSkillCodeGreaterThan(Integer value) {
             addCriterion("SKILL_CODE >", value, "skillCode");
             return (Criteria) this;
         }
 
-        public Criteria andSkillCodeGreaterThanOrEqualTo(String value) {
+        public Criteria andSkillCodeGreaterThanOrEqualTo(Integer value) {
             addCriterion("SKILL_CODE >=", value, "skillCode");
             return (Criteria) this;
         }
 
-        public Criteria andSkillCodeLessThan(String value) {
+        public Criteria andSkillCodeLessThan(Integer value) {
             addCriterion("SKILL_CODE <", value, "skillCode");
             return (Criteria) this;
         }
 
-        public Criteria andSkillCodeLessThanOrEqualTo(String value) {
+        public Criteria andSkillCodeLessThanOrEqualTo(Integer value) {
             addCriterion("SKILL_CODE <=", value, "skillCode");
             return (Criteria) this;
         }
 
-        public Criteria andSkillCodeLike(String value) {
-            addCriterion("SKILL_CODE like", value, "skillCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andSkillCodeNotLike(String value) {
-            addCriterion("SKILL_CODE not like", value, "skillCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andSkillCodeIn(List<String> values) {
+        public Criteria andSkillCodeIn(List<Integer> values) {
             addCriterion("SKILL_CODE in", values, "skillCode");
             return (Criteria) this;
         }
 
-        public Criteria andSkillCodeNotIn(List<String> values) {
+        public Criteria andSkillCodeNotIn(List<Integer> values) {
             addCriterion("SKILL_CODE not in", values, "skillCode");
             return (Criteria) this;
         }
 
-        public Criteria andSkillCodeBetween(String value1, String value2) {
+        public Criteria andSkillCodeBetween(Integer value1, Integer value2) {
             addCriterion("SKILL_CODE between", value1, value2, "skillCode");
             return (Criteria) this;
         }
 
-        public Criteria andSkillCodeNotBetween(String value1, String value2) {
+        public Criteria andSkillCodeNotBetween(Integer value1, Integer value2) {
             addCriterion("SKILL_CODE not between", value1, value2, "skillCode");
             return (Criteria) this;
         }
@@ -297,62 +287,52 @@ public class Keyst5300Example {
             return (Criteria) this;
         }
 
-        public Criteria andLangFlgEqualTo(String value) {
+        public Criteria andLangFlgEqualTo(Integer value) {
             addCriterion("LANG_FLG =", value, "langFlg");
             return (Criteria) this;
         }
 
-        public Criteria andLangFlgNotEqualTo(String value) {
+        public Criteria andLangFlgNotEqualTo(Integer value) {
             addCriterion("LANG_FLG <>", value, "langFlg");
             return (Criteria) this;
         }
 
-        public Criteria andLangFlgGreaterThan(String value) {
+        public Criteria andLangFlgGreaterThan(Integer value) {
             addCriterion("LANG_FLG >", value, "langFlg");
             return (Criteria) this;
         }
 
-        public Criteria andLangFlgGreaterThanOrEqualTo(String value) {
+        public Criteria andLangFlgGreaterThanOrEqualTo(Integer value) {
             addCriterion("LANG_FLG >=", value, "langFlg");
             return (Criteria) this;
         }
 
-        public Criteria andLangFlgLessThan(String value) {
+        public Criteria andLangFlgLessThan(Integer value) {
             addCriterion("LANG_FLG <", value, "langFlg");
             return (Criteria) this;
         }
 
-        public Criteria andLangFlgLessThanOrEqualTo(String value) {
+        public Criteria andLangFlgLessThanOrEqualTo(Integer value) {
             addCriterion("LANG_FLG <=", value, "langFlg");
             return (Criteria) this;
         }
 
-        public Criteria andLangFlgLike(String value) {
-            addCriterion("LANG_FLG like", value, "langFlg");
-            return (Criteria) this;
-        }
-
-        public Criteria andLangFlgNotLike(String value) {
-            addCriterion("LANG_FLG not like", value, "langFlg");
-            return (Criteria) this;
-        }
-
-        public Criteria andLangFlgIn(List<String> values) {
+        public Criteria andLangFlgIn(List<Integer> values) {
             addCriterion("LANG_FLG in", values, "langFlg");
             return (Criteria) this;
         }
 
-        public Criteria andLangFlgNotIn(List<String> values) {
+        public Criteria andLangFlgNotIn(List<Integer> values) {
             addCriterion("LANG_FLG not in", values, "langFlg");
             return (Criteria) this;
         }
 
-        public Criteria andLangFlgBetween(String value1, String value2) {
+        public Criteria andLangFlgBetween(Integer value1, Integer value2) {
             addCriterion("LANG_FLG between", value1, value2, "langFlg");
             return (Criteria) this;
         }
 
-        public Criteria andLangFlgNotBetween(String value1, String value2) {
+        public Criteria andLangFlgNotBetween(Integer value1, Integer value2) {
             addCriterion("LANG_FLG not between", value1, value2, "langFlg");
             return (Criteria) this;
         }
