@@ -74,8 +74,9 @@ public class Keyst10400Controller {
             if (keyst0100ExtraS01.getSkills() != null) {
                 String[] skillCodeList = keyst0100ExtraS01.getSkills().split(",");
                 // スキルコードを1件ずつ取り出し、スキル名に変換する。
-                for (String skillCode : skillCodeList) {
+                for (String skillCodeString : skillCodeList) {
                     Keyst10400InitS01 initS01 = new Keyst10400InitS01();
+                    Integer skillCode = Integer.parseInt(skillCodeString);
                     Keyst5300 keyst5300 = keyst5300List.stream()
                             .filter(obj -> skillCode.equals(obj.getSkillCode()))
                             .findFirst()

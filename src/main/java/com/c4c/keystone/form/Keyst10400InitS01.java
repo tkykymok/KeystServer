@@ -8,7 +8,7 @@ public class Keyst10400InitS01 {
      * Column: SKILL_CODE
      * Remark: スキルコード
      */
-    private String skillCode;
+    private Integer skillCode;
 
     /**
      * Column: SKILL_NAME
