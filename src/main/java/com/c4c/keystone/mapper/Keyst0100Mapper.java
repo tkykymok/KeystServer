@@ -261,4 +261,16 @@ public interface Keyst0100Mapper {
             @Result(property = "prjStartDate", column = "PRJ_START_DATE"),
     })
     List<Keyst0100ExtraS01> selectWithS01();
+
+    String EXTRA_S02 =
+            "SELECT DISTINCT\n" +
+            "   KEYST0100.TEAM\n" +
+            "FROM\n" +
+            "   KEYST0100";
+
+    @Select(EXTRA_S02)
+    @Results(value = {
+            @Result(property = "team", column = "TEAM")
+    })
+    List<Keyst0100> selectTeam();
 }
