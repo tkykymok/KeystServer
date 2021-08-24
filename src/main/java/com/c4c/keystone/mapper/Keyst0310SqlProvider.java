@@ -53,7 +53,7 @@ public class Keyst0310SqlProvider {
         }
         
         if (record.getFeeling() != null) {
-            sql.VALUES("FEELING", "#{feeling,jdbcType=VARCHAR}");
+            sql.VALUES("FEELING", "#{feeling,jdbcType=INTEGER}");
         }
         
         if (record.getUserComment() != null) {
@@ -150,7 +150,7 @@ public class Keyst0310SqlProvider {
         }
         
         if (record.getFeeling() != null) {
-            sql.SET("FEELING = #{record.feeling,jdbcType=VARCHAR}");
+            sql.SET("FEELING = #{record.feeling,jdbcType=INTEGER}");
         }
         
         if (record.getUserComment() != null) {
@@ -200,7 +200,7 @@ public class Keyst0310SqlProvider {
         sql.SET("RESERVE_DATE = #{record.reserveDate,jdbcType=DATE}");
         sql.SET("RESERVE_TIME = #{record.reserveTime,jdbcType=TIME}");
         sql.SET("USER_ID = #{record.userId,jdbcType=INTEGER}");
-        sql.SET("FEELING = #{record.feeling,jdbcType=VARCHAR}");
+        sql.SET("FEELING = #{record.feeling,jdbcType=INTEGER}");
         sql.SET("USER_COMMENT = #{record.userComment,jdbcType=VARCHAR}");
         sql.SET("MANAGER_COMMENT = #{record.managerComment,jdbcType=VARCHAR}");
         sql.SET("REMARK = #{record.remark,jdbcType=VARCHAR}");
@@ -227,7 +227,7 @@ public class Keyst0310SqlProvider {
         }
         
         if (record.getFeeling() != null) {
-            sql.SET("FEELING = #{feeling,jdbcType=VARCHAR}");
+            sql.SET("FEELING = #{feeling,jdbcType=INTEGER}");
         }
         
         if (record.getUserComment() != null) {

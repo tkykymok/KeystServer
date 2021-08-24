@@ -5,7 +5,7 @@ CREATE TABLE `KEYST5100`
     `CUST_CODE`              VARCHAR(5)   NULL COMMENT '顧客コード',
     `END_CUST_NAME`          VARCHAR(30)  NULL COMMENT 'エンド顧客名',
     `REMARK`                 VARCHAR(255) NULL COMMENT '備考',
-    `DELETE_FLG`             VARCHAR(1)   NOT NULL DEFAULT 0 COMMENT '削除フラグ',
+    `DELETE_FLG`             INT          NOT NULL DEFAULT 0 COMMENT '削除フラグ',
     `CREATED_DATETIME`       TIMESTAMP    NULL COMMENT '作成日時',
     `CREATED_USER`           INT          NULL COMMENT '作成者ID',
     `LAST_MODIFIED_DATETIME` TIMESTAMP    NULL COMMENT '最終変日時',

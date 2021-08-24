@@ -69,11 +69,11 @@ public class Keyst0210SqlProvider {
         }
         
         if (record.getOs() != null) {
-            sql.VALUES("OS", "#{os,jdbcType=VARCHAR}");
+            sql.VALUES("OS", "#{os,jdbcType=INTEGER}");
         }
         
         if (record.getDb() != null) {
-            sql.VALUES("DB", "#{db,jdbcType=VARCHAR}");
+            sql.VALUES("DB", "#{db,jdbcType=INTEGER}");
         }
         
         if (record.getFwMwTool() != null) {
@@ -85,31 +85,31 @@ public class Keyst0210SqlProvider {
         }
         
         if (record.getSowManagement() != null) {
-            sql.VALUES("SOW_MANAGEMENT", "#{sowManagement,jdbcType=VARCHAR}");
+            sql.VALUES("SOW_MANAGEMENT", "#{sowManagement,jdbcType=INTEGER}");
         }
         
         if (record.getSowReqDefinition() != null) {
-            sql.VALUES("SOW_REQ_DEFINITION", "#{sowReqDefinition,jdbcType=VARCHAR}");
+            sql.VALUES("SOW_REQ_DEFINITION", "#{sowReqDefinition,jdbcType=INTEGER}");
         }
         
         if (record.getSowBasicDesign() != null) {
-            sql.VALUES("SOW_BASIC_DESIGN", "#{sowBasicDesign,jdbcType=VARCHAR}");
+            sql.VALUES("SOW_BASIC_DESIGN", "#{sowBasicDesign,jdbcType=INTEGER}");
         }
         
         if (record.getSowDetailDesign() != null) {
-            sql.VALUES("SOW_DETAIL_DESIGN", "#{sowDetailDesign,jdbcType=VARCHAR}");
+            sql.VALUES("SOW_DETAIL_DESIGN", "#{sowDetailDesign,jdbcType=INTEGER}");
         }
         
         if (record.getSowImplementation() != null) {
-            sql.VALUES("SOW_IMPLEMENTATION", "#{sowImplementation,jdbcType=VARCHAR}");
+            sql.VALUES("SOW_IMPLEMENTATION", "#{sowImplementation,jdbcType=INTEGER}");
         }
         
         if (record.getSowTest() != null) {
-            sql.VALUES("SOW_TEST", "#{sowTest,jdbcType=VARCHAR}");
+            sql.VALUES("SOW_TEST", "#{sowTest,jdbcType=INTEGER}");
         }
         
         if (record.getSowMaintenanceOperation() != null) {
-            sql.VALUES("SOW_MAINTENANCE_OPERATION", "#{sowMaintenanceOperation,jdbcType=VARCHAR}");
+            sql.VALUES("SOW_MAINTENANCE_OPERATION", "#{sowMaintenanceOperation,jdbcType=INTEGER}");
         }
         
         if (record.getCreatedDatetime() != null) {
@@ -221,11 +221,11 @@ public class Keyst0210SqlProvider {
         }
         
         if (record.getOs() != null) {
-            sql.SET("OS = #{record.os,jdbcType=VARCHAR}");
+            sql.SET("OS = #{record.os,jdbcType=INTEGER}");
         }
         
         if (record.getDb() != null) {
-            sql.SET("DB = #{record.db,jdbcType=VARCHAR}");
+            sql.SET("DB = #{record.db,jdbcType=INTEGER}");
         }
         
         if (record.getFwMwTool() != null) {
@@ -237,31 +237,31 @@ public class Keyst0210SqlProvider {
         }
         
         if (record.getSowManagement() != null) {
-            sql.SET("SOW_MANAGEMENT = #{record.sowManagement,jdbcType=VARCHAR}");
+            sql.SET("SOW_MANAGEMENT = #{record.sowManagement,jdbcType=INTEGER}");
         }
         
         if (record.getSowReqDefinition() != null) {
-            sql.SET("SOW_REQ_DEFINITION = #{record.sowReqDefinition,jdbcType=VARCHAR}");
+            sql.SET("SOW_REQ_DEFINITION = #{record.sowReqDefinition,jdbcType=INTEGER}");
         }
         
         if (record.getSowBasicDesign() != null) {
-            sql.SET("SOW_BASIC_DESIGN = #{record.sowBasicDesign,jdbcType=VARCHAR}");
+            sql.SET("SOW_BASIC_DESIGN = #{record.sowBasicDesign,jdbcType=INTEGER}");
         }
         
         if (record.getSowDetailDesign() != null) {
-            sql.SET("SOW_DETAIL_DESIGN = #{record.sowDetailDesign,jdbcType=VARCHAR}");
+            sql.SET("SOW_DETAIL_DESIGN = #{record.sowDetailDesign,jdbcType=INTEGER}");
         }
         
         if (record.getSowImplementation() != null) {
-            sql.SET("SOW_IMPLEMENTATION = #{record.sowImplementation,jdbcType=VARCHAR}");
+            sql.SET("SOW_IMPLEMENTATION = #{record.sowImplementation,jdbcType=INTEGER}");
         }
         
         if (record.getSowTest() != null) {
-            sql.SET("SOW_TEST = #{record.sowTest,jdbcType=VARCHAR}");
+            sql.SET("SOW_TEST = #{record.sowTest,jdbcType=INTEGER}");
         }
         
         if (record.getSowMaintenanceOperation() != null) {
-            sql.SET("SOW_MAINTENANCE_OPERATION = #{record.sowMaintenanceOperation,jdbcType=VARCHAR}");
+            sql.SET("SOW_MAINTENANCE_OPERATION = #{record.sowMaintenanceOperation,jdbcType=INTEGER}");
         }
         
         if (record.getCreatedDatetime() != null) {
@@ -303,17 +303,17 @@ public class Keyst0210SqlProvider {
         sql.SET("BIZ_IN_CHARGE = #{record.bizInCharge,jdbcType=VARCHAR}");
         sql.SET("`COMMENT` = #{record.comment,jdbcType=VARCHAR}");
         sql.SET("DEV_SCALE = #{record.devScale,jdbcType=VARCHAR}");
-        sql.SET("OS = #{record.os,jdbcType=VARCHAR}");
-        sql.SET("DB = #{record.db,jdbcType=VARCHAR}");
+        sql.SET("OS = #{record.os,jdbcType=INTEGER}");
+        sql.SET("DB = #{record.db,jdbcType=INTEGER}");
         sql.SET("FW_MW_TOOL = #{record.fwMwTool,jdbcType=VARCHAR}");
         sql.SET("PG_LANG = #{record.pgLang,jdbcType=VARCHAR}");
-        sql.SET("SOW_MANAGEMENT = #{record.sowManagement,jdbcType=VARCHAR}");
-        sql.SET("SOW_REQ_DEFINITION = #{record.sowReqDefinition,jdbcType=VARCHAR}");
-        sql.SET("SOW_BASIC_DESIGN = #{record.sowBasicDesign,jdbcType=VARCHAR}");
-        sql.SET("SOW_DETAIL_DESIGN = #{record.sowDetailDesign,jdbcType=VARCHAR}");
-        sql.SET("SOW_IMPLEMENTATION = #{record.sowImplementation,jdbcType=VARCHAR}");
-        sql.SET("SOW_TEST = #{record.sowTest,jdbcType=VARCHAR}");
-        sql.SET("SOW_MAINTENANCE_OPERATION = #{record.sowMaintenanceOperation,jdbcType=VARCHAR}");
+        sql.SET("SOW_MANAGEMENT = #{record.sowManagement,jdbcType=INTEGER}");
+        sql.SET("SOW_REQ_DEFINITION = #{record.sowReqDefinition,jdbcType=INTEGER}");
+        sql.SET("SOW_BASIC_DESIGN = #{record.sowBasicDesign,jdbcType=INTEGER}");
+        sql.SET("SOW_DETAIL_DESIGN = #{record.sowDetailDesign,jdbcType=INTEGER}");
+        sql.SET("SOW_IMPLEMENTATION = #{record.sowImplementation,jdbcType=INTEGER}");
+        sql.SET("SOW_TEST = #{record.sowTest,jdbcType=INTEGER}");
+        sql.SET("SOW_MAINTENANCE_OPERATION = #{record.sowMaintenanceOperation,jdbcType=INTEGER}");
         sql.SET("CREATED_DATETIME = #{record.createdDatetime,jdbcType=TIMESTAMP}");
         sql.SET("CREATED_USER = #{record.createdUser,jdbcType=INTEGER}");
         sql.SET("LAST_MODIFIED_DATETIME = #{record.lastModifiedDatetime,jdbcType=TIMESTAMP}");
@@ -357,11 +357,11 @@ public class Keyst0210SqlProvider {
         }
         
         if (record.getOs() != null) {
-            sql.SET("OS = #{os,jdbcType=VARCHAR}");
+            sql.SET("OS = #{os,jdbcType=INTEGER}");
         }
         
         if (record.getDb() != null) {
-            sql.SET("DB = #{db,jdbcType=VARCHAR}");
+            sql.SET("DB = #{db,jdbcType=INTEGER}");
         }
         
         if (record.getFwMwTool() != null) {
@@ -373,31 +373,31 @@ public class Keyst0210SqlProvider {
         }
         
         if (record.getSowManagement() != null) {
-            sql.SET("SOW_MANAGEMENT = #{sowManagement,jdbcType=VARCHAR}");
+            sql.SET("SOW_MANAGEMENT = #{sowManagement,jdbcType=INTEGER}");
         }
         
         if (record.getSowReqDefinition() != null) {
-            sql.SET("SOW_REQ_DEFINITION = #{sowReqDefinition,jdbcType=VARCHAR}");
+            sql.SET("SOW_REQ_DEFINITION = #{sowReqDefinition,jdbcType=INTEGER}");
         }
         
         if (record.getSowBasicDesign() != null) {
-            sql.SET("SOW_BASIC_DESIGN = #{sowBasicDesign,jdbcType=VARCHAR}");
+            sql.SET("SOW_BASIC_DESIGN = #{sowBasicDesign,jdbcType=INTEGER}");
         }
         
         if (record.getSowDetailDesign() != null) {
-            sql.SET("SOW_DETAIL_DESIGN = #{sowDetailDesign,jdbcType=VARCHAR}");
+            sql.SET("SOW_DETAIL_DESIGN = #{sowDetailDesign,jdbcType=INTEGER}");
         }
         
         if (record.getSowImplementation() != null) {
-            sql.SET("SOW_IMPLEMENTATION = #{sowImplementation,jdbcType=VARCHAR}");
+            sql.SET("SOW_IMPLEMENTATION = #{sowImplementation,jdbcType=INTEGER}");
         }
         
         if (record.getSowTest() != null) {
-            sql.SET("SOW_TEST = #{sowTest,jdbcType=VARCHAR}");
+            sql.SET("SOW_TEST = #{sowTest,jdbcType=INTEGER}");
         }
         
         if (record.getSowMaintenanceOperation() != null) {
-            sql.SET("SOW_MAINTENANCE_OPERATION = #{sowMaintenanceOperation,jdbcType=VARCHAR}");
+            sql.SET("SOW_MAINTENANCE_OPERATION = #{sowMaintenanceOperation,jdbcType=INTEGER}");
         }
         
         if (record.getCreatedDatetime() != null) {
