@@ -19,6 +19,12 @@ public class Keyst10400InitS {
     private String userName;
 
     /**
+     * Column: USER_NAME_KANA
+     * Remark: ユーザー名かな
+     */
+    private String userNameKana;
+
+    /**
      * Column: TEAM
      * Remark: チーム
      */

@@ -233,6 +233,7 @@ public interface Keyst0100Mapper {
             "SELECT\n" +
             "    KEYST0100.USER_ID\n" +
             "    ,KEYST0100.USER_NAME\n" +
+            "    ,KEYST0100.USER_NAME_KANA\n" +
             "    ,KEYST0100.TEAM\n" +
             "    ,KEYST0100.PRF_IMG_STRG_DRCTRY\n" +
             "    ,KEYST0100.SKILLS\n" +
@@ -253,6 +254,7 @@ public interface Keyst0100Mapper {
     @Results(value = {
             @Result(property = "userId", column = "USER_ID"),
             @Result(property = "userName", column = "USER_NAME"),
+            @Result(property = "userNameKana", column = "USER_NAME_KANA"),
             @Result(property = "team", column = "TEAM"),
             @Result(property = "prfImgStrgDrctry", column = "PRF_IMG_STRG_DRCTRY"),
             @Result(property = "skills", column = "SKILLS"),
