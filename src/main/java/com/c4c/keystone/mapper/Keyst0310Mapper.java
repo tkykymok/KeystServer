@@ -1,12 +1,25 @@
 package com.c4c.keystone.mapper;
 
-import com.c4c.keystone.entity.Keyst0310;
-import com.c4c.keystone.entity.Keyst0310Example;
-import com.c4c.keystone.entity.Keyst0310Key;
-import org.apache.ibatis.annotations.*;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.DeleteProvider;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.InsertProvider;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.UpdateProvider;
 import org.apache.ibatis.type.JdbcType;
 
-import java.util.List;
+import com.c4c.keystone.entity.Keyst0310;
+import com.c4c.keystone.entity.Keyst0310Example;
+import com.c4c.keystone.entity.Keyst0310ExtraS01;
+import com.c4c.keystone.entity.Keyst0310Key;
 
 @Mapper
 public interface Keyst0310Mapper {
@@ -149,4 +162,39 @@ public interface Keyst0310Mapper {
           "and RESERVE_TIME = #{reserveTime,jdbcType=TIME}"
     })
     int updateByPrimaryKey(Keyst0310 record);
+
+    String EXTRA_S01 =
+            "SELECT\n" +
+            "    KEYST0310.RESERVE_ID\n" +
+            "    ,KEYST0310.RESERVE_DATE\n" +
+            "    ,KEYST0310.RESERVE_TIME\n" +
+            "    ,KEYST0310.USER_ID\n" +
+            "    ,KEYST0310.FEELING\n" +
+            "    ,KEYST0310.USER_COMMENT\n" +
+            "    ,KEYST0310.MANAGER_COMMENT\n" +
+            "    ,KEYST0310.REMARK\n" +
+            "	 ,KEYST0100.USER_NAME\n" +
+            "FROM\n" +
+            "	KEYST0310\n" +
+            "LEFT OUTER JOIN KEYST0300 \n" +
+            "	ON KEYST0310.RESERVE_ID = KEYST0300.RESERVE_ID\n" +
+            "LEFT OUTER JOIN KEYST0100 \n" +
+            "	ON KEYST0300.RESERVE_ID = KEYST0100.USER_ID\n" +
+            "WHERE KEYST0310.USER_ID = #{userId,jdbcType=INTEGER}";
+
+    @Select(EXTRA_S01)
+    @Results(value = {
+            @Result(property = "reserveId", column = "RESERVE_ID", jdbcType=JdbcType.INTEGER, id=true),
+            @Result(property = "reserveDate", column = "RESERVE_DATE", jdbcType=JdbcType.DATE),
+            @Result(property = "reserveTime", column = "RESERVE_TIME", jdbcType=JdbcType.TIME),
+            @Result(property = "userId", column = "USER_ID", jdbcType=JdbcType.INTEGER),
+            @Result(property = "feeling", column = "FEELING", jdbcType=JdbcType.VARCHAR),
+            @Result(property = "userComment", column = "USER_COMMENT", jdbcType=JdbcType.VARCHAR),
+            @Result(property = "managerComment", column = "MANAGER_COMMENT", jdbcType=JdbcType.VARCHAR),
+            @Result(property = "remark", column = "REMARK", jdbcType=JdbcType.VARCHAR),
+            @Result(property = "userName", column = "USER_NAME", jdbcType=JdbcType.VARCHAR)
+
+    })
+    List<Keyst0310ExtraS01> selectWithS01(Integer userId);
+
 }

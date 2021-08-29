@@ -3,6 +3,7 @@ package com.c4c.keystone.form;
 import java.util.List;
 
 import com.c4c.keystone.entity.Keyst0300ExtraS01;
+import com.c4c.keystone.entity.Keyst0310ExtraS01;
 
 import lombok.Data;
 
@@ -17,6 +18,18 @@ public class Keyst10300InitS {
      * 現在月
      */
     private String thisMonth;
+
+    /**
+     * チーム
+     */
+    private String team;
+
+    /**
+     * コメント
+     */
+    private List<Keyst0310ExtraS01> reserveDetailList;
+
+
 
 
 }

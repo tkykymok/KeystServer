@@ -13,6 +13,8 @@ import com.c4c.keystone.mapper.Keyst0100Mapper;
 import com.c4c.keystone.service.impl.UserDetailService;
 import com.c4c.keystone.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.Locale;
 
 @RestController
 @RequestMapping("/session")
@@ -44,14 +47,17 @@ public class SessionController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    protected MessageSource messageSource;
+
     @PostMapping("authenticate")
-    public ResponseEntity<AuthenticationS> createAuthenticationToken(@RequestBody AuthenticationQ authenticationQ) throws AuthenticationFailedException {
+    public ResponseEntity<AuthenticationS> createAuthenticationToken(@Valid @RequestBody AuthenticationQ authenticationQ) throws AuthenticationFailedException {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(authenticationQ.getLoginId(), authenticationQ.getLoginPw())
             );
         } catch (BadCredentialsException e) {
-            throw new AuthenticationFailedException("Incorrect loginId or password");
+            throw new AuthenticationFailedException(messageSource.getMessage("E00002", null, Locale.JAPAN));
         }
 
         final LoginUserDetails userDetails = userDetailService
@@ -88,8 +94,8 @@ public class SessionController {
 
         try {
             keyst0100Mapper.insert(keyst0100);
-        } catch (Exception ex) {
-            throw new UserRegisterFailedException("入力されたLoginIDは使用できません。");
+        } catch (DuplicateKeyException ex) {
+            throw new UserRegisterFailedException(messageSource.getMessage("E00001", null, Locale.JAPAN));
         }
 
         return ResponseEntity.ok("OK");

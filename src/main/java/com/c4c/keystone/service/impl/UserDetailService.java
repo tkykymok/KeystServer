@@ -8,21 +8,22 @@ import com.c4c.keystone.exception.AuthenticationFailedException;
 import com.c4c.keystone.mapper.Keyst0100Mapper;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class UserDetailService implements UserDetailsService {
 
     @Autowired
     Keyst0100Mapper keyst0100Mapper;
+
+    @Autowired
+    protected MessageSource messageSource;
 
     @SneakyThrows
     @Override
@@ -40,7 +41,7 @@ public class UserDetailService implements UserDetailsService {
 
             return new LoginUserDetails(loginId, keyst0100.getLoginPw(), grantedAuthorities, keyst0100.getUserId(), keyst0100.getUserName(), keyst0100.getAdminFlg());
         } else {
-            throw new AuthenticationFailedException("Incorrect loginId or password");
+            throw new AuthenticationFailedException(messageSource.getMessage("E00002", null, Locale.JAPAN));
         }
     }
 }

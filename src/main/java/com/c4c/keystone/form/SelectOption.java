@@ -1,6 +1,7 @@
 package com.c4c.keystone.form;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import lombok.Data;
 
 @Data
@@ -8,7 +9,7 @@ public class SelectOption {
     /**
      * コード
      */
-    String code;
+    String  code;
 
     /**
      * 名称
@@ -19,5 +20,5 @@ public class SelectOption {
      * 無効フラグ
      */
     @JsonSerialize(using = JsonUtils.FlagSerializer.class)
-    String disableFlg;
+    Integer disableFlg;
 }

@@ -15,6 +15,7 @@ import com.c4c.keystone.entity.Keyst0300ExtraS01;
 import com.c4c.keystone.entity.Keyst0300Key;
 import com.c4c.keystone.entity.Keyst0310;
 import com.c4c.keystone.entity.Keyst0310Example;
+import com.c4c.keystone.entity.Keyst0310ExtraS01;
 import com.c4c.keystone.form.Keyst10300DispReserveInfoS;
 import com.c4c.keystone.form.Keyst10300DispReserveInfoS1;
 import com.c4c.keystone.form.Keyst10300DispReserveInfoS2;
@@ -39,11 +40,13 @@ public class Keyst10300Service implements IKeyst10300Service {
 
     @Override
     @Transactional
-    public Keyst10300InitS initialize(Keyst0100Key userInfo) {
+    public Keyst10300InitS initialize(Keyst0100Key userInfo, Integer adminFlg, String team) {
         // レスポンスForm
         Keyst10300InitS resForm = new Keyst10300InitS();
 
         Keyst0300ExtraS01 Keyst0300ExtraS01 = new Keyst0300ExtraS01();
+        List<Keyst0300ExtraS01> Keyst0300ExtraS01List = new ArrayList<Keyst0300ExtraS01>();
+        List<Keyst0310ExtraS01> Keyst0310ExtraS01List = new ArrayList<Keyst0310ExtraS01>();
 
         // 現在年月を取得
         Calendar cal = Calendar.getInstance();
@@ -56,11 +59,23 @@ public class Keyst10300Service implements IKeyst10300Service {
         }
         String calStr = calYearStr + calMonthStr;
         Keyst0300ExtraS01.setImplYearMonth(calStr);
-        Keyst0300ExtraS01.setManagerId(userInfo.getUserId());
 
-        List<Keyst0300ExtraS01> Keyst0300ExtraS01List = keyst0300Mapper.selectWithSMng(Keyst0300ExtraS01);
+        // 管理者
+        if (adminFlg == 0) {
+        	Keyst0300ExtraS01.setManagerId(userInfo.getUserId());
+        	Keyst0300ExtraS01List = keyst0300Mapper.selectWithS01(Keyst0300ExtraS01);
+        } // ユーザー
+        else if (adminFlg == 1) {
+        	Keyst0300ExtraS01.setTeam(team);
+        	Keyst0300ExtraS01List = keyst0300Mapper.selectWithS02(Keyst0300ExtraS01);
+
+        	Keyst0310ExtraS01List = keyst0310Mapper.selectWithS01(userInfo.getUserId());
+        }
+
         resForm.setReserveInfoList(Keyst0300ExtraS01List);
-        return resForm;
+        resForm.setReserveDetailList(Keyst0310ExtraS01List);
+
+         return resForm;
     }
 
     @Override

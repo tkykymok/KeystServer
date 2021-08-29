@@ -60,13 +60,13 @@ public class Keyst10200SaveQ1 {
      * Column: OS
      * Remark: OS
      */
-    private String os;
+    private Integer os;
 
     /**
      * Column: DB
      * Remark: DB
      */
-    private String db;
+    private Integer db;
 
     /**
      * Column: FW_MW_TOOL
@@ -78,56 +78,56 @@ public class Keyst10200SaveQ1 {
      * Column: PG_LANG
      * Remark: 使用言語
      */
-    private List<String> pgLang;
+    private List<Integer> pgLang;
 
     /**
      * Column: SOW_MANAGEMENT
      * Remark: 業務範囲_マネジメント
      */
     @JsonDeserialize(using = JsonUtils.FlagDeserializer.class)
-    private String sowManagement;
+    private Integer sowManagement;
 
     /**
      * Column: SOW_REQ_DEFINITION
      * Remark: 業務範囲_要件定義
      */
     @JsonDeserialize(using = JsonUtils.FlagDeserializer.class)
-    private String sowReqDefinition;
+    private Integer sowReqDefinition;
 
     /**
      * Column: SOW_BASIC_DESIGN
      * Remark: 業務範囲_基本設計
      */
     @JsonDeserialize(using = JsonUtils.FlagDeserializer.class)
-    private String sowBasicDesign;
+    private Integer sowBasicDesign;
 
     /**
      * Column: SOW_DETAIL_DESIGN
      * Remark: 業務範囲_詳細設計
      */
     @JsonDeserialize(using = JsonUtils.FlagDeserializer.class)
-    private String sowDetailDesign;
+    private Integer sowDetailDesign;
 
     /**
      * Column: SOW_IMPLEMENTATION
      * Remark: 業務範囲_実装
      */
     @JsonDeserialize(using = JsonUtils.FlagDeserializer.class)
-    private String sowImplementation;
+    private Integer sowImplementation;
 
     /**
      * Column: SOW_TEST
      * Remark: 業務範囲_テスト
      */
     @JsonDeserialize(using = JsonUtils.FlagDeserializer.class)
-    private String sowTest;
+    private Integer sowTest;
 
     /**
      * Column: SOW_MAINTENANCE_OPERATION
      * Remark: 業務範囲_保守運用
      */
     @JsonDeserialize(using = JsonUtils.FlagDeserializer.class)
-    private String sowMaintenanceOperation;
+    private Integer sowMaintenanceOperation;
 
 }
 

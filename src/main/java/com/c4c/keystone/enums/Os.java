@@ -2,18 +2,18 @@ package com.c4c.keystone.enums;
 
 
 public enum Os {
-    Mac("1", "Mac"),
-    Windows("2", "Windows");
+    Mac(1, "Mac"),
+    Windows(2, "Windows");
 
-    private final String code;
+    private final Integer code;
     private final String name;
 
-    Os(String code, String name) {
+    Os(Integer code, String name) {
         this.code = code;
         this.name = name;
     }
 
-    public String getCode() {
+    public Integer getCode() {
         return this.code;
     }
 
