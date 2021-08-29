@@ -100,6 +100,12 @@ public class Keyst10100InitS01 {
     private String finalEducationContent;
 
     /**
+     * Column: SKILLS
+     * Remark: 保有スキル
+     */
+    private String skills;
+
+    /**
      * Column: POSTAL_CODE
      * Remark: 郵便番号
      */
