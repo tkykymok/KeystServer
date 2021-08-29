@@ -54,18 +54,18 @@ public interface Keyst0100Mapper {
         "LAST_MODIFIED_USER, VERSION_EX_KEY)",
         "values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, ",
         "#{userNameKana,jdbcType=VARCHAR}, #{team,jdbcType=VARCHAR}, ",
-        "#{gender,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{birthday,jdbcType=DATE}, ",
-        "#{nationality,jdbcType=VARCHAR}, #{partnerFlg,jdbcType=VARCHAR}, ",
+        "#{gender,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{birthday,jdbcType=DATE}, ",
+        "#{nationality,jdbcType=VARCHAR}, #{partnerFlg,jdbcType=INTEGER}, ",
         "#{nearestStation,jdbcType=VARCHAR}, #{finalEducationDate,jdbcType=DATE}, ",
         "#{finalEducationContent,jdbcType=VARCHAR}, #{skills,jdbcType=VARCHAR}, ",
         "#{email,jdbcType=VARCHAR}, #{loginId,jdbcType=VARCHAR}, ",
-        "#{loginPw,jdbcType=VARCHAR}, #{adminFlg,jdbcType=VARCHAR}, ",
+        "#{loginPw,jdbcType=VARCHAR}, #{adminFlg,jdbcType=INTEGER}, ",
         "#{prfImgStrgDrctry,jdbcType=VARCHAR}, #{postalCode,jdbcType=VARCHAR}, ",
         "#{address,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, ",
         "#{bankName,jdbcType=VARCHAR}, #{branchName,jdbcType=VARCHAR}, ",
         "#{branchId,jdbcType=VARCHAR}, #{accountType,jdbcType=VARCHAR}, ",
         "#{accountNumber,jdbcType=VARCHAR}, #{accountName,jdbcType=VARCHAR}, ",
-        "#{deleteFlg,jdbcType=VARCHAR}, #{createdDatetime,jdbcType=TIMESTAMP}, ",
+        "#{deleteFlg,jdbcType=INTEGER}, #{createdDatetime,jdbcType=TIMESTAMP}, ",
         "#{createdUser,jdbcType=INTEGER}, #{lastModifiedDatetime,jdbcType=TIMESTAMP}, ",
         "#{lastModifiedUser,jdbcType=INTEGER}, #{versionExKey,jdbcType=INTEGER})"
     })
@@ -86,11 +86,11 @@ public interface Keyst0100Mapper {
         @Result(column="USER_NAME", property="userName", jdbcType=JdbcType.VARCHAR),
         @Result(column="USER_NAME_KANA", property="userNameKana", jdbcType=JdbcType.VARCHAR),
         @Result(column="TEAM", property="team", jdbcType=JdbcType.VARCHAR),
-        @Result(column="GENDER", property="gender", jdbcType=JdbcType.VARCHAR),
+        @Result(column="GENDER", property="gender", jdbcType=JdbcType.INTEGER),
         @Result(column="AGE", property="age", jdbcType=JdbcType.INTEGER),
         @Result(column="BIRTHDAY", property="birthday", jdbcType=JdbcType.DATE),
         @Result(column="NATIONALITY", property="nationality", jdbcType=JdbcType.VARCHAR),
-        @Result(column="PARTNER_FLG", property="partnerFlg", jdbcType=JdbcType.VARCHAR),
+        @Result(column="PARTNER_FLG", property="partnerFlg", jdbcType=JdbcType.INTEGER),
         @Result(column="NEAREST_STATION", property="nearestStation", jdbcType=JdbcType.VARCHAR),
         @Result(column="FINAL_EDUCATION_DATE", property="finalEducationDate", jdbcType=JdbcType.DATE),
         @Result(column="FINAL_EDUCATION_CONTENT", property="finalEducationContent", jdbcType=JdbcType.VARCHAR),
@@ -98,7 +98,7 @@ public interface Keyst0100Mapper {
         @Result(column="EMAIL", property="email", jdbcType=JdbcType.VARCHAR),
         @Result(column="LOGIN_ID", property="loginId", jdbcType=JdbcType.VARCHAR),
         @Result(column="LOGIN_PW", property="loginPw", jdbcType=JdbcType.VARCHAR),
-        @Result(column="ADMIN_FLG", property="adminFlg", jdbcType=JdbcType.VARCHAR),
+        @Result(column="ADMIN_FLG", property="adminFlg", jdbcType=JdbcType.INTEGER),
         @Result(column="PRF_IMG_STRG_DRCTRY", property="prfImgStrgDrctry", jdbcType=JdbcType.VARCHAR),
         @Result(column="POSTAL_CODE", property="postalCode", jdbcType=JdbcType.VARCHAR),
         @Result(column="ADDRESS", property="address", jdbcType=JdbcType.VARCHAR),
@@ -109,7 +109,7 @@ public interface Keyst0100Mapper {
         @Result(column="ACCOUNT_TYPE", property="accountType", jdbcType=JdbcType.VARCHAR),
         @Result(column="ACCOUNT_NUMBER", property="accountNumber", jdbcType=JdbcType.VARCHAR),
         @Result(column="ACCOUNT_NAME", property="accountName", jdbcType=JdbcType.VARCHAR),
-        @Result(column="DELETE_FLG", property="deleteFlg", jdbcType=JdbcType.VARCHAR),
+        @Result(column="DELETE_FLG", property="deleteFlg", jdbcType=JdbcType.INTEGER),
         @Result(column="CREATED_DATETIME", property="createdDatetime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.INTEGER),
         @Result(column="LAST_MODIFIED_DATETIME", property="lastModifiedDatetime", jdbcType=JdbcType.TIMESTAMP),
@@ -137,11 +137,11 @@ public interface Keyst0100Mapper {
         @Result(column="USER_NAME", property="userName", jdbcType=JdbcType.VARCHAR),
         @Result(column="USER_NAME_KANA", property="userNameKana", jdbcType=JdbcType.VARCHAR),
         @Result(column="TEAM", property="team", jdbcType=JdbcType.VARCHAR),
-        @Result(column="GENDER", property="gender", jdbcType=JdbcType.VARCHAR),
+        @Result(column="GENDER", property="gender", jdbcType=JdbcType.INTEGER),
         @Result(column="AGE", property="age", jdbcType=JdbcType.INTEGER),
         @Result(column="BIRTHDAY", property="birthday", jdbcType=JdbcType.DATE),
         @Result(column="NATIONALITY", property="nationality", jdbcType=JdbcType.VARCHAR),
-        @Result(column="PARTNER_FLG", property="partnerFlg", jdbcType=JdbcType.VARCHAR),
+        @Result(column="PARTNER_FLG", property="partnerFlg", jdbcType=JdbcType.INTEGER),
         @Result(column="NEAREST_STATION", property="nearestStation", jdbcType=JdbcType.VARCHAR),
         @Result(column="FINAL_EDUCATION_DATE", property="finalEducationDate", jdbcType=JdbcType.DATE),
         @Result(column="FINAL_EDUCATION_CONTENT", property="finalEducationContent", jdbcType=JdbcType.VARCHAR),
@@ -149,7 +149,7 @@ public interface Keyst0100Mapper {
         @Result(column="EMAIL", property="email", jdbcType=JdbcType.VARCHAR),
         @Result(column="LOGIN_ID", property="loginId", jdbcType=JdbcType.VARCHAR),
         @Result(column="LOGIN_PW", property="loginPw", jdbcType=JdbcType.VARCHAR),
-        @Result(column="ADMIN_FLG", property="adminFlg", jdbcType=JdbcType.VARCHAR),
+        @Result(column="ADMIN_FLG", property="adminFlg", jdbcType=JdbcType.INTEGER),
         @Result(column="PRF_IMG_STRG_DRCTRY", property="prfImgStrgDrctry", jdbcType=JdbcType.VARCHAR),
         @Result(column="POSTAL_CODE", property="postalCode", jdbcType=JdbcType.VARCHAR),
         @Result(column="ADDRESS", property="address", jdbcType=JdbcType.VARCHAR),
@@ -160,7 +160,7 @@ public interface Keyst0100Mapper {
         @Result(column="ACCOUNT_TYPE", property="accountType", jdbcType=JdbcType.VARCHAR),
         @Result(column="ACCOUNT_NUMBER", property="accountNumber", jdbcType=JdbcType.VARCHAR),
         @Result(column="ACCOUNT_NAME", property="accountName", jdbcType=JdbcType.VARCHAR),
-        @Result(column="DELETE_FLG", property="deleteFlg", jdbcType=JdbcType.VARCHAR),
+        @Result(column="DELETE_FLG", property="deleteFlg", jdbcType=JdbcType.INTEGER),
         @Result(column="CREATED_DATETIME", property="createdDatetime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.INTEGER),
         @Result(column="LAST_MODIFIED_DATETIME", property="lastModifiedDatetime", jdbcType=JdbcType.TIMESTAMP),
@@ -195,11 +195,11 @@ public interface Keyst0100Mapper {
         "set USER_NAME = #{userName,jdbcType=VARCHAR},",
           "USER_NAME_KANA = #{userNameKana,jdbcType=VARCHAR},",
           "TEAM = #{team,jdbcType=VARCHAR},",
-          "GENDER = #{gender,jdbcType=VARCHAR},",
+          "GENDER = #{gender,jdbcType=INTEGER},",
           "AGE = #{age,jdbcType=INTEGER},",
           "BIRTHDAY = #{birthday,jdbcType=DATE},",
           "NATIONALITY = #{nationality,jdbcType=VARCHAR},",
-          "PARTNER_FLG = #{partnerFlg,jdbcType=VARCHAR},",
+          "PARTNER_FLG = #{partnerFlg,jdbcType=INTEGER},",
           "NEAREST_STATION = #{nearestStation,jdbcType=VARCHAR},",
           "FINAL_EDUCATION_DATE = #{finalEducationDate,jdbcType=DATE},",
           "FINAL_EDUCATION_CONTENT = #{finalEducationContent,jdbcType=VARCHAR},",
@@ -207,7 +207,7 @@ public interface Keyst0100Mapper {
           "EMAIL = #{email,jdbcType=VARCHAR},",
           "LOGIN_ID = #{loginId,jdbcType=VARCHAR},",
           "LOGIN_PW = #{loginPw,jdbcType=VARCHAR},",
-          "ADMIN_FLG = #{adminFlg,jdbcType=VARCHAR},",
+          "ADMIN_FLG = #{adminFlg,jdbcType=INTEGER},",
           "PRF_IMG_STRG_DRCTRY = #{prfImgStrgDrctry,jdbcType=VARCHAR},",
           "POSTAL_CODE = #{postalCode,jdbcType=VARCHAR},",
           "ADDRESS = #{address,jdbcType=VARCHAR},",
@@ -218,7 +218,7 @@ public interface Keyst0100Mapper {
           "ACCOUNT_TYPE = #{accountType,jdbcType=VARCHAR},",
           "ACCOUNT_NUMBER = #{accountNumber,jdbcType=VARCHAR},",
           "ACCOUNT_NAME = #{accountName,jdbcType=VARCHAR},",
-          "DELETE_FLG = #{deleteFlg,jdbcType=VARCHAR},",
+          "DELETE_FLG = #{deleteFlg,jdbcType=INTEGER},",
           "CREATED_DATETIME = #{createdDatetime,jdbcType=TIMESTAMP},",
           "CREATED_USER = #{createdUser,jdbcType=INTEGER},",
           "LAST_MODIFIED_DATETIME = #{lastModifiedDatetime,jdbcType=TIMESTAMP},",
@@ -228,10 +228,12 @@ public interface Keyst0100Mapper {
     })
     int updateByPrimaryKey(Keyst0100 record);
 
+
     String EXTRA_S01 =
             "SELECT\n" +
             "    KEYST0100.USER_ID\n" +
             "    ,KEYST0100.USER_NAME\n" +
+            "    ,KEYST0100.USER_NAME_KANA\n" +
             "    ,KEYST0100.TEAM\n" +
             "    ,KEYST0100.PRF_IMG_STRG_DRCTRY\n" +
             "    ,KEYST0100.SKILLS\n" +
@@ -243,15 +245,16 @@ public interface Keyst0100Mapper {
             "   KEYST0100\n" +
             "LEFT OUTER JOIN KEYST5110 ON\n" +
             "    KEYST0100.USER_ID = KEYST5110.USER_ID\n" +
-            "INNER JOIN KEYST5100 ON\n" +
+            "LEFT OUTER JOIN KEYST5100 ON\n" +
             "    KEYST5110.PRJ_CODE = KEYST5100.PRJ_CODE\n" +
             "WHERE KEYST5110.PRJ_END_DATE IS NULL\n" +
-            "   AND KEYST0100.DELETE_FLG = '0'";
+            "   AND KEYST0100.DELETE_FLG = 0";
 
     @Select(EXTRA_S01)
     @Results(value = {
             @Result(property = "userId", column = "USER_ID"),
             @Result(property = "userName", column = "USER_NAME"),
+            @Result(property = "userNameKana", column = "USER_NAME_KANA"),
             @Result(property = "team", column = "TEAM"),
             @Result(property = "prfImgStrgDrctry", column = "PRF_IMG_STRG_DRCTRY"),
             @Result(property = "skills", column = "SKILLS"),
@@ -261,4 +264,16 @@ public interface Keyst0100Mapper {
             @Result(property = "prjStartDate", column = "PRJ_START_DATE"),
     })
     List<Keyst0100ExtraS01> selectWithS01();
+
+    String EXTRA_S02 =
+            "SELECT DISTINCT\n" +
+            "   KEYST0100.TEAM\n" +
+            "FROM\n" +
+            "   KEYST0100";
+
+    @Select(EXTRA_S02)
+    @Results(value = {
+            @Result(property = "team", column = "TEAM")
+    })
+    List<Keyst0100> selectTeam();
 }

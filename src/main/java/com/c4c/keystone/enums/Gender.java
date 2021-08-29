@@ -1,14 +1,14 @@
 package com.c4c.keystone.enums;
 
 
-public enum Os {
-    Mac(1, "Mac"),
-    Windows(2, "Windows");
+public enum Gender {
+    Male(1, "男"),
+    Female(2, "女");
 
     private final Integer code;
     private final String name;
 
-    Os(Integer code, String name) {
+    Gender(Integer code, String name) {
         this.code = code;
         this.name = name;
     }

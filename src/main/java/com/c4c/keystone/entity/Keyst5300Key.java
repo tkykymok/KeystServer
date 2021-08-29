@@ -11,5 +11,5 @@ public class Keyst5300Key {
      * Column: SKILL_CODE
      * Remark: スキルコード
      */
-    private String skillCode;
+    private Integer skillCode;
 }

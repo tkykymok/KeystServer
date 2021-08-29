@@ -47,7 +47,7 @@ public class SelectOptionController {
             // 言語フラグがONの場合、以下の処理をする。
             SelectOption tempSelectOption = new SelectOption();
             // selectOptionFormに以下の値を設定する。
-            tempSelectOption.setCode(keyst5300.getSkillCode()); // コード
+            tempSelectOption.setCode(keyst5300.getSkillCode().toString()); // コード
             tempSelectOption.setName(keyst5300.getSkillName()); // 名称
             // selectOptionListに追加する。
             selectOptionList.add(tempSelectOption);
@@ -66,7 +66,7 @@ public class SelectOptionController {
             if (keyst5300.getLangFlg().equals(Flag.ON)) {
                 SelectOption tempSelectOption = new SelectOption();
                 // selectOptionFormに以下の値を設定する。
-                tempSelectOption.setCode(keyst5300.getSkillCode()); // コード
+                tempSelectOption.setCode(keyst5300.getSkillCode().toString()); // コード
                 tempSelectOption.setName(keyst5300.getSkillName()); // 名称
                 // selectOptionListに追加する。
                 selectOptionList.add(tempSelectOption);
@@ -90,7 +90,7 @@ public class SelectOptionController {
         // OSEnum一覧全件に対して以下の処理をする。
         for (Os e : enumArray) {
             SelectOption tmpSelectOption = new SelectOption();
-            tmpSelectOption.setCode(e.getCode()); // コード
+            tmpSelectOption.setCode(e.getCode().toString()); // コード
             tmpSelectOption.setName(e.getName()); // 名称
             selectOptionList.add(tmpSelectOption);
         }
@@ -112,7 +112,7 @@ public class SelectOptionController {
         // OSEnum一覧全件に対して以下の処理をする。
         for (Db e : enumArray) {
             SelectOption tmpSelectOption = new SelectOption();
-            tmpSelectOption.setCode(e.getCode()); // コード
+            tmpSelectOption.setCode(e.getCode().toString()); // コード
             tmpSelectOption.setName(e.getName()); // 名称
             selectOptionList.add(tmpSelectOption);
         }

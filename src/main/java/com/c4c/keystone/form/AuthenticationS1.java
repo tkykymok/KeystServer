@@ -22,5 +22,5 @@ public class AuthenticationS1 {
      * Remark: 管理者フラグ
      */
     @JsonSerialize(using = JsonUtils.FlagSerializer.class)
-    private String adminFlg;
+    private Integer adminFlg;
 }

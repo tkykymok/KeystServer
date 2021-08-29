@@ -61,7 +61,7 @@ public class Keyst0200SqlProvider {
         }
         
         if (record.getDeleteFlg() != null) {
-            sql.VALUES("DELETE_FLG", "#{deleteFlg,jdbcType=VARCHAR}");
+            sql.VALUES("DELETE_FLG", "#{deleteFlg,jdbcType=INTEGER}");
         }
         
         if (record.getCreatedDatetime() != null) {
@@ -153,7 +153,7 @@ public class Keyst0200SqlProvider {
         }
         
         if (record.getDeleteFlg() != null) {
-            sql.SET("DELETE_FLG = #{record.deleteFlg,jdbcType=VARCHAR}");
+            sql.SET("DELETE_FLG = #{record.deleteFlg,jdbcType=INTEGER}");
         }
         
         if (record.getCreatedDatetime() != null) {
@@ -193,7 +193,7 @@ public class Keyst0200SqlProvider {
         sql.SET("PR = #{record.pr,jdbcType=VARCHAR}");
         sql.SET("EVALUATION_OF_SALES = #{record.evaluationOfSales,jdbcType=VARCHAR}");
         sql.SET("SKILL_SHEET_REG_DATETIME = #{record.skillSheetRegDatetime,jdbcType=TIMESTAMP}");
-        sql.SET("DELETE_FLG = #{record.deleteFlg,jdbcType=VARCHAR}");
+        sql.SET("DELETE_FLG = #{record.deleteFlg,jdbcType=INTEGER}");
         sql.SET("CREATED_DATETIME = #{record.createdDatetime,jdbcType=TIMESTAMP}");
         sql.SET("CREATED_USER = #{record.createdUser,jdbcType=INTEGER}");
         sql.SET("LAST_MODIFIED_DATETIME = #{record.lastModifiedDatetime,jdbcType=TIMESTAMP}");
@@ -233,7 +233,7 @@ public class Keyst0200SqlProvider {
         }
         
         if (record.getDeleteFlg() != null) {
-            sql.SET("DELETE_FLG = #{deleteFlg,jdbcType=VARCHAR}");
+            sql.SET("DELETE_FLG = #{deleteFlg,jdbcType=INTEGER}");
         }
         
         if (record.getCreatedDatetime() != null) {

@@ -30,7 +30,7 @@ public class Keyst10200InitS01 {
      * Column: GENDER
      * Remark: 性別
      */
-    private String gender;
+    private Integer gender;
 
     /**
      * Column: AGE
@@ -55,7 +55,7 @@ public class Keyst10200InitS01 {
      * Remark: 配偶者フラグ
      */
     @JsonSerialize(using = JsonUtils.FlagSerializer.class)
-    private String partnerFlg;
+    private Integer partnerFlg;
 
     /**
      * Column: NEAREST_STATION

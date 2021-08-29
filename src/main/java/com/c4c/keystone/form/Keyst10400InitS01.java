@@ -1,38 +1,18 @@
 package com.c4c.keystone.form;
 
-import java.util.List;
-
 import lombok.Data;
 
 @Data
 public class Keyst10400InitS01 {
     /**
-     * Column: USER_ID
-     * Remark: ユーザーID
+     * Column: SKILL_CODE
+     * Remark: スキルコード
      */
-    private Integer userId;
+    private Integer skillCode;
 
     /**
-     * Column: USER_NAME
-     * Remark: ユーザー名
+     * Column: SKILL_NAME
+     * Remark: スキル名
      */
-    private String userName;
-
-    /**
-     * Column: TEAM
-     * Remark: チーム
-     */
-    private String team;
-
-    /**
-     * Column: PRF_IMG_STRG_DRCTRY
-     * Remark: プロフィール画像格納先ディレクトリ
-     */
-    private String prfImgStrgDrctry;
-
-    /**
-     * Column: SKILLS
-     * Remark: 保有スキル
-     */
-    private List<Keyst10400InitS02> skillList;
+    private String skillName;
 }

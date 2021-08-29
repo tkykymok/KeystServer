@@ -37,7 +37,7 @@ public class Keyst5300SqlProvider {
         sql.INSERT_INTO("KEYST5300");
         
         if (record.getSkillCode() != null) {
-            sql.VALUES("SKILL_CODE", "#{skillCode,jdbcType=VARCHAR}");
+            sql.VALUES("SKILL_CODE", "#{skillCode,jdbcType=INTEGER}");
         }
         
         if (record.getSkillName() != null) {
@@ -45,7 +45,7 @@ public class Keyst5300SqlProvider {
         }
         
         if (record.getLangFlg() != null) {
-            sql.VALUES("LANG_FLG", "#{langFlg,jdbcType=VARCHAR}");
+            sql.VALUES("LANG_FLG", "#{langFlg,jdbcType=INTEGER}");
         }
         
         if (record.getCreatedDatetime() != null) {
@@ -109,7 +109,7 @@ public class Keyst5300SqlProvider {
         sql.UPDATE("KEYST5300");
         
         if (record.getSkillCode() != null) {
-            sql.SET("SKILL_CODE = #{record.skillCode,jdbcType=VARCHAR}");
+            sql.SET("SKILL_CODE = #{record.skillCode,jdbcType=INTEGER}");
         }
         
         if (record.getSkillName() != null) {
@@ -117,7 +117,7 @@ public class Keyst5300SqlProvider {
         }
         
         if (record.getLangFlg() != null) {
-            sql.SET("LANG_FLG = #{record.langFlg,jdbcType=VARCHAR}");
+            sql.SET("LANG_FLG = #{record.langFlg,jdbcType=INTEGER}");
         }
         
         if (record.getCreatedDatetime() != null) {
@@ -151,9 +151,9 @@ public class Keyst5300SqlProvider {
         SQL sql = new SQL();
         sql.UPDATE("KEYST5300");
         
-        sql.SET("SKILL_CODE = #{record.skillCode,jdbcType=VARCHAR}");
+        sql.SET("SKILL_CODE = #{record.skillCode,jdbcType=INTEGER}");
         sql.SET("SKILL_NAME = #{record.skillName,jdbcType=VARCHAR}");
-        sql.SET("LANG_FLG = #{record.langFlg,jdbcType=VARCHAR}");
+        sql.SET("LANG_FLG = #{record.langFlg,jdbcType=INTEGER}");
         sql.SET("CREATED_DATETIME = #{record.createdDatetime,jdbcType=TIMESTAMP}");
         sql.SET("CREATED_USER = #{record.createdUser,jdbcType=INTEGER}");
         sql.SET("LAST_MODIFIED_DATETIME = #{record.lastModifiedDatetime,jdbcType=TIMESTAMP}");
@@ -177,7 +177,7 @@ public class Keyst5300SqlProvider {
         }
         
         if (record.getLangFlg() != null) {
-            sql.SET("LANG_FLG = #{langFlg,jdbcType=VARCHAR}");
+            sql.SET("LANG_FLG = #{langFlg,jdbcType=INTEGER}");
         }
         
         if (record.getCreatedDatetime() != null) {
@@ -200,7 +200,7 @@ public class Keyst5300SqlProvider {
             sql.SET("VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}");
         }
         
-        sql.WHERE("SKILL_CODE = #{skillCode,jdbcType=VARCHAR}");
+        sql.WHERE("SKILL_CODE = #{skillCode,jdbcType=INTEGER}");
         
         return sql.toString();
     }
