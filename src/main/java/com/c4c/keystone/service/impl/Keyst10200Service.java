@@ -273,6 +273,7 @@ public class Keyst10200Service implements IKeyst10200Service {
 
         Keyst10200SaveS resForm = new Keyst10200SaveS();
         resForm.setSkillSheetId(keyst0200.getSkillSheetId());
+        resForm.setUserId(keyst0200.getUserId());
 
         return resForm;
     }
@@ -341,6 +342,7 @@ public class Keyst10200Service implements IKeyst10200Service {
 
         Keyst10200UpdateS resForm = new Keyst10200UpdateS();
         resForm.setSkillSheetId(keyst0200.getSkillSheetId());
+        resForm.setUserId(keyst0200.getUserId());
 
         return resForm;
     }
