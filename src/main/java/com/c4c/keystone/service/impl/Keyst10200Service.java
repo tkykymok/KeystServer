@@ -1,18 +1,26 @@
 package com.c4c.keystone.service.impl;
 
+import com.c4c.keystone.constants.Flag;
 import com.c4c.keystone.entity.*;
+import com.c4c.keystone.exception.ExclusiveException;
 import com.c4c.keystone.form.*;
 import com.c4c.keystone.mapper.*;
 import com.c4c.keystone.service.IKeyst10200Service;
+import com.c4c.keystone.utils.EntityUtil;
+import com.c4c.keystone.utils.JwtUtil;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
+@Log4j2
 public class Keyst10200Service implements IKeyst10200Service {
 
     @Autowired
@@ -28,6 +36,13 @@ public class Keyst10200Service implements IKeyst10200Service {
     Keyst0210Mapper keyst0210Mapper;
     @Autowired
     Keyst5300Mapper keyst5300Mapper;
+
+    @Autowired
+    protected MessageSource messageSource;
+    @Autowired
+    JwtUtil jwtUtil;
+    @Autowired
+    EntityUtil entityUtil;
 
     @Override
     @Transactional
@@ -76,10 +91,12 @@ public class Keyst10200Service implements IKeyst10200Service {
         List<Keyst5300> keyst5300List = keyst5300Service.getAllSkills();
 
         // 保有スキルが存在する場合、ユーザー基本情報の保有スキル(コード値)全件に対して以下の処理をする。
-        if (keyst0100.getSkills() != null) {
-            String[] skillCodeList = keyst0100.getSkills().split(",");
+        if (Objects.nonNull(keyst0100.getSkills()) && !keyst0100.getSkills().isEmpty()) {
+            List<Integer> skillCodeList = Arrays.stream(keyst0100.getSkills().split(","))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
             List<Keyst10200InitS02> initS02List = new ArrayList<>();
-            for (String skillCode : skillCodeList) {
+            for (Integer skillCode : skillCodeList) {
                 Keyst10200InitS02 tempInitS02 = new Keyst10200InitS02();
                 Keyst5300 tempKeyst5300 = keyst5300List.stream()
                         .filter(obj -> skillCode.equals(obj.getSkillCode()))
@@ -159,26 +176,174 @@ public class Keyst10200Service implements IKeyst10200Service {
             Keyst10200DispSklShtS2 tmpDispSklShtS2 = new Keyst10200DispSklShtS2();
             BeanUtils.copyProperties(keyst0210, tmpDispSklShtS2);
             // 開発規模
-            if (Objects.nonNull(keyst0210.getDevScale())) {
+            if (Objects.nonNull(keyst0210.getDevScale()) && !keyst0210.getDevScale().isEmpty()) {
                 List<String> devScale = new ArrayList<>(Arrays.asList(keyst0210.getDevScale().split(",")));
                 tmpDispSklShtS2.setDevScale(devScale);
+            } else {
+                tmpDispSklShtS2.setDevScale(new ArrayList<>());
             }
             // FW・MW・ツール等
-            if (Objects.nonNull(keyst0210.getFwMwTool())) {
+            if (Objects.nonNull(keyst0210.getFwMwTool()) && !keyst0210.getFwMwTool().isEmpty()) {
                 List<String> fwMwTool = new ArrayList<>(Arrays.asList(keyst0210.getFwMwTool().split(",")));
                 tmpDispSklShtS2.setFwMwTool(fwMwTool);
+            } else {
+                tmpDispSklShtS2.setFwMwTool(new ArrayList<>());
             }
             // 使用言語
-            if (Objects.nonNull(keyst0210.getPgLang())) {
+            if (Objects.nonNull(keyst0210.getPgLang()) && !keyst0210.getPgLang().isEmpty()) {
                 List<Integer> pgLang = Arrays.stream(keyst0210.getPgLang().split(","))
                         .map(Integer::parseInt)
                         .collect(Collectors.toList());
                 tmpDispSklShtS2.setPgLang(pgLang);
+            } else {
+                tmpDispSklShtS2.setPgLang(new ArrayList<>());
             }
             dispSklShtS2List.add(tmpDispSklShtS2);
         }
 
         return resForm;
     }
+
+    @Override
+    @Transactional
+    public Keyst10200SaveS save(String jwt, Keyst10200SaveQ reqForm) {
+        // ログインユーザー情報
+        Map<String, Object> loginUserInfo = jwtUtil.parseToken(jwt.substring(7));
+        // 管理者フラグ
+        boolean isAdmin = loginUserInfo.get(jwtUtil.ADMIN_FLG) == Flag.ON;
+        // ユーザーID
+        Integer loginUserId = Integer.valueOf(loginUserInfo.get(jwtUtil.USER_ID).toString());
+
+        // リクエストFormをスキルシートヘッダEntityに移送する。
+        Keyst0200 keyst0200 = new Keyst0200();
+        BeanUtils.copyProperties(reqForm, keyst0200);
+        // スキルシートヘッダEntityに以下の値を設定する。
+        if (Objects.isNull(keyst0200.getUserId()) && !isAdmin) {
+            // スキルシートヘッダEntityのuserIdが設定されていない、かつ管理者でない場合
+            // ログインユーザーIDを設定する。
+            keyst0200.setUserId(loginUserId); // ユーザーID
+        }
+        LocalDateTime SkillSheetRegDatetime = LocalDateTime.now(); // 現在時刻を取得
+        SkillSheetRegDatetime = SkillSheetRegDatetime.minusNanos(SkillSheetRegDatetime.getNano()); // ナノ秒を切り捨て
+        keyst0200.setSkillSheetRegDatetime(SkillSheetRegDatetime); // スキルシート登録日時
+        keyst0200.setDeleteFlg(Flag.OFF); // 削除フラグ
+        keyst0200.setVersionExKey(0); // 排他制御カラム
+        log.info(keyst0200);
+        // INSERT時共通フィールドを設定する。
+        entityUtil.setColumns4Insert(keyst0200, loginUserId);
+
+        keyst0200Mapper.insert(keyst0200);
+        // 登録したスキルシートヘッダーをユーザーID, 登録日時をキーに再検索する。(登録したスキルシートID取得のため)
+        Keyst0200Example keyst0200Example = new Keyst0200Example();
+        keyst0200Example.createCriteria()
+                .andUserIdEqualTo(keyst0200.getUserId())
+                .andSkillSheetRegDatetimeEqualTo(keyst0200.getSkillSheetRegDatetime());
+        keyst0200 = keyst0200Mapper.selectByExample(keyst0200Example).get(0);
+
+        // リクエストFormをスキルシート明細Entityに移送する。
+        List<Keyst10200SaveQ1> skillSheetDetail = reqForm.getSkillSheetDetail();
+        int index = 0;
+        for (Keyst10200SaveQ1 keyst10200SaveQ1 : skillSheetDetail) {
+            Keyst0210 keyst0210 = new Keyst0210();
+            BeanUtils.copyProperties(keyst10200SaveQ1, keyst0210);
+            // スキルシート明細Entityに以下の値を設定する。
+            keyst0210.setSkillSheetId(keyst0200.getSkillSheetId()); // スキルシートID
+            keyst0210.setRefNo(index);
+            // devScale, fwMwTool, pgLang はList→Stringに変換してセットする必要あり。
+            // devScale
+            String tempDevScale = String.join(",", keyst10200SaveQ1.getDevScale());
+            keyst0210.setDevScale(tempDevScale);
+            // fwMwTool
+            String tempFwMwTool = String.join(",", keyst10200SaveQ1.getFwMwTool());
+            keyst0210.setFwMwTool(tempFwMwTool);
+            // pgLang
+            String tempPgLang = keyst10200SaveQ1.getPgLang().stream()
+                    .map(Object::toString)
+                    .collect(Collectors.joining(","));
+            keyst0210.setPgLang(tempPgLang);
+
+            // INSERT時共通フィールドを設定する。
+            entityUtil.setColumns4Insert(keyst0200, loginUserId);
+
+            log.info(keyst0210);
+            index++;
+            // INSERTを実行する。
+            keyst0210Mapper.insert(keyst0210);
+        }
+
+        Keyst10200SaveS resForm = new Keyst10200SaveS();
+        resForm.setSkillSheetId(keyst0200.getSkillSheetId());
+
+        return resForm;
+    }
+
+    @Override
+    public Keyst10200UpdateS update(String jwt, Keyst10200UpdateQ reqForm) throws ExclusiveException {
+        // ログインユーザー情報
+        Map<String, Object> loginUserInfo = jwtUtil.parseToken(jwt.substring(7));
+        // ユーザーID
+        Integer loginUserId = Integer.valueOf(loginUserInfo.get(jwtUtil.USER_ID).toString());
+
+        // バージョンチェック
+        Keyst0200 keyst0200 = new Keyst0200();
+        keyst0200.setSkillSheetId(reqForm.getSkillSheetId()); // スキルシートID
+        keyst0200.setVersionExKey(reqForm.getVersionExKey()); // 排他制御カラム
+        keyst0200 = keyst0200Mapper.checkVersion(keyst0200);
+        if (keyst0200 == null) {
+            throw new ExclusiveException(messageSource.getMessage("E00003", null, Locale.JAPAN));
+        }
+        log.info(keyst0200);
+        // リクエストFormをスキルシートヘッダEntityに移送する。
+        BeanUtils.copyProperties(reqForm, keyst0200);
+        // スキルシート登録日時を設定する。
+        keyst0200.setSkillSheetRegDatetime(LocalDateTime.now()); // スキルシート登録日時
+        // UPDATE時共通フィールドを設定する。
+        entityUtil.setColumns4Update(keyst0200, loginUserId);
+
+        // UPDATEを実行する。
+        keyst0200Mapper.updateByPrimaryKey(keyst0200);
+
+        // スキルシートIDに紐づく、既存のスキルシート明細全件を削除する。
+        Keyst0210Example keyst0210Example = new Keyst0210Example();
+        keyst0210Example.createCriteria()
+                .andSkillSheetIdEqualTo(keyst0200.getSkillSheetId()); // スキルシートID
+        keyst0210Mapper.deleteByExample(keyst0210Example);
+
+        // リクエストFormをスキルシート明細Entityに移送する。
+        List<Keyst10200UpdateQ1> skillSheetDetail = reqForm.getSkillSheetDetail();
+        int index = 0;
+        for (Keyst10200UpdateQ1 keyst10200UpdateQ1 : skillSheetDetail) {
+            Keyst0210 keyst0210 = new Keyst0210();
+            BeanUtils.copyProperties(keyst10200UpdateQ1, keyst0210);
+            // スキルシート明細Entityに以下の値を設定する。
+            keyst0210.setSkillSheetId(keyst0200.getSkillSheetId()); // スキルシートID
+            keyst0210.setRefNo(index);
+            // devScale, fwMwTool, pgLang はList→Stringに変換してセットする必要あり。
+            // devScale
+            String tempDevScale = String.join(",", keyst10200UpdateQ1.getDevScale());
+            keyst0210.setDevScale(tempDevScale);
+            // fwMwTool
+            String tempFwMwTool = String.join(",", keyst10200UpdateQ1.getFwMwTool());
+            keyst0210.setFwMwTool(tempFwMwTool);
+            // pgLang
+            String tempPgLang = keyst10200UpdateQ1.getPgLang().stream()
+                    .map(Object::toString)
+                    .collect(Collectors.joining(","));
+            keyst0210.setPgLang(tempPgLang);
+
+            // WHOカラムの設定
+
+            log.info(keyst0210);
+            index++;
+            // INSERTを実行する。
+            keyst0210Mapper.insert(keyst0210);
+        }
+
+        Keyst10200UpdateS resForm = new Keyst10200UpdateS();
+        resForm.setSkillSheetId(keyst0200.getSkillSheetId());
+
+        return resForm;
+    }
+
 
 }
