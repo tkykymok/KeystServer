@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Locale;
 import java.util.Map;
 
 
@@ -75,7 +76,7 @@ public class Keyst10200Controller {
     public ResponseEntity<Keyst10200SaveS> save(@RequestHeader("Authorization") String jwt, @RequestBody @Valid Keyst10200SaveQ reqForm) {
         // レスポンスForm
         Keyst10200SaveS resForm = keyst10200Service.save(jwt, reqForm);
-
+        resForm.setMessages(messageSource.getMessage("I00001", new String[]{"新規保存"}, Locale.JAPAN));
         return ResponseEntity.ok(resForm);
     }
 
@@ -83,7 +84,7 @@ public class Keyst10200Controller {
     public ResponseEntity<Keyst10200UpdateS> update(@RequestHeader("Authorization") String jwt, @RequestBody @Valid Keyst10200UpdateQ reqForm) throws ExclusiveException {
         // レスポンスForm
         Keyst10200UpdateS resForm = keyst10200Service.update(jwt, reqForm);
-
+        resForm.setMessages(messageSource.getMessage("I00001", new String[]{"更新"}, Locale.JAPAN));
         return ResponseEntity.ok(resForm);
     }
 
