@@ -80,7 +80,7 @@ public class Keyst10200Controller {
         return ResponseEntity.ok(resForm);
     }
 
-    @PostMapping(value = "update")
+    @PutMapping(value = "update")
     public ResponseEntity<Keyst10200UpdateS> update(@RequestHeader("Authorization") String jwt, @RequestBody @Valid Keyst10200UpdateQ reqForm) throws ExclusiveException {
         // レスポンスForm
         Keyst10200UpdateS resForm = keyst10200Service.update(jwt, reqForm);
