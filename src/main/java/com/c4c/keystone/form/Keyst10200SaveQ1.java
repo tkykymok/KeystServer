@@ -54,7 +54,7 @@ public class Keyst10200SaveQ1 {
      * Remark: 開発規模
      */
     @Valid
-    private List<@Pattern(regexp = "[0-9]{1,4}", message = "{V00001}") String> devScale;
+    private List<String> devScale;
 
     /**
      * Column: OS

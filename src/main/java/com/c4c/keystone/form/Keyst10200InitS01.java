@@ -30,7 +30,7 @@ public class Keyst10200InitS01 {
      * Column: GENDER
      * Remark: 性別
      */
-    private String gender;
+    private Integer gender;
 
     /**
      * Column: AGE
