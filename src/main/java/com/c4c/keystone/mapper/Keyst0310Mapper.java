@@ -179,7 +179,7 @@ public interface Keyst0310Mapper {
             "LEFT OUTER JOIN KEYST0300 \n" +
             "	ON KEYST0310.RESERVE_ID = KEYST0300.RESERVE_ID\n" +
             "LEFT OUTER JOIN KEYST0100 \n" +
-            "	ON KEYST0300.RESERVE_ID = KEYST0100.USER_ID\n" +
+            "	ON KEYST0310.USER_ID = KEYST0100.USER_ID\n" +
             "WHERE KEYST0310.USER_ID = #{userId,jdbcType=INTEGER}";
 
     @Select(EXTRA_S01)

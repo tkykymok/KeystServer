@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.c4c.keystone.entity.Keyst0100;
 import com.c4c.keystone.entity.Keyst0100Key;
 import com.c4c.keystone.entity.Keyst0300ExtraS01;
-import com.c4c.keystone.entity.Keyst0310ExtraS01;
 import com.c4c.keystone.form.Keyst10300DispReserveInfoS;
 import com.c4c.keystone.form.Keyst10300InitS;
 import com.c4c.keystone.mapper.Keyst0100Mapper;
@@ -72,18 +71,18 @@ public class Keyst10300Controller {
     	return ResponseEntity.ok(resForm);
     }
 
-    @GetMapping("viewComment")
-    public Keyst10300InitS viewComment(Integer userId) {
-        Keyst10300InitS resForm = new Keyst10300InitS();
-
-    	List<Keyst0310ExtraS01> Keyst0310ExtraS01List = new ArrayList<Keyst0310ExtraS01>();
-    	Keyst0310ExtraS01List = keyst0310Mapper.selectWithS01(userId);
-
-        resForm.setReserveDetailList(Keyst0310ExtraS01List);
-
-    	return resForm;
-
-    }
+//    @GetMapping("viewComment")
+//    public Keyst10300InitS viewComment(Integer userId) {
+//        Keyst10300InitS resForm = new Keyst10300InitS();
+//
+//    	List<Keyst0310ExtraS01> Keyst0310ExtraS01List = new ArrayList<Keyst0310ExtraS01>();
+//    	Keyst0310ExtraS01List = keyst0310Mapper.selectWithS01(userId);
+//
+//        resForm.setReserveDetailList(Keyst0310ExtraS01List);
+//
+//    	return resForm;
+//
+//    }
 
     @GetMapping("changeTeam")
     public ResponseEntity<Keyst10300InitS> changeTeam(String team) {
@@ -112,6 +111,29 @@ public class Keyst10300Controller {
 
     	return ResponseEntity.ok(resForm);
 
+    }
+ 
+    @GetMapping("changeMonth")
+    public ResponseEntity<Keyst10300InitS> changeMonth(@RequestHeader("Authorization") String jwt, String month) {
+    	Map<String, Object> loginUserInfo = jwtUtil.parseToken(jwt.substring(7));
+        // ユーザーID
+        Integer userId = Integer.valueOf(loginUserInfo.get(jwtUtil.USER_ID).toString());
+
+    	// レスポンスForm
+    	Keyst10300InitS resForm = new Keyst10300InitS();
+    	
+    	Keyst0300ExtraS01 Keyst0300ExtraS01 = new Keyst0300ExtraS01();
+    	List<Keyst0300ExtraS01> Keyst0300ExtraS01List = new ArrayList<Keyst0300ExtraS01>();
+    	    	
+    	Keyst0300ExtraS01.setManagerId(userId);
+    	Keyst0300ExtraS01.setImplYearMonth(month);
+    	
+    	Keyst0300ExtraS01List = keyst0300Mapper.selectWithS03(Keyst0300ExtraS01);
+    	
+    	resForm.setReserveInfoList(Keyst0300ExtraS01List);
+    	
+    	return ResponseEntity.ok(resForm);
+    	
     }
 
     @GetMapping(value = "displayReserveInfo")

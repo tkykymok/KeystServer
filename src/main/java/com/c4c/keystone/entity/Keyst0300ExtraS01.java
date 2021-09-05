@@ -55,6 +55,19 @@ public class Keyst0300ExtraS01 {
     private Integer userId;
 
     /**
+     * Column: USER_COMMENT
+     * Remark: ユーザーコメント
+     */
+    private String userComment;
+
+    /**
+     * Column: MANAGER_COMMENT
+     * Remark: 管理者コメント
+     */
+    private String managerComment;
+
+
+    /**
      * Column: USER_NAME
      * Remark: ユーザー名
      */
