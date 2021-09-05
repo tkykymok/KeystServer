@@ -9,6 +9,12 @@ import java.util.List;
 @Data
 public class Keyst10200SaveQ {
     /**
+     * Column: USER_ID
+     * Remark: ユーザーID
+     */
+    private Integer userId;
+
+    /**
      * Column: STRONG_AREA
      * Remark: 得意分野
      */
