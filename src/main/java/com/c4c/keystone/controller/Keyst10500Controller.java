@@ -1,26 +1,43 @@
 package com.c4c.keystone.controller;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.c4c.keystone.constants.Flag;
 import com.c4c.keystone.entity.Keyst5100;
 import com.c4c.keystone.entity.Keyst5100Key;
 import com.c4c.keystone.entity.Keyst5110;
 import com.c4c.keystone.entity.Keyst5110Example;
+import com.c4c.keystone.form.Keyst10500SaveQ;
+import com.c4c.keystone.form.Keyst10500SaveS;
 import com.c4c.keystone.form.Keyst10500SearchS;
 import com.c4c.keystone.form.Keyst10500SearchS01;
 import com.c4c.keystone.form.Keyst10500SearchS02;
 import com.c4c.keystone.mapper.Keyst5100Mapper;
 import com.c4c.keystone.mapper.Keyst5110Mapper;
+import com.c4c.keystone.utils.EntityUtil;
+import com.c4c.keystone.utils.JwtUtil;
 
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 @RestController
 @RequestMapping("/keyst10500")
 public class Keyst10500Controller {
@@ -30,6 +47,12 @@ public class Keyst10500Controller {
 
     @Autowired
     Keyst5110Mapper keyst5110Mapper;
+
+    @Autowired
+    JwtUtil jwtUtil;
+
+    @Autowired
+    EntityUtil entityUtil;
 
     @GetMapping("search")
     public ResponseEntity<Keyst10500SearchS> search(@RequestParam(value = "prjCode", required = false) String prjCode) {
@@ -69,5 +92,25 @@ public class Keyst10500Controller {
         resForm.setPrjUserAllocation(searchS02List);
 
         return ResponseEntity.ok(resForm);
+    }
+
+    @PostMapping(value = "save")
+    public void save(@RequestHeader("Authorization") String jwt, @RequestBody @Valid Keyst10500SaveQ reqForm) {
+        // ログインユーザー情報
+        Map<String, Object> loginUserInfo = jwtUtil.parseToken(jwt.substring(7));
+        // ユーザーID
+        Integer loginUserId = Integer.valueOf(loginUserInfo.get(jwtUtil.USER_ID).toString());
+        // リクエストFormを案件マスタEntityに移送する。
+        Keyst5100 keyst5100 = new Keyst5100();
+        BeanUtils.copyProperties(reqForm, keyst5100);
+        keyst5100.setCreatedUser(loginUserId); // 作成者ID
+        keyst5100.setLastModifiedUser(loginUserId); // 最終変更者ID
+        keyst5100.setDeleteFlg(Flag.OFF); // 削除フラグ
+        keyst5100.setVersionExKey(0); // 排他制御カラム
+        log.info(keyst5100);
+        // INSERT時共通フィールドを設定する。
+        entityUtil.setColumns4Insert(keyst5100, loginUserId);
+
+        keyst5100Mapper.insert(keyst5100);
     }
 }
