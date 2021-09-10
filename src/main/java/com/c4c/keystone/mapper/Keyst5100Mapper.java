@@ -132,8 +132,31 @@ public interface Keyst5100Mapper {
           "CREATED_USER = #{createdUser,jdbcType=INTEGER},",
           "LAST_MODIFIED_DATETIME = #{lastModifiedDatetime,jdbcType=TIMESTAMP},",
           "LAST_MODIFIED_USER = #{lastModifiedUser,jdbcType=INTEGER},",
-          "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}",
+          "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER} + 1",
         "where PRJ_CODE = #{prjCode,jdbcType=VARCHAR}"
     })
     int updateByPrimaryKey(Keyst5100 record);
+
+    @Select({
+            "select",
+            "PRJ_CODE, PRJ_NAME, CUST_CODE, END_CUST_NAME, REMARK, DELETE_FLG, CREATED_DATETIME, ",
+            "CREATED_USER, LAST_MODIFIED_DATETIME, LAST_MODIFIED_USER, VERSION_EX_KEY",
+            "from KEYST5100",
+            "where PRJ_CODE = #{prjCode,jdbcType=VARCHAR}",
+            "and VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}"
+    })
+    @Results({
+            @Result(column="PRJ_CODE", property="prjCode", jdbcType=JdbcType.VARCHAR, id=true),
+            @Result(column="PRJ_NAME", property="prjName", jdbcType=JdbcType.VARCHAR),
+            @Result(column="CUST_CODE", property="custCode", jdbcType=JdbcType.VARCHAR),
+            @Result(column="END_CUST_NAME", property="endCustName", jdbcType=JdbcType.VARCHAR),
+            @Result(column="REMARK", property="remark", jdbcType=JdbcType.VARCHAR),
+            @Result(column="DELETE_FLG", property="deleteFlg", jdbcType=JdbcType.INTEGER),
+            @Result(column="CREATED_DATETIME", property="createdDatetime", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.INTEGER),
+            @Result(column="LAST_MODIFIED_DATETIME", property="lastModifiedDatetime", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="LAST_MODIFIED_USER", property="lastModifiedUser", jdbcType=JdbcType.INTEGER),
+            @Result(column="VERSION_EX_KEY", property="versionExKey", jdbcType=JdbcType.INTEGER)
+    })
+    Keyst5100 checkVersion(Keyst5100Key versionCheckKey);
 }

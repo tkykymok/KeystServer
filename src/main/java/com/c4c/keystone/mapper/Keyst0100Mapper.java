@@ -223,11 +223,59 @@ public interface Keyst0100Mapper {
           "CREATED_USER = #{createdUser,jdbcType=INTEGER},",
           "LAST_MODIFIED_DATETIME = #{lastModifiedDatetime,jdbcType=TIMESTAMP},",
           "LAST_MODIFIED_USER = #{lastModifiedUser,jdbcType=INTEGER},",
-          "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}",
+          "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER} + 1",
         "where USER_ID = #{userId,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Keyst0100 record);
 
+    @Select({
+            "select",
+            "USER_ID, USER_NAME, USER_NAME_KANA, TEAM, GENDER, AGE, BIRTHDAY, NATIONALITY, ",
+            "PARTNER_FLG, NEAREST_STATION, FINAL_EDUCATION_DATE, FINAL_EDUCATION_CONTENT, ",
+            "SKILLS, EMAIL, LOGIN_ID, LOGIN_PW, ADMIN_FLG, PRF_IMG_STRG_DRCTRY, POSTAL_CODE, ",
+            "ADDRESS, PHONE_NUMBER, BANK_NAME, BRANCH_NAME, BRANCH_ID, ACCOUNT_TYPE, ACCOUNT_NUMBER, ",
+            "ACCOUNT_NAME, DELETE_FLG, CREATED_DATETIME, CREATED_USER, LAST_MODIFIED_DATETIME, ",
+            "LAST_MODIFIED_USER, VERSION_EX_KEY",
+            "from KEYST0100",
+            "where USER_ID = #{userId,jdbcType=INTEGER}",
+            "and VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}"
+    })
+    @Results({
+            @Result(column="USER_ID", property="userId", jdbcType=JdbcType.INTEGER, id=true),
+            @Result(column="USER_NAME", property="userName", jdbcType=JdbcType.VARCHAR),
+            @Result(column="USER_NAME_KANA", property="userNameKana", jdbcType=JdbcType.VARCHAR),
+            @Result(column="TEAM", property="team", jdbcType=JdbcType.VARCHAR),
+            @Result(column="GENDER", property="gender", jdbcType=JdbcType.INTEGER),
+            @Result(column="AGE", property="age", jdbcType=JdbcType.INTEGER),
+            @Result(column="BIRTHDAY", property="birthday", jdbcType=JdbcType.DATE),
+            @Result(column="NATIONALITY", property="nationality", jdbcType=JdbcType.VARCHAR),
+            @Result(column="PARTNER_FLG", property="partnerFlg", jdbcType=JdbcType.INTEGER),
+            @Result(column="NEAREST_STATION", property="nearestStation", jdbcType=JdbcType.VARCHAR),
+            @Result(column="FINAL_EDUCATION_DATE", property="finalEducationDate", jdbcType=JdbcType.DATE),
+            @Result(column="FINAL_EDUCATION_CONTENT", property="finalEducationContent", jdbcType=JdbcType.VARCHAR),
+            @Result(column="SKILLS", property="skills", jdbcType=JdbcType.VARCHAR),
+            @Result(column="EMAIL", property="email", jdbcType=JdbcType.VARCHAR),
+            @Result(column="LOGIN_ID", property="loginId", jdbcType=JdbcType.VARCHAR),
+            @Result(column="LOGIN_PW", property="loginPw", jdbcType=JdbcType.VARCHAR),
+            @Result(column="ADMIN_FLG", property="adminFlg", jdbcType=JdbcType.INTEGER),
+            @Result(column="PRF_IMG_STRG_DRCTRY", property="prfImgStrgDrctry", jdbcType=JdbcType.VARCHAR),
+            @Result(column="POSTAL_CODE", property="postalCode", jdbcType=JdbcType.VARCHAR),
+            @Result(column="ADDRESS", property="address", jdbcType=JdbcType.VARCHAR),
+            @Result(column="PHONE_NUMBER", property="phoneNumber", jdbcType=JdbcType.VARCHAR),
+            @Result(column="BANK_NAME", property="bankName", jdbcType=JdbcType.VARCHAR),
+            @Result(column="BRANCH_NAME", property="branchName", jdbcType=JdbcType.VARCHAR),
+            @Result(column="BRANCH_ID", property="branchId", jdbcType=JdbcType.VARCHAR),
+            @Result(column="ACCOUNT_TYPE", property="accountType", jdbcType=JdbcType.VARCHAR),
+            @Result(column="ACCOUNT_NUMBER", property="accountNumber", jdbcType=JdbcType.VARCHAR),
+            @Result(column="ACCOUNT_NAME", property="accountName", jdbcType=JdbcType.VARCHAR),
+            @Result(column="DELETE_FLG", property="deleteFlg", jdbcType=JdbcType.INTEGER),
+            @Result(column="CREATED_DATETIME", property="createdDatetime", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.INTEGER),
+            @Result(column="LAST_MODIFIED_DATETIME", property="lastModifiedDatetime", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="LAST_MODIFIED_USER", property="lastModifiedUser", jdbcType=JdbcType.INTEGER),
+            @Result(column="VERSION_EX_KEY", property="versionExKey", jdbcType=JdbcType.INTEGER)
+    })
+    Keyst0100 checkVersion(Keyst0100Key checkVersion);
 
     String EXTRA_S01 =
             "SELECT\n" +
