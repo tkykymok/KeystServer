@@ -54,7 +54,9 @@ public class Keyst10200Service implements IKeyst10200Service {
         //////////////////////////////////////////////////////////////
         // スキルシートヘッダーEntityExampleに以下の値を設定する。
         Keyst0200Example keyst0200Example = new Keyst0200Example();
-        keyst0200Example.createCriteria().andUserIdEqualTo(userId);
+        keyst0200Example.createCriteria()
+                .andUserIdEqualTo(userId)
+                .andDeleteFlgEqualTo(Flag.OFF);
 
         // スキルシートヘッダーMapperの検索メソッドを呼び出す。
         List<Keyst0200> keyst0200List = keyst0200Mapper.selectByExample(keyst0200Example);
@@ -279,6 +281,7 @@ public class Keyst10200Service implements IKeyst10200Service {
     }
 
     @Override
+    @Transactional
     public Keyst10200UpdateS update(String jwt, Keyst10200UpdateQ reqForm) throws ExclusiveException {
         // ログインユーザー情報
         Map<String, Object> loginUserInfo = jwtUtil.parseToken(jwt.substring(7));
@@ -347,5 +350,23 @@ public class Keyst10200Service implements IKeyst10200Service {
         return resForm;
     }
 
+    @Override
+    @Transactional
+    public Keyst10200DeleteS delete(String jwt, Keyst10200DeleteQ reqForm) throws ExclusiveException {
+        // レスポンスForm
+        Keyst10200DeleteS resForm = new Keyst10200DeleteS();
 
+        // バージョンチェック
+        Keyst0200 keyst0200 = new Keyst0200();
+        keyst0200.setSkillSheetId(reqForm.getSkillSheetId()); // スキルシートID
+        keyst0200.setVersionExKey(reqForm.getVersionExKey()); // 排他制御カラム
+        keyst0200 = keyst0200Mapper.checkVersion(keyst0200);
+        if (keyst0200 == null) {
+            throw new ExclusiveException(messageSource.getMessage("E00003", null, Locale.JAPAN));
+        }
+        keyst0200.setDeleteFlg(Flag.ON);
+        keyst0200Mapper.updateByPrimaryKey(keyst0200);
+
+        return resForm;
+    }
 }
