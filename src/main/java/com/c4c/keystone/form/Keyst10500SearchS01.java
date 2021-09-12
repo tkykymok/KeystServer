@@ -8,7 +8,7 @@ import lombok.Data;
 public class Keyst10500SearchS01 {
     /**
      * Column: PRJ_CODE
-     * Remark: 案件名
+     * Remark: 案件コード
      */
     private String prjCode;
 
@@ -23,6 +23,12 @@ public class Keyst10500SearchS01 {
      * Remark: 顧客コード
      */
     private String custCode;
+
+    /**
+     * Column: CUST_NAME
+     * Remark: 顧客名
+     */
+    private String custName;
 
     /**
      * Column: END_CUST_NAME

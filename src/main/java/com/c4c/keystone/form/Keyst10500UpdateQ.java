@@ -1,11 +1,9 @@
 package com.c4c.keystone.form;
 
-import java.time.LocalDateTime;
-
 import lombok.Data;
 
 @Data
-public class Keyst10500SaveQ {
+public class Keyst10500UpdateQ {
     /**
      * Column: PRJ_CODE
      * Remark: 案件コード
@@ -41,36 +39,6 @@ public class Keyst10500SaveQ {
      * Remark: 備考
      */
     private String remark;
-
-    /**
-     * Column: DELETE_FLG
-     * Remark: 削除フラグ
-     */
-    private Integer deleteFlg;
-
-    /**
-     * Column: CREATED_DATETIME
-     * Remark: 作成日時
-     */
-    private LocalDateTime createdDatetime;
-
-    /**
-     * Column: CREATED_USER
-     * Remark: 作成者ID
-     */
-    private Integer createdUser;
-
-    /**
-     * Column: LAST_MODIFIED_DATETIME
-     * Remark: 最終変日時
-     */
-    private LocalDateTime lastModifiedDatetime;
-
-    /**
-     * Column: LAST_MODIFIED_USER
-     * Remark: 最終変更者ID
-     */
-    private Integer lastModifiedUser;
 
     /**
      * Column: VERSION_EX_KEY

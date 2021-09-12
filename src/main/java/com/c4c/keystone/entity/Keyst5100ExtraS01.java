@@ -1,11 +1,16 @@
-package com.c4c.keystone.form;
+package com.c4c.keystone.entity;
 
 import java.time.LocalDateTime;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+/**
+ * Table: KEYST5100
+ */
 @Data
-public class Keyst10500SaveQ {
+@EqualsAndHashCode
+public class Keyst5100ExtraS01 {
     /**
      * Column: PRJ_CODE
      * Remark: 案件コード

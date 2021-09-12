@@ -134,4 +134,28 @@ public interface Keyst5110Mapper {
           "and USER_ID = #{userId,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Keyst5110 record);
+
+    @Select({
+            "select",
+            "PRJ_CODE, USER_ID, CONTRACT_PRICE, PRJ_START_DATE, PRJ_END_DATE, ",
+            "CREATED_DATETIME, CREATED_USER, LAST_MODIFIED_DATETIME, LAST_MODIFIED_USER, ",
+            "VERSION_EX_KEY",
+            "from KEYST5110",
+            "where PRJ_CODE = #{prjCode, jdbcType=VARCHAR}",
+            "AND USER_ID = #{userId,jdbcType=INTEGER}",
+            "AND VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}"
+    })
+    @Results({
+            @Result(column="PRJ_CODE", property="prjCode", jdbcType=JdbcType.VARCHAR, id=true),
+            @Result(column="USER_ID", property="userId", jdbcType=JdbcType.INTEGER),
+            @Result(column="CONTRACT_PRICE", property="contractPrice", jdbcType=JdbcType.INTEGER),
+            @Result(column="PRJ_START_DATE", property="prjStartDate", jdbcType=JdbcType.DATE),
+            @Result(column="PRJ_END_DATE", property="prjEndDate", jdbcType=JdbcType.DATE),
+            @Result(column="CREATED_DATETIME", property="createdDatetime", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.INTEGER),
+            @Result(column="LAST_MODIFIED_DATETIME", property="lastModifiedDatetime", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="LAST_MODIFIED_USER", property="lastModifiedUser", jdbcType=JdbcType.INTEGER),
+            @Result(column="VERSION_EX_KEY", property="versionExKey", jdbcType=JdbcType.INTEGER)
+    })
+    Keyst5110 checkVersion(Keyst5110 versionCheckKey);
 }
