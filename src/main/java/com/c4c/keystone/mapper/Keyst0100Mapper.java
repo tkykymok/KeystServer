@@ -275,7 +275,7 @@ public interface Keyst0100Mapper {
             @Result(column="LAST_MODIFIED_USER", property="lastModifiedUser", jdbcType=JdbcType.INTEGER),
             @Result(column="VERSION_EX_KEY", property="versionExKey", jdbcType=JdbcType.INTEGER)
     })
-    Keyst0100 checkVersion(Keyst0100Key checkVersion);
+    Keyst0100 checkVersion(Keyst0100Key versionCheckKey);
 
     String EXTRA_S01 =
             "SELECT\n" +
