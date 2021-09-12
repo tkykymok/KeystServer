@@ -335,7 +335,8 @@ public class Keyst10200Service implements IKeyst10200Service {
                     .collect(Collectors.joining(","));
             keyst0210.setPgLang(tempPgLang);
 
-            // WHOカラムの設定
+            // UPDATE時共通フィールドを設定する。
+            entityUtil.setColumns4Update(keyst0210, loginUserId);
 
             log.info(keyst0210);
             index++;
