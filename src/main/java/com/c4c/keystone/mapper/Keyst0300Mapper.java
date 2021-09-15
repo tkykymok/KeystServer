@@ -124,8 +124,29 @@ public interface Keyst0300Mapper {
           "CREATED_USER = #{createdUser,jdbcType=INTEGER},",
           "LAST_MODIFIED_DATETIME = #{lastModifiedDatetime,jdbcType=TIMESTAMP},",
           "LAST_MODIFIED_USER = #{lastModifiedUser,jdbcType=INTEGER},",
-          "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}",
+          "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER} + 1",
         "where RESERVE_ID = #{reserveId,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Keyst0300 record);
+
+    @Select({
+            "select",
+            "RESERVE_ID, IMPL_YEAR_MONTH, MANAGER_ID, TEAM, CREATED_DATETIME, CREATED_USER, ",
+            "LAST_MODIFIED_DATETIME, LAST_MODIFIED_USER, VERSION_EX_KEY",
+            "from KEYST0300",
+            "where RESERVE_ID = #{reserveId,jdbcType=INTEGER}",
+            "and VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}"
+    })
+    @Results({
+            @Result(column="RESERVE_ID", property="reserveId", jdbcType=JdbcType.INTEGER, id=true),
+            @Result(column="IMPL_YEAR_MONTH", property="implYearMonth", jdbcType=JdbcType.VARCHAR),
+            @Result(column="MANAGER_ID", property="managerId", jdbcType=JdbcType.INTEGER),
+            @Result(column="TEAM", property="team", jdbcType=JdbcType.VARCHAR),
+            @Result(column="CREATED_DATETIME", property="createdDatetime", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.INTEGER),
+            @Result(column="LAST_MODIFIED_DATETIME", property="lastModifiedDatetime", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="LAST_MODIFIED_USER", property="lastModifiedUser", jdbcType=JdbcType.INTEGER),
+            @Result(column="VERSION_EX_KEY", property="versionExKey", jdbcType=JdbcType.INTEGER)
+    })
+    Keyst0300 checkVersion(Keyst0300Key versionCheckKey);
 }

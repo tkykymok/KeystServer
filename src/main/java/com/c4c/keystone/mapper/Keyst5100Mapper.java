@@ -133,19 +133,18 @@ public interface Keyst5100Mapper {
           "CREATED_USER = #{createdUser,jdbcType=INTEGER},",
           "LAST_MODIFIED_DATETIME = #{lastModifiedDatetime,jdbcType=TIMESTAMP},",
           "LAST_MODIFIED_USER = #{lastModifiedUser,jdbcType=INTEGER},",
-          "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}",
+          "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER} + 1",
         "where PRJ_CODE = #{prjCode,jdbcType=VARCHAR}"
     })
     int updateByPrimaryKey(Keyst5100 record);
 
     @Select({
             "select",
-            "PRJ_CODE, PRJ_NAME, CUST_CODE, END_CUST_NAME, REMARK, DELETE_FLG, ",
-            "CREATED_DATETIME, CREATED_USER, LAST_MODIFIED_DATETIME, LAST_MODIFIED_USER, ",
-            "VERSION_EX_KEY",
+            "PRJ_CODE, PRJ_NAME, CUST_CODE, END_CUST_NAME, REMARK, DELETE_FLG, CREATED_DATETIME, ",
+            "CREATED_USER, LAST_MODIFIED_DATETIME, LAST_MODIFIED_USER, VERSION_EX_KEY",
             "from KEYST5100",
-            "where PRJ_CODE = #{prjCode, jdbcType=VARCHAR}",
-            "AND VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}"
+            "where PRJ_CODE = #{prjCode,jdbcType=VARCHAR}",
+            "and VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}"
     })
     @Results({
             @Result(column="PRJ_CODE", property="prjCode", jdbcType=JdbcType.VARCHAR, id=true),

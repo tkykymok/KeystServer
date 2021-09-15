@@ -149,7 +149,7 @@ public interface Keyst0200Mapper {
             "VERSION_EX_KEY",
             "from KEYST0200",
             "where SKILL_SHEET_ID = #{skillSheetId,jdbcType=INTEGER}",
-            "AND VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}"
+            "and VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}"
     })
     @Results({
             @Result(column="SKILL_SHEET_ID", property="skillSheetId", jdbcType=JdbcType.INTEGER, id=true),

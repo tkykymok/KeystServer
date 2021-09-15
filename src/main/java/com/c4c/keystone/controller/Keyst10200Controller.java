@@ -88,5 +88,13 @@ public class Keyst10200Controller {
         return ResponseEntity.ok(resForm);
     }
 
+    @PutMapping(value = "delete")
+    public ResponseEntity<Keyst10200DeleteS> delete(@RequestHeader("Authorization") String jwt, @RequestBody Keyst10200DeleteQ reqForm) throws ExclusiveException {
+        // レスポンスForm
+        Keyst10200DeleteS resForm = keyst10200Service.delete(jwt, reqForm);
+        resForm.setMessages(messageSource.getMessage("I00001", new String[]{"削除"}, Locale.JAPAN));
+        return ResponseEntity.ok(resForm);
+    }
+
 
 }

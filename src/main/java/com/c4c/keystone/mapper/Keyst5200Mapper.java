@@ -124,8 +124,29 @@ public interface Keyst5200Mapper {
           "CREATED_USER = #{createdUser,jdbcType=INTEGER},",
           "LAST_MODIFIED_DATETIME = #{lastModifiedDatetime,jdbcType=TIMESTAMP},",
           "LAST_MODIFIED_USER = #{lastModifiedUser,jdbcType=INTEGER},",
-          "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}",
+          "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER} + 1",
         "where CUST_CODE = #{custCode,jdbcType=VARCHAR}"
     })
     int updateByPrimaryKey(Keyst5200 record);
+
+    @Select({
+            "select",
+            "CUST_CODE, CUST_NAME, CUST_PIC, DELETE_FLG, CREATED_DATETIME, CREATED_USER, ",
+            "LAST_MODIFIED_DATETIME, LAST_MODIFIED_USER, VERSION_EX_KEY",
+            "from KEYST5200",
+            "where CUST_CODE = #{custCode,jdbcType=VARCHAR}",
+            "and VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}"
+    })
+    @Results({
+            @Result(column="CUST_CODE", property="custCode", jdbcType=JdbcType.VARCHAR, id=true),
+            @Result(column="CUST_NAME", property="custName", jdbcType=JdbcType.VARCHAR),
+            @Result(column="CUST_PIC", property="custPic", jdbcType=JdbcType.VARCHAR),
+            @Result(column="DELETE_FLG", property="deleteFlg", jdbcType=JdbcType.INTEGER),
+            @Result(column="CREATED_DATETIME", property="createdDatetime", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.INTEGER),
+            @Result(column="LAST_MODIFIED_DATETIME", property="lastModifiedDatetime", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="LAST_MODIFIED_USER", property="lastModifiedUser", jdbcType=JdbcType.INTEGER),
+            @Result(column="VERSION_EX_KEY", property="versionExKey", jdbcType=JdbcType.INTEGER)
+    })
+    Keyst5200 checkVersion(Keyst5200Key versionCheckKey);
 }

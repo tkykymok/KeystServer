@@ -129,7 +129,7 @@ public interface Keyst5110Mapper {
           "CREATED_USER = #{createdUser,jdbcType=INTEGER},",
           "LAST_MODIFIED_DATETIME = #{lastModifiedDatetime,jdbcType=TIMESTAMP},",
           "LAST_MODIFIED_USER = #{lastModifiedUser,jdbcType=INTEGER},",
-          "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}",
+          "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER} + 1",
         "where PRJ_CODE = #{prjCode,jdbcType=VARCHAR}",
           "and USER_ID = #{userId,jdbcType=INTEGER}"
     })
@@ -137,17 +137,16 @@ public interface Keyst5110Mapper {
 
     @Select({
             "select",
-            "PRJ_CODE, USER_ID, CONTRACT_PRICE, PRJ_START_DATE, PRJ_END_DATE, ",
-            "CREATED_DATETIME, CREATED_USER, LAST_MODIFIED_DATETIME, LAST_MODIFIED_USER, ",
-            "VERSION_EX_KEY",
+            "PRJ_CODE, USER_ID, CONTRACT_PRICE, PRJ_START_DATE, PRJ_END_DATE, CREATED_DATETIME, ",
+            "CREATED_USER, LAST_MODIFIED_DATETIME, LAST_MODIFIED_USER, VERSION_EX_KEY",
             "from KEYST5110",
-            "where PRJ_CODE = #{prjCode, jdbcType=VARCHAR}",
-            "AND USER_ID = #{userId,jdbcType=INTEGER}",
-            "AND VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}"
+            "where PRJ_CODE = #{prjCode,jdbcType=VARCHAR}",
+            "and USER_ID = #{userId,jdbcType=INTEGER}",
+            "and VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}"
     })
     @Results({
             @Result(column="PRJ_CODE", property="prjCode", jdbcType=JdbcType.VARCHAR, id=true),
-            @Result(column="USER_ID", property="userId", jdbcType=JdbcType.INTEGER),
+            @Result(column="USER_ID", property="userId", jdbcType=JdbcType.INTEGER, id=true),
             @Result(column="CONTRACT_PRICE", property="contractPrice", jdbcType=JdbcType.INTEGER),
             @Result(column="PRJ_START_DATE", property="prjStartDate", jdbcType=JdbcType.DATE),
             @Result(column="PRJ_END_DATE", property="prjEndDate", jdbcType=JdbcType.DATE),
