@@ -1,152 +1,152 @@
 package com.c4c.keystone.mapper;
 
-import com.c4c.keystone.entity.Keyst0300;
-import com.c4c.keystone.entity.Keyst0300Example;
-import com.c4c.keystone.entity.Keyst0300Key;
+import com.c4c.keystone.entity.Keyst5200;
+import com.c4c.keystone.entity.Keyst5200Example;
+import com.c4c.keystone.entity.Keyst5200Key;
 import java.util.List;
 
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
 @Mapper
-public interface Keyst0300Mapper {
+public interface Keyst5200Mapper {
     /**
      * @mbg.generated generated automatically, do not modify!
      */
-    @SelectProvider(type=Keyst0300SqlProvider.class, method="countByExample")
-    long countByExample(Keyst0300Example example);
+    @SelectProvider(type=Keyst5200SqlProvider.class, method="countByExample")
+    long countByExample(Keyst5200Example example);
 
     /**
      * @mbg.generated generated automatically, do not modify!
      */
-    @DeleteProvider(type=Keyst0300SqlProvider.class, method="deleteByExample")
-    int deleteByExample(Keyst0300Example example);
+    @DeleteProvider(type=Keyst5200SqlProvider.class, method="deleteByExample")
+    int deleteByExample(Keyst5200Example example);
 
     /**
      * @mbg.generated generated automatically, do not modify!
      */
     @Delete({
-        "delete from KEYST0300",
-        "where RESERVE_ID = #{reserveId,jdbcType=INTEGER}"
+        "delete from KEYST5200",
+        "where CUST_CODE = #{custCode,jdbcType=VARCHAR}"
     })
-    int deleteByPrimaryKey(Keyst0300Key key);
+    int deleteByPrimaryKey(Keyst5200Key key);
 
     /**
      * @mbg.generated generated automatically, do not modify!
      */
     @Insert({
-        "insert into KEYST0300 (RESERVE_ID, IMPL_YEAR_MONTH, ",
-        "MANAGER_ID, TEAM, ",
+        "insert into KEYST5200 (CUST_CODE, CUST_NAME, ",
+        "CUST_PIC, DELETE_FLG, ",
         "CREATED_DATETIME, CREATED_USER, ",
         "LAST_MODIFIED_DATETIME, LAST_MODIFIED_USER, ",
         "VERSION_EX_KEY)",
-        "values (#{reserveId,jdbcType=INTEGER}, #{implYearMonth,jdbcType=VARCHAR}, ",
-        "#{managerId,jdbcType=INTEGER}, #{team,jdbcType=VARCHAR}, ",
+        "values (#{custCode,jdbcType=VARCHAR}, #{custName,jdbcType=VARCHAR}, ",
+        "#{custPic,jdbcType=VARCHAR}, #{deleteFlg,jdbcType=INTEGER}, ",
         "#{createdDatetime,jdbcType=TIMESTAMP}, #{createdUser,jdbcType=INTEGER}, ",
         "#{lastModifiedDatetime,jdbcType=TIMESTAMP}, #{lastModifiedUser,jdbcType=INTEGER}, ",
         "#{versionExKey,jdbcType=INTEGER})"
     })
-    int insert(Keyst0300 record);
+    int insert(Keyst5200 record);
 
     /**
      * @mbg.generated generated automatically, do not modify!
      */
-    @InsertProvider(type=Keyst0300SqlProvider.class, method="insertSelective")
-    int insertSelective(Keyst0300 record);
+    @InsertProvider(type=Keyst5200SqlProvider.class, method="insertSelective")
+    int insertSelective(Keyst5200 record);
 
     /**
      * @mbg.generated generated automatically, do not modify!
      */
-    @SelectProvider(type=Keyst0300SqlProvider.class, method="selectByExample")
+    @SelectProvider(type=Keyst5200SqlProvider.class, method="selectByExample")
     @Results({
-        @Result(column="RESERVE_ID", property="reserveId", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="IMPL_YEAR_MONTH", property="implYearMonth", jdbcType=JdbcType.VARCHAR),
-        @Result(column="MANAGER_ID", property="managerId", jdbcType=JdbcType.INTEGER),
-        @Result(column="TEAM", property="team", jdbcType=JdbcType.VARCHAR),
+        @Result(column="CUST_CODE", property="custCode", jdbcType=JdbcType.VARCHAR, id=true),
+        @Result(column="CUST_NAME", property="custName", jdbcType=JdbcType.VARCHAR),
+        @Result(column="CUST_PIC", property="custPic", jdbcType=JdbcType.VARCHAR),
+        @Result(column="DELETE_FLG", property="deleteFlg", jdbcType=JdbcType.INTEGER),
         @Result(column="CREATED_DATETIME", property="createdDatetime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.INTEGER),
         @Result(column="LAST_MODIFIED_DATETIME", property="lastModifiedDatetime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="LAST_MODIFIED_USER", property="lastModifiedUser", jdbcType=JdbcType.INTEGER),
         @Result(column="VERSION_EX_KEY", property="versionExKey", jdbcType=JdbcType.INTEGER)
     })
-    List<Keyst0300> selectByExample(Keyst0300Example example);
+    List<Keyst5200> selectByExample(Keyst5200Example example);
 
     /**
      * @mbg.generated generated automatically, do not modify!
      */
     @Select({
         "select",
-        "RESERVE_ID, IMPL_YEAR_MONTH, MANAGER_ID, TEAM, CREATED_DATETIME, CREATED_USER, ",
+        "CUST_CODE, CUST_NAME, CUST_PIC, DELETE_FLG, CREATED_DATETIME, CREATED_USER, ",
         "LAST_MODIFIED_DATETIME, LAST_MODIFIED_USER, VERSION_EX_KEY",
-        "from KEYST0300",
-        "where RESERVE_ID = #{reserveId,jdbcType=INTEGER}"
+        "from KEYST5200",
+        "where CUST_CODE = #{custCode,jdbcType=VARCHAR}"
     })
     @Results({
-        @Result(column="RESERVE_ID", property="reserveId", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="IMPL_YEAR_MONTH", property="implYearMonth", jdbcType=JdbcType.VARCHAR),
-        @Result(column="MANAGER_ID", property="managerId", jdbcType=JdbcType.INTEGER),
-        @Result(column="TEAM", property="team", jdbcType=JdbcType.VARCHAR),
+        @Result(column="CUST_CODE", property="custCode", jdbcType=JdbcType.VARCHAR, id=true),
+        @Result(column="CUST_NAME", property="custName", jdbcType=JdbcType.VARCHAR),
+        @Result(column="CUST_PIC", property="custPic", jdbcType=JdbcType.VARCHAR),
+        @Result(column="DELETE_FLG", property="deleteFlg", jdbcType=JdbcType.INTEGER),
         @Result(column="CREATED_DATETIME", property="createdDatetime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.INTEGER),
         @Result(column="LAST_MODIFIED_DATETIME", property="lastModifiedDatetime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="LAST_MODIFIED_USER", property="lastModifiedUser", jdbcType=JdbcType.INTEGER),
         @Result(column="VERSION_EX_KEY", property="versionExKey", jdbcType=JdbcType.INTEGER)
     })
-    Keyst0300 selectByPrimaryKey(Keyst0300Key key);
+    Keyst5200 selectByPrimaryKey(Keyst5200Key key);
 
     /**
      * @mbg.generated generated automatically, do not modify!
      */
-    @UpdateProvider(type=Keyst0300SqlProvider.class, method="updateByExampleSelective")
-    int updateByExampleSelective(@Param("record") Keyst0300 record, @Param("example") Keyst0300Example example);
+    @UpdateProvider(type=Keyst5200SqlProvider.class, method="updateByExampleSelective")
+    int updateByExampleSelective(@Param("record") Keyst5200 record, @Param("example") Keyst5200Example example);
 
     /**
      * @mbg.generated generated automatically, do not modify!
      */
-    @UpdateProvider(type=Keyst0300SqlProvider.class, method="updateByExample")
-    int updateByExample(@Param("record") Keyst0300 record, @Param("example") Keyst0300Example example);
+    @UpdateProvider(type=Keyst5200SqlProvider.class, method="updateByExample")
+    int updateByExample(@Param("record") Keyst5200 record, @Param("example") Keyst5200Example example);
 
     /**
      * @mbg.generated generated automatically, do not modify!
      */
-    @UpdateProvider(type=Keyst0300SqlProvider.class, method="updateByPrimaryKeySelective")
-    int updateByPrimaryKeySelective(Keyst0300 record);
+    @UpdateProvider(type=Keyst5200SqlProvider.class, method="updateByPrimaryKeySelective")
+    int updateByPrimaryKeySelective(Keyst5200 record);
 
     /**
      * @mbg.generated generated automatically, do not modify!
      */
     @Update({
-        "update KEYST0300",
-        "set IMPL_YEAR_MONTH = #{implYearMonth,jdbcType=VARCHAR},",
-          "MANAGER_ID = #{managerId,jdbcType=INTEGER},",
-          "TEAM = #{team,jdbcType=VARCHAR},",
+        "update KEYST5200",
+        "set CUST_NAME = #{custName,jdbcType=VARCHAR},",
+          "CUST_PIC = #{custPic,jdbcType=VARCHAR},",
+          "DELETE_FLG = #{deleteFlg,jdbcType=INTEGER},",
           "CREATED_DATETIME = #{createdDatetime,jdbcType=TIMESTAMP},",
           "CREATED_USER = #{createdUser,jdbcType=INTEGER},",
           "LAST_MODIFIED_DATETIME = #{lastModifiedDatetime,jdbcType=TIMESTAMP},",
           "LAST_MODIFIED_USER = #{lastModifiedUser,jdbcType=INTEGER},",
           "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER} + 1",
-        "where RESERVE_ID = #{reserveId,jdbcType=INTEGER}"
+        "where CUST_CODE = #{custCode,jdbcType=VARCHAR}"
     })
-    int updateByPrimaryKey(Keyst0300 record);
+    int updateByPrimaryKey(Keyst5200 record);
 
     @Select({
             "select",
-            "RESERVE_ID, IMPL_YEAR_MONTH, MANAGER_ID, TEAM, CREATED_DATETIME, CREATED_USER, ",
+            "CUST_CODE, CUST_NAME, CUST_PIC, DELETE_FLG, CREATED_DATETIME, CREATED_USER, ",
             "LAST_MODIFIED_DATETIME, LAST_MODIFIED_USER, VERSION_EX_KEY",
-            "from KEYST0300",
-            "where RESERVE_ID = #{reserveId,jdbcType=INTEGER}",
+            "from KEYST5200",
+            "where CUST_CODE = #{custCode,jdbcType=VARCHAR}",
             "and VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}"
     })
     @Results({
-            @Result(column="RESERVE_ID", property="reserveId", jdbcType=JdbcType.INTEGER, id=true),
-            @Result(column="IMPL_YEAR_MONTH", property="implYearMonth", jdbcType=JdbcType.VARCHAR),
-            @Result(column="MANAGER_ID", property="managerId", jdbcType=JdbcType.INTEGER),
-            @Result(column="TEAM", property="team", jdbcType=JdbcType.VARCHAR),
+            @Result(column="CUST_CODE", property="custCode", jdbcType=JdbcType.VARCHAR, id=true),
+            @Result(column="CUST_NAME", property="custName", jdbcType=JdbcType.VARCHAR),
+            @Result(column="CUST_PIC", property="custPic", jdbcType=JdbcType.VARCHAR),
+            @Result(column="DELETE_FLG", property="deleteFlg", jdbcType=JdbcType.INTEGER),
             @Result(column="CREATED_DATETIME", property="createdDatetime", jdbcType=JdbcType.TIMESTAMP),
             @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.INTEGER),
             @Result(column="LAST_MODIFIED_DATETIME", property="lastModifiedDatetime", jdbcType=JdbcType.TIMESTAMP),
             @Result(column="LAST_MODIFIED_USER", property="lastModifiedUser", jdbcType=JdbcType.INTEGER),
             @Result(column="VERSION_EX_KEY", property="versionExKey", jdbcType=JdbcType.INTEGER)
     })
-    Keyst0300 checkVersion(Keyst0300Key versionCheckKey);
+    Keyst5200 checkVersion(Keyst5200Key versionCheckKey);
 }

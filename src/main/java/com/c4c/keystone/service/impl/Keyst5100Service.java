@@ -18,18 +18,12 @@ import java.util.List;
 @Log4j2
 public class Keyst5100Service implements IKeyst5100Service {
 
-    private final List<Keyst5100> keyst5100List = new ArrayList<>();
-
     @Autowired
     Keyst5100Mapper keyst5100Mapper;
 
     @Override
-    @Cacheable
     public List<Keyst5100> getAllProjects() {
         Keyst5100Example keyst5100Example = new Keyst5100Example();
-        List<Keyst5100> temp5100List = keyst5100Mapper.selectByExample(keyst5100Example);
-        log.info("Connected to DataBase");
-        keyst5100List.addAll(temp5100List);
-        return this.keyst5100List;
+        return keyst5100Mapper.selectByExample(keyst5100Example);
     }
 }

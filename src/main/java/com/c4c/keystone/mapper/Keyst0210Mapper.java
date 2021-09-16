@@ -187,9 +187,49 @@ public interface Keyst0210Mapper {
           "CREATED_USER = #{createdUser,jdbcType=INTEGER},",
           "LAST_MODIFIED_DATETIME = #{lastModifiedDatetime,jdbcType=TIMESTAMP},",
           "LAST_MODIFIED_USER = #{lastModifiedUser,jdbcType=INTEGER},",
-          "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}",
+          "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER} + 1",
         "where SKILL_SHEET_ID = #{skillSheetId,jdbcType=INTEGER}",
           "and REF_NO = #{refNo,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Keyst0210 record);
+
+    @Select({
+            "select",
+            "SKILL_SHEET_ID, REF_NO, PRJ_CODE, PRJ_START_DATE, PRJ_END_DATE, BIZ_IN_CHARGE, ",
+            "`COMMENT`, DEV_SCALE, OS, DB, FW_MW_TOOL, PG_LANG, SOW_MANAGEMENT, SOW_REQ_DEFINITION, ",
+            "SOW_BASIC_DESIGN, SOW_DETAIL_DESIGN, SOW_IMPLEMENTATION, SOW_TEST, SOW_MAINTENANCE_OPERATION, ",
+            "CREATED_DATETIME, CREATED_USER, LAST_MODIFIED_DATETIME, LAST_MODIFIED_USER, ",
+            "VERSION_EX_KEY",
+            "from KEYST0210",
+            "where SKILL_SHEET_ID = #{skillSheetId,jdbcType=INTEGER}",
+            "and REF_NO = #{refNo,jdbcType=INTEGER}",
+            "and VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}"
+    })
+    @Results({
+            @Result(column="SKILL_SHEET_ID", property="skillSheetId", jdbcType=JdbcType.INTEGER, id=true),
+            @Result(column="REF_NO", property="refNo", jdbcType=JdbcType.INTEGER, id=true),
+            @Result(column="PRJ_CODE", property="prjCode", jdbcType=JdbcType.VARCHAR),
+            @Result(column="PRJ_START_DATE", property="prjStartDate", jdbcType=JdbcType.DATE),
+            @Result(column="PRJ_END_DATE", property="prjEndDate", jdbcType=JdbcType.DATE),
+            @Result(column="BIZ_IN_CHARGE", property="bizInCharge", jdbcType=JdbcType.VARCHAR),
+            @Result(column="COMMENT", property="comment", jdbcType=JdbcType.VARCHAR),
+            @Result(column="DEV_SCALE", property="devScale", jdbcType=JdbcType.VARCHAR),
+            @Result(column="OS", property="os", jdbcType=JdbcType.INTEGER),
+            @Result(column="DB", property="db", jdbcType=JdbcType.INTEGER),
+            @Result(column="FW_MW_TOOL", property="fwMwTool", jdbcType=JdbcType.VARCHAR),
+            @Result(column="PG_LANG", property="pgLang", jdbcType=JdbcType.VARCHAR),
+            @Result(column="SOW_MANAGEMENT", property="sowManagement", jdbcType=JdbcType.INTEGER),
+            @Result(column="SOW_REQ_DEFINITION", property="sowReqDefinition", jdbcType=JdbcType.INTEGER),
+            @Result(column="SOW_BASIC_DESIGN", property="sowBasicDesign", jdbcType=JdbcType.INTEGER),
+            @Result(column="SOW_DETAIL_DESIGN", property="sowDetailDesign", jdbcType=JdbcType.INTEGER),
+            @Result(column="SOW_IMPLEMENTATION", property="sowImplementation", jdbcType=JdbcType.INTEGER),
+            @Result(column="SOW_TEST", property="sowTest", jdbcType=JdbcType.INTEGER),
+            @Result(column="SOW_MAINTENANCE_OPERATION", property="sowMaintenanceOperation", jdbcType=JdbcType.INTEGER),
+            @Result(column="CREATED_DATETIME", property="createdDatetime", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.INTEGER),
+            @Result(column="LAST_MODIFIED_DATETIME", property="lastModifiedDatetime", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="LAST_MODIFIED_USER", property="lastModifiedUser", jdbcType=JdbcType.INTEGER),
+            @Result(column="VERSION_EX_KEY", property="versionExKey", jdbcType=JdbcType.INTEGER)
+    })
+    Keyst0210 checkVersion(Keyst0210Key versionCheckKey);
 }
