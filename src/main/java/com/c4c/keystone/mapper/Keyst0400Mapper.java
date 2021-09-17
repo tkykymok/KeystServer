@@ -1,8 +1,7 @@
 package com.c4c.keystone.mapper;
 
-import com.c4c.keystone.entity.Keyst0400;
-import com.c4c.keystone.entity.Keyst0400Example;
-import com.c4c.keystone.entity.Keyst0400Key;
+import com.c4c.keystone.entity.*;
+
 import java.util.List;
 
 import org.apache.ibatis.annotations.*;
@@ -174,4 +173,35 @@ public interface Keyst0400Mapper {
             @Result(column="VERSION_EX_KEY", property="versionExKey", jdbcType=JdbcType.INTEGER)
     })
     Keyst0400 checkVersion(Keyst0400Key versionCheckKey);
+
+    String EXTRA_S01
+            = "SELECT\n" +
+            "    KEYST0400.NOTIFICATION_ID\n" +
+            "     ,KEYST0400.TITLE\n" +
+            "     ,KEYST0400.CONTENT\n" +
+            "     ,KEYST0400.POST_START_DATE\n" +
+            "     ,KEYST0400.POST_END_DATE\n" +
+            "     ,KEYST0400.NOTIFICATION_REG_DATETIME\n" +
+            "     ,KEYST0100.USER_NAME\n" +
+            "     ,KEYST0400.VERSION_EX_KEY\n" +
+            "FROM KEYST0400\n" +
+            "         INNER JOIN KEYST0100 ON\n" +
+            "        KEYST0400.NOTIFICATION_REG_ID = KEYST0100.USER_ID\n" +
+            "WHERE\n" +
+            "        KEYST0400.DELETE_FLG = '0'\n" +
+            ";"
+            ;
+
+    @Select(EXTRA_S01)
+    @Results(value = {
+            @Result(property = "notificationId", column = "NOTIFICATION_ID"),
+            @Result(property = "title", column = "TITLE"),
+            @Result(property = "content", column = "CONTENT"),
+            @Result(property = "postStartDate", column = "POST_START_DATE"),
+            @Result(property = "postEndDate", column = "POST_END_DATE"),
+            @Result(property = "notificationRegDatetime", column = "NOTIFICATION_REG_DATETIME"),
+            @Result(property = "notificationRegPersonName", column = "NOTIFICATION_REG_PERSON_NAME"),
+            @Result(property = "versionExKey", column = "VERSION_EX_KEY"),
+    })
+    List<Keyst0400ExtraS01> selectWithS01();
 }
