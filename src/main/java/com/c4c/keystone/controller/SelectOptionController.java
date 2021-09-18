@@ -5,6 +5,8 @@ import com.c4c.keystone.entity.Keyst0100;
 import com.c4c.keystone.entity.Keyst0100Example;
 import com.c4c.keystone.entity.Keyst5100;
 import com.c4c.keystone.entity.Keyst5100Example;
+import com.c4c.keystone.entity.Keyst5200;
+import com.c4c.keystone.entity.Keyst5200Example;
 import com.c4c.keystone.entity.Keyst5300;
 import com.c4c.keystone.entity.Keyst5300Example;
 import com.c4c.keystone.enums.Db;
@@ -12,6 +14,7 @@ import com.c4c.keystone.enums.Os;
 import com.c4c.keystone.form.SelectOption;
 import com.c4c.keystone.mapper.Keyst0100Mapper;
 import com.c4c.keystone.mapper.Keyst5100Mapper;
+import com.c4c.keystone.mapper.Keyst5200Mapper;
 import com.c4c.keystone.mapper.Keyst5300Mapper;
 import com.c4c.keystone.service.impl.Keyst5100Service;
 import com.c4c.keystone.service.impl.Keyst5300Service;
@@ -41,6 +44,8 @@ public class SelectOptionController {
     Keyst5100Mapper keyst5100Mapper;
     @Autowired
     Keyst0100Mapper keyst0100Mapper;
+    @Autowired
+    Keyst5200Mapper keyst5200Mapper;
 
     @GetMapping("/skills")
     public ResponseEntity<List<SelectOption>> getSkillsOptions() {
@@ -185,7 +190,7 @@ public class SelectOptionController {
         List<SelectOption> selectOptionList = new ArrayList<>();
         // 初期値の選択肢を追加する。
         SelectOption selectOption = new SelectOption();
-        selectOption.setCode("");
+        selectOption.setCode(null);
         selectOption.setName("ユーザー名を選択してください");
         selectOption.setDisableFlg(Flag.ON);
         selectOptionList.add(selectOption);
@@ -197,6 +202,34 @@ public class SelectOptionController {
             String code = String.valueOf(keyst0100.getUserId());
             tempSelectOption.setCode(code); // 案件コード
             tempSelectOption.setName(keyst0100.getUserName()); // ユーザー名
+            tempSelectOption.setDisableFlg(Flag.OFF); // 無効フラグ
+            // selectOptionListに追加する。
+            selectOptionList.add(tempSelectOption);
+        }
+        return ResponseEntity.ok(selectOptionList);
+    }
+
+    @GetMapping("/custName")
+    public ResponseEntity<List<SelectOption>> getCustNameOptions() {
+        // 顧客マスタ取得
+        Keyst5200Example keyst5200Example = new Keyst5200Example();
+        List<Keyst5200> keyst5200List = keyst5200Mapper.selectByExample(keyst5200Example);
+
+        List<SelectOption> selectOptionList = new ArrayList<>();
+        // 初期値の選択肢を追加する。
+        SelectOption selectOption = new SelectOption();
+        selectOption.setCode("");
+        selectOption.setName("顧客名を選択してください");
+        selectOption.setDisableFlg(Flag.ON);
+        selectOptionList.add(selectOption);
+
+        // 検索結果全件に対して以下の処理をする。
+        for (Keyst5200 keyst5200 : keyst5200List) {
+            SelectOption tempSelectOption = new SelectOption();
+            // selectOptionFormに以下の値を設定する。
+            String code = String.valueOf(keyst5200.getCustCode());
+            tempSelectOption.setCode(code); // 顧客コード
+            tempSelectOption.setName(keyst5200.getCustName()); // 顧客名
             tempSelectOption.setDisableFlg(Flag.OFF); // 無効フラグ
             // selectOptionListに追加する。
             selectOptionList.add(tempSelectOption);

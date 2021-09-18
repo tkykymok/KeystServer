@@ -24,8 +24,6 @@ import com.c4c.keystone.entity.Keyst5100;
 import com.c4c.keystone.entity.Keyst5100ExtraS01;
 import com.c4c.keystone.entity.Keyst5110;
 import com.c4c.keystone.entity.Keyst5110Example;
-import com.c4c.keystone.entity.Keyst5200;
-import com.c4c.keystone.entity.Keyst5200Example;
 import com.c4c.keystone.exception.ExclusiveException;
 import com.c4c.keystone.form.Keyst10500SaveQ;
 import com.c4c.keystone.form.Keyst10500SearchS;
@@ -110,25 +108,9 @@ public class Keyst10500Controller {
         // ユーザーID
         Integer loginUserId = Integer.valueOf(loginUserInfo.get(jwtUtil.USER_ID).toString());
 
-        // 顧客マスタのレコード件数を取得
-        Keyst5200Example keyst5200Example = new Keyst5200Example();
-        long Keyst5200Count = keyst5200Mapper.countByExample(keyst5200Example) + 1;
-        // レコード件数をString型に変換し、formatを顧客コード用に変換
-        String custCode = String.format("C%04d", Keyst5200Count);
-        // リクエストFormを顧客マスタEntityに移送する。
-        Keyst5200 keyst5200 = new Keyst5200();
-        keyst5200.setCustCode(custCode); // 顧客コード
-        keyst5200.setCustName(reqForm.getCustName()); // 顧客名
-        log.info(keyst5200);
-        // INSERT時共通フィールドを設定する。
-        entityUtil.setColumns4Insert(keyst5200, loginUserId);
-        // INSERTを実行する。
-        keyst5200Mapper.insert(keyst5200);
-
         // リクエストFormを案件マスタEntityに移送する。
         Keyst5100 keyst5100 = new Keyst5100();
         BeanUtils.copyProperties(reqForm, keyst5100);
-        keyst5100.setCustCode(custCode); // 顧客コード
         log.info(keyst5100);
         // INSERT時共通フィールドを設定する。
         entityUtil.setColumns4Insert(keyst5100, loginUserId);
