@@ -50,7 +50,6 @@ public class Keyst10500Service implements IKeyst10500Service {
     EntityUtil entityUtil;
 
     @Override
-    @Transactional
     public Keyst10500SearchS search(String prjCode) {
         // レスポンスFormを定義する。
         Keyst10500SearchS resForm = new Keyst10500SearchS();
