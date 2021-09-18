@@ -216,6 +216,7 @@ public class Keyst10200Service implements IKeyst10200Service {
         // ユーザーID
         Integer loginUserId = Integer.valueOf(loginUserInfo.get(jwtUtil.USER_ID).toString());
 
+        //【スキルシートヘッダー登録】
         // リクエストFormをスキルシートヘッダEntityに移送する。
         Keyst0200 keyst0200 = new Keyst0200();
         BeanUtils.copyProperties(reqForm, keyst0200);
@@ -242,6 +243,7 @@ public class Keyst10200Service implements IKeyst10200Service {
                 .andSkillSheetRegDatetimeEqualTo(keyst0200.getSkillSheetRegDatetime());
         keyst0200 = keyst0200Mapper.selectByExample(keyst0200Example).get(0);
 
+        //【スキルシート明細登録】
         // リクエストFormをスキルシート明細Entityに移送する。
         List<Keyst10200SaveQ1> skillSheetDetail = reqForm.getSkillSheetDetail();
         int index = 0;
@@ -288,6 +290,7 @@ public class Keyst10200Service implements IKeyst10200Service {
         // ユーザーID
         Integer loginUserId = Integer.valueOf(loginUserInfo.get(jwtUtil.USER_ID).toString());
 
+        //【スキルシートヘッダー更新】
         // バージョンチェック
         Keyst0200 keyst0200 = new Keyst0200();
         keyst0200.setSkillSheetId(reqForm.getSkillSheetId()); // スキルシートID
@@ -307,6 +310,7 @@ public class Keyst10200Service implements IKeyst10200Service {
         // UPDATEを実行する。
         keyst0200Mapper.updateByPrimaryKey(keyst0200);
 
+        //【スキルシート明細更新(DELETE-INSERT)】
         // スキルシートIDに紐づく、既存のスキルシート明細全件を削除する。
         Keyst0210Example keyst0210Example = new Keyst0210Example();
         keyst0210Example.createCriteria()

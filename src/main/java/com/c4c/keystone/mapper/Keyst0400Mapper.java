@@ -182,7 +182,7 @@ public interface Keyst0400Mapper {
             "     ,KEYST0400.POST_START_DATE\n" +
             "     ,KEYST0400.POST_END_DATE\n" +
             "     ,KEYST0400.NOTIFICATION_REG_DATETIME\n" +
-            "     ,KEYST0100.USER_NAME\n" +
+            "     ,KEYST0100.USER_NAME AS NOTIFICATION_REG_PERSON_NAME\n" +
             "     ,KEYST0400.VERSION_EX_KEY\n" +
             "FROM KEYST0400\n" +
             "         INNER JOIN KEYST0100 ON\n" +
