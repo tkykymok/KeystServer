@@ -1,6 +1,6 @@
 CREATE TABLE `KEYST0400`
 (
-    `NOTIFICATION_ID`           INT           NOT NULL COMMENT 'お知らせID',
+    `NOTIFICATION_ID`           INT           NOT NULL AUTO_INCREMENT COMMENT 'お知らせID',
     `TITLE`                     VARCHAR(50)   NULL COMMENT '件名',
     `CONTENT`                   VARCHAR(1000) NULL COMMENT '本文',
     `NOTIFICATION_REG_ID`       INT           NOT NULL COMMENT 'お知らせ登録者ID\n',
