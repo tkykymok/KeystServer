@@ -26,12 +26,14 @@ import com.c4c.keystone.entity.Keyst5110;
 import com.c4c.keystone.entity.Keyst5110Example;
 import com.c4c.keystone.exception.ExclusiveException;
 import com.c4c.keystone.form.Keyst10500SaveQ;
+import com.c4c.keystone.form.Keyst10500SaveS;
 import com.c4c.keystone.form.Keyst10500SearchS;
 import com.c4c.keystone.form.Keyst10500SearchS01;
 import com.c4c.keystone.form.Keyst10500SearchS02;
 import com.c4c.keystone.form.Keyst10500UpdateQ;
 import com.c4c.keystone.form.Keyst10500UpdateQ1;
 import com.c4c.keystone.form.Keyst10500UpdateQ2;
+import com.c4c.keystone.form.Keyst10500UpdateS;
 import com.c4c.keystone.mapper.Keyst5100Mapper;
 import com.c4c.keystone.mapper.Keyst5110Mapper;
 import com.c4c.keystone.mapper.Keyst5200Mapper;
@@ -102,7 +104,7 @@ public class Keyst10500Controller {
     }
 
     @PostMapping(value = "save")
-    public void save(@RequestHeader("Authorization") String jwt, @RequestBody @Valid Keyst10500SaveQ reqForm) {
+    public ResponseEntity<Keyst10500SaveS> save(@RequestHeader("Authorization") String jwt, @RequestBody @Valid Keyst10500SaveQ reqForm) {
         // ログインユーザー情報
         Map<String, Object> loginUserInfo = jwtUtil.parseToken(jwt.substring(7));
         // ユーザーID
@@ -116,10 +118,14 @@ public class Keyst10500Controller {
         entityUtil.setColumns4Insert(keyst5100, loginUserId);
         // INSERTを実行する。
         keyst5100Mapper.insert(keyst5100);
+
+        Keyst10500SaveS resForm = new Keyst10500SaveS();
+        resForm.setMessages(messageSource.getMessage("I00001", new String[]{"新規保存"}, Locale.JAPAN));
+        return ResponseEntity.ok(resForm);
     }
 
     @PutMapping(value = "update")
-    public void update(@RequestHeader("Authorization") String jwt, @RequestBody @Valid Keyst10500UpdateQ reqForm) throws ExclusiveException {
+    public ResponseEntity<Keyst10500UpdateS> update(@RequestHeader("Authorization") String jwt, @RequestBody @Valid Keyst10500UpdateQ reqForm) throws ExclusiveException {
         // ログインユーザー情報
         Map<String, Object> loginUserInfo = jwtUtil.parseToken(jwt.substring(7));
         // ユーザーID
@@ -162,5 +168,8 @@ public class Keyst10500Controller {
             keyst5110Mapper.insert(keyst5110);
         }
 
+        Keyst10500UpdateS resForm = new Keyst10500UpdateS();
+        resForm.setMessages(messageSource.getMessage("I00001", new String[]{"更新"}, Locale.JAPAN));
+        return ResponseEntity.ok(resForm);
     }
 }
