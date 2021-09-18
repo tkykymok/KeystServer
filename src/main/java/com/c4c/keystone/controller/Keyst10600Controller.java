@@ -1,5 +1,6 @@
 package com.c4c.keystone.controller;
 
+import com.c4c.keystone.exception.ExclusiveException;
 import com.c4c.keystone.form.*;
 import com.c4c.keystone.mapper.Keyst0200Mapper;
 import com.c4c.keystone.mapper.Keyst0210Mapper;
@@ -48,10 +49,18 @@ public class Keyst10600Controller {
     }
 
     @PutMapping("update")
-    public ResponseEntity<Keyst10600UpdateS> update(@RequestHeader("Authorization") String jwt, @RequestBody @Valid Keyst10600UpdateQ reqForm) {
+    public ResponseEntity<Keyst10600UpdateS> update(@RequestHeader("Authorization") String jwt, @RequestBody @Valid Keyst10600UpdateQ reqForm) throws ExclusiveException {
         // レスポンスForm
         Keyst10600UpdateS resForm = keyst10600Service.update(jwt, reqForm);
-        resForm.setMessages(messageSource.getMessage("I00001", new String[]{"新規保存"}, Locale.JAPAN));
+        resForm.setMessages(messageSource.getMessage("I00001", new String[]{"更新"}, Locale.JAPAN));
+        return ResponseEntity.ok(resForm);
+    }
+
+    @PutMapping("delete")
+    public ResponseEntity<Keyst10600DeleteS> delete(@RequestHeader("Authorization") String jwt, @RequestBody @Valid Keyst10600DeleteQ reqForm) throws ExclusiveException {
+        // レスポンスForm
+        Keyst10600DeleteS resForm = keyst10600Service.delete(jwt, reqForm);
+        resForm.setMessages(messageSource.getMessage("I00001", new String[]{"削除"}, Locale.JAPAN));
         return ResponseEntity.ok(resForm);
     }
 

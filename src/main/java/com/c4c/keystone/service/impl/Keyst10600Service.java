@@ -4,6 +4,7 @@ import com.c4c.keystone.constants.Flag;
 import com.c4c.keystone.entity.Keyst0200;
 import com.c4c.keystone.entity.Keyst0400;
 import com.c4c.keystone.entity.Keyst0400ExtraS01;
+import com.c4c.keystone.exception.ExclusiveException;
 import com.c4c.keystone.form.*;
 import com.c4c.keystone.mapper.Keyst0400Mapper;
 import com.c4c.keystone.service.IKeyst10600Service;
@@ -17,10 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,7 +37,7 @@ public class Keyst10600Service implements IKeyst10600Service {
 
     @Override
     public Keyst10600InitS initialize() {
-        Keyst10600InitS resForm  = new Keyst10600InitS();
+        Keyst10600InitS resForm = new Keyst10600InitS();
 
         List<Keyst0400ExtraS01> keyst0400ExtraS01List = keyst0400Mapper.selectWithS01();
 
@@ -92,7 +90,57 @@ public class Keyst10600Service implements IKeyst10600Service {
     }
 
     @Override
-    public Keyst10600UpdateS update(String jwt, Keyst10600UpdateQ reqForm) {
-        return null;
+    public Keyst10600UpdateS update(String jwt, Keyst10600UpdateQ reqForm) throws ExclusiveException {
+        // ログインユーザー情報
+        Map<String, Object> loginUserInfo = jwtUtil.parseToken(jwt.substring(7));
+        // ユーザーID
+        Integer loginUserId = Integer.valueOf(loginUserInfo.get(jwtUtil.USER_ID).toString());
+
+        // お知らせEntityに以下の値を設定する。
+        Keyst0400 keyst0400 = new Keyst0400();
+        keyst0400.setNotificationId(reqForm.getNotificationId()); // お知らせID
+        keyst0400.setVersionExKey(reqForm.getVersionExKey()); // 排他制御カラム
+        keyst0400 = keyst0400Mapper.checkVersion(keyst0400);
+        if (keyst0400 == null) {
+            throw new ExclusiveException(messageSource.getMessage("E00003", null, Locale.JAPAN));
+        }
+        // リクエストFormをお知らせEntityに移送する。
+        BeanUtils.copyProperties(reqForm, keyst0400);
+        keyst0400.setNotificationRegId(loginUserId); // お知らせ登録者ID
+        // UPDATE時共通フィールドを設定する。
+        entityUtil.setColumns4Update(keyst0400, loginUserId);
+
+        // UPDATEを実行する。
+        keyst0400Mapper.updateByPrimaryKey(keyst0400);
+
+        return new Keyst10600UpdateS();
     }
+
+    @Override
+    public Keyst10600DeleteS delete(String jwt, Keyst10600DeleteQ reqForm) throws ExclusiveException {
+        // ログインユーザー情報
+        Map<String, Object> loginUserInfo = jwtUtil.parseToken(jwt.substring(7));
+        // ユーザーID
+        Integer loginUserId = Integer.valueOf(loginUserInfo.get(jwtUtil.USER_ID).toString());
+
+        // お知らせEntityに以下の値を設定する。
+        Keyst0400 keyst0400 = new Keyst0400();
+        keyst0400.setNotificationId(reqForm.getNotificationId()); // お知らせID
+        keyst0400.setVersionExKey(reqForm.getVersionExKey()); // 排他制御カラム
+        keyst0400 = keyst0400Mapper.checkVersion(keyst0400);
+        if (keyst0400 == null) {
+            throw new ExclusiveException(messageSource.getMessage("E00003", null, Locale.JAPAN));
+        }
+
+        // お知らせEntityに以下の値を設定する。
+        keyst0400.setDeleteFlg(Flag.ON); // 削除フラグ
+        // UPDATE時共通フィールドを設定する。
+        entityUtil.setColumns4Update(keyst0400, loginUserId);
+
+        // UPDATEを実行する。
+        keyst0400Mapper.updateByPrimaryKey(keyst0400);
+
+        return new Keyst10600DeleteS();
+    }
+
 }
