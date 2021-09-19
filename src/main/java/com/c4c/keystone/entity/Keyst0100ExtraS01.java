@@ -11,7 +11,6 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode
 public class Keyst0100ExtraS01 {
-
     /**
      * Column: USER_ID
      * Remark: ユーザーID
@@ -23,6 +22,12 @@ public class Keyst0100ExtraS01 {
      * Remark: ユーザー名
      */
     private String userName;
+
+    /**
+     * Column: USER_NAME_KANA
+     * Remark: ユーザー名かな
+     */
+    private String userNameKana;
 
     /**
      * Column: TEAM

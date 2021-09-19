@@ -281,6 +281,7 @@ public interface Keyst0100Mapper {
             "SELECT\n" +
             "    KEYST0100.USER_ID\n" +
             "    ,KEYST0100.USER_NAME\n" +
+            "    ,KEYST0100.USER_NAME_KANA\n" +
             "    ,KEYST0100.TEAM\n" +
             "    ,KEYST0100.PRF_IMG_STRG_DRCTRY\n" +
             "    ,KEYST0100.SKILLS\n" +
@@ -292,7 +293,7 @@ public interface Keyst0100Mapper {
             "   KEYST0100\n" +
             "LEFT OUTER JOIN KEYST5110 ON\n" +
             "    KEYST0100.USER_ID = KEYST5110.USER_ID\n" +
-            "INNER JOIN KEYST5100 ON\n" +
+            "LEFT OUTER JOIN KEYST5100 ON\n" +
             "    KEYST5110.PRJ_CODE = KEYST5100.PRJ_CODE\n" +
             "WHERE KEYST5110.PRJ_END_DATE IS NULL\n" +
             "   AND KEYST0100.DELETE_FLG = 0";
@@ -301,6 +302,7 @@ public interface Keyst0100Mapper {
     @Results(value = {
             @Result(property = "userId", column = "USER_ID"),
             @Result(property = "userName", column = "USER_NAME"),
+            @Result(property = "userNameKana", column = "USER_NAME_KANA"),
             @Result(property = "team", column = "TEAM"),
             @Result(property = "prfImgStrgDrctry", column = "PRF_IMG_STRG_DRCTRY"),
             @Result(property = "skills", column = "SKILLS"),
@@ -310,4 +312,16 @@ public interface Keyst0100Mapper {
             @Result(property = "prjStartDate", column = "PRJ_START_DATE"),
     })
     List<Keyst0100ExtraS01> selectWithS01();
+
+    String EXTRA_S02 =
+            "SELECT DISTINCT\n" +
+            "   KEYST0100.TEAM\n" +
+            "FROM\n" +
+            "   KEYST0100";
+
+    @Select(EXTRA_S02)
+    @Results(value = {
+            @Result(property = "team", column = "TEAM")
+    })
+    List<Keyst0100> selectTeam();
 }

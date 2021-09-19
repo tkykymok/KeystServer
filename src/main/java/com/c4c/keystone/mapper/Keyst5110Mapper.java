@@ -156,5 +156,5 @@ public interface Keyst5110Mapper {
             @Result(column="LAST_MODIFIED_USER", property="lastModifiedUser", jdbcType=JdbcType.INTEGER),
             @Result(column="VERSION_EX_KEY", property="versionExKey", jdbcType=JdbcType.INTEGER)
     })
-    Keyst5110 checkVersion(Keyst5110Key versionCheckKey);
+    Keyst5110 checkVersion(Keyst5110 versionCheckKey);
 }
