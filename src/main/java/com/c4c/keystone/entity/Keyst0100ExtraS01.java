@@ -70,4 +70,10 @@ public class Keyst0100ExtraS01 {
      * Remark: 稼働開始年月日
      */
     private LocalDate prjStartDate;
+
+    /**
+     * Column: PRJ_END_DATE
+     * Remark: 稼働終了年月日
+     */
+    private LocalDate prjEndDate;
 }

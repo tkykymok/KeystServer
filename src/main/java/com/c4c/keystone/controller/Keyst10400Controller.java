@@ -21,9 +21,9 @@ public class Keyst10400Controller {
     Keyst10400Service keyst10400Service;
 
     @GetMapping("initialize")
-    public ResponseEntity<List<Keyst10400InitS>> initialze(@RequestHeader("Authorization") String jwt) {
+    public ResponseEntity<List<Keyst10400InitS>> initialize(@RequestHeader("Authorization") String jwt) {
         // レスポンスForm
-        List<Keyst10400InitS> resFormList = keyst10400Service.initialze(jwt);
+        List<Keyst10400InitS> resFormList = keyst10400Service.initialize(jwt);
         return ResponseEntity.ok(resFormList);
     }
 

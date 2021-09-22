@@ -35,7 +35,7 @@ public class Keyst10400Service implements IKeyst10400Service {
     JwtUtil jwtUtil;
 
     @Override
-    public List<Keyst10400InitS> initialze(String jwt) {
+    public List<Keyst10400InitS> initialize(String jwt) {
         // ログインユーザー情報
         Map<String, Object> loginUserInfo = jwtUtil.parseToken(jwt.substring(7));
         // ユーザーID
