@@ -66,6 +66,17 @@ public class Keyst0300ExtraS01 {
      */
     private String managerComment;
 
+    /**
+     * Column: REMARK
+     * Remark: 備考
+     */
+    private String remark;
+
+    /**
+     * Column: FEELINBG
+     * Remark: ワタシノキモチ
+     */
+    private Integer feeling;
 
     /**
      * Column: USER_NAME

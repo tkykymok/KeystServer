@@ -20,6 +20,11 @@ public class Keyst10300InitS {
     private String thisMonth;
 
     /**
+     * 実施月リスト
+     */
+    private List<String> implYearMonthList;
+
+    /**
      * チーム
      */
     private String team;

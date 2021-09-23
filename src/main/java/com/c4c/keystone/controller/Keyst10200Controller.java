@@ -10,7 +10,6 @@ import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -96,7 +95,7 @@ public class Keyst10200Controller {
         return ResponseEntity.ok(resForm);
     }
 
-    @PutMapping(value = "update")
+    @PostMapping(value = "update")
     public ResponseEntity<Keyst10200UpdateS> update(@RequestHeader("Authorization") String jwt, @RequestBody @Valid Keyst10200UpdateQ reqForm) throws ExclusiveException {
         // レスポンスForm
         Keyst10200UpdateS resForm = keyst10200Service.update(jwt, reqForm);

@@ -153,6 +153,8 @@ public interface Keyst0300Mapper {
             "    ,KEYST0310.USER_ID\n" +
             "    ,KEYST0310.USER_COMMENT\n" +
             "    ,KEYST0310.MANAGER_COMMENT\n" +
+            "    ,KEYST0310.REMARK\n" +
+            "    ,KEYST0310.FEELING\n" +
             "    ,KEYST0100.USER_NAME\n" +
             "FROM\n" +
             "   KEYST0300\n" +
@@ -160,8 +162,7 @@ public interface Keyst0300Mapper {
 			"    KEYST0300.RESERVE_ID = KEYST0310.RESERVE_ID\n" +
             "LEFT OUTER JOIN KEYST0100 ON\n" +
             "    KEYST0310.USER_ID = KEYST0100.USER_ID\n" +
-            "WHERE KEYST0300.MANAGER_ID = #{managerId,jdbcType=INTEGER}\n" +
-            "   AND KEYST0300.IMPL_YEAR_MONTH = #{implYearMonth,jdbcType=VARCHAR}";
+            "WHERE KEYST0300.MANAGER_ID = #{managerId,jdbcType=INTEGER}";
 
     @Select(EXTRA_S01)
     @Results(value = {
@@ -174,9 +175,50 @@ public interface Keyst0300Mapper {
             @Result(property = "userId", column = "USER_ID", jdbcType=JdbcType.INTEGER),
             @Result(property = "userComment", column = "USER_COMMENT", jdbcType=JdbcType.VARCHAR),
             @Result(property = "managerComment", column = "MANAGER_COMMENT", jdbcType=JdbcType.VARCHAR),
+            @Result(property = "remark", column = "REMARK", jdbcType=JdbcType.VARCHAR),
+            @Result(property = "feeling", column = "FEELING", jdbcType=JdbcType.INTEGER),
             @Result(property = "userName", column = "USER_NAME", jdbcType=JdbcType.VARCHAR)
     })
     List<Keyst0300ExtraS01> selectWithS01(Keyst0300ExtraS01 Keyst0300ExtraS01);
+//    String EXTRA_S01 =
+//    		"SELECT\n" +
+//    				"    KEYST0300.RESERVE_ID\n" +
+//    				"    ,KEYST0300.IMPL_YEAR_MONTH\n" +
+//    				"    ,KEYST0300.MANAGER_ID\n" +
+//    				"    ,KEYST0300.TEAM\n" +
+//    				"    ,KEYST0310.RESERVE_DATE\n" +
+//    				"    ,KEYST0310.RESERVE_TIME\n" +
+//    				"    ,KEYST0310.USER_ID\n" +
+//    				"    ,KEYST0310.USER_COMMENT\n" +
+//    				"    ,KEYST0310.MANAGER_COMMENT\n" +
+//    				"    ,KEYST0310.REMARK\n" +
+//    				"    ,KEYST0310.FEELING\n" +
+//    				"    ,KEYST0100.USER_NAME\n" +
+//    				"FROM\n" +
+//    				"   KEYST0300\n" +
+//    				"LEFT OUTER JOIN KEYST0310 ON\n" +
+//    				"    KEYST0300.RESERVE_ID = KEYST0310.RESERVE_ID\n" +
+//    				"LEFT OUTER JOIN KEYST0100 ON\n" +
+//    				"    KEYST0310.USER_ID = KEYST0100.USER_ID\n" +
+//    				"WHERE KEYST0300.MANAGER_ID = #{managerId,jdbcType=INTEGER}\n" +
+//    				"   AND KEYST0300.IMPL_YEAR_MONTH = #{implYearMonth,jdbcType=VARCHAR}";
+//
+//    @Select(EXTRA_S01)
+//    @Results(value = {
+//    		@Result(property = "reserveId", column = "RESERVE_ID", jdbcType=JdbcType.INTEGER, id=true),
+//    		@Result(property = "implYearMonth", column = "IMPL_YEAR_MONTH", jdbcType=JdbcType.VARCHAR),
+//    		@Result(property = "managerId", column = "MANAGER_ID", jdbcType=JdbcType.INTEGER),
+//    		@Result(property = "team", column = "TEAM", jdbcType=JdbcType.VARCHAR),
+//    		@Result(property = "reserveDate", column = "RESERVE_DATE", jdbcType=JdbcType.DATE),
+//    		@Result(property = "reserveTime", column = "RESERVE_TIME", jdbcType=JdbcType.TIME),
+//    		@Result(property = "userId", column = "USER_ID", jdbcType=JdbcType.INTEGER),
+//    		@Result(property = "userComment", column = "USER_COMMENT", jdbcType=JdbcType.VARCHAR),
+//    		@Result(property = "managerComment", column = "MANAGER_COMMENT", jdbcType=JdbcType.VARCHAR),
+//    		@Result(property = "remark", column = "REMARK", jdbcType=JdbcType.VARCHAR),
+//    		@Result(property = "feeling", column = "FEELING", jdbcType=JdbcType.INTEGER),
+//    		@Result(property = "userName", column = "USER_NAME", jdbcType=JdbcType.VARCHAR)
+//    })
+//    List<Keyst0300ExtraS01> selectWithS01(Keyst0300ExtraS01 Keyst0300ExtraS01);
 
     String EXTRA_S02 =
     		"SELECT\n" +
