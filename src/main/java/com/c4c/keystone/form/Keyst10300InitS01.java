@@ -81,4 +81,10 @@ public class Keyst10300InitS01 {
      */
     private String userName;
 
+    /**
+     * Column: VERSION_EX_KEY
+     * Remark: 排他制御カラム
+     */
+    private Integer versionExKey;
+
 }

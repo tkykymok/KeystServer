@@ -163,6 +163,7 @@ public interface Keyst0300Mapper {
             "     , KEYST0310.REMARK\n" +
             "     , KEYST0310.FEELING\n" +
             "     , KEYST0100.USER_NAME\n" +
+            "     , KEYST0310.VERSION_EX_KEY\n" +
             "FROM KEYST0300\n" +
             "         LEFT OUTER JOIN KEYST0310 ON\n" +
             "    KEYST0300.RESERVE_ID = KEYST0310.RESERVE_ID\n" +
@@ -184,7 +185,8 @@ public interface Keyst0300Mapper {
             @Result(property = "managerComment", column = "MANAGER_COMMENT", jdbcType = JdbcType.VARCHAR),
             @Result(property = "remark", column = "REMARK", jdbcType = JdbcType.VARCHAR),
             @Result(property = "feeling", column = "FEELING", jdbcType = JdbcType.INTEGER),
-            @Result(property = "userName", column = "USER_NAME", jdbcType = JdbcType.VARCHAR)
+            @Result(property = "userName", column = "USER_NAME", jdbcType = JdbcType.VARCHAR),
+            @Result(property = "versionExKey", column = "VERSION_EX_KEY", jdbcType = JdbcType.INTEGER)
     })
     List<Keyst0300ExtraS01> selectWithS01(Keyst0300ExtraS01 Keyst0300ExtraS01);
 
@@ -202,6 +204,7 @@ public interface Keyst0300Mapper {
             "     , KEYST0310.REMARK\n" +
             "     , KEYST0310.FEELING\n" +
             "     , KEYST0100.USER_NAME\n" +
+            "     , KEYST0310.VERSION_EX_KEY\n" +
             "FROM KEYST0300\n" +
             "         LEFT OUTER JOIN KEYST0310 ON\n" +
             "    KEYST0300.RESERVE_ID = KEYST0310.RESERVE_ID\n" +
@@ -223,7 +226,8 @@ public interface Keyst0300Mapper {
             @Result(property = "managerComment", column = "MANAGER_COMMENT", jdbcType = JdbcType.VARCHAR),
             @Result(property = "remark", column = "REMARK", jdbcType = JdbcType.VARCHAR),
             @Result(property = "feeling", column = "FEELING", jdbcType = JdbcType.INTEGER),
-            @Result(property = "userName", column = "USER_NAME", jdbcType = JdbcType.VARCHAR)
+            @Result(property = "userName", column = "USER_NAME", jdbcType = JdbcType.VARCHAR),
+            @Result(property = "versionExKey", column = "VERSION_EX_KEY", jdbcType = JdbcType.INTEGER)
     })
     List<Keyst0300ExtraS01> selectWithS02(Keyst0300ExtraS01 Keyst0300ExtraS01);
 
@@ -266,7 +270,7 @@ public interface Keyst0300Mapper {
             @Result(property = "managerName", column = "MANAGER_NAME", jdbcType = JdbcType.VARCHAR),
             @Result(property = "userComment", column = "USER_COMMENT", jdbcType = JdbcType.VARCHAR),
             @Result(property = "managerComment", column = "MANAGER_COMMENT", jdbcType = JdbcType.VARCHAR),
-            @Result(column = "VERSION_EX_KEY", property = "versionExKey", jdbcType = JdbcType.INTEGER)
+            @Result(property = "versionExKey", column = "VERSION_EX_KEY", jdbcType = JdbcType.INTEGER)
 
     })
     List<Keyst0300ExtraS04> selectWithS04(Keyst0300ExtraS04 Keyst0300ExtraS04);
