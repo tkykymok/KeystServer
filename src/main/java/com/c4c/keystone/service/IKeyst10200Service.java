@@ -11,4 +11,6 @@ public interface IKeyst10200Service {
     Keyst10200SaveS save(String jwt, Keyst10200SaveQ reqForm);
 
     Keyst10200UpdateS update(String jwt, Keyst10200UpdateQ reqForm) throws ExclusiveException;
+
+    Keyst10200DeleteS delete(String jwt, Keyst10200DeleteQ reqForm) throws ExclusiveException;
 }

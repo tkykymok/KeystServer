@@ -2,13 +2,10 @@ package com.c4c.keystone.form;
 
 import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import lombok.Data;
 
 @Data
-public class Keyst10400InitS03 {
-
+public class Keyst10500UpdateQ2 {
     /**
      * Column: PRJ_CODE
      * Remark: 案件コード
@@ -16,10 +13,10 @@ public class Keyst10400InitS03 {
     private String prjCode;
 
     /**
-     * Column: PRJ_NAME
-     * Remark: 案件名
+     * Column: USER_ID
+     * Remark: ユーザーID
      */
-    private String prjName;
+    private Integer userId;
 
     /**
      * Column: CONTRACT_PRICE
@@ -31,7 +28,17 @@ public class Keyst10400InitS03 {
      * Column: PRJ_START_DATE
      * Remark: 稼働開始年月日
      */
-    @JsonFormat(pattern = "yyyy/MM/dd")
     private LocalDate prjStartDate;
 
+    /**
+     * Column: PRJ_END_DATE
+     * Remark: 稼働終了年月日
+     */
+    private LocalDate prjEndDate;
+
+    /**
+     * Column: VERSION_EX_KEY
+     * Remark: 排他制御カラム
+     */
+    private Integer versionExKey;
 }

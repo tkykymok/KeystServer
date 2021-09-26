@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import com.c4c.keystone.form.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -28,20 +29,6 @@ import com.c4c.keystone.entity.Keyst0210;
 import com.c4c.keystone.entity.Keyst0210Example;
 import com.c4c.keystone.entity.Keyst5300;
 import com.c4c.keystone.exception.ExclusiveException;
-import com.c4c.keystone.form.Keyst10200DispSklShtS;
-import com.c4c.keystone.form.Keyst10200DispSklShtS1;
-import com.c4c.keystone.form.Keyst10200DispSklShtS2;
-import com.c4c.keystone.form.Keyst10200InitS;
-import com.c4c.keystone.form.Keyst10200InitS01;
-import com.c4c.keystone.form.Keyst10200InitS02;
-import com.c4c.keystone.form.Keyst10200InitS03;
-import com.c4c.keystone.form.Keyst10200InitS04;
-import com.c4c.keystone.form.Keyst10200SaveQ;
-import com.c4c.keystone.form.Keyst10200SaveQ1;
-import com.c4c.keystone.form.Keyst10200SaveS;
-import com.c4c.keystone.form.Keyst10200UpdateQ;
-import com.c4c.keystone.form.Keyst10200UpdateQ1;
-import com.c4c.keystone.form.Keyst10200UpdateS;
 import com.c4c.keystone.mapper.Keyst0100Mapper;
 import com.c4c.keystone.mapper.Keyst0110Mapper;
 import com.c4c.keystone.mapper.Keyst0200Mapper;
@@ -88,7 +75,9 @@ public class Keyst10200Service implements IKeyst10200Service {
         //////////////////////////////////////////////////////////////
         // スキルシートヘッダーEntityExampleに以下の値を設定する。
         Keyst0200Example keyst0200Example = new Keyst0200Example();
-        keyst0200Example.createCriteria().andUserIdEqualTo(userId);
+        keyst0200Example.createCriteria()
+                .andUserIdEqualTo(userId)
+                .andDeleteFlgEqualTo(Flag.OFF);
 
         // スキルシートヘッダーMapperの検索メソッドを呼び出す。
         List<Keyst0200> keyst0200List = keyst0200Mapper.selectByExample(keyst0200Example);
@@ -248,6 +237,7 @@ public class Keyst10200Service implements IKeyst10200Service {
         // ユーザーID
         Integer loginUserId = Integer.valueOf(loginUserInfo.get(jwtUtil.USER_ID).toString());
 
+        //【スキルシートヘッダー登録】
         // リクエストFormをスキルシートヘッダEntityに移送する。
         Keyst0200 keyst0200 = new Keyst0200();
         BeanUtils.copyProperties(reqForm, keyst0200);
@@ -274,6 +264,7 @@ public class Keyst10200Service implements IKeyst10200Service {
                 .andSkillSheetRegDatetimeEqualTo(keyst0200.getSkillSheetRegDatetime());
         keyst0200 = keyst0200Mapper.selectByExample(keyst0200Example).get(0);
 
+        //【スキルシート明細登録】
         // リクエストFormをスキルシート明細Entityに移送する。
         List<Keyst10200SaveQ1> skillSheetDetail = reqForm.getSkillSheetDetail();
         int index = 0;
@@ -313,12 +304,14 @@ public class Keyst10200Service implements IKeyst10200Service {
     }
 
     @Override
+    @Transactional
     public Keyst10200UpdateS update(String jwt, Keyst10200UpdateQ reqForm) throws ExclusiveException {
         // ログインユーザー情報
         Map<String, Object> loginUserInfo = jwtUtil.parseToken(jwt.substring(7));
         // ユーザーID
         Integer loginUserId = Integer.valueOf(loginUserInfo.get(jwtUtil.USER_ID).toString());
 
+        //【スキルシートヘッダー更新】
         // バージョンチェック
         Keyst0200 keyst0200 = new Keyst0200();
         keyst0200.setSkillSheetId(reqForm.getSkillSheetId()); // スキルシートID
@@ -338,6 +331,7 @@ public class Keyst10200Service implements IKeyst10200Service {
         // UPDATEを実行する。
         keyst0200Mapper.updateByPrimaryKey(keyst0200);
 
+        //【スキルシート明細更新(DELETE-INSERT)】
         // スキルシートIDに紐づく、既存のスキルシート明細全件を削除する。
         Keyst0210Example keyst0210Example = new Keyst0210Example();
         keyst0210Example.createCriteria()
@@ -366,7 +360,8 @@ public class Keyst10200Service implements IKeyst10200Service {
                     .collect(Collectors.joining(","));
             keyst0210.setPgLang(tempPgLang);
 
-            // WHOカラムの設定
+            // UPDATE時共通フィールドを設定する。
+            entityUtil.setColumns4Update(keyst0210, loginUserId);
 
             log.info(keyst0210);
             index++;
@@ -381,5 +376,23 @@ public class Keyst10200Service implements IKeyst10200Service {
         return resForm;
     }
 
+    @Override
+    @Transactional
+    public Keyst10200DeleteS delete(String jwt, Keyst10200DeleteQ reqForm) throws ExclusiveException {
+        // レスポンスForm
+        Keyst10200DeleteS resForm = new Keyst10200DeleteS();
 
+        // バージョンチェック
+        Keyst0200 keyst0200 = new Keyst0200();
+        keyst0200.setSkillSheetId(reqForm.getSkillSheetId()); // スキルシートID
+        keyst0200.setVersionExKey(reqForm.getVersionExKey()); // 排他制御カラム
+        keyst0200 = keyst0200Mapper.checkVersion(keyst0200);
+        if (keyst0200 == null) {
+            throw new ExclusiveException(messageSource.getMessage("E00003", null, Locale.JAPAN));
+        }
+        keyst0200.setDeleteFlg(Flag.ON);
+        keyst0200Mapper.updateByPrimaryKey(keyst0200);
+
+        return resForm;
+    }
 }

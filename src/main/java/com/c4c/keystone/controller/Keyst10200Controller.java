@@ -5,25 +5,14 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import com.c4c.keystone.form.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.c4c.keystone.constants.Flag;
 import com.c4c.keystone.exception.ExclusiveException;
-import com.c4c.keystone.form.Keyst10200DispSklShtS;
-import com.c4c.keystone.form.Keyst10200InitS;
-import com.c4c.keystone.form.Keyst10200SaveQ;
-import com.c4c.keystone.form.Keyst10200SaveS;
-import com.c4c.keystone.form.Keyst10200UpdateQ;
-import com.c4c.keystone.form.Keyst10200UpdateS;
 import com.c4c.keystone.mapper.Keyst0200Mapper;
 import com.c4c.keystone.mapper.Keyst0210Mapper;
 import com.c4c.keystone.service.impl.Keyst10200Service;
@@ -100,6 +89,14 @@ public class Keyst10200Controller {
         // レスポンスForm
         Keyst10200UpdateS resForm = keyst10200Service.update(jwt, reqForm);
         resForm.setMessages(messageSource.getMessage("I00001", new String[]{"更新"}, Locale.JAPAN));
+        return ResponseEntity.ok(resForm);
+    }
+
+    @PutMapping(value = "delete")
+    public ResponseEntity<Keyst10200DeleteS> delete(@RequestHeader("Authorization") String jwt, @RequestBody Keyst10200DeleteQ reqForm) throws ExclusiveException {
+        // レスポンスForm
+        Keyst10200DeleteS resForm = keyst10200Service.delete(jwt, reqForm);
+        resForm.setMessages(messageSource.getMessage("I00001", new String[]{"削除"}, Locale.JAPAN));
         return ResponseEntity.ok(resForm);
     }
 
