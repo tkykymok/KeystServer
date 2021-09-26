@@ -1,23 +1,44 @@
 package com.c4c.keystone.service.impl;
 
-import com.c4c.keystone.constants.Flag;
-import com.c4c.keystone.entity.*;
-import com.c4c.keystone.exception.ExclusiveException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 import com.c4c.keystone.form.*;
-import com.c4c.keystone.mapper.*;
-import com.c4c.keystone.service.IKeyst10200Service;
-import com.c4c.keystone.utils.EntityUtil;
-import com.c4c.keystone.utils.JwtUtil;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.util.*;
-import java.util.stream.Collectors;
+import com.c4c.keystone.constants.Flag;
+import com.c4c.keystone.entity.Keyst0100;
+import com.c4c.keystone.entity.Keyst0100Key;
+import com.c4c.keystone.entity.Keyst0110;
+import com.c4c.keystone.entity.Keyst0110Example;
+import com.c4c.keystone.entity.Keyst0200;
+import com.c4c.keystone.entity.Keyst0200Example;
+import com.c4c.keystone.entity.Keyst0200Key;
+import com.c4c.keystone.entity.Keyst0210;
+import com.c4c.keystone.entity.Keyst0210Example;
+import com.c4c.keystone.entity.Keyst5300;
+import com.c4c.keystone.exception.ExclusiveException;
+import com.c4c.keystone.mapper.Keyst0100Mapper;
+import com.c4c.keystone.mapper.Keyst0110Mapper;
+import com.c4c.keystone.mapper.Keyst0200Mapper;
+import com.c4c.keystone.mapper.Keyst0210Mapper;
+import com.c4c.keystone.mapper.Keyst5300Mapper;
+import com.c4c.keystone.service.IKeyst10200Service;
+import com.c4c.keystone.utils.EntityUtil;
+import com.c4c.keystone.utils.JwtUtil;
+
+import lombok.extern.log4j.Log4j2;
 
 @Service
 @Log4j2
@@ -216,6 +237,7 @@ public class Keyst10200Service implements IKeyst10200Service {
         // ユーザーID
         Integer loginUserId = Integer.valueOf(loginUserInfo.get(jwtUtil.USER_ID).toString());
 
+        //【スキルシートヘッダー登録】
         // リクエストFormをスキルシートヘッダEntityに移送する。
         Keyst0200 keyst0200 = new Keyst0200();
         BeanUtils.copyProperties(reqForm, keyst0200);
@@ -242,6 +264,7 @@ public class Keyst10200Service implements IKeyst10200Service {
                 .andSkillSheetRegDatetimeEqualTo(keyst0200.getSkillSheetRegDatetime());
         keyst0200 = keyst0200Mapper.selectByExample(keyst0200Example).get(0);
 
+        //【スキルシート明細登録】
         // リクエストFormをスキルシート明細Entityに移送する。
         List<Keyst10200SaveQ1> skillSheetDetail = reqForm.getSkillSheetDetail();
         int index = 0;
@@ -288,6 +311,7 @@ public class Keyst10200Service implements IKeyst10200Service {
         // ユーザーID
         Integer loginUserId = Integer.valueOf(loginUserInfo.get(jwtUtil.USER_ID).toString());
 
+        //【スキルシートヘッダー更新】
         // バージョンチェック
         Keyst0200 keyst0200 = new Keyst0200();
         keyst0200.setSkillSheetId(reqForm.getSkillSheetId()); // スキルシートID
@@ -307,6 +331,7 @@ public class Keyst10200Service implements IKeyst10200Service {
         // UPDATEを実行する。
         keyst0200Mapper.updateByPrimaryKey(keyst0200);
 
+        //【スキルシート明細更新(DELETE-INSERT)】
         // スキルシートIDに紐づく、既存のスキルシート明細全件を削除する。
         Keyst0210Example keyst0210Example = new Keyst0210Example();
         keyst0210Example.createCriteria()

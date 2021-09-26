@@ -2,6 +2,7 @@ package com.c4c.keystone.mapper;
 
 import com.c4c.keystone.entity.Keyst5100;
 import com.c4c.keystone.entity.Keyst5100Example;
+import com.c4c.keystone.entity.Keyst5100ExtraS01;
 import com.c4c.keystone.entity.Keyst5100Key;
 import java.util.List;
 
@@ -158,5 +159,44 @@ public interface Keyst5100Mapper {
             @Result(column="LAST_MODIFIED_USER", property="lastModifiedUser", jdbcType=JdbcType.INTEGER),
             @Result(column="VERSION_EX_KEY", property="versionExKey", jdbcType=JdbcType.INTEGER)
     })
-    Keyst5100 checkVersion(Keyst5100Key versionCheckKey);
+    Keyst5100 checkVersion(Keyst5100 versionCheckKey);
+
+    String EXTRA_S01 =
+            "SELECT\n" +
+            "   KEYST5100.PRJ_CODE\n" +
+            "    ,KEYST5100.PRJ_NAME\n" +
+            "    ,KEYST5100.CUST_CODE\n" +
+            "    ,KEYST5200.CUST_NAME\n" +
+            "    ,KEYST5100.END_CUST_NAME\n" +
+            "    ,KEYST5100.REMARK\n" +
+            "    ,KEYST5100.DELETE_FLG\n" +
+            "    ,KEYST5100.CREATED_DATETIME\n" +
+            "    ,KEYST5100.CREATED_USER\n" +
+            "    ,KEYST5100.LAST_MODIFIED_DATETIME\n" +
+            "    ,KEYST5100.LAST_MODIFIED_USER\n" +
+            "    ,KEYST5100.VERSION_EX_KEY\n" +
+            "FROM\n" +
+            "   KEYST5100\n" +
+            "LEFT OUTER JOIN KEYST5200 ON\n" +
+            "   KEYST5100.CUST_CODE = KEYST5200.CUST_CODE\n" +
+            "WHERE KEYST5100.PRJ_CODE = #{prjCode}\n" +
+            "   AND KEYST5100.DELETE_FLG = 0\n" +
+            "   AND KEYST5200.DELETE_FLG = 0";
+
+    @Select(EXTRA_S01)
+    @Results(value = {
+            @Result(property = "prjCode", column = "PRJ_CODE"),
+            @Result(property = "prjName", column = "PRJ_NAME"),
+            @Result(property = "custCode", column = "CUST_CODE"),
+            @Result(property = "custName", column = "CUST_NAME"),
+            @Result(property = "endCustName", column = "END_CUST_NAME"),
+            @Result(property = "remark", column = "REMARK"),
+            @Result(property = "deleteFlg", column = "DELETE_FLG"),
+            @Result(property = "createdDatetime", column = "CREATED_DATETIME"),
+            @Result(property = "createdUser", column = "CREATED_USER"),
+            @Result(property = "lastModifiedDatetime", column = "LAST_MODIFIED_DATETIME"),
+            @Result(property = "lastModifiedUser", column = "LAST_MODIFIED_USER"),
+            @Result(property = "versionExKey", column = "VERSION_EX_KEY"),
+    })
+    Keyst5100ExtraS01 selectWithS01(String prjCode);
 }
