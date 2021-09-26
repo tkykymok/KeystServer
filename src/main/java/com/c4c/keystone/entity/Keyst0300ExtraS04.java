@@ -1,17 +1,15 @@
 package com.c4c.keystone.entity;
 
+import lombok.Data;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
-
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 /**
  * Table: KEYST0300
  */
 @Data
-@EqualsAndHashCode
-public class Keyst0300ExtraS01 {
+public class Keyst0300ExtraS04 {
     /**
      * Column: RESERVE_ID
      * Remark: 予約ID
@@ -19,22 +17,16 @@ public class Keyst0300ExtraS01 {
     private Integer reserveId;
 
     /**
+     * Column: USER_ID
+     * Remark: ユーザーID
+     */
+    private Integer userId;
+
+    /**
      * Column: IMPL_YEAR_MONTH
      * Remark: 実施年月
      */
     private String implYearMonth;
-
-    /**
-     * Column: MANAGER_ID
-     * Remark: 管理者ID
-     */
-    private Integer managerId;
-
-    /**
-     * Column: TEAM
-     * Remark: チーム
-     */
-    private String team;
 
     /**
      * Column: RESERVE_DATE
@@ -49,10 +41,10 @@ public class Keyst0300ExtraS01 {
     private LocalTime reserveTime;
 
     /**
-     * Column: USER_ID
-     * Remark: ユーザーID
+     * Column: MANAGER_NAME
+     * Remark: 管理者名(1on1担当者)
      */
-    private Integer userId;
+    private String managerName;
 
     /**
      * Column: USER_COMMENT
@@ -67,21 +59,8 @@ public class Keyst0300ExtraS01 {
     private String managerComment;
 
     /**
-     * Column: REMARK
-     * Remark: 備考
+     * Column: VERSION_EX_KEY
+     * Remark: 排他制御カラム
      */
-    private String remark;
-
-    /**
-     * Column: FEELING
-     * Remark: ワタシノキモチ
-     */
-    private Integer feeling;
-
-    /**
-     * Column: USER_NAME
-     * Remark: ユーザー名
-     */
-    private String userName;
-
+    private Integer versionExKey;
 }

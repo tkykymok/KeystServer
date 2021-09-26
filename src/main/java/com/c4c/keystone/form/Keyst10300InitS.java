@@ -1,28 +1,21 @@
 package com.c4c.keystone.form;
 
-import java.util.List;
-
-import com.c4c.keystone.entity.Keyst0300ExtraS01;
-import com.c4c.keystone.entity.Keyst0310ExtraS01;
-
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class Keyst10300InitS {
     /**
-     * 予約情報
+     * Column: RESERVE_ID
+     * Remark: 予約ID
      */
-    private List<Keyst0300ExtraS01> reserveInfoList;
+    private Integer reserveId;
 
     /**
-     * 現在月
+     * 当月
      */
     private String thisMonth;
-
-    /**
-     * 実施月リスト
-     */
-    private List<String> implYearMonthList;
 
     /**
      * チーム
@@ -30,11 +23,13 @@ public class Keyst10300InitS {
     private String team;
 
     /**
-     * コメント
+     * 予約情報一覧
      */
-    private List<Keyst0310ExtraS01> reserveDetailList;
+    private List<Keyst10300InitS01> reserveInfoList;
 
-
-
+    /**
+     * コメント履歴一覧
+     */
+    private List<Keyst10300InitS02> commentHistoryList;
 
 }

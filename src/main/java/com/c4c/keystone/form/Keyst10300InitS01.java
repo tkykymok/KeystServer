@@ -1,17 +1,13 @@
-package com.c4c.keystone.entity;
+package com.c4c.keystone.form;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
-/**
- * Table: KEYST0300
- */
 @Data
-@EqualsAndHashCode
-public class Keyst0300ExtraS01 {
+public class Keyst10300InitS01 {
     /**
      * Column: RESERVE_ID
      * Remark: 予約ID
@@ -46,6 +42,7 @@ public class Keyst0300ExtraS01 {
      * Column: RESERVE_TIME
      * Remark: 予約時間
      */
+    @JsonFormat(pattern = "HH:mm")
     private LocalTime reserveTime;
 
     /**

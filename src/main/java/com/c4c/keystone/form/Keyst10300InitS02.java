@@ -1,12 +1,12 @@
 package com.c4c.keystone.form;
 
+import lombok.Data;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import lombok.Data;
-
 @Data
-public class Keyst10300InitS1 {
+public class Keyst10300InitS02 {
     /**
      * Column: RESERVE_ID
      * Remark: 予約ID
@@ -18,18 +18,6 @@ public class Keyst10300InitS1 {
      * Remark: 実施年月
      */
     private String implYearMonth;
-
-    /**
-     * Column: MANAGER_ID
-     * Remark: 管理者ID
-     */
-    private Integer managerId;
-
-    /**
-     * Column: TEAM
-     * Remark: チーム
-     */
-    private String team;
 
     /**
      * Column: RESERVE_DATE
@@ -44,15 +32,27 @@ public class Keyst10300InitS1 {
     private LocalTime reserveTime;
 
     /**
-     * Column: USER_ID
-     * Remark: ユーザーID
+     * Column: MANAGER_NAME
+     * Remark: 管理者名(1on1担当者)
      */
-    private Integer userId;
+    private String managerName;
 
     /**
-     * Column: USER_NAME
-     * Remark: ユーザー名
+     * Column: USER_COMMENT
+     * Remark: ユーザーコメント
      */
-    private String userName;
+    private String userComment;
+
+    /**
+     * Column: MANAGER_COMMENT
+     * Remark: 管理者コメント
+     */
+    private String managerComment;
+
+    /**
+     * Column: VERSION_EX_KEY
+     * Remark: 排他制御カラム
+     */
+    private Integer versionExKey;
 
 }

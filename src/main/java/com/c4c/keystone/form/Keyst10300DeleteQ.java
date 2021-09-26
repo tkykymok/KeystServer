@@ -3,11 +3,10 @@ package com.c4c.keystone.form;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Data
-public class Keyst10300SaveQ {
+public class Keyst10300DeleteQ {
     /**
      * Column: RESERVE_ID
      * Remark: 予約ID
@@ -21,21 +20,9 @@ public class Keyst10300SaveQ {
     private LocalDate reserveDate;
 
     /**
-     * Column:
-     * Remark: 開始時間
+     * Column: RESERVE_TIME
+     * Remark: 予約時間
      */
-    private LocalTime fromTime;
-
-    /**
-     * Column:
-     * Remark: 終了時間
-     */
-    private LocalTime toTime;
-
-    /**
-     * Column: TEAM
-     * Remark: チーム
-     */
-    private String team;
+    private LocalTime reserveTime;
 
 }

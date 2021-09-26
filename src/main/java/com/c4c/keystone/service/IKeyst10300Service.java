@@ -1,12 +1,9 @@
 package com.c4c.keystone.service;
 
-import com.c4c.keystone.form.Keyst10300InitS;
-import com.c4c.keystone.form.Keyst10300SaveQ;
-import com.c4c.keystone.form.Keyst10300SaveQ1;
-import com.c4c.keystone.form.Keyst10300UpdateQ;
+import com.c4c.keystone.form.*;
 
 public interface IKeyst10300Service {
-    Keyst10300InitS initialize(int userId, Integer adminFlg, String team);
+    Keyst10300InitS initialize(String jwt, String yearMonth);
 
 //    Keyst10300DispReserveInfoS displayReserveInfo(Integer reserveId);
 
@@ -16,5 +13,7 @@ public interface IKeyst10300Service {
 
     void saveComment(String jwt, Keyst10300UpdateQ reqForm);
 
-    void delReserve(String jwt, Keyst10300UpdateQ reqForm);
+    void cancelReserve(String jwt, Keyst10300CancelQ reqForm);
+
+    void deleteLine(String jwt, Keyst10300DeleteQ reqForm);
 }

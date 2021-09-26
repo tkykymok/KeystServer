@@ -1,12 +1,12 @@
 package com.c4c.keystone.form;
 
+import lombok.Data;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import lombok.Data;
-
 @Data
-public class Keyst10300UpdateQ {
+public class Keyst10300CancelQ {
     /**
      * Column: RESERVE_ID
      * Remark: 予約ID
@@ -24,19 +24,6 @@ public class Keyst10300UpdateQ {
      * Remark: 予約時間
      */
     private LocalTime reserveTime;
-
-
-    /**
-     * Column: USER_COMMENT
-     * Remark: ユーザーコメント
-     */
-    private String userComment;
-
-    /**
-     * Column: MANAGER_COMMENT
-     * Remark: 管理者コメント
-     */
-    private String managerComment;
 
     /**
      * Column: VERSION_EX_KEY
