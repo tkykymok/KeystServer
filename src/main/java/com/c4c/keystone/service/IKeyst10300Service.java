@@ -1,5 +1,6 @@
 package com.c4c.keystone.service;
 
+import com.c4c.keystone.exception.ExclusiveException;
 import com.c4c.keystone.form.*;
 
 public interface IKeyst10300Service {
@@ -9,11 +10,11 @@ public interface IKeyst10300Service {
 
     void save(String jwt, Keyst10300SaveQ reqForm);
 
-    void reserve(String jwt, Keyst10300SaveQ1 reqForm);
+    void reserve(String jwt, Keyst10300ReserveQ reqForm) throws ExclusiveException;
 
-    void saveComment(String jwt, Keyst10300UpdateQ reqForm);
+    void saveComment(String jwt, Keyst10300UpdateQ reqForm) throws ExclusiveException;
 
-    void cancelReserve(String jwt, Keyst10300CancelQ reqForm);
+    void cancelReserve(String jwt, Keyst10300CancelQ reqForm) throws ExclusiveException;
 
     void deleteLine(String jwt, Keyst10300DeleteQ reqForm);
 }

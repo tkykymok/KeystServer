@@ -143,7 +143,7 @@ public interface Keyst0310Mapper {
           "CREATED_USER = #{createdUser,jdbcType=INTEGER},",
           "LAST_MODIFIED_DATETIME = #{lastModifiedDatetime,jdbcType=TIMESTAMP},",
           "LAST_MODIFIED_USER = #{lastModifiedUser,jdbcType=INTEGER},",
-          "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}",
+          "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER} + 1",
         "where RESERVE_ID = #{reserveId,jdbcType=INTEGER}",
           "and RESERVE_DATE = #{reserveDate,jdbcType=DATE}",
           "and RESERVE_TIME = #{reserveTime,jdbcType=TIME}"

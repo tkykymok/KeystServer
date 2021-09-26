@@ -6,7 +6,7 @@ import java.time.LocalTime;
 import lombok.Data;
 
 @Data
-public class Keyst10300SaveQ1 {
+public class Keyst10300ReserveQ {
     /**
      * Column: RESERVE_ID
      * Remark: 予約ID
@@ -36,5 +36,11 @@ public class Keyst10300SaveQ1 {
      * Remark: 備考
      */
     private String remark;
+
+    /**
+     * Column: VERSION_EX_KEY
+     * Remark: 排他制御カラム
+     */
+    private Integer versionExKey;
 
 }

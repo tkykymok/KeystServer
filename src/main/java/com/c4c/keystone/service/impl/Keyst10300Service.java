@@ -2,6 +2,7 @@ package com.c4c.keystone.service.impl;
 
 import com.c4c.keystone.constants.Flag;
 import com.c4c.keystone.entity.*;
+import com.c4c.keystone.exception.ExclusiveException;
 import com.c4c.keystone.form.*;
 import com.c4c.keystone.mapper.Keyst0100Mapper;
 import com.c4c.keystone.mapper.Keyst0300Mapper;
@@ -19,11 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 @Log4j2
@@ -192,31 +189,36 @@ public class Keyst10300Service implements IKeyst10300Service {
 
     @Override
     @Transactional
-    public void reserve(String jwt, Keyst10300SaveQ1 reqForm) {
+    public void reserve(String jwt, Keyst10300ReserveQ reqForm) throws ExclusiveException {
         // ログインユーザー情報
         Map<String, Object> loginUserInfo = jwtUtil.parseToken(jwt.substring(7));
         // ユーザーID
         Integer loginUserId = Integer.valueOf(loginUserInfo.get(jwtUtil.USER_ID).toString());
 
+        // バージョンチェック
         Keyst0310 keyst0310 = new Keyst0310();
-
-        keyst0310.setReserveId(reqForm.getReserveId()); // リザーブID
+        keyst0310.setReserveId(reqForm.getReserveId()); // 予約ID
         keyst0310.setReserveDate(reqForm.getReserveDate()); // 予約日
         keyst0310.setReserveTime(reqForm.getReserveTime()); // 予約時間
-
+        keyst0310.setVersionExKey(reqForm.getVersionExKey()); // 排他制御カラム
+        keyst0310 = keyst0310Mapper.checkVersion(keyst0310);
+        if (keyst0310 == null) {
+            throw new ExclusiveException(messageSource.getMessage("E00003", null, Locale.JAPAN));
+        }
+        // 1on1予約明細Entityに以下の値を設定する。
         keyst0310.setUserId(loginUserId); // ユーザーID
         keyst0310.setFeeling(reqForm.getFeeling()); // ワタシノキモチ
-        keyst0310.setRemark(reqForm.getRemark()); // ワタシノキモチ
-
+        keyst0310.setRemark(reqForm.getRemark()); // 備考
         // UPDATE時共通フィールドを設定する。
         entityUtil.setColumns4Update(keyst0310, loginUserId);
 
+        // UPDATEを実行する。
         keyst0310Mapper.updateByPrimaryKey(keyst0310);
     }
 
     @Override
     @Transactional
-    public void saveComment(String jwt, Keyst10300UpdateQ reqForm) {
+    public void saveComment(String jwt, Keyst10300UpdateQ reqForm) throws ExclusiveException {
         // ログインユーザー情報
         Map<String, Object> loginUserInfo = jwtUtil.parseToken(jwt.substring(7));
         // ユーザーID
@@ -224,38 +226,28 @@ public class Keyst10300Service implements IKeyst10300Service {
         // 管理者フラグ
         Integer adminFlg = Integer.valueOf(loginUserInfo.get(jwtUtil.ADMIN_FLG).toString());
 
+        // バージョンチェック
         Keyst0310 keyst0310 = new Keyst0310();
-
-        keyst0310.setReserveId(reqForm.getReserveId()); // リザーブID
-        keyst0310.setUserId(loginUserId); // ユーザーID
+        keyst0310.setReserveId(reqForm.getReserveId()); // 予約ID
         keyst0310.setReserveDate(reqForm.getReserveDate()); // 予約日
         keyst0310.setReserveTime(reqForm.getReserveTime()); // 予約時間
-
-        // DBの情報を取る
-        Keyst0310 keyst0310DB = keyst0310Mapper.selectByPrimaryKey(keyst0310);
-        keyst0310.setRemark(keyst0310DB.getRemark()); // 備考
-        keyst0310.setFeeling(keyst0310DB.getFeeling()); // ワタシノキモチ
+        keyst0310.setVersionExKey(reqForm.getVersionExKey()); // 排他制御カラム
+        keyst0310 = keyst0310Mapper.checkVersion(keyst0310);
+        if (keyst0310 == null) {
+            throw new ExclusiveException(messageSource.getMessage("E00003", null, Locale.JAPAN));
+        }
+        // リクエストFormを1on1予約明細Entityに移送する。
+        BeanUtils.copyProperties(reqForm, keyst0310);
 
         // UPDATE時共通フィールドを設定する。
         entityUtil.setColumns4Update(keyst0310, loginUserId);
 
-        // 管理者
-        if (adminFlg == 0) {
-            keyst0310.setUserComment(keyst0310DB.getUserComment()); // DBのユーザーコメント
-            keyst0310.setManagerComment(reqForm.getManagerComment()); // 管理者コメント
-            keyst0310Mapper.updateByPrimaryKey(keyst0310);
-        }
-
-        // ユーザー
-        if (adminFlg == 1) {
-            keyst0310.setManagerComment(keyst0310DB.getManagerComment()); // DBの管理者コメント
-            keyst0310.setUserComment(reqForm.getUserComment()); // ユーザーコメント
-            keyst0310Mapper.updateByPrimaryKey(keyst0310);
-        }
+        // UPDATEを実行する。
+        keyst0310Mapper.updateByPrimaryKey(keyst0310);
     }
 
     @Override
-    public void cancelReserve(String jwt, Keyst10300CancelQ reqForm) {
+    public void cancelReserve(String jwt, Keyst10300CancelQ reqForm) throws ExclusiveException {
         // ログインユーザー情報
         Map<String, Object> loginUserInfo = jwtUtil.parseToken(jwt.substring(7));
         // ユーザーID
@@ -267,48 +259,33 @@ public class Keyst10300Service implements IKeyst10300Service {
         keyst0310.setReserveId(reqForm.getReserveId()); // 予約ID
         keyst0310.setReserveDate(reqForm.getReserveDate()); // 予約日
         keyst0310.setReserveTime(reqForm.getReserveTime()); // 予約時間
-        keyst0310.setVersionExKey(reqForm.getVersionExKey()); // 排他制御絡む
+        keyst0310.setVersionExKey(reqForm.getVersionExKey()); // 排他制御カラム
+        keyst0310 = keyst0310Mapper.checkVersion(keyst0310);
+        if (keyst0310 == null) {
+            throw new ExclusiveException(messageSource.getMessage("E00003", null, Locale.JAPAN));
+        }
 
+        // 1on1予約明細Entityに以下の値を設定する。
+        keyst0310.setUserId(null); // ユーザーID
+        keyst0310.setFeeling(null); // ワタシノキモチ
+        keyst0310.setUserComment(null); // ユーザーコメント
+        keyst0310.setManagerComment(null); // 管理者コメント
+        keyst0310.setRemark(null); // 備考
 
+        // UPDATE時共通フィールドを設定する。
+        entityUtil.setColumns4Update(keyst0310, loginUserId);
 
+        // UPDATEを実行する。
+        keyst0310Mapper.updateByPrimaryKey(keyst0310);
     }
 
     @Override
     public void deleteLine(String jwt, Keyst10300DeleteQ reqForm) {
-
+        Keyst0310 keyst0310 = new Keyst0310();
+        // リクエストFormを1on1予約明細Entityに移送する。
+        BeanUtils.copyProperties(reqForm, keyst0310);
+        // DELETEを実行する。
+        keyst0310Mapper.deleteByPrimaryKey(keyst0310);
     }
-
-    //
-//    @Override
-//    @Transactional
-//    public void delReserve(String jwt, Keyst10300UpdateQ reqForm) {
-//        // ログインユーザー情報
-//        Map<String, Object> loginUserInfo = jwtUtil.parseToken(jwt.substring(7));
-//        // ユーザーID
-//        Integer loginUserId = Integer.valueOf(loginUserInfo.get(jwtUtil.USER_ID).toString());
-//        Integer adminFlg = Integer.valueOf(loginUserInfo.get(jwtUtil.ADMIN_FLG).toString());
-//
-//        Keyst0300 keyst0300 = new Keyst0300();
-//        Keyst0310 keyst0310 = new Keyst0310();
-//
-//        keyst0300.setReserveId(reqForm.getReserveId()); // リザーブID
-//
-//        keyst0310.setReserveId(reqForm.getReserveId()); // リザーブID
-//        keyst0310.setReserveDate(reqForm.getReserveDate()); // 予約日
-//        keyst0310.setReserveTime(reqForm.getReserveTime()); // 予約時間
-//
-//        // 管理者
-//        if (adminFlg == 0) {
-//            keyst0300Mapper.deleteByPrimaryKey(keyst0300);
-//            keyst0310Mapper.deleteByPrimaryKey(keyst0310);
-//        }
-//
-//        // ユーザー
-//        if (adminFlg == 1) {
-//            // UPDATE時共通フィールドを設定する。
-//            entityUtil.setColumns4Update(keyst0310, loginUserId);
-//            keyst0310Mapper.updateByPrimaryKey(keyst0310);
-//        }
-//    }
 
 }
