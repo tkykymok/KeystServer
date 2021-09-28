@@ -55,10 +55,21 @@ public class Keyst10100Service implements IKeyst10100Service {
     @Transactional
     public Keyst10100SaveS save(String jwt, Keyst10100SaveQ reqForm) {
 
+        // ログインユーザーIDをセッションから取得する。
+        Integer userId = 1; // TODO 暫定
+
         Keyst0100 keyst0100 = new Keyst0100();
         BeanUtils.copyProperties(reqForm, keyst0100);
 
-        keyst0100Mapper.insert(keyst0100);
+        // ユーザー基本情報EntityKeyに以下の値を設定する。
+        Keyst0100Key keyst0100Key = new Keyst0100Key();
+        keyst0100Key.setUserId(userId);
+
+        if (userId == keyst0100Key.getUserId()) {
+            keyst0100Mapper.updateByPrimaryKey(keyst0100);
+        } else {
+            keyst0100Mapper.insert(keyst0100);
+        }
 
         Keyst10100SaveS resForm = new Keyst10100SaveS();
         resForm.setUserName(keyst0100.getUserName());

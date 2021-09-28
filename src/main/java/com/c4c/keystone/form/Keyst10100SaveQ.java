@@ -2,6 +2,8 @@ package com.c4c.keystone.form;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import lombok.Data;
 
 @Data
@@ -52,6 +54,7 @@ public class Keyst10100SaveQ {
      * Column: PARTNER_FLG
      * Remark: 配偶者フラグ
      */
+    @JsonDeserialize(using = JsonUtils.FlagDeserializer.class)
     private Integer partnerFlg;
 
     /**
