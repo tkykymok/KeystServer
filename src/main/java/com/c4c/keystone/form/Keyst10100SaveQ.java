@@ -164,4 +164,10 @@ public class Keyst10100SaveQ {
      * Remark: 名義人
      */
     private String accountName;
+
+    /**
+     * Column: VERSION_EX_KEY
+     * Remark: 排他制御カラム
+     */
+    private Integer versionExKey;
 }

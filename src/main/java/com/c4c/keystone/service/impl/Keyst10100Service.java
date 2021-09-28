@@ -1,5 +1,7 @@
 package com.c4c.keystone.service.impl;
 
+import java.util.Map;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ import com.c4c.keystone.form.Keyst10100SaveQ;
 import com.c4c.keystone.form.Keyst10100SaveS;
 import com.c4c.keystone.mapper.Keyst0100Mapper;
 import com.c4c.keystone.service.IKeyst10100Service;
+import com.c4c.keystone.utils.EntityUtil;
 import com.c4c.keystone.utils.JwtUtil;
 
 @Service
@@ -22,6 +25,8 @@ public class Keyst10100Service implements IKeyst10100Service {
     Keyst0100Mapper keyst0100Mapper;
     @Autowired
     JwtUtil jwtUtil;
+    @Autowired
+    EntityUtil entityUtil;
 
     @Override
     @Transactional
@@ -54,20 +59,33 @@ public class Keyst10100Service implements IKeyst10100Service {
     @Override
     @Transactional
     public Keyst10100SaveS save(String jwt, Keyst10100SaveQ reqForm) {
-
-        // ログインユーザーIDをセッションから取得する。
-        Integer userId = 1; // TODO 暫定
+        // ログインユーザー情報
+        Map<String, Object> loginUserInfo = jwtUtil.parseToken(jwt.substring(7));
+        // ユーザーID
+        Integer loginUserId = Integer.valueOf(loginUserInfo.get(jwtUtil.USER_ID).toString());
 
         Keyst0100 keyst0100 = new Keyst0100();
         BeanUtils.copyProperties(reqForm, keyst0100);
 
         // ユーザー基本情報EntityKeyに以下の値を設定する。
         Keyst0100Key keyst0100Key = new Keyst0100Key();
-        keyst0100Key.setUserId(userId);
+        keyst0100Key.setUserId(loginUserId);
 
-        if (userId == keyst0100Key.getUserId()) {
+        if (loginUserId == keyst0100Key.getUserId()) {
+            // バージョンチェック
+            Keyst0100 keyst0100Version = new Keyst0100();
+            keyst0100Version.setUserId(loginUserId);
+            keyst0100Version.setVersionExKey(reqForm.getVersionExKey());
+            keyst0100Version = keyst0100Mapper.checkVersion(keyst0100Version);
+            // INSERT時共通フィールドを設定する。
+            entityUtil.setColumns4Insert(keyst0100, loginUserId);
+            System.out.println("■■■■■■■");
+            System.out.println(keyst0100);
+            System.out.println("■■■■■■■");
             keyst0100Mapper.updateByPrimaryKey(keyst0100);
         } else {
+            // INSERT時共通フィールドを設定する。
+            entityUtil.setColumns4Insert(keyst0100, loginUserId);
             keyst0100Mapper.insert(keyst0100);
         }
 
