@@ -20,7 +20,7 @@ public class Keyst0310 extends Keyst0310Key {
      * Column: FEELING
      * Remark: ワタシノキモチ
      */
-    private String feeling;
+    private Integer feeling;
 
     /**
      * Column: USER_COMMENT

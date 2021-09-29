@@ -51,13 +51,13 @@ public class Keyst0210 extends Keyst0210Key {
      * Column: OS
      * Remark: OS
      */
-    private String os;
+    private Integer os;
 
     /**
      * Column: DB
      * Remark: DB
      */
-    private String db;
+    private Integer db;
 
     /**
      * Column: FW_MW_TOOL
@@ -75,43 +75,43 @@ public class Keyst0210 extends Keyst0210Key {
      * Column: SOW_MANAGEMENT
      * Remark: 業務範囲_マネジメント
      */
-    private String sowManagement;
+    private Integer sowManagement;
 
     /**
      * Column: SOW_REQ_DEFINITION
      * Remark: 業務範囲_要件定義
      */
-    private String sowReqDefinition;
+    private Integer sowReqDefinition;
 
     /**
      * Column: SOW_BASIC_DESIGN
      * Remark: 業務範囲_基本設計
      */
-    private String sowBasicDesign;
+    private Integer sowBasicDesign;
 
     /**
      * Column: SOW_DETAIL_DESIGN
      * Remark: 業務範囲_詳細設計
      */
-    private String sowDetailDesign;
+    private Integer sowDetailDesign;
 
     /**
      * Column: SOW_IMPLEMENTATION
      * Remark: 業務範囲_実装
      */
-    private String sowImplementation;
+    private Integer sowImplementation;
 
     /**
      * Column: SOW_TEST
      * Remark: 業務範囲_テスト
      */
-    private String sowTest;
+    private Integer sowTest;
 
     /**
      * Column: SOW_MAINTENANCE_OPERATION
      * Remark: 業務範囲_保守運用
      */
-    private String sowMaintenanceOperation;
+    private Integer sowMaintenanceOperation;
 
     /**
      * Column: CREATED_DATETIME

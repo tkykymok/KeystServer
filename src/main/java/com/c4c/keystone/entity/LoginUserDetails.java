@@ -9,9 +9,9 @@ public class LoginUserDetails extends User {
 
     private final Integer userId;
     private final String userName;
-    private final String adminFlg;
+    private final Integer adminFlg;
 
-    public LoginUserDetails(String username, String password, Collection<? extends GrantedAuthority> authorities, Integer userId, String userName, String adminFlg) {
+    public LoginUserDetails(String username, String password, Collection<? extends GrantedAuthority> authorities, Integer userId, String userName, Integer adminFlg) {
         super(username, password, authorities);
         this.userId = userId;
         this.userName = userName;
@@ -26,7 +26,7 @@ public class LoginUserDetails extends User {
         return userName;
     }
 
-    public String getAdminFlg() {
+    public Integer getAdminFlg() {
         return adminFlg;
     }
 }

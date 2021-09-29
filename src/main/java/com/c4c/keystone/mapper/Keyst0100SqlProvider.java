@@ -53,7 +53,7 @@ public class Keyst0100SqlProvider {
         }
         
         if (record.getGender() != null) {
-            sql.VALUES("GENDER", "#{gender,jdbcType=VARCHAR}");
+            sql.VALUES("GENDER", "#{gender,jdbcType=INTEGER}");
         }
         
         if (record.getAge() != null) {
@@ -69,7 +69,7 @@ public class Keyst0100SqlProvider {
         }
         
         if (record.getPartnerFlg() != null) {
-            sql.VALUES("PARTNER_FLG", "#{partnerFlg,jdbcType=VARCHAR}");
+            sql.VALUES("PARTNER_FLG", "#{partnerFlg,jdbcType=INTEGER}");
         }
         
         if (record.getNearestStation() != null) {
@@ -101,7 +101,7 @@ public class Keyst0100SqlProvider {
         }
         
         if (record.getAdminFlg() != null) {
-            sql.VALUES("ADMIN_FLG", "#{adminFlg,jdbcType=VARCHAR}");
+            sql.VALUES("ADMIN_FLG", "#{adminFlg,jdbcType=INTEGER}");
         }
         
         if (record.getPrfImgStrgDrctry() != null) {
@@ -145,7 +145,7 @@ public class Keyst0100SqlProvider {
         }
         
         if (record.getDeleteFlg() != null) {
-            sql.VALUES("DELETE_FLG", "#{deleteFlg,jdbcType=VARCHAR}");
+            sql.VALUES("DELETE_FLG", "#{deleteFlg,jdbcType=INTEGER}");
         }
         
         if (record.getCreatedDatetime() != null) {
@@ -250,7 +250,7 @@ public class Keyst0100SqlProvider {
         }
         
         if (record.getGender() != null) {
-            sql.SET("GENDER = #{record.gender,jdbcType=VARCHAR}");
+            sql.SET("GENDER = #{record.gender,jdbcType=INTEGER}");
         }
         
         if (record.getAge() != null) {
@@ -266,7 +266,7 @@ public class Keyst0100SqlProvider {
         }
         
         if (record.getPartnerFlg() != null) {
-            sql.SET("PARTNER_FLG = #{record.partnerFlg,jdbcType=VARCHAR}");
+            sql.SET("PARTNER_FLG = #{record.partnerFlg,jdbcType=INTEGER}");
         }
         
         if (record.getNearestStation() != null) {
@@ -298,7 +298,7 @@ public class Keyst0100SqlProvider {
         }
         
         if (record.getAdminFlg() != null) {
-            sql.SET("ADMIN_FLG = #{record.adminFlg,jdbcType=VARCHAR}");
+            sql.SET("ADMIN_FLG = #{record.adminFlg,jdbcType=INTEGER}");
         }
         
         if (record.getPrfImgStrgDrctry() != null) {
@@ -342,7 +342,7 @@ public class Keyst0100SqlProvider {
         }
         
         if (record.getDeleteFlg() != null) {
-            sql.SET("DELETE_FLG = #{record.deleteFlg,jdbcType=VARCHAR}");
+            sql.SET("DELETE_FLG = #{record.deleteFlg,jdbcType=INTEGER}");
         }
         
         if (record.getCreatedDatetime() != null) {
@@ -380,11 +380,11 @@ public class Keyst0100SqlProvider {
         sql.SET("USER_NAME = #{record.userName,jdbcType=VARCHAR}");
         sql.SET("USER_NAME_KANA = #{record.userNameKana,jdbcType=VARCHAR}");
         sql.SET("TEAM = #{record.team,jdbcType=VARCHAR}");
-        sql.SET("GENDER = #{record.gender,jdbcType=VARCHAR}");
+        sql.SET("GENDER = #{record.gender,jdbcType=INTEGER}");
         sql.SET("AGE = #{record.age,jdbcType=INTEGER}");
         sql.SET("BIRTHDAY = #{record.birthday,jdbcType=DATE}");
         sql.SET("NATIONALITY = #{record.nationality,jdbcType=VARCHAR}");
-        sql.SET("PARTNER_FLG = #{record.partnerFlg,jdbcType=VARCHAR}");
+        sql.SET("PARTNER_FLG = #{record.partnerFlg,jdbcType=INTEGER}");
         sql.SET("NEAREST_STATION = #{record.nearestStation,jdbcType=VARCHAR}");
         sql.SET("FINAL_EDUCATION_DATE = #{record.finalEducationDate,jdbcType=DATE}");
         sql.SET("FINAL_EDUCATION_CONTENT = #{record.finalEducationContent,jdbcType=VARCHAR}");
@@ -392,7 +392,7 @@ public class Keyst0100SqlProvider {
         sql.SET("EMAIL = #{record.email,jdbcType=VARCHAR}");
         sql.SET("LOGIN_ID = #{record.loginId,jdbcType=VARCHAR}");
         sql.SET("LOGIN_PW = #{record.loginPw,jdbcType=VARCHAR}");
-        sql.SET("ADMIN_FLG = #{record.adminFlg,jdbcType=VARCHAR}");
+        sql.SET("ADMIN_FLG = #{record.adminFlg,jdbcType=INTEGER}");
         sql.SET("PRF_IMG_STRG_DRCTRY = #{record.prfImgStrgDrctry,jdbcType=VARCHAR}");
         sql.SET("POSTAL_CODE = #{record.postalCode,jdbcType=VARCHAR}");
         sql.SET("ADDRESS = #{record.address,jdbcType=VARCHAR}");
@@ -403,7 +403,7 @@ public class Keyst0100SqlProvider {
         sql.SET("ACCOUNT_TYPE = #{record.accountType,jdbcType=VARCHAR}");
         sql.SET("ACCOUNT_NUMBER = #{record.accountNumber,jdbcType=VARCHAR}");
         sql.SET("ACCOUNT_NAME = #{record.accountName,jdbcType=VARCHAR}");
-        sql.SET("DELETE_FLG = #{record.deleteFlg,jdbcType=VARCHAR}");
+        sql.SET("DELETE_FLG = #{record.deleteFlg,jdbcType=INTEGER}");
         sql.SET("CREATED_DATETIME = #{record.createdDatetime,jdbcType=TIMESTAMP}");
         sql.SET("CREATED_USER = #{record.createdUser,jdbcType=INTEGER}");
         sql.SET("LAST_MODIFIED_DATETIME = #{record.lastModifiedDatetime,jdbcType=TIMESTAMP}");
@@ -435,7 +435,7 @@ public class Keyst0100SqlProvider {
         }
         
         if (record.getGender() != null) {
-            sql.SET("GENDER = #{gender,jdbcType=VARCHAR}");
+            sql.SET("GENDER = #{gender,jdbcType=INTEGER}");
         }
         
         if (record.getAge() != null) {
@@ -451,7 +451,7 @@ public class Keyst0100SqlProvider {
         }
         
         if (record.getPartnerFlg() != null) {
-            sql.SET("PARTNER_FLG = #{partnerFlg,jdbcType=VARCHAR}");
+            sql.SET("PARTNER_FLG = #{partnerFlg,jdbcType=INTEGER}");
         }
         
         if (record.getNearestStation() != null) {
@@ -483,7 +483,7 @@ public class Keyst0100SqlProvider {
         }
         
         if (record.getAdminFlg() != null) {
-            sql.SET("ADMIN_FLG = #{adminFlg,jdbcType=VARCHAR}");
+            sql.SET("ADMIN_FLG = #{adminFlg,jdbcType=INTEGER}");
         }
         
         if (record.getPrfImgStrgDrctry() != null) {
@@ -527,7 +527,7 @@ public class Keyst0100SqlProvider {
         }
         
         if (record.getDeleteFlg() != null) {
-            sql.SET("DELETE_FLG = #{deleteFlg,jdbcType=VARCHAR}");
+            sql.SET("DELETE_FLG = #{deleteFlg,jdbcType=INTEGER}");
         }
         
         if (record.getCreatedDatetime() != null) {

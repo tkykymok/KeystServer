@@ -33,7 +33,7 @@ public class Keyst0100 extends Keyst0100Key {
      * Column: GENDER
      * Remark: 性別
      */
-    private String gender;
+    private Integer gender;
 
     /**
      * Column: AGE
@@ -57,7 +57,7 @@ public class Keyst0100 extends Keyst0100Key {
      * Column: PARTNER_FLG
      * Remark: 配偶者フラグ
      */
-    private String partnerFlg;
+    private Integer partnerFlg;
 
     /**
      * Column: NEAREST_STATION
@@ -105,7 +105,7 @@ public class Keyst0100 extends Keyst0100Key {
      * Column: ADMIN_FLG
      * Remark: 管理者フラグ
      */
-    private String adminFlg;
+    private Integer adminFlg;
 
     /**
      * Column: PRF_IMG_STRG_DRCTRY
@@ -171,7 +171,7 @@ public class Keyst0100 extends Keyst0100Key {
      * Column: DELETE_FLG
      * Remark: 削除フラグ
      */
-    private String deleteFlg;
+    private Integer deleteFlg;
 
     /**
      * Column: CREATED_DATETIME

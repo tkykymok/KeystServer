@@ -27,7 +27,7 @@ public interface Keyst5300Mapper {
      */
     @Delete({
         "delete from KEYST5300",
-        "where SKILL_CODE = #{skillCode,jdbcType=VARCHAR}"
+        "where SKILL_CODE = #{skillCode,jdbcType=INTEGER}"
     })
     int deleteByPrimaryKey(Keyst5300Key key);
 
@@ -39,8 +39,8 @@ public interface Keyst5300Mapper {
         "LANG_FLG, CREATED_DATETIME, ",
         "CREATED_USER, LAST_MODIFIED_DATETIME, ",
         "LAST_MODIFIED_USER, VERSION_EX_KEY)",
-        "values (#{skillCode,jdbcType=VARCHAR}, #{skillName,jdbcType=VARCHAR}, ",
-        "#{langFlg,jdbcType=VARCHAR}, #{createdDatetime,jdbcType=TIMESTAMP}, ",
+        "values (#{skillCode,jdbcType=INTEGER}, #{skillName,jdbcType=VARCHAR}, ",
+        "#{langFlg,jdbcType=INTEGER}, #{createdDatetime,jdbcType=TIMESTAMP}, ",
         "#{createdUser,jdbcType=INTEGER}, #{lastModifiedDatetime,jdbcType=TIMESTAMP}, ",
         "#{lastModifiedUser,jdbcType=INTEGER}, #{versionExKey,jdbcType=INTEGER})"
     })
@@ -57,9 +57,9 @@ public interface Keyst5300Mapper {
      */
     @SelectProvider(type=Keyst5300SqlProvider.class, method="selectByExample")
     @Results({
-        @Result(column="SKILL_CODE", property="skillCode", jdbcType=JdbcType.VARCHAR, id=true),
+        @Result(column="SKILL_CODE", property="skillCode", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="SKILL_NAME", property="skillName", jdbcType=JdbcType.VARCHAR),
-        @Result(column="LANG_FLG", property="langFlg", jdbcType=JdbcType.VARCHAR),
+        @Result(column="LANG_FLG", property="langFlg", jdbcType=JdbcType.INTEGER),
         @Result(column="CREATED_DATETIME", property="createdDatetime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.INTEGER),
         @Result(column="LAST_MODIFIED_DATETIME", property="lastModifiedDatetime", jdbcType=JdbcType.TIMESTAMP),
@@ -76,12 +76,12 @@ public interface Keyst5300Mapper {
         "SKILL_CODE, SKILL_NAME, LANG_FLG, CREATED_DATETIME, CREATED_USER, LAST_MODIFIED_DATETIME, ",
         "LAST_MODIFIED_USER, VERSION_EX_KEY",
         "from KEYST5300",
-        "where SKILL_CODE = #{skillCode,jdbcType=VARCHAR}"
+        "where SKILL_CODE = #{skillCode,jdbcType=INTEGER}"
     })
     @Results({
-        @Result(column="SKILL_CODE", property="skillCode", jdbcType=JdbcType.VARCHAR, id=true),
+        @Result(column="SKILL_CODE", property="skillCode", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="SKILL_NAME", property="skillName", jdbcType=JdbcType.VARCHAR),
-        @Result(column="LANG_FLG", property="langFlg", jdbcType=JdbcType.VARCHAR),
+        @Result(column="LANG_FLG", property="langFlg", jdbcType=JdbcType.INTEGER),
         @Result(column="CREATED_DATETIME", property="createdDatetime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.INTEGER),
         @Result(column="LAST_MODIFIED_DATETIME", property="lastModifiedDatetime", jdbcType=JdbcType.TIMESTAMP),
@@ -114,13 +114,33 @@ public interface Keyst5300Mapper {
     @Update({
         "update KEYST5300",
         "set SKILL_NAME = #{skillName,jdbcType=VARCHAR},",
-          "LANG_FLG = #{langFlg,jdbcType=VARCHAR},",
+          "LANG_FLG = #{langFlg,jdbcType=INTEGER},",
           "CREATED_DATETIME = #{createdDatetime,jdbcType=TIMESTAMP},",
           "CREATED_USER = #{createdUser,jdbcType=INTEGER},",
           "LAST_MODIFIED_DATETIME = #{lastModifiedDatetime,jdbcType=TIMESTAMP},",
           "LAST_MODIFIED_USER = #{lastModifiedUser,jdbcType=INTEGER},",
-          "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}",
-        "where SKILL_CODE = #{skillCode,jdbcType=VARCHAR}"
+          "VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER} + 1",
+        "where SKILL_CODE = #{skillCode,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Keyst5300 record);
+
+    @Select({
+            "select",
+            "SKILL_CODE, SKILL_NAME, LANG_FLG, CREATED_DATETIME, CREATED_USER, LAST_MODIFIED_DATETIME, ",
+            "LAST_MODIFIED_USER, VERSION_EX_KEY",
+            "from KEYST5300",
+            "where SKILL_CODE = #{skillCode,jdbcType=INTEGER}",
+            "and VERSION_EX_KEY = #{versionExKey,jdbcType=INTEGER}"
+    })
+    @Results({
+            @Result(column="SKILL_CODE", property="skillCode", jdbcType=JdbcType.INTEGER, id=true),
+            @Result(column="SKILL_NAME", property="skillName", jdbcType=JdbcType.VARCHAR),
+            @Result(column="LANG_FLG", property="langFlg", jdbcType=JdbcType.INTEGER),
+            @Result(column="CREATED_DATETIME", property="createdDatetime", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="CREATED_USER", property="createdUser", jdbcType=JdbcType.INTEGER),
+            @Result(column="LAST_MODIFIED_DATETIME", property="lastModifiedDatetime", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="LAST_MODIFIED_USER", property="lastModifiedUser", jdbcType=JdbcType.INTEGER),
+            @Result(column="VERSION_EX_KEY", property="versionExKey", jdbcType=JdbcType.INTEGER)
+    })
+    Keyst5300 checkVersion(Keyst5300Key versionCheckKey);
 }

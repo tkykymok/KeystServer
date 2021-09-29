@@ -4,7 +4,7 @@ CREATE TABLE `KEYST0310`
     `RESERVE_DATE`           DATE         NOT NULL COMMENT '予約日',
     `RESERVE_TIME`           TIME         NOT NULL COMMENT '予約時間',
     `USER_ID`                INT          NULL COMMENT 'ユーザーID',
-    `FEELING`                VARCHAR(1)   NULL COMMENT 'ワタシノキモチ',
+    `FEELING`                INT          NULL COMMENT 'ワタシノキモチ',
     `USER_COMMENT`           VARCHAR(255) NULL COMMENT 'ユーザーコメント',
     `MANAGER_COMMENT`        VARCHAR(255) NULL COMMENT '管理者コメント',
     `REMARK`                 VARCHAR(255) NULL COMMENT '備考',

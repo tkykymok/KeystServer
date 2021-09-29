@@ -399,62 +399,52 @@ public class Keyst0310Example {
             return (Criteria) this;
         }
 
-        public Criteria andFeelingEqualTo(String value) {
+        public Criteria andFeelingEqualTo(Integer value) {
             addCriterion("FEELING =", value, "feeling");
             return (Criteria) this;
         }
 
-        public Criteria andFeelingNotEqualTo(String value) {
+        public Criteria andFeelingNotEqualTo(Integer value) {
             addCriterion("FEELING <>", value, "feeling");
             return (Criteria) this;
         }
 
-        public Criteria andFeelingGreaterThan(String value) {
+        public Criteria andFeelingGreaterThan(Integer value) {
             addCriterion("FEELING >", value, "feeling");
             return (Criteria) this;
         }
 
-        public Criteria andFeelingGreaterThanOrEqualTo(String value) {
+        public Criteria andFeelingGreaterThanOrEqualTo(Integer value) {
             addCriterion("FEELING >=", value, "feeling");
             return (Criteria) this;
         }
 
-        public Criteria andFeelingLessThan(String value) {
+        public Criteria andFeelingLessThan(Integer value) {
             addCriterion("FEELING <", value, "feeling");
             return (Criteria) this;
         }
 
-        public Criteria andFeelingLessThanOrEqualTo(String value) {
+        public Criteria andFeelingLessThanOrEqualTo(Integer value) {
             addCriterion("FEELING <=", value, "feeling");
             return (Criteria) this;
         }
 
-        public Criteria andFeelingLike(String value) {
-            addCriterion("FEELING like", value, "feeling");
-            return (Criteria) this;
-        }
-
-        public Criteria andFeelingNotLike(String value) {
-            addCriterion("FEELING not like", value, "feeling");
-            return (Criteria) this;
-        }
-
-        public Criteria andFeelingIn(List<String> values) {
+        public Criteria andFeelingIn(List<Integer> values) {
             addCriterion("FEELING in", values, "feeling");
             return (Criteria) this;
         }
 
-        public Criteria andFeelingNotIn(List<String> values) {
+        public Criteria andFeelingNotIn(List<Integer> values) {
             addCriterion("FEELING not in", values, "feeling");
             return (Criteria) this;
         }
 
-        public Criteria andFeelingBetween(String value1, String value2) {
+        public Criteria andFeelingBetween(Integer value1, Integer value2) {
             addCriterion("FEELING between", value1, value2, "feeling");
             return (Criteria) this;
         }
 
-        public Criteria andFeelingNotBetween(String value1, String value2) {
+        public Criteria andFeelingNotBetween(Integer value1, Integer value2) {
             addCriterion("FEELING not between", value1, value2, "feeling");
             return (Criteria) this;
         }
