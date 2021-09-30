@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import javax.validation.Valid;
 
+import com.c4c.keystone.exception.ExclusiveException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -34,54 +35,23 @@ public class Keyst10100Controller {
     @Autowired
     Keyst10100Service keyst10100Service;
     @Autowired
-    Keyst5300Service keyst5300Service;
-    @Autowired
     protected MessageSource messageSource;
 
     @Autowired
     JwtUtil jwtUtil;
 
     @GetMapping("initialize")
-    public ResponseEntity<Keyst10100InitS> initialize() {
-
+    public ResponseEntity<Keyst10100InitS> initialize(@RequestHeader("Authorization") String jwt) {
         // レスポンスForm
-        Keyst10100InitS resForm = keyst10100Service.initialize();
-        System.out.println(resForm);
-
-        // スキルマスタ取得
-        List<Keyst5300> keyst5300List = keyst5300Service.getAllSkills();
-
-        // スキルリストForm(initS01List)を定義する。
-        List<Keyst10400InitS01> initS01List = new ArrayList<>();
-
-        // カンマ区切りのスキルを一文字ずつリストに入れる
-        String[] skillList = resForm.getUserBasicInfo().getSkills().split(",");
-
-        // スキルコードを1件ずつ取り出し、スキル名に変換する。
-        if (skillList != null) {
-            for (String skillCodeString : skillList) {
-                Keyst10400InitS01 initS01 = new Keyst10400InitS01();
-                Integer skillCode = Integer.parseInt(skillCodeString);
-                Keyst5300 keyst5300 = keyst5300List.stream()
-                        .filter(obj -> skillCode.equals(obj.getSkillCode()))
-                        .findFirst()
-                        .get();
-
-                // コード値からスキル名に変更した値をスキルForm(initS01)にコピーし、スキルリストForm(initS01List)に設定する。
-                BeanUtils.copyProperties(keyst5300, initS01);
-                initS01List.add(initS01);
-            }
-            // スキルリストForm(initS01List)をレスポンスFormに設定する。
-            resForm.setSkillList(initS01List);
-        }
+        Keyst10100InitS resForm = keyst10100Service.initialize(jwt);
         return ResponseEntity.ok(resForm);
     }
 
     @PostMapping(value = "save")
-    public ResponseEntity<Keyst10100SaveS> save(@RequestHeader("Authorization") String jwt, @RequestBody @Valid Keyst10100SaveQ reqForm) {
+    public ResponseEntity<Keyst10100SaveS> save(@RequestHeader("Authorization") String jwt, @RequestBody @Valid Keyst10100SaveQ reqForm) throws ExclusiveException {
         // レスポンスForm
         Keyst10100SaveS resForm = keyst10100Service.save(jwt, reqForm);
-        resForm.setMessages(messageSource.getMessage("I00001", new String[]{"登録"}, Locale.JAPAN));
+        resForm.setMessages(messageSource.getMessage("I00001", new String[]{"更新"}, Locale.JAPAN));
         return ResponseEntity.ok(resForm);
     }
 

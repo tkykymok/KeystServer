@@ -1,18 +1,20 @@
 package com.c4c.keystone.service.impl;
 
-import java.util.Map;
+import java.util.*;
 
+import com.c4c.keystone.constants.Flag;
+import com.c4c.keystone.entity.Keyst5300;
+import com.c4c.keystone.exception.ExclusiveException;
+import com.c4c.keystone.form.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.c4c.keystone.entity.Keyst0100;
 import com.c4c.keystone.entity.Keyst0100Key;
-import com.c4c.keystone.form.Keyst10100InitS;
-import com.c4c.keystone.form.Keyst10100InitS01;
-import com.c4c.keystone.form.Keyst10100SaveQ;
-import com.c4c.keystone.form.Keyst10100SaveS;
 import com.c4c.keystone.mapper.Keyst0100Mapper;
 import com.c4c.keystone.service.IKeyst10100Service;
 import com.c4c.keystone.utils.EntityUtil;
@@ -22,27 +24,36 @@ import com.c4c.keystone.utils.JwtUtil;
 public class Keyst10100Service implements IKeyst10100Service {
 
     @Autowired
+    Keyst5300Service keyst5300Service;
+
+    @Autowired
     Keyst0100Mapper keyst0100Mapper;
     @Autowired
     JwtUtil jwtUtil;
     @Autowired
     EntityUtil entityUtil;
+    @Autowired
+    protected MessageSource messageSource;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     @Transactional
-    public Keyst10100InitS initialize() {
+    public Keyst10100InitS initialize(String jwt) {
+        // ログインユーザー情報
+        Map<String, Object> loginUserInfo = jwtUtil.parseToken(jwt.substring(7));
+        // ユーザーID
+        Integer loginUserId = Integer.valueOf(loginUserInfo.get(jwtUtil.USER_ID).toString());
+
         // レスポンスForm
         Keyst10100InitS resForm = new Keyst10100InitS();
 
         //////////////////////////////////////////////////////////////
         // ユーザー基本情報取得
         //////////////////////////////////////////////////////////////
-        // ログインユーザーIDをセッションから取得する。
-        Integer userId = 1; // TODO 暫定
-
         // ユーザー基本情報EntityKeyに以下の値を設定する。
         Keyst0100Key keyst0100Key = new Keyst0100Key();
-        keyst0100Key.setUserId(userId);
+        keyst0100Key.setUserId(loginUserId);
 
         // ユーザー基本情報MapperのPK検索メソッドを呼び出す。
         Keyst0100 keyst0100 = keyst0100Mapper.selectByPrimaryKey(keyst0100Key);
@@ -50,6 +61,32 @@ public class Keyst10100Service implements IKeyst10100Service {
         Keyst10100InitS01 initS01 = new Keyst10100InitS01();
         BeanUtils.copyProperties(keyst0100, initS01);
 
+        if (Objects.nonNull(keyst0100.getSkills())) {
+            // スキルマスタ取得
+            List<Keyst5300> keyst5300List = keyst5300Service.getAllSkills();
+            // スキルリストForm(InitS02List)を定義する。
+            List<Keyst10100InitS02> keyst10100InitS02List = new ArrayList<>();
+            // カンマ区切りのスキルを一文字ずつリストに入れる
+            String[] skillList = keyst0100.getSkills().split(",");
+
+            // スキルコードを1件ずつ取り出し、スキル名に変換する。
+            for (String skillCodeString : skillList) {
+                Keyst10100InitS02 keyst10100InitS02 = new Keyst10100InitS02();
+                Integer skillCode = Integer.parseInt(skillCodeString);
+                Keyst5300 keyst5300 = keyst5300List.stream()
+                        .filter(obj -> skillCode.equals(obj.getSkillCode()))
+                        .findFirst()
+                        .get();
+
+                // コード値からスキル名に変更した値をスキルForm(initS01)にコピーし、スキルリストForm(initS01List)に設定する。
+                BeanUtils.copyProperties(keyst5300, keyst10100InitS02);
+                keyst10100InitS02List.add(keyst10100InitS02);
+            }
+            // スキルリストForm(initS01List)をレスポンスFormに設定する。
+            resForm.setSkillList(keyst10100InitS02List);
+        }
+        // パスワードを空にする。
+        initS01.setLoginPw(null);
         // initS01をinitSに設定する。
         resForm.setUserBasicInfo(initS01);
 
@@ -58,66 +95,45 @@ public class Keyst10100Service implements IKeyst10100Service {
 
     @Override
     @Transactional
-    public Keyst10100SaveS save(String jwt, Keyst10100SaveQ reqForm) {
+    public Keyst10100SaveS save(String jwt, Keyst10100SaveQ reqForm) throws ExclusiveException {
         // ログインユーザー情報
         Map<String, Object> loginUserInfo = jwtUtil.parseToken(jwt.substring(7));
         // ユーザーID
         Integer loginUserId = Integer.valueOf(loginUserInfo.get(jwtUtil.USER_ID).toString());
 
+        // バージョンチェック
         Keyst0100 keyst0100 = new Keyst0100();
-        BeanUtils.copyProperties(reqForm, keyst0100);
-
-        // ユーザー基本情報EntityKeyに以下の値を設定する。
-        Keyst0100Key keyst0100Key = new Keyst0100Key();
-        keyst0100Key.setUserId(loginUserId);
-
-        if (loginUserId == keyst0100Key.getUserId()) {
-            // バージョンチェック
-            Keyst0100 keyst0100Version = new Keyst0100();
-            keyst0100Version.setUserId(loginUserId);
-            keyst0100Version.setVersionExKey(reqForm.getVersionExKey());
-            keyst0100Version = keyst0100Mapper.checkVersion(keyst0100Version);
-            // INSERT時共通フィールドを設定する。
-            entityUtil.setColumns4Insert(keyst0100, loginUserId);
-            System.out.println("■■■■■■■");
-            System.out.println(keyst0100);
-            System.out.println("■■■■■■■");
-            keyst0100Mapper.updateByPrimaryKey(keyst0100);
-        } else {
-            // INSERT時共通フィールドを設定する。
-            entityUtil.setColumns4Insert(keyst0100, loginUserId);
-            keyst0100Mapper.insert(keyst0100);
+        keyst0100.setUserId(loginUserId); // ユーザーID
+        keyst0100.setVersionExKey(reqForm.getVersionExKey()); // 排他制御カラム
+        keyst0100 = keyst0100Mapper.checkVersion(keyst0100);
+        if (keyst0100 == null) {
+            throw new ExclusiveException(messageSource.getMessage("E00003", null, Locale.JAPAN));
         }
+        // UPDATE前のユーザー基本情報Entity
+        Keyst0100 beforeUpdateKeyst0100 = new Keyst0100();
+        BeanUtils.copyProperties(keyst0100, beforeUpdateKeyst0100);
+        // リクエストFormをユーザー基本情報Entityに移送する。
+        BeanUtils.copyProperties(reqForm, keyst0100);
+        // パスワード
+        if (Objects.nonNull(reqForm.getLoginPw())) {
+            // 変更後のパスワードが設定されている場合
+            // パスワードをハッシュ化して設定する。
+            keyst0100.setLoginPw(passwordEncoder.encode(reqForm.getLoginPw()));
+        } else {
+            // 変更後のパスワードが設定されていない場合
+            // 既存のパスワードを再設定する。
+            keyst0100.setLoginPw(beforeUpdateKeyst0100.getLoginPw());
+        }
+        keyst0100.setTeam(beforeUpdateKeyst0100.getTeam()); // チーム
+        keyst0100.setAdminFlg(beforeUpdateKeyst0100.getAdminFlg()); // 管理者フラグ
+        keyst0100.setDeleteFlg(beforeUpdateKeyst0100.getDeleteFlg()); // 削除フラグ
 
-        Keyst10100SaveS resForm = new Keyst10100SaveS();
-        resForm.setUserName(keyst0100.getUserName());
-        resForm.setUserNameKana(keyst0100.getUserNameKana());
-        resForm.setTeam(keyst0100.getTeam());
-        resForm.setGender(keyst0100.getGender());
-        resForm.setAge(keyst0100.getAge());
-        resForm.setBirthday(keyst0100.getBirthday());
-        resForm.setNationality(keyst0100.getNationality());
-        resForm.setPartnerFlg(keyst0100.getPartnerFlg());
-        resForm.setNearestStation(keyst0100.getNearestStation());
-        resForm.setFinalEducationDate(keyst0100.getFinalEducationDate());
-        resForm.setFinalEducationContent(keyst0100.getFinalEducationContent());
-        resForm.setSkills(keyst0100.getSkills());
-        resForm.setEmail(keyst0100.getEmail());
-        resForm.setLoginId(keyst0100.getLoginId());
-        resForm.setLoginPw(keyst0100.getLoginPw());
-        resForm.setAdminFlg(keyst0100.getAdminFlg());
-        resForm.setPrfImgStrgDrctry(keyst0100.getPrfImgStrgDrctry());
-        resForm.setPostalCode(keyst0100.getPostalCode());
-        resForm.setAddress(keyst0100.getAddress());
-        resForm.setPhoneNumber(keyst0100.getPhoneNumber());
-        resForm.setBankName(keyst0100.getBankName());
-        resForm.setBranchName(keyst0100.getBranchName());
-        resForm.setBranchId(keyst0100.getBranchId());
-        resForm.setAccountType(keyst0100.getAccountType());
-        resForm.setAccountNumber(keyst0100.getAccountNumber());
-        resForm.setAccountName(keyst0100.getAccountName());
+        // UPDATE時共通フィールドを設定する。
+        entityUtil.setColumns4Update(keyst0100, loginUserId);
+        // UPDATEを実行する。
+        keyst0100Mapper.updateByPrimaryKey(keyst0100);
 
-        return resForm;
+        return new Keyst10100SaveS();
     }
 
 }
