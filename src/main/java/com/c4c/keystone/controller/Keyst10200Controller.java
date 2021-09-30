@@ -1,21 +1,24 @@
 package com.c4c.keystone.controller;
 
-import com.c4c.keystone.constants.Flag;
-import com.c4c.keystone.exception.ExclusiveException;
+import java.util.Locale;
+import java.util.Map;
+
+import javax.validation.Valid;
+
 import com.c4c.keystone.form.*;
-import com.c4c.keystone.mapper.Keyst0200Mapper;
-import com.c4c.keystone.mapper.Keyst0210Mapper;
-import com.c4c.keystone.service.impl.Keyst10200Service;
-import com.c4c.keystone.utils.JwtUtil;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.Locale;
-import java.util.Map;
+import com.c4c.keystone.constants.Flag;
+import com.c4c.keystone.exception.ExclusiveException;
+import com.c4c.keystone.mapper.Keyst0200Mapper;
+import com.c4c.keystone.mapper.Keyst0210Mapper;
+import com.c4c.keystone.service.impl.Keyst10200Service;
+import com.c4c.keystone.utils.JwtUtil;
+
+import lombok.extern.log4j.Log4j2;
 
 
 @RestController
@@ -95,6 +98,5 @@ public class Keyst10200Controller {
         resForm.setMessages(messageSource.getMessage("I00001", new String[]{"削除"}, Locale.JAPAN));
         return ResponseEntity.ok(resForm);
     }
-
 
 }

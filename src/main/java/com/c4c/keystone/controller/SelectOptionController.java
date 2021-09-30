@@ -3,6 +3,7 @@ package com.c4c.keystone.controller;
 import com.c4c.keystone.constants.Flag;
 import com.c4c.keystone.entity.Keyst0100;
 import com.c4c.keystone.entity.Keyst0100Example;
+import com.c4c.keystone.entity.Keyst0300ExtraS03;
 import com.c4c.keystone.entity.Keyst5100;
 import com.c4c.keystone.entity.Keyst5100Example;
 import com.c4c.keystone.entity.Keyst5200;
@@ -13,6 +14,7 @@ import com.c4c.keystone.enums.Db;
 import com.c4c.keystone.enums.Os;
 import com.c4c.keystone.form.SelectOption;
 import com.c4c.keystone.mapper.Keyst0100Mapper;
+import com.c4c.keystone.mapper.Keyst0300Mapper;
 import com.c4c.keystone.mapper.Keyst5100Mapper;
 import com.c4c.keystone.mapper.Keyst5200Mapper;
 import com.c4c.keystone.mapper.Keyst5300Mapper;
@@ -25,8 +27,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/selectOption")
@@ -37,7 +41,8 @@ public class SelectOptionController {
     @Autowired
     Keyst5300Service keyst5300Service;
 
-
+    @Autowired
+    Keyst0300Mapper keyst0300Mapper;
     @Autowired
     Keyst5300Mapper keyst5300Mapper;
     @Autowired
@@ -46,6 +51,7 @@ public class SelectOptionController {
     Keyst0100Mapper keyst0100Mapper;
     @Autowired
     Keyst5200Mapper keyst5200Mapper;
+
 
     @GetMapping("/skills")
     public ResponseEntity<List<SelectOption>> getSkillsOptions() {
@@ -148,6 +154,60 @@ public class SelectOptionController {
             // selectOptionFormに以下の値を設定する。
             tempSelectOption.setCode(keyst5100.getPrjCode()); // コード
             tempSelectOption.setName(keyst5100.getPrjName()); // 名称
+//            tempSelectOption.setDisableFlg(Flag.OFF); // 無効フラグ
+            // selectOptionListに追加する。
+            selectOptionList.add(tempSelectOption);
+        }
+        return ResponseEntity.ok(selectOptionList);
+    }
+
+    @GetMapping("/month")
+    public ResponseEntity<List<SelectOption>> getMonthOptions() {
+        // 1on1実施年月履歴取得
+        List<Keyst0300ExtraS03> keyst0300ExtraS03List = keyst0300Mapper.selectWithS03();
+
+        List<SelectOption> selectOptionList = new ArrayList<>();
+        // 検索結果全件に対して以下の処理をする。
+        for (Keyst0300ExtraS03 keyst0300ExtraS031 : keyst0300ExtraS03List) {
+            SelectOption tempSelectOption = new SelectOption();
+
+            // 実施年月をyyyy年M月の形式にフォーマットする。
+            StringBuilder sb = new StringBuilder();
+            sb.append(keyst0300ExtraS031.getImplYearMonth());
+            sb.insert(4, "年");
+            sb.append("月");
+            String formattedYearMonth = sb.toString();
+
+            // selectOptionFormに以下の値を設定する。
+            tempSelectOption.setCode(keyst0300ExtraS031.getImplYearMonth()); // コード
+            tempSelectOption.setName(formattedYearMonth); // 名称
+            tempSelectOption.setDisableFlg(Flag.OFF); // 無効フラグ
+            // selectOptionListに追加する。
+            selectOptionList.add(tempSelectOption);
+        }
+
+        // 現在年月を取得
+        String today = LocalDate.now().toString();
+        String thisMonth = today.replace("-", "").substring(0, 6);
+
+        Optional<SelectOption> found = selectOptionList.stream()
+                .filter(obj -> obj.getCode().equals(thisMonth))
+                .findFirst();
+
+        // 当月の選択肢が存在しない場合
+        if (!found.isPresent()) {
+            SelectOption tempSelectOption = new SelectOption();
+
+            // 実施年月をyyyy年M月の形式にフォーマットする。
+            StringBuilder sb = new StringBuilder();
+            sb.append(thisMonth);
+            sb.insert(4, "年");
+            sb.append("月");
+            String formattedYearMonth = sb.toString();
+
+            // selectOptionFormに以下の値を設定する。
+            tempSelectOption.setCode(thisMonth); // コード
+            tempSelectOption.setName(formattedYearMonth); // 名称
             tempSelectOption.setDisableFlg(Flag.OFF); // 無効フラグ
             // selectOptionListに追加する。
             selectOptionList.add(tempSelectOption);
