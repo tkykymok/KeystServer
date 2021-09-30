@@ -51,42 +51,71 @@ public class Keyst10400Service implements IKeyst10400Service {
 
         // ユーザーごとに処理を行う。
         for (Keyst0100ExtraS01 keyst0100ExtraS01 : keyst0100ExtraS01List) {
-            // レスポンスFormを定義する。
-            Keyst10400InitS resForm = new Keyst10400InitS();
-            // 取得した情報をレスポンスFormにコピーする。(リストやオブジェクトはコピーできない為、スキルリストと案件情報は別で取得する)
-            BeanUtils.copyProperties(keyst0100ExtraS01, resForm);
-            // スキルリストForm(initS01List)を定義する。
-            List<Keyst10400InitS01> initS01List = new ArrayList<>();
-            // スキルコードを1つずつ配列に設定する。
-            if (keyst0100ExtraS01.getSkills() != null) {
-                String[] skillCodeList = keyst0100ExtraS01.getSkills().split(",");
-                // スキルコードを1件ずつ取り出し、スキル名に変換する。
-                for (String skillCodeString : skillCodeList) {
-                    Keyst10400InitS01 initS01 = new Keyst10400InitS01();
-                    Integer skillCode = Integer.parseInt(skillCodeString);
-                    Keyst5300 keyst5300 = keyst5300List.stream()
-                            .filter(obj -> skillCode.equals(obj.getSkillCode()))
-                            .findFirst()
-                            .get();
-                    // コード値からスキル名に変更した値をスキルForm(initS01)にコピーし、スキルリストForm(initS01List)に設定する。
-                    BeanUtils.copyProperties(keyst5300, initS01);
-                    initS01List.add(initS01);
+            // レスポンスFormに同じユーザーが存在するかを判定するフラグを定義する。(true: 存在する、false: 存在しない)
+            Boolean userExistsFlg = false;
+            // レスポンスFormリストが空ではない場合
+            if (resFormList != null && resFormList.size() != 0) {
+                // レスポンスFormリストを1件ずつチェック
+                for (Keyst10400InitS checkResForm : resFormList) {
+                    // レスポンスFormに同じユーザーが存在する場合
+                    if (checkResForm.getUserId().equals(keyst0100ExtraS01.getUserId())) {
+                        // 案件情報リストに追加する。
+                        Keyst10400InitS02 initS02 = new Keyst10400InitS02();
+                        initS02.setPrjCode(keyst0100ExtraS01.getPrjCode());
+                        initS02.setPrjName(keyst0100ExtraS01.getPrjName());
+                        initS02.setContractPrice(keyst0100ExtraS01.getContractPrice());
+                        initS02.setPrjStartDate(keyst0100ExtraS01.getPrjStartDate());
+                        initS02.setPrjEndDate(keyst0100ExtraS01.getPrjEndDate());
+                        checkResForm.getPrjInfoList().add(initS02);
+
+                        userExistsFlg = true;
+                        break;
+                    }
                 }
-                // スキルリストForm(initS01List)をレスポンスFormに設定する。
-                resForm.setSkillList(initS01List);
             }
 
-            // 案件情報Form(initS02)を定義する。
-            Keyst10400InitS02 initS02 = new Keyst10400InitS02();
-            initS02.setPrjCode(keyst0100ExtraS01.getPrjCode());
-            initS02.setPrjName(keyst0100ExtraS01.getPrjName());
-            initS02.setContractPrice(keyst0100ExtraS01.getContractPrice());
-            initS02.setPrjStartDate(keyst0100ExtraS01.getPrjStartDate());
-            // 案件情報Form(initS02)をレスポンスFormに設定する。
-            resForm.setPrjInfo(initS02);
+            // レスポンスFormに同じユーザーが存在しない場合
+            if (!userExistsFlg) {
+                // レスポンスFormを定義する。
+                Keyst10400InitS resForm = new Keyst10400InitS();
+                // 取得した情報をレスポンスFormにコピーする。(リストやオブジェクトはコピーできない為、スキルリストと案件情報は別で取得する)
+                BeanUtils.copyProperties(keyst0100ExtraS01, resForm);
+                // スキルリストForm(initS01List)を定義する。
+                List<Keyst10400InitS01> initS01List = new ArrayList<>();
+                // スキルコードを1つずつ配列に設定する。
+                if (keyst0100ExtraS01.getSkills() != null) {
+                    String[] skillCodeList = keyst0100ExtraS01.getSkills().split(",");
+                    // スキルコードを1件ずつ取り出し、スキル名に変換する。
+                    for (String skillCodeString : skillCodeList) {
+                        Keyst10400InitS01 initS01 = new Keyst10400InitS01();
+                        Integer skillCode = Integer.parseInt(skillCodeString);
+                        Keyst5300 keyst5300 = keyst5300List.stream()
+                                .filter(obj -> skillCode.equals(obj.getSkillCode()))
+                                .findFirst()
+                                .get();
+                        // コード値からスキル名に変更した値をスキルForm(initS01)にコピーし、スキルリストForm(initS01List)に設定する。
+                        BeanUtils.copyProperties(keyst5300, initS01);
+                        initS01List.add(initS01);
+                    }
+                    // スキルリストForm(initS01List)をレスポンスFormに設定する。
+                    resForm.setSkillList(initS01List);
+                }
 
-            // レスポンスFormリストにレスポンスFormを設定する。
-            resFormList.add(resForm);
+                // 案件情報Formリスト(initS02List)を定義する。
+                List<Keyst10400InitS02> initS02List = new ArrayList<>();
+                Keyst10400InitS02 initS02 = new Keyst10400InitS02();
+                initS02.setPrjCode(keyst0100ExtraS01.getPrjCode());
+                initS02.setPrjName(keyst0100ExtraS01.getPrjName());
+                initS02.setContractPrice(keyst0100ExtraS01.getContractPrice());
+                initS02.setPrjStartDate(keyst0100ExtraS01.getPrjStartDate());
+                initS02.setPrjEndDate(keyst0100ExtraS01.getPrjEndDate());
+                initS02List.add(initS02);
+                // 案件情報Formリスト(initS02List)をレスポンスFormに設定する。
+                resForm.setPrjInfoList(initS02List);
+
+                // レスポンスFormリストにレスポンスFormを設定する。
+                resFormList.add(resForm);
+            }
         }
 
         return resFormList;

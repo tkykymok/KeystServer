@@ -289,14 +289,14 @@ public interface Keyst0100Mapper {
             "    ,KEYST5100.PRJ_NAME\n" +
             "    ,KEYST5110.CONTRACT_PRICE\n" +
             "    ,KEYST5110.PRJ_START_DATE\n" +
+            "    ,KEYST5110.PRJ_END_DATE\n" +
             "FROM\n" +
             "   KEYST0100\n" +
             "LEFT OUTER JOIN KEYST5110 ON\n" +
             "    KEYST0100.USER_ID = KEYST5110.USER_ID\n" +
             "LEFT OUTER JOIN KEYST5100 ON\n" +
             "    KEYST5110.PRJ_CODE = KEYST5100.PRJ_CODE\n" +
-            "WHERE KEYST5110.PRJ_END_DATE IS NULL\n" +
-            "   AND KEYST0100.DELETE_FLG = 0";
+            "WHERE KEYST0100.DELETE_FLG = 0";
 
     @Select(EXTRA_S01)
     @Results(value = {
@@ -310,6 +310,7 @@ public interface Keyst0100Mapper {
             @Result(property = "prjName", column = "PRJ_NAME"),
             @Result(property = "contractPrice", column = "CONTRACT_PRICE"),
             @Result(property = "prjStartDate", column = "PRJ_START_DATE"),
+            @Result(property = "prjEndDate", column = "PRJ_END_DATE"),
     })
     List<Keyst0100ExtraS01> selectWithS01();
 

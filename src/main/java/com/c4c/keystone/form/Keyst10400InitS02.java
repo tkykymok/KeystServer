@@ -32,4 +32,11 @@ public class Keyst10400InitS02 {
      */
     @JsonFormat(pattern = "yyyy/MM/dd")
     private LocalDate prjStartDate;
+
+    /**
+     * Column: PRJ_START_DATE
+     * Remark: 稼働終了年月日
+     */
+    @JsonFormat(pattern = "yyyy/MM/dd")
+    private LocalDate prjEndDate;
 }
