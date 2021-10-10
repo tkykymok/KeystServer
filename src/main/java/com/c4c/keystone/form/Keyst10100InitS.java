@@ -1,8 +1,8 @@
 package com.c4c.keystone.form;
 
-import java.util.List;
-
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class Keyst10100InitS {
@@ -15,7 +15,7 @@ public class Keyst10100InitS {
      * Column: SKILLS
      * Remark: 保有スキル
      */
-    private List<Keyst10400InitS01> skillList;
+    private List<Keyst10100InitS02> skillList;
 
 
 }
