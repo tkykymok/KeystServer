@@ -28,21 +28,19 @@ public class Keyst10300UpdateQ {
      */
     private LocalTime reserveTime;
 
-
     /**
      * Column: USER_COMMENT
      * Remark: ユーザーコメント
      */
-    @NotNull(message = "コメントを入力してください")
-    @Size(max = 200, message = "コメント{Size.less_max}")
+    @NotNull(message = "{userComment}{NotEmpty}")
+    @Size(max = 200, message = "{userComment}{Size.less_max}")
     private String userComment;
 
     /**
      * Column: MANAGER_COMMENT
      * Remark: 管理者コメント
      */
-//    @NotNull(message = "コメントを入力してください")
-    @Size(max = 200, message = "コメント{Size.less_max}")
+    @Size(max = 200, message = "{managerComment}{Size.less_max}")
     private String managerComment;
 
     /**
