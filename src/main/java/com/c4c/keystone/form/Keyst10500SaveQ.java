@@ -27,6 +27,7 @@ public class Keyst10500SaveQ {
      * Column: CUST_CODE
      * Remark: 顧客コード
      */
+    @NotEmpty(message = "{custName}{NotEmpty}")
     private String custCode;
 
     /**

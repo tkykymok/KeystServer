@@ -8,11 +8,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.c4c.keystone.entity.Keyst0100;
 import com.c4c.keystone.entity.Keyst0100ExtraS01;
-import com.c4c.keystone.entity.Keyst5100;
 import com.c4c.keystone.entity.Keyst5300;
-import com.c4c.keystone.form.Keyst10400FilteringS;
 import com.c4c.keystone.form.Keyst10400InitS;
 import com.c4c.keystone.form.Keyst10400InitS01;
 import com.c4c.keystone.form.Keyst10400InitS02;
@@ -119,57 +116,5 @@ public class Keyst10400Service implements IKeyst10400Service {
         }
 
         return resFormList;
-    }
-
-    @Override
-    public Keyst10400FilteringS filtering(String jwt) {
-        // ログインユーザー情報
-        Map<String, Object> loginUserInfo = jwtUtil.parseToken(jwt.substring(7));
-        // ユーザーID
-        Integer loginUserId = Integer.valueOf(loginUserInfo.get(jwtUtil.USER_ID).toString());
-
-        // レスポンスFormを定義する。
-        Keyst10400FilteringS resForm = new Keyst10400FilteringS();
-
-        // チームマスタ取得(マスタテーブルが存在しない為、作成したSQLで取得)
-        List<Keyst0100> keyst0100List = keyst0100Mapper.selectTeam();
-        // チームリストを定義する。
-        List<String> teamList = new ArrayList<>();
-        // チームマスタを1件ずつ取り出し、チームをチームリストに設定する。
-        for (Keyst0100 keyst0100 : keyst0100List) {
-            if (keyst0100 != null) {
-                teamList.add(keyst0100.getTeam());
-            }
-        }
-        // チームリストをレスポンスFormに設定する。
-        resForm.setTeamList(teamList);
-
-        // スキルマスタ取得
-        List<Keyst5300> keyst5300List = keyst5300Service.getAllSkills();
-        // スキル名リストを定義する。
-        List<String> skillNameList = new ArrayList<>();
-        // スキルマスタを1件ずつ取り出し、スキル名をスキル名リストに設定する。
-        for (Keyst5300 keyst5300 : keyst5300List) {
-            if (keyst5300 != null) {
-                skillNameList.add(keyst5300.getSkillName());
-            }
-        }
-        // スキル名リストをレスポンスFormに設定する。
-        resForm.setSkillNameList(skillNameList);
-
-        // 案件マスタ取得
-        List<Keyst5100> keyst5100List = keyst5100Service.getAllProjects();
-        // 案件名リストを定義する。
-        List<String> prjNameList = new ArrayList<>();
-        // 案件マスタを1件ずつ取り出し、案件名を案件名リストに設定する。
-        for (Keyst5100 keyst5100 : keyst5100List) {
-            if (keyst5100 != null) {
-                prjNameList.add(keyst5100.getPrjName());
-            }
-        }
-        // 案件名リストをレスポンスFormに設定する。
-        resForm.setPrjNameList(prjNameList);
-
-        return resForm;
     }
 }
