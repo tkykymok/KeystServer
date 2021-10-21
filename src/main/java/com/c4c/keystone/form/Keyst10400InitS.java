@@ -43,7 +43,7 @@ public class Keyst10400InitS {
     private List<Keyst10400InitS01> skillList;
 
     /**
-     * 案件情報
+     * 案件情報リスト
      */
-    private Keyst10400InitS02 prjInfo;
+    private List<Keyst10400InitS02> prjInfoList;
 }
