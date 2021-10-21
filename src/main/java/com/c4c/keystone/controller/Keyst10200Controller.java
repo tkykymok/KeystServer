@@ -76,7 +76,6 @@ public class Keyst10200Controller {
     }
 
     @PostMapping(value = "save")
-
     public ResponseEntity<Keyst10200SaveS> save(@RequestHeader("Authorization") String jwt, @RequestBody @Valid Keyst10200SaveQ reqForm) {
         // レスポンスForm
         Keyst10200SaveS resForm = keyst10200Service.save(jwt, reqForm);
@@ -84,7 +83,7 @@ public class Keyst10200Controller {
         return ResponseEntity.ok(resForm);
     }
 
-    @PostMapping(value = "update")
+    @PutMapping(value = "update")
     public ResponseEntity<Keyst10200UpdateS> update(@RequestHeader("Authorization") String jwt, @RequestBody @Valid Keyst10200UpdateQ reqForm) throws ExclusiveException {
         // レスポンスForm
         Keyst10200UpdateS resForm = keyst10200Service.update(jwt, reqForm);
@@ -99,6 +98,5 @@ public class Keyst10200Controller {
         resForm.setMessages(messageSource.getMessage("I00001", new String[]{"削除"}, Locale.JAPAN));
         return ResponseEntity.ok(resForm);
     }
-
 
 }
