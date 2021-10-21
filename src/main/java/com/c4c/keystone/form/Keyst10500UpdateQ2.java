@@ -2,7 +2,7 @@ package com.c4c.keystone.form;
 
 import java.time.LocalDate;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -18,21 +18,21 @@ public class Keyst10500UpdateQ2 {
      * Column: USER_ID
      * Remark: ユーザーID
      */
-    @NotEmpty(message = "{userName}{NotEmpty}")
+    @NotNull(message = "{userName}{NotEmpty}")
     private Integer userId;
 
     /**
      * Column: CONTRACT_PRICE
      * Remark: 契約単価
      */
-    @NotEmpty(message = "{contractPrice}{NotEmpty}")
+    @NotNull(message = "{contractPrice}{NotEmpty}")
     private Integer contractPrice;
 
     /**
      * Column: PRJ_START_DATE
      * Remark: 稼働開始年月日
      */
-    @NotEmpty(message = "{prjStartDate}{NotEmpty}")
+    @NotNull(message = "{prjStartDate}{NotEmpty}")
     private LocalDate prjStartDate;
 
     /**
