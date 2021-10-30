@@ -5,11 +5,9 @@ import com.c4c.keystone.entity.Keyst0100;
 import com.c4c.keystone.entity.Keyst0100Example;
 import com.c4c.keystone.entity.Keyst0300ExtraS03;
 import com.c4c.keystone.entity.Keyst5100;
-import com.c4c.keystone.entity.Keyst5100Example;
 import com.c4c.keystone.entity.Keyst5200;
 import com.c4c.keystone.entity.Keyst5200Example;
 import com.c4c.keystone.entity.Keyst5300;
-import com.c4c.keystone.entity.Keyst5300Example;
 import com.c4c.keystone.enums.Db;
 import com.c4c.keystone.enums.Os;
 import com.c4c.keystone.form.SelectOption;
@@ -22,7 +20,6 @@ import com.c4c.keystone.service.impl.Keyst5100Service;
 import com.c4c.keystone.service.impl.Keyst5300Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -57,16 +54,27 @@ public class SelectOptionController {
     public ResponseEntity<List<SelectOption>> getSkillsOptions() {
         // スキルマスタ取得
         List<Keyst5300> Keyst5300List = keyst5300Service.getAllSkills();
-        // 検索結果全件に対して以下の処理をする。
+
         List<SelectOption> selectOptionList = new ArrayList<>();
+        // 初期値の選択肢を追加する。
+        SelectOption selectOption = new SelectOption();
+        selectOption.setCode("");
+        selectOption.setName("スキル一覧");
+        selectOption.setDisableFlg(Flag.OFF);
+        selectOptionList.add(selectOption);
+
+        int count = 1;
+        // 検索結果全件に対して以下の処理をする。
         for (Keyst5300 keyst5300 : Keyst5300List) {
-            // 言語フラグがONの場合、以下の処理をする。
             SelectOption tempSelectOption = new SelectOption();
             // selectOptionFormに以下の値を設定する。
-            tempSelectOption.setCode(keyst5300.getSkillCode().toString()); // コード
-            tempSelectOption.setName(keyst5300.getSkillName()); // 名称
+            String code = String.valueOf(count);
+            tempSelectOption.setCode(code); // 番号
+            tempSelectOption.setName(keyst5300.getSkillName()); // スキル
+            tempSelectOption.setDisableFlg(Flag.OFF); // 無効フラグ
             // selectOptionListに追加する。
             selectOptionList.add(tempSelectOption);
+            count++;
         }
         return ResponseEntity.ok(selectOptionList);
     }
@@ -293,6 +301,35 @@ public class SelectOptionController {
             tempSelectOption.setDisableFlg(Flag.OFF); // 無効フラグ
             // selectOptionListに追加する。
             selectOptionList.add(tempSelectOption);
+        }
+        return ResponseEntity.ok(selectOptionList);
+    }
+
+    @GetMapping("/team")
+    public ResponseEntity<List<SelectOption>> getTeamOptions() {
+        // チーム取得
+        List<Keyst0100> keyst0100List = keyst0100Mapper.selectTeam();
+
+        List<SelectOption> selectOptionList = new ArrayList<>();
+        // 初期値の選択肢を追加する。
+        SelectOption selectOption = new SelectOption();
+        selectOption.setCode("");
+        selectOption.setName("チーム一覧");
+        selectOption.setDisableFlg(Flag.OFF);
+        selectOptionList.add(selectOption);
+
+        int count = 1;
+        // 検索結果全件に対して以下の処理をする。
+        for (Keyst0100 keyst0100 : keyst0100List) {
+            SelectOption tempSelectOption = new SelectOption();
+            // selectOptionFormに以下の値を設定する。
+            String code = String.valueOf(count);
+            tempSelectOption.setCode(code); // 番号
+            tempSelectOption.setName(keyst0100.getTeam()); // チーム
+            tempSelectOption.setDisableFlg(Flag.OFF); // 無効フラグ
+            // selectOptionListに追加する。
+            selectOptionList.add(tempSelectOption);
+            count++;
         }
         return ResponseEntity.ok(selectOptionList);
     }
