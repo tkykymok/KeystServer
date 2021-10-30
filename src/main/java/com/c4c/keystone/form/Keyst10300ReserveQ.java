@@ -3,6 +3,10 @@ package com.c4c.keystone.form;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import lombok.Data;
 
 @Data
@@ -17,6 +21,7 @@ public class Keyst10300ReserveQ {
      * Column: RESERVE_DATE
      * Remark: 予約日
      */
+    @FutureOrPresent
     private LocalDate reserveDate;
 
     /**
@@ -29,12 +34,14 @@ public class Keyst10300ReserveQ {
      * Column: FEELING
      * Remark: ワタシノキモチ
      */
+    @NotNull(message = "ワタシノキモチを選択してください")
     private Integer feeling;
 
     /**
      * Column: REMARK
      * Remark: 備考
      */
+    @Size(max = 100, message = "備考{Size.less_max}")
     private String remark;
 
     /**

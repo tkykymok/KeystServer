@@ -3,6 +3,9 @@ package com.c4c.keystone.form;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import lombok.Data;
 
 @Data
@@ -25,17 +28,19 @@ public class Keyst10300UpdateQ {
      */
     private LocalTime reserveTime;
 
-
     /**
      * Column: USER_COMMENT
      * Remark: ユーザーコメント
      */
+    @NotNull(message = "{userComment}{NotEmpty}")
+    @Size(max = 200, message = "{userComment}{Size.less_max}")
     private String userComment;
 
     /**
      * Column: MANAGER_COMMENT
      * Remark: 管理者コメント
      */
+    @Size(max = 200, message = "{managerComment}{Size.less_max}")
     private String managerComment;
 
     /**
