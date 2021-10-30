@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import javax.validation.constraints.FutureOrPresent;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -20,7 +20,7 @@ public class Keyst10300SaveQ {
      * Column: RESERVE_DATE
      * Remark: 予約日
      */
-    @NotEmpty(message = "{reserveDate}{NotEmpty}")
+    @NotNull(message = "{reserveDate}{NotEmpty}")
     @FutureOrPresent(message = "{FutureOrPresent}")
     private LocalDate reserveDate;
 
@@ -28,14 +28,14 @@ public class Keyst10300SaveQ {
      * Column:
      * Remark: 開始時間
      */
-    @NotEmpty(message = "{fromTime}{NotEmpty}")
+    @NotNull(message = "{fromTime}{NotEmpty}")
     private LocalTime fromTime;
 
     /**
      * Column:
      * Remark: 終了時間
      */
-    @NotEmpty(message = "{toTime}{NotEmpty}")
+    @NotNull(message = "{toTime}{NotEmpty}")
     private LocalTime toTime;
 
     /**
