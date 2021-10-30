@@ -1,0 +1,8 @@
+USER_ID,USER_NAME,USER_NAME_KANA,TEAM,GENDER,AGE,BIRTHDAY,NATIONALITY,PARTNER_FLG,NEAREST_STATION,FINAL_EDUCATION_DATE,FINAL_EDUCATION_CONTENT,SKILLS,EMAIL,LOGIN_ID,LOGIN_PW,ADMIN_FLG,PRF_IMG_STRG_DRCTRY,POSTAL_CODE,ADDRESS,PHONE_NUMBER,BANK_NAME,BRANCH_NAME,BRANCH_ID,ACCOUNT_TYPE,ACCOUNT_NUMBER,ACCOUNT_NAME,DELETE_FLG,CREATED_DATETIME,CREATED_USER,LAST_MODIFIED_DATETIME,LAST_MODIFIED_USER,VERSION_EX_KEY
+1,山田 太郎,ヤマダ タロウ,A,0,23,1998-01-01,日本,0,東京駅,2021-03-30,東京大学経済学部卒業,"1,2,3",hoge@hoge,hoge,hoge,0,profile1.png,null,null,null,null,null,null,null,null,null,0,null,null,null,null,0
+2,鈴木 花子,スズキ ハナコ,B,1,25,1996-12-31,日本,0,新宿駅,2019-03-30,京都大学経済学部卒業,"1,2,5,6",foo@foo,foo,foo,0,profile2.png,null,null,null,null,null,null,null,null,null,0,null,null,null,null,0
+3,田中 二郎,タナカ ジロウ,A,0,24,1997-04-04,日本,0,渋谷駅,2020-03-30,早稲田大学経済学部卒業,"1,2,3,7",bar@bar,bar,bar,0,profile1.png,null,null,null,null,null,null,null,null,null,0,null,null,null,null,0
+4,高橋 春子,タカハシ ハルコ,C,1,26,1995-09-09,日本,0,代々木駅,2018-03-30,青山学院大学経済学部卒業,"3,4,9",fuga@fuga,fuga,fuga,0,profile2.png,null,null,null,null,null,null,null,null,null,0,null,null,null,null,0
+5,高橋 春子,ナカムラ ナツコ,D,1,25,1996-04-01,日本,0,五反田駅,2021-09-19,日本大学経済学部卒業,null,null,test2,test2,0,profile1.png,null,null,null,null,null,null,null,null,null,0,null,null,null,null,0
+6,関根 健太,セキネ ケンタ,D,0,23,1998-07-05,日本,0,上尾駅,2021-09-19,立正大学経済学部卒業,null,null,test,$2a$10$9JDYTNX0dPpDTVGPHw.2yuJDfPouqdO4C6TXS5LOLc9itHp/nEzjS,1,profile2.png,null,null,null,null,null,null,null,null,null,0,null,null,null,null,0
+9,高橋 夏子,タカハシ ナツコ,B,1,27,1994-05-01,日本,0,池袋駅,2017-03-30,東洋大学経済学部卒業,"1,5,6",hogehoge@hogehoge,hogehoge,$2a$10$WVduRzDvTDeWWvM5C7NDx.oCybItbfXCO4Py36xQssE4tkxoEaixO,0,profile2.png,null,null,null,null,null,null,null,null,null,0,null,null,null,null,0

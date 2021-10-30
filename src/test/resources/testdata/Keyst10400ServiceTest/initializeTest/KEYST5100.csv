@@ -1,0 +1,10 @@
+PRJ_CODE,PRJ_NAME,CUST_CODE,END_CUST_NAME,REMARK,DELETE_FLG,CREATED_DATETIME,CREATED_USER,LAST_MODIFIED_DATETIME,LAST_MODIFIED_USER,VERSION_EX_KEY
+P0001,案件名1,C0001,エンド 太郎,フロントから更新,0,null,6,null,6,7
+P0002,案件名2,C0002,エンド 二郎,フロントから更新,0,null,6,null,6,7
+P0003,案件名3,C0003,エンド 三郎,超ブラック,0,null,6,null,6,0
+P0004,案件名4,C0004,エンド 四郎,超ブラック,0,null,6,null,6,0
+P0005,案件名5,C0005,エンド 五郎,2022年2名増員予定,0,null,6,null,6,0
+P0006,案件名6,C0006,エンド 六郎,フロントから登録,0,null,6,null,6,0
+P0007,案件名7,C0007,エンド 七郎,フロントから登録,0,null,6,null,6,0
+P0008,案件名8,C0008,エンド 八郎,フロントから登録,0,null,6,null,6,2
+P0009,案件名9,C0009,エンド 九郎,フロントから登録,0,null,6,null,6,1
