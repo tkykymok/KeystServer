@@ -47,7 +47,7 @@ public class Keyst10600Service implements IKeyst10600Service {
                 .collect(Collectors.toList());
 
         // 検索結果全件に対して以下の処理をする。
-        List<Keyst10600InitS01> keyst10600InitS01List = new ArrayList<>(); // スキルシート情報一覧
+        List<Keyst10600InitS01> keyst10600InitS01List = new ArrayList<>();
         for (Keyst0400ExtraS01 keyst0400ExtraS01 : keyst0400ExtraS01List) {
             Keyst10600InitS01 tempInitS04 = new Keyst10600InitS01();
             BeanUtils.copyProperties(keyst0400ExtraS01, tempInitS04);
