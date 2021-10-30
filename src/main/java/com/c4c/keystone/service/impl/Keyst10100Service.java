@@ -1,11 +1,11 @@
 package com.c4c.keystone.service.impl;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
 
-import com.c4c.keystone.constants.Flag;
-import com.c4c.keystone.entity.Keyst5300;
-import com.c4c.keystone.exception.ExclusiveException;
-import com.c4c.keystone.form.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -15,6 +15,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.c4c.keystone.entity.Keyst0100;
 import com.c4c.keystone.entity.Keyst0100Key;
+import com.c4c.keystone.entity.Keyst5300;
+import com.c4c.keystone.exception.ExclusiveException;
+import com.c4c.keystone.form.Keyst10100InitS;
+import com.c4c.keystone.form.Keyst10100InitS01;
+import com.c4c.keystone.form.Keyst10100InitS02;
+import com.c4c.keystone.form.Keyst10100SaveQ;
+import com.c4c.keystone.form.Keyst10100SaveS;
 import com.c4c.keystone.mapper.Keyst0100Mapper;
 import com.c4c.keystone.service.IKeyst10100Service;
 import com.c4c.keystone.utils.EntityUtil;
@@ -127,7 +134,6 @@ public class Keyst10100Service implements IKeyst10100Service {
         keyst0100.setTeam(beforeUpdateKeyst0100.getTeam()); // チーム
         keyst0100.setAdminFlg(beforeUpdateKeyst0100.getAdminFlg()); // 管理者フラグ
         keyst0100.setDeleteFlg(beforeUpdateKeyst0100.getDeleteFlg()); // 削除フラグ
-
         // UPDATE時共通フィールドを設定する。
         entityUtil.setColumns4Update(keyst0100, loginUserId);
         // UPDATEを実行する。
