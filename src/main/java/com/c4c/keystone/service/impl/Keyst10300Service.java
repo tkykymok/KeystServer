@@ -2,11 +2,8 @@ package com.c4c.keystone.service.impl;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,23 +73,27 @@ public class Keyst10300Service implements IKeyst10300Service {
         String today = LocalDate.now().toString();
         String thisMonth = today.replace("-", "").substring(0, 6);
 
-        Keyst0300ExtraS01 Keyst0300ExtraS01 = new Keyst0300ExtraS01();
+        Keyst0300ExtraS01 keyst0300ExtraS01 = new Keyst0300ExtraS01();
         // 実施年月の設定
         if (Objects.isNull(yearMonth)) {
             // 引数に年月が渡されていない場合
-            Keyst0300ExtraS01.setImplYearMonth(thisMonth); // 実施年月
+            keyst0300ExtraS01.setImplYearMonth(thisMonth); // 実施年月
         } else {
             // 引数に年月が渡されている場合
-            Keyst0300ExtraS01.setImplYearMonth(yearMonth); // 実施年月
+            keyst0300ExtraS01.setImplYearMonth(yearMonth); // 実施年月
         }
 
         List<Keyst0300ExtraS01> keyst0300ExtraS01List;
         if (isAdmin) {
             // 管理者の場合
             // 1on1予約ヘッダーExtraEntityに以下の値を設定する。
-            Keyst0300ExtraS01.setManagerId(loginUserId); // 管理者ID
+            keyst0300ExtraS01.setManagerId(loginUserId); // 管理者ID
             // 1on1予約ヘッダーMapperのExtraS01検索メソッドを呼び出す。
-            keyst0300ExtraS01List = keyst0300Mapper.selectWithS01(Keyst0300ExtraS01);
+            keyst0300ExtraS01List = keyst0300Mapper.selectWithS01(keyst0300ExtraS01);
+            keyst0300ExtraS01List = keyst0300ExtraS01List
+                    .stream()
+                    .sorted(Comparator.comparing(Keyst0300ExtraS01::getReserveDate).thenComparing(Keyst0300ExtraS01::getReserveTime))
+                    .collect(Collectors.toList());
             // レスポンスFormに以下の値を設定する。
             if (!keyst0300ExtraS01List.isEmpty()) {
                 resForm.setTeam(keyst0300ExtraS01List.get(0).getTeam()); // 対象チーム
@@ -107,9 +108,13 @@ public class Keyst10300Service implements IKeyst10300Service {
             resForm.setTeam(keyst0100.getTeam()); // チーム
 
             // 1on1予約ヘッダーExtraEntityに以下の値を設定する。
-            Keyst0300ExtraS01.setTeam(keyst0100.getTeam()); // チーム
+            keyst0300ExtraS01.setTeam(keyst0100.getTeam()); // チーム
             // 1on1予約ヘッダーMapperのExtraS02検索メソッドを呼び出す。
-            keyst0300ExtraS01List = keyst0300Mapper.selectWithS02(Keyst0300ExtraS01);
+            keyst0300ExtraS01List = keyst0300Mapper.selectWithS02(keyst0300ExtraS01);
+            keyst0300ExtraS01List = keyst0300ExtraS01List
+                    .stream()
+                    .sorted(Comparator.comparing(Keyst0300ExtraS01::getReserveDate).thenComparing(Keyst0300ExtraS01::getReserveTime))
+                    .collect(Collectors.toList());
 
             ////////////////////////
             // コメント履歴一覧の取得
@@ -130,9 +135,9 @@ public class Keyst10300Service implements IKeyst10300Service {
 
         // 検索結果をレスポンスForm(initS)に移送する。
         List<Keyst10300InitS01> reserveInfoList = new ArrayList<>();
-        for (Keyst0300ExtraS01 keyst0300ExtraS01 : keyst0300ExtraS01List) {
+        for (Keyst0300ExtraS01 extraS01 : keyst0300ExtraS01List) {
             Keyst10300InitS01 keyst10300InitS1 = new Keyst10300InitS01();
-            BeanUtils.copyProperties(keyst0300ExtraS01, keyst10300InitS1);
+            BeanUtils.copyProperties(extraS01, keyst10300InitS1);
             reserveInfoList.add(keyst10300InitS1);
         }
 
