@@ -1,0 +1,11 @@
+SKILL_SHEET_ID,REF_NO,PRJ_CODE,PRJ_START_DATE,PRJ_END_DATE,BIZ_IN_CHARGE,COMMENT,DEV_SCALE,OS,DB,FW_MW_TOOL,PG_LANG,SOW_MANAGEMENT,SOW_REQ_DEFINITION,SOW_BASIC_DESIGN,SOW_DETAIL_DESIGN,SOW_IMPLEMENTATION,SOW_TEST,SOW_MAINTENANCE_OPERATION,CREATED_DATETIME,CREATED_USER,LAST_MODIFIED_DATETIME,LAST_MODIFIED_USER,VERSION_EX_KEY
+75,0,P0001,2020-10-01,null,基本設計、詳細設計、実装、テストを担当。,コメント,"20,15,35",2,1,"GitHub,Nuxt.js,Jenkins","4,3,11",0,0,1,1,1,1,1,null,null,null,null,null
+75,1,P0002,2020-01-01,2020-09-30,業務内容,コメント,"10,10,20",1,2,",,",4,0,0,0,0,1,1,0,null,null,null,null,null
+76,0,P0001,2020-10-01,null,基本設計、詳細設計、実装、テストを担当。,コメント,"20,15,35",2,1,"GitHub,Nuxt.js,Jenkins","4,3,11",0,0,1,1,1,1,1,null,null,null,null,0
+76,1,P0002,2020-01-01,2020-09-30,業務内容,コメント,"10,10,20",1,2,",,",4,0,0,0,0,1,1,0,null,null,null,null,0
+77,0,P0001,2020-10-01,null,基本設計、詳細設計、実装、テストを担当。,コメント,"20,15,35",2,1,"GitHub,Nuxt.js,Jenkins","4,3,11",0,0,1,1,1,1,1,null,null,null,null,0
+77,1,P0002,2020-01-01,2020-09-30,業務内容,コメント,"10,10,20",1,2,",,",4,0,0,0,0,1,1,0,null,null,null,null,0
+78,0,P0001,2020-10-01,null,基本設計、詳細設計、実装、テストを担当。,コメント,"20,15,35",2,1,"GitHub,Nuxt.js,Jenkins","4,3,11",0,0,1,1,1,1,1,null,null,null,null,0
+78,1,P0002,2020-01-01,2020-09-30,業務内容,コメント,"10,10,20",1,2,",,",4,0,0,0,0,1,1,0,null,null,null,null,0
+79,0,P0001,2020-10-01,null,基本設計、詳細設計、実装、テストを担当。,コメント,"20,15,35",2,1,"GitHub,Nuxt.js,Jenkins","4,3,11",0,0,1,1,1,1,1,null,null,null,null,0
+79,1,P0002,2020-01-01,2020-09-30,業務内容,コメント,"10,10,20",1,2,",,",4,0,0,0,0,1,1,0,null,null,null,null,0
