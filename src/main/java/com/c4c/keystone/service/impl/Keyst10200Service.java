@@ -393,6 +393,7 @@ public class Keyst10200Service implements IKeyst10200Service {
         keyst0200.setDeleteFlg(Flag.ON);
         keyst0200Mapper.updateByPrimaryKey(keyst0200);
 
+        resForm.setUserId(keyst0200.getUserId());
         return resForm;
     }
 }
